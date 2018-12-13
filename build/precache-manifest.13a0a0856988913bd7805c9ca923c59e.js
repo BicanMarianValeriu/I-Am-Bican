@@ -92,12 +92,12 @@ self.__precacheManifest = [
     url: "/static/media/ShadowsIntoLight.4e21f1ae.woff"
   },
   {
-    revision: "4141b2ff16a24a462106e206def679c1",
-    url: "/static/media/ShadowsIntoLight.4141b2ff.ttf"
-  },
-  {
     revision: "33adae677fab86b44462b81620210061",
     url: "/static/media/ShadowsIntoLight.33adae67.eot"
+  },
+  {
+    revision: "4141b2ff16a24a462106e206def679c1",
+    url: "/static/media/ShadowsIntoLight.4141b2ff.ttf"
   },
   {
     revision: "fae49bdc58be2eb2a3ce895e3d80ff2a",
