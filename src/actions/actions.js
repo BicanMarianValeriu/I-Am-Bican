@@ -1,8 +1,6 @@
-//import apiFetch from '@wordpress/api-fetch';
 import axios from 'axios';
 import JWTDecode from 'jwt-decode';
-import { routes as _routes } from "./../rest-routes.json";
-import { getAuthToken, getAuthHeader } from '../functions/auth.js';
+import { routes as _routes } from "./../rest-routes.json"; 
 import { serializeData } from '../functions/helpers.js';
 
 export const FETCHING = 'FETCHING';
@@ -15,11 +13,14 @@ export const FETCH_MEDIA_FULFILLED = 'FETCH_MEDIA_FULFILLED';
 export const FETCH_REJECTED = 'FETCH_REJECTED';
 export const SET_HAS_MORE_POSTS = 'SET_HAS_MORE_POSTS';
 
-// Api Settings
-//apiFetch.use(apiFetch.createRootURLMiddleware(_routes.REST));
-// WP Fetch API has issues with headers and IE, even with polyfil. Axios all the way.
 // Axios Settings
-axios.defaults.baseURL = _routes.REST;
+const APIUrl = _routes.REST; //'//working.on/iambican/wordpress/wp-json/';
+axios.defaults.baseURL = APIUrl;
+const apiConfig = {
+    baseURL: APIUrl 
+};
+
+export const requestApi = axios.create(apiConfig);
 
 /**
  * Sets has more post state
@@ -42,9 +43,9 @@ export async function requestUserToken(data) {
             method: 'post',
             url: 'jwt-auth/v1/token',
             data: serializeData({ username, password })
-        }
+        }; 
         try {
-            return await axios(config).then(response => (response.data));
+            return await requestApi(config).then(response => response.data);
         } catch (e) {
             console.log(e);
         }
@@ -52,17 +53,15 @@ export async function requestUserToken(data) {
 }
 
 /**
- * Sets current user
- * @param condition 
+ * Sets current user 
  */
-export async function setCurrentUser() {
-    const token = getAuthToken(), headers = getAuthHeader();
-    if (token && headers) {
+export async function setCurrentUser( token ) {
+    const headers = { 'Authorization': `Bearer ${token}` };
+    if (token) {
         const decoded = JWTDecode(token);
-        const { data: { user: { id } } } = decoded;
-        console.log('Authentificated user ID is: ' + id)
+        const { data: { user: { id } } } = decoded; 
         try {
-            return await axios.get('wp/v2/users/' + id, { headers }).then(response => response.data)
+            return await requestApi.get('wp/v2/users/' + id, { headers }).then(response => response.data)
         } catch (e) {
             console.log(e)
         }
@@ -83,7 +82,7 @@ export function fetchDispatcher(endpoint = '', query = {}, action = {}, options 
         // Dispatch the fetching action
         dispatch({ type: FETCHING, payload: true });
         // Fetch 
-        return axios.get(endpoint, { ...options })
+        return requestApi.get(endpoint, { ...options })
             .then(response => dispatch({ type: action.success, payload: response.data }))
             .catch(error => dispatch({ type: action.failed ? action.failed : FETCH_REJECTED, payload: error }));
     };

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 class ClientLogos extends Component {
     componentDidMount() {
-        this.props.dispatch(fetchDispatcher('wp/v2/clients/', {}, { success: FETCH_CLIENTS_FULFILLED }));
+        this.props.dispatch(fetchDispatcher('wp/v2/clients', {}, { success: FETCH_CLIENTS_FULFILLED }));
     }
 
     componentWillUnmount() {

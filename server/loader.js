@@ -15,7 +15,7 @@ import Loadable from 'react-loadable';
 import createStore from './../src/store';
 import App from './../src/app';
 import manifest from './../build/asset-manifest.json';
-//import { setCurrentUser, LOGOUT_USER, FETCH_USER_FULFILLED } from '../src/actions/actions'; 
+import { setCurrentUser, LOGOUT_USER, FETCH_USER_FULFILLED } from '../src/actions/actions'; 
 
 // LOADER
 export default (req, res) => {
@@ -48,11 +48,13 @@ export default (req, res) => {
 
             // If the user has a cookie (i.e. they're signed in) - set them as the current user
             // Otherwise, we want to set the current state to be logged out, just in case this isn't the default
-            /* if ('authToken' in req.cookie) {
+            /* console.log(req.cookie)
+            if ('authToken' in req.cookie) {
                 setCurrentUser().then(response => store.dispatch({ type: FETCH_USER_FULFILLED, payload: response }));
             } else {
                 store.dispatch({ type: LOGOUT_USER });
             } */
+            
             const context = {};
             const modules = [];
 

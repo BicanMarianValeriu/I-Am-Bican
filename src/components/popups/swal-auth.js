@@ -1,19 +1,18 @@
-// Deps
 import swal from 'sweetalert2/dist/sweetalert2.js';
 import { validateFields } from './../../functions/helpers';
-import { requestUserToken } from '../../actions/actions'; 
+import { setAuthToken, setCookie } from '../../functions/auth';
+import { requestUserToken, FETCH_USER_FULFILLED, setCurrentUser } from '../../actions/actions';
+import createStore from './../../store';
 
-import { setAuthToken } from '../../functions/auth';
-
-const SwalLogin = {  
+const SwalLogin = {
     createToast: swal.mixin({
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
         timer: 3000
     }),
-    renderModal: function () { 
-        swal({
+    renderModal: function () {
+        return swal({
             title: `Login`,
             html: `<form name="swal-login">
             <div class="row">
@@ -58,8 +57,14 @@ const SwalLogin = {
                 requestUserToken({ username, password }).then(response => {
                     let token = response && response.token;
                     if (token) {
-                        setAuthToken(token);  
-                        SwalLogin.createToast({ type: 'success', title: `Welcome back ${response.user_display_name}.` });
+                        setAuthToken(token);
+                        setCookie('authToken', token, 7);
+                        const { store } = createStore();
+                        setCurrentUser(token).then(response => {
+                            store.dispatch({ type: FETCH_USER_FULFILLED, payload: response })
+                        }).then(
+                            SwalLogin.createToast({ type: 'success', title: `Welcome back ${response.user_display_name}.` })
+                        );
                     } else {
                         swal({
                             title: `Something went wrong.`,
@@ -86,7 +91,7 @@ const SwalLogin = {
                 allowEscapeKey: false,
                 allowOutsideClick: false
             });
-        }); 
+        });
     }
 };
 

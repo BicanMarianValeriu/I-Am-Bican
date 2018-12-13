@@ -1,10 +1,10 @@
-import JWTDecode from 'jwt-decode'; 
+import JWTDecode from 'jwt-decode';
 
 /**
  * Set authentication token
  */
 export const setAuthToken = (token) => {
-    return localStorage.setItem('authToken', token);
+    return localStorage.setItem('authToken', token); 
 }
 
 /**
@@ -18,7 +18,7 @@ export const getAuthToken = () => {
  * Remove stored authetification token
  */
 export const removeAuthToken = () => {
-    return localStorage.removeItem('authToken');
+    return localStorage.removeItem('authToken'); 
 }
 
 /**
@@ -34,6 +34,42 @@ export const getAuthHeader = () => {
 }
 
 /**
+ * Gets a Cookie
+ * @param { string } cname 
+ */
+export const getCookie = (cname) => {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1);
+        if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
+    }
+    return "";
+}
+
+/**
+ * Sets a Cookie
+ * @param { string } cname 
+ * @param { mixed }  cvalue
+ * @param { int }    exdays
+ */
+export const setCookie = (cname, cvalue, exdays) => {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+/**
+ * Delete A cookie
+ * @param { string } cname
+ */
+export const deleteCookie = (cname) => {
+    document.cookie = cname + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+/**
  * Checking if user is authenticated
  */
 export function isAuthentificated() {
@@ -41,7 +77,7 @@ export function isAuthentificated() {
         const token = getAuthToken();
 
         if (token && token.length) {
-            const decoded = JWTDecode(token);   
+            const decoded = JWTDecode(token);
             const current_time = new Date().getTime() / 1000;
             // Check if token has expired
             if (decoded.exp < current_time) {

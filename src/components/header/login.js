@@ -5,7 +5,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 
 import Icon from '../../assets/svg/user.svg';
 import Logout from '../../assets/svg/logout.svg';
-import { isAuthentificated, removeAuthToken } from '../../functions/auth';
+import { isAuthentificated, removeAuthToken, deleteCookie, getAuthToken } from '../../functions/auth';
 import { LOGOUT_USER, setCurrentUser, FETCH_USER_FULFILLED } from '../../actions/actions';
 import SwalLogin from '../popups/swal-auth';
 
@@ -42,6 +42,7 @@ class Login extends Component {
     _onLogoutClick() {
         if (isAuthentificated()) {
             removeAuthToken();
+            deleteCookie('authToken');
             this.props.dispatch({ type: LOGOUT_USER });
             SwalLogin.createToast({ type: 'success', title: `Logged out. See you soon :).` })
         };
@@ -53,13 +54,9 @@ class Login extends Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        if (isAuthentificated()) setCurrentUser().then(response => {
-            dispatch({ type: FETCH_USER_FULFILLED, payload: response }) 
+        if (isAuthentificated()) setCurrentUser(getAuthToken()).then(response => {
+            dispatch({ type: FETCH_USER_FULFILLED, payload: response })
         });
-    }
-
-    componentDidUpdate() {
-        console.log(this.state)
     }
 
     render() {
