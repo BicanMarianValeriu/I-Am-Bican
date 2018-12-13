@@ -1,0 +1,29 @@
+/* Box Shadow */
+.box-shadow {
+	&--big,
+	&--profile {
+		box-shadow: 0px 12px 90px -10px rgba(139, 139, 139, 0.5);
+	}
+}
+
+hr {
+	background-image: -webkit-linear-gradient(left, transparent, #DBDBDB, transparent);
+    background-image: linear-gradient(to right, transparent, #DBDBDB, transparent);
+    border: 0;
+    height: 1px;
+    margin: 22px 0;
+} 
+
+.text {
+	&-font {
+		&--cursive {
+			font-family: "Shadows Into Light", cursive;
+		}
+	}
+	
+	&-color {
+		&--primary {
+			color: #00aaff;
+		}
+	}
+}
