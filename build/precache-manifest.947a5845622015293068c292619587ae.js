@@ -4,16 +4,16 @@ self.__precacheManifest = [
     url: "/static/media/paper-plane.14b73f92.svg"
   },
   {
-    revision: "2408e145cf13f02eba44",
-    url: "/static/css/main.7a20338f.chunk.css"
+    revision: "9632b0aa8a150c4b64a3",
+    url: "/static/css/main.08e8d425.chunk.css"
   },
   {
     revision: "30e9ad54839920053690",
     url: "/static/js/portfolio.30e9ad54.chunk.js"
   },
   {
-    revision: "7824f950ce9552b640e8",
-    url: "/static/js/projects.7824f950.chunk.js"
+    revision: "0872cb81b1abea28b6a4",
+    url: "/static/js/projects.0872cb81.chunk.js"
   },
   {
     revision: "6d47612becc443e10965",
@@ -24,8 +24,8 @@ self.__precacheManifest = [
     url: "/static/js/4.c8e68b76.chunk.js"
   },
   {
-    revision: "7c26cb01025322dcb2b7",
-    url: "/static/js/runtime~main.7c26cb01.js"
+    revision: "929e838c3ca511d0ddc1",
+    url: "/static/js/runtime~main.929e838c.js"
   },
   {
     revision: "81ba79bb3fd7955d0e819cbb8d0280e7",
@@ -52,8 +52,8 @@ self.__precacheManifest = [
     url: "/static/media/email.1037f077.svg"
   },
   {
-    revision: "2408e145cf13f02eba44",
-    url: "/static/js/main.2408e145.chunk.js"
+    revision: "9632b0aa8a150c4b64a3",
+    url: "/static/js/main.9632b0aa.chunk.js"
   },
   {
     revision: "b73ef297d889a719af95e7b53e79f474",
@@ -104,7 +104,7 @@ self.__precacheManifest = [
     url: "/static/media/ShadowsIntoLight.fae49bdc.svg"
   },
   {
-    revision: "ebb5faafc6d82023c032f9318770dff9",
+    revision: "00c900a406f5fd66f0800c19eff59ff8",
     url: "/index.html"
   }
 ];
