@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
 // Deps
-import PageIntro from "./../components/page-intro";
+import PageIntro from "../components/sections/page-intro";
 import Main from "./../components/main";
 import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../actions/actions";
 import { connect } from "react-redux";

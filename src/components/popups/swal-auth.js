@@ -46,10 +46,10 @@ const SwalLogin = {
                 </div>
             </div></form>`,
       footer: `View your privacy policy &nbsp;<a href="/p/privacy-policy">here</a>.`,
-      focusConfirm: false,
       customClass: "swal-auth",
       confirmButtonText: "Login",
       showLoaderOnConfirm: true,
+      backdrop: `rgba(0,0,0,0.2)`,
       showCloseButton: true,
       width: "35rem",
       preConfirm: () => {

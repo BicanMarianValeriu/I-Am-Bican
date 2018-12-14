@@ -8,7 +8,6 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
-
 import Icon from "../../assets/svg/user.svg";
 import Logout from "../../assets/svg/logout.svg";
 import {
@@ -40,20 +39,14 @@ class Login extends Component {
   _onMouseOver() {
     if (this.state.Modal !== null) return;
     import(/* webpackChunkName: "swalauth" */ "./../popups/swal-auth").then(
-      modal =>
-        this.setState({
-          Modal: modal.default
-        })
+      modal => this.setState({ Modal: modal.default })
     );
   }
 
   _onButtonClick() {
     if (this.state.Modal === null) {
       import(/* webpackChunkName: "swalauth" */ "./../popups/swal-auth").then(
-        modal =>
-          this.setState({
-            Modal: modal.default
-          })
+        modal => this.setState({ Modal: modal.default })
       );
     }
     if (this.state.Modal !== null && !isAuthentificated())
@@ -88,13 +81,7 @@ class Login extends Component {
     const {
       user: { name, avatar_urls }
     } = this.props;
-    let classes = [
-      "header__login",
-      "col-auto",
-      "right",
-      "pl-0",
-      "header-login"
-    ];
+    let classes = ["header__login", "col-auto", "pl-0", "header-login"];
     if (isAuthentificated()) classes.push(["header-login--is-auth"]);
     return (
       <div className={classes.join(" ")}>
@@ -131,7 +118,7 @@ class Login extends Component {
               >
                 <ReactSVG
                   src={Logout}
-                  svgClassName="svg-icon svg-icon--header"
+                  svgClassName="svg-icon"
                   className="header-logout__svg"
                 />
                 <span className="header-logout__label">LogOut</span>

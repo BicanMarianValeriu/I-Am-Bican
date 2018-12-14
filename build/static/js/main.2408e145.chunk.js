@@ -68,10 +68,10 @@
                 '<form name="swal-login">\n            <div class="row">\n                <div class="col-12">\n                    <div class="input-group mb-3">\n                        <div class="input-group-prepend">\n                            <span class="input-group-text" id="basic-addon1">User</span>\n                        </div>\n                        <input class="form-control required" aria-label="Username" aria-describedby="basic-addon1" name="username" type="text" placeholder="Your Username" required/>\n                    </div>\n                </div>\n                <div class="col-12">\n                    <div class="input-group mb-3">\n                        <div class="input-group-prepend">\n                            <span class="input-group-text" id="basic-addon2">Pass</span>\n                        </div> \n                        <input class="form-control required" aria-label="Password" aria-describedby="basic-addon2" name="password" type="password" placeholder="Your Password" required/>      \n                    </div>\n                </div> \n                <div class="col-12">\n                    <div class="row"> \n                        <div class="col-12 text-right">\n                            <p><a href="javascript:void(0)" class="swal-login__forgot-pwd">Forgot Password?</a></p>\n                        </div>\n                    </div>\n                </div>\n            </div></form>',
               footer:
                 'View your privacy policy &nbsp;<a href="/p/privacy-policy">here</a>.',
-              focusConfirm: !1,
               customClass: "swal-auth",
               confirmButtonText: "Login",
               showLoaderOnConfirm: !0,
+              backdrop: "rgba(0,0,0,0.2)",
               showCloseButton: !0,
               width: "35rem",
               preConfirm: function() {
@@ -143,7 +143,7 @@
         c = a(50),
         s = a.n(c),
         i = a(31),
-        l = a(21),
+        l = a(23),
         u = a(51),
         m = a(33),
         d = a(61),
@@ -155,14 +155,14 @@
         g = a(8),
         _ = a(7),
         E = a(9),
-        y = a(16),
+        y = a(17),
         w = a.n(y),
         j = a(29),
         O = a(222),
         N = a(218),
         k = a(4),
-        C = a(30),
-        x = a(22),
+        x = a(30),
+        C = a(18),
         M = (function() {
           var e = Object(j.a)(
             w.a.mark(function e(t) {
@@ -292,10 +292,10 @@
             function(e, t) {
               var a = e.api.menus,
                 n = t.wpMenuId;
-              return { menu: a && Object(C.find)(a, { ID: n }) };
+              return { menu: a && Object(x.find)(a, { ID: n }) };
             },
             function(e) {
-              return Object(x.b)({ fetchDispatcher: k.j }, e);
+              return Object(C.b)({ fetchDispatcher: k.j }, e);
             }
           )(Object(m.frontloadConnect)(M, { onMount: !0, onUpdate: !1 })(S))
         ),
@@ -306,11 +306,11 @@
             o.a.createElement(T, { wpMenuId: 2, className: "menu__header" })
           );
         },
-        L = a(18),
+        L = a(16),
         D = a(15),
         A = a(60),
         P = a.n(A),
-        F = a(20),
+        F = a(22),
         U = a(80),
         B = a.n(U),
         H = a(114),
@@ -406,13 +406,7 @@
                   var e = this.props.user,
                     t = e.name,
                     a = e.avatar_urls,
-                    n = [
-                      "header__login",
-                      "col-auto",
-                      "right",
-                      "pl-0",
-                      "header-login"
-                    ];
+                    n = ["header__login", "col-auto", "pl-0", "header-login"];
                   return (
                     Object(q.b)() && n.push(["header-login--is-auth"]),
                     o.a.createElement(
@@ -464,7 +458,7 @@
                                 },
                                 o.a.createElement(D.a, {
                                   src: R.a,
-                                  svgClassName: "svg-icon svg-icon--header",
+                                  svgClassName: "svg-icon",
                                   className: "header-logout__svg"
                                 }),
                                 o.a.createElement(
@@ -580,7 +574,7 @@
             )
           );
         },
-        Q = a(25),
+        Q = a(19),
         ee = a(35),
         te = (function(e) {
           function t(e) {
@@ -762,7 +756,7 @@
                   var e = document.querySelectorAll(".companies"),
                     t = e[0].querySelectorAll(".companies__logo").length,
                     a = e.length,
-                    n = Array.from(Array(a).keys()),
+                    n = Object(Q.a)(Array(a).keys()),
                     r = -1;
                   ae.b.set(document.querySelectorAll(".companies__logo"), {
                     autoAlpha: 0
@@ -964,8 +958,8 @@
             )
           );
         },
-        ce = a(19),
-        se = a(17),
+        ce = a(21),
+        se = a(20),
         ie = a(211),
         le = function() {
           return o.a.createElement(
@@ -1778,16 +1772,16 @@
             t
           );
         })(r.Component),
-        Ce = Object(l.connect)(
+        xe = Object(l.connect)(
           function(e) {
             var t = e.api;
             return { posts: (t = void 0 === t ? [] : t).posts };
           },
           function(e) {
-            return Object(x.b)({ fetchDispatcher: k.j }, e);
+            return Object(C.b)({ fetchDispatcher: k.j }, e);
           }
         )(Object(m.frontloadConnect)(Ne, { onMount: !0, onUpdate: !1 })(ke)),
-        xe = function() {
+        Ce = function() {
           return o.a.createElement(
             o.a.Fragment,
             null,
@@ -1842,8 +1836,8 @@
             })
           },
           { path: "/portfolio/:slug", exact: !0, component: Se },
-          { path: "/p/:slug", component: Ce },
-          { path: "*", component: xe }
+          { path: "/p/:slug", component: xe },
+          { path: "*", component: Ce }
         ],
         Ie = function() {
           return o.a.createElement(
@@ -1965,11 +1959,11 @@
           return !0;
         },
         o = function(e) {
-          return Object.keys(e)
-            .map(function(t) {
-              return encodeURIComponent(t) + "=" + encodeURIComponent(e[t]);
-            })
-            .join("&");
+          var t = "";
+          for (var a in e)
+            "" !== t && (t += "&"),
+              (t += encodeURIComponent(a) + "=" + encodeURIComponent(e[a]));
+          return t;
         };
     },
     4: function(e, t, a) {
@@ -2005,14 +1999,14 @@
           return N;
         }),
         a.d(t, "l", function() {
-          return C;
+          return x;
         }),
         a.d(t, "j", function() {
           return M;
         });
-      var n = a(16),
+      var n = a(17),
         r = a.n(n),
-        o = a(23),
+        o = a(24),
         c = a(29),
         s = a(79),
         i = a.n(s),
@@ -2077,11 +2071,11 @@
           })
         )).apply(this, arguments);
       }
-      function C(e) {
-        return x.apply(this, arguments);
+      function x(e) {
+        return C.apply(this, arguments);
       }
-      function x() {
-        return (x = Object(c.a)(
+      function C() {
+        return (C = Object(c.a)(
           r.a.mark(function e(t) {
             var a, n, o;
             return r.a.wrap(
@@ -2199,12 +2193,12 @@
     61: function(e, t, a) {
       "use strict";
       var n = a(14),
-        r = a(22),
+        r = a(18),
         o = a(108),
         c = a(130),
         s = (a(179), a(51)),
-        i = a(25),
-        l = a(23),
+        i = a(19),
+        l = a(24),
         u = a(4),
         m = a(30),
         d = {
@@ -2235,7 +2229,10 @@
             );
           case u.h:
             var n = d.user;
-            return Object(l.a)({}, e, { fetching: !1, user: n });
+            return (
+              (n.authentificated = !1),
+              Object(l.a)({}, e, { fetching: !1, user: n })
+            );
           case u.e:
             return Object(l.a)({}, e, {
               fetching: !1,
@@ -2307,7 +2304,7 @@
     },
     84: function(e, t, a) {
       "use strict";
-      var n = a(25),
+      var n = a(19),
         r = a(5),
         o = a(6),
         c = a(8),
@@ -2448,8 +2445,8 @@
         O = a.n(j),
         N = a(127),
         k = a.n(N),
-        C = { clock: E.a, banknote: w.a, website: O.a, money: k.a },
-        x = function(e) {
+        x = { clock: E.a, banknote: w.a, website: O.a, money: k.a },
+        C = function(e) {
           var t = e.date_gmt,
             a = e.date_human,
             r = e.acf.meta,
@@ -2459,7 +2456,7 @@
             return u.a.createElement(g.a, {
               className: "portfolio__cost-svg",
               key: t,
-              src: C.banknote,
+              src: x.banknote,
               svgClassName: "svg-icon svg-icon--cost"
             });
           });
@@ -2475,7 +2472,7 @@
               { className: "portfolio__meta-item", title: "Live url" },
               u.a.createElement(g.a, {
                 className: "portfolio__meta-label",
-                src: C.website,
+                src: x.website,
                 svgClassName: "svg-icon svg-icon--portfolio-meta"
               }),
               u.a.createElement("span", {
@@ -2488,7 +2485,7 @@
               { className: "portfolio__meta-item", title: "Cost range" },
               u.a.createElement(g.a, {
                 className: "portfolio__meta-label",
-                src: C.money,
+                src: x.money,
                 svgClassName: "svg-icon svg-icon--portfolio-meta"
               }),
               u.a.createElement(
@@ -2502,7 +2499,7 @@
               { className: "portfolio__meta-item", title: "Went live on:" },
               u.a.createElement(g.a, {
                 className: "portfolio__meta-label",
-                src: C.clock,
+                src: x.clock,
                 svgClassName: "svg-icon svg-icon--portfolio-meta"
               }),
               u.a.createElement(
@@ -2513,15 +2510,15 @@
             )
           );
         },
-        M = a(16),
+        M = a(17),
         S = a.n(M),
         T = a(29),
-        I = a(21),
+        I = a(23),
         L = a(4),
         D = a(40),
         A = a(62),
         P = a.n(A),
-        F = a(22),
+        F = a(18),
         U = a(33),
         B = (function() {
           var e = Object(T.a)(
@@ -2682,9 +2679,9 @@
                         { className: "col" },
                         !this.props.isSingle &&
                           u.a.createElement(f, this.props),
-                        this.props.isSingle && u.a.createElement(x, this.props),
+                        this.props.isSingle && u.a.createElement(C, this.props),
                         u.a.createElement(v, this.props),
-                        !this.props.isSingle && u.a.createElement(x, this.props)
+                        !this.props.isSingle && u.a.createElement(C, this.props)
                       )
                     )
                   );
@@ -2792,4 +2789,4 @@
   },
   [[131, 5, 4]]
 ]);
-//# sourceMappingURL=main.e7b83f10.chunk.js.map
+//# sourceMappingURL=main.2408e145.chunk.js.map
