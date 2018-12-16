@@ -4,28 +4,28 @@ self.__precacheManifest = [
     url: "/static/media/paper-plane.14b73f92.svg"
   },
   {
-    revision: "9632b0aa8a150c4b64a3",
-    url: "/static/css/main.08e8d425.chunk.css"
+    revision: "a8c9a474fc8529fb58b3",
+    url: "/static/css/main.539d26e2.chunk.css"
   },
   {
-    revision: "30e9ad54839920053690",
-    url: "/static/js/portfolio.30e9ad54.chunk.js"
+    revision: "1a4a5ab8314e976bd561",
+    url: "/static/js/portfolio.1a4a5ab8.chunk.js"
   },
   {
-    revision: "0872cb81b1abea28b6a4",
-    url: "/static/js/projects.0872cb81.chunk.js"
+    revision: "28d663c49ab7e3aec761",
+    url: "/static/js/projects.28d663c4.chunk.js"
   },
   {
-    revision: "6d47612becc443e10965",
-    url: "/static/js/swalcontact.6d47612b.chunk.js"
+    revision: "ef778f18ab35fd5c9013",
+    url: "/static/js/swalcontact.ef778f18.chunk.js"
   },
   {
-    revision: "c8e68b7685e54a8be43d",
-    url: "/static/js/4.c8e68b76.chunk.js"
+    revision: "e1d07112c2cafc66824f",
+    url: "/static/js/4.e1d07112.chunk.js"
   },
   {
-    revision: "929e838c3ca511d0ddc1",
-    url: "/static/js/runtime~main.929e838c.js"
+    revision: "f9fa10ab0dc4cf678f22",
+    url: "/static/js/runtime~main.f9fa10ab.js"
   },
   {
     revision: "81ba79bb3fd7955d0e819cbb8d0280e7",
@@ -52,8 +52,8 @@ self.__precacheManifest = [
     url: "/static/media/email.1037f077.svg"
   },
   {
-    revision: "9632b0aa8a150c4b64a3",
-    url: "/static/js/main.9632b0aa.chunk.js"
+    revision: "a8c9a474fc8529fb58b3",
+    url: "/static/js/main.a8c9a474.chunk.js"
   },
   {
     revision: "b73ef297d889a719af95e7b53e79f474",
@@ -92,19 +92,19 @@ self.__precacheManifest = [
     url: "/static/media/ShadowsIntoLight.4e21f1ae.woff"
   },
   {
-    revision: "4141b2ff16a24a462106e206def679c1",
-    url: "/static/media/ShadowsIntoLight.4141b2ff.ttf"
-  },
-  {
     revision: "33adae677fab86b44462b81620210061",
     url: "/static/media/ShadowsIntoLight.33adae67.eot"
+  },
+  {
+    revision: "4141b2ff16a24a462106e206def679c1",
+    url: "/static/media/ShadowsIntoLight.4141b2ff.ttf"
   },
   {
     revision: "fae49bdc58be2eb2a3ce895e3d80ff2a",
     url: "/static/media/ShadowsIntoLight.fae49bdc.svg"
   },
   {
-    revision: "00c900a406f5fd66f0800c19eff59ff8",
+    revision: "383c6f49804cb4a87798d8fef19eef47",
     url: "/index.html"
   }
 ];

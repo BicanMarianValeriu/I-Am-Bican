@@ -13,6 +13,7 @@
 
 # wordpress install
 /wordpress
+!wordpress/wp-content/mu-plugins/
 /dploy.js
 
 # misc

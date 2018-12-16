@@ -23,7 +23,7 @@ export default class AboutExperience extends Component {
         },
         {
           jobTitle: "Freelancer",
-          company: "Individuals",
+          company: "Individual",
           description: `I'm into web development since I was in highschool, however I really started to learn
                     more about it since 2015, when I started to develop my own WordPress theme, named
                     <a href="https://www.wecodeart.com/" target="_blank">WeCodeArt Framework</a>. The idea was simple 

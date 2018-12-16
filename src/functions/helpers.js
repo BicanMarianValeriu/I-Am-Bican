@@ -1,4 +1,20 @@
 /**
+ * Gets form data - IE Support
+ * @param {*} formEl
+ */
+const getFormData = function(formEl) {
+  // Like THIS Because IE/EDGE does not f*king know how to read FormData entries
+  return [].reduce.call(
+    formEl.elements,
+    (data, element) => {
+      if (element.value !== "") data[element.name] = element.value;
+      return data;
+    },
+    {}
+  );
+};
+
+/**
  * Validate Email Field
  * @param   {string}    email
  * @returns {boolean}
@@ -34,4 +50,4 @@ const serializeData = function(data) {
   return str;
 };
 
-export { validateEmail, validateFields, serializeData };
+export { getFormData, validateEmail, validateFields, serializeData };

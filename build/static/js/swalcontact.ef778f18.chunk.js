@@ -4,11 +4,11 @@
     221: function(e, t, n) {
       "use strict";
       n.r(t);
-      var a = n(36),
+      var a = n(35),
         r = n.n(a),
-        o = n(17),
+        o = n(13),
         s = n.n(o),
-        i = n(29),
+        i = n(26),
         c = {
           apiUrl:
             "http://working.on/iambican/wordpress/wp-json/contact-form-7/v1",
@@ -76,7 +76,7 @@
             };
           })()
         },
-        l = n(35),
+        l = n(28),
         u = {
           renderModal: function() {
             return r()({
@@ -99,9 +99,9 @@
                     "required"
                   ),
                   t = e["your-email"].value;
-                return !1 === Object(l.c)(e)
+                return !1 === Object(l.d)(e)
                   ? r.a.showValidationMessage("Please fill all fields.")
-                  : !1 === Object(l.b)(t)
+                  : !1 === Object(l.c)(t)
                   ? r.a.showValidationMessage("Email address is not valid.")
                   : (c.setApiUrl(
                       "http://www.iambican.com/dashboard/wp-json/contact-form-7/v1"
@@ -139,4 +139,4 @@
     }
   }
 ]);
-//# sourceMappingURL=swalcontact.6d47612b.chunk.js.map
+//# sourceMappingURL=swalcontact.ef778f18.chunk.js.map

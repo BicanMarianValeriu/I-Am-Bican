@@ -64,7 +64,7 @@ export async function setCurrentUser(token) {
     } = decoded;
     try {
       return await requestApi
-        .get("wp/v2/users/" + id, { headers })
+        .get("wp/v2/users/" + id, { headers, withCredentials: true })
         .then(response => response.data);
     } catch (e) {
       console.log(e);

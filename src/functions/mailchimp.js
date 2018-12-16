@@ -1,72 +1,43 @@
-/* fetchJsonP */
-const fetchJsonP = function (url, options) {
-    return new Promise(function (resolve, reject) {
-        let script = document.createElement('script');
-        let callbackName = 'cb' + String(Math.random()).slice(-6);
-        url += ~url.indexOf('?') ? '&' : '?';
-        url += 'callback=fetchJsonP.cbReg.' + callbackName;
-        script.src = url;
-        script.onload = function () {
-            delete fetchJsonP.cbReg[callbackName];
-            script.remove();
-        };
-        script.onerror = function () {
-            delete fetchJsonP.cbReg[callbackName];
-            script.remove();
-            reject(new Error("o_O"));
-        };
-        fetchJsonP.cbReg[callbackName] = resolve;
-        document.body.appendChild(script);
-    });
-};
+import axios from "axios";
+import { getFormData } from "./helpers";
 
-fetchJsonP.cbReg = {};
+class MailChimp {
+  constructor(el, key) {
+    this.el = el;
+    this.API_KEY = key;
+    this.data = {
+      url: "https://usX.api.mailchimp.com/3.0/"
+    };
+  }
 
-const MailChimp = {
-    getFormData: (formEl) => {
-        var elements = formEl.elements;
-        var postData = {};
-        for (var i = 0; i < elements.length; i++)
-            if (elements[i].type !== 'submit')
-                postData[elements[i].name] = elements[i].value;
-        return postData;
-    },
+  setData(data) {
+    this.data = data;
+  }
 
-    serializeData(data) {
-        var str = '';
-        for (var key in data) {
-            if (str !== '') {
-                str += '&';
-            }
-            str += key + '=' + encodeURIComponent(data[key]);
-        }
-        return str;
-    },
+  formatSubscriber(data) {
+    let subscriber = { ...data, status: "subscribed" };
+    return JSON.stringify(subscriber);
+  }
 
-    submitForm: async function (formSelector) {
-        var formEl = document.querySelector(formSelector);
-        var formData = this.serializeData(this.getFormData(formEl));
-        var formUrl = formEl.getAttribute('action').replace('/post?', '/post-json?').concat('&' + formData)
+  async send(path) {
+    const { url } = this.data;
+    const fullURL = url.concat(path);
 
-        /* 
-        const response = await fetch(formUrl, {
-            mode: 'no-cors',
-            cache: 'no-cache',
-            method: 'GET',
-            headers: new Headers({
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            })
-        })
-        */
-        const response = fetchJsonP(formUrl).then(response => {
-            console.log(data)
-        }).then( data => {
-            console.log(data)
-        })
-
-        return response;
-    }
-};
+    let userData = ["apikey", this.API_KEY].join(":");
+    const headers = {
+      "Content-type": "application/json; charset=UTF-8",
+      Authorization: "Basic " + userData
+    };
+    return await axios
+      .post(fullURL, {
+        headers: headers,
+        withCredentials: true,
+        data: this.formatSubscriber(getFormData(this.el))
+      })
+      .then(response => {
+        console.log(response);
+      });
+  }
+}
 
 export default MailChimp;

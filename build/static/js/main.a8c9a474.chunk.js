@@ -46,12 +46,12 @@
     213: function(e, t, a) {
       "use strict";
       a.r(t);
-      var n = a(36),
+      var n = a(35),
         r = a.n(n),
-        o = a(35),
-        c = a(28),
-        s = a(60),
-        i = a.n(s),
+        o = a(28),
+        s = a(29),
+        c = a(60),
+        i = a.n(c),
         l = a(4),
         u = a(61),
         m = {
@@ -80,12 +80,12 @@
                   ),
                   t = e.username.value,
                   a = e.password.value;
-                if (!1 === Object(o.c)(e))
+                if (!1 === Object(o.d)(e))
                   return r.a.showValidationMessage("Please fill all fields.");
                 Object(l.k)({ username: t, password: a }).then(function(e) {
                   var t = e && e.token;
                   if (t) {
-                    Object(c.d)(t), i.a.set("authToken", t, { expires: 7 });
+                    Object(s.d)(t), i.a.set("authToken", t, { expires: 7 });
                     var a = Object(u.a)().store;
                     Object(l.l)(t)
                       .then(function(e) {
@@ -140,11 +140,11 @@
       var n,
         r = a(1),
         o = a.n(r),
-        c = a(50),
-        s = a.n(c),
+        s = a(49),
+        c = a.n(s),
         i = a(31),
-        l = a(23),
-        u = a(51),
+        l = a(21),
+        u = a(50),
         m = a(33),
         d = a(61),
         p = a(129),
@@ -155,15 +155,15 @@
         g = a(8),
         _ = a(7),
         E = a(9),
-        y = a(17),
+        y = a(13),
         w = a.n(y),
-        j = a(29),
+        j = a(26),
         O = a(222),
         N = a(218),
         k = a(4),
-        x = a(30),
-        C = a(18),
-        M = (function() {
+        C = a(30),
+        x = a(22),
+        S = (function() {
           var e = Object(j.a)(
             w.a.mark(function e(t) {
               return w.a.wrap(
@@ -195,7 +195,7 @@
             return e.apply(this, arguments);
           };
         })(),
-        S = (function(e) {
+        M = (function(e) {
           function t() {
             return (
               Object(v.a)(this, t),
@@ -213,15 +213,15 @@
                     return e.items.map(function(e, a) {
                       var n = ["nav-link"],
                         r = e.classes.length ? e.classes.split(" ") : "";
-                      if (r) for (var c = 0; c < r.length; c++) n.push(r[c]);
-                      var s = ["nav-item"];
+                      if (r) for (var s = 0; s < r.length; s++) n.push(r[s]);
+                      var c = ["nav-item"];
                       return (
-                        e.children && s.push("nav-item--has-dropdown"),
+                        e.children && c.push("nav-item--has-dropdown"),
                         o.a.createElement(
                           "li",
                           {
                             key: a,
-                            className: s.join(" "),
+                            className: c.join(" "),
                             "aria-haspopup": e.children && e.children.length > 0
                           },
                           o.a.createElement(
@@ -292,12 +292,12 @@
             function(e, t) {
               var a = e.api.menus,
                 n = t.wpMenuId;
-              return { menu: a && Object(x.find)(a, { ID: n }) };
+              return { menu: a && Object(C.find)(a, { ID: n }) };
             },
             function(e) {
-              return Object(C.b)({ fetchDispatcher: k.j }, e);
+              return Object(x.b)({ fetchDispatcher: k.j }, e);
             }
-          )(Object(m.frontloadConnect)(M, { onMount: !0, onUpdate: !1 })(S))
+          )(Object(m.frontloadConnect)(S, { onMount: !0, onUpdate: !1 })(M))
         ),
         I = function() {
           return o.a.createElement(
@@ -306,16 +306,16 @@
             o.a.createElement(T, { wpMenuId: 2, className: "menu__header" })
           );
         },
-        L = a(16),
-        D = a(15),
+        L = a(18),
+        D = a(17),
         A = a(60),
         P = a.n(A),
-        F = a(22),
-        U = a(80),
+        F = a(20),
+        U = a(79),
         B = a.n(U),
         H = a(114),
         R = a.n(H),
-        q = a(28),
+        q = a(29),
         W = a(213),
         Y = (function(e) {
           function t(e) {
@@ -530,10 +530,10 @@
           );
         },
         G = a(116),
-        Z = a.n(G),
-        X = a(117),
-        $ = a.n(X),
-        K = function() {
+        X = a.n(G),
+        Z = a(117),
+        K = a.n(Z),
+        $ = function() {
           return o.a.createElement(
             "ul",
             { className: "footer__social social social--footer" },
@@ -548,7 +548,7 @@
                   target: "_blank"
                 },
                 o.a.createElement(D.a, {
-                  src: Z.a,
+                  src: X.a,
                   svgClassName: "svg-icon svg-icon--social-footer",
                   className: "social__icon social__icon--facebook"
                 })
@@ -566,7 +566,7 @@
                   target: "_blank"
                 },
                 o.a.createElement(D.a, {
-                  src: $.a,
+                  src: K.a,
                   svgClassName: "svg-icon svg-icon--social-footer",
                   className: "social__icon social__icon--linkedin"
                 })
@@ -574,9 +574,88 @@
             )
           );
         },
-        Q = a(19),
-        ee = a(35),
-        te = (function(e) {
+        Q = a(23),
+        ee = a(28),
+        te = a(19),
+        ae = a(51),
+        ne = a.n(ae),
+        re = (function() {
+          function e(t, a) {
+            Object(v.a)(this, e),
+              (this.el = t),
+              (this.API_KEY = a),
+              (this.data = { url: "https://usX.api.mailchimp.com/3.0/" });
+          }
+          return (
+            Object(b.a)(e, [
+              {
+                key: "setData",
+                value: function(e) {
+                  this.data = e;
+                }
+              },
+              {
+                key: "formatSubscriber",
+                value: function(e) {
+                  var t = Object(te.a)({}, e, { status: "subscribed" });
+                  return JSON.stringify(t);
+                }
+              },
+              {
+                key: "send",
+                value: (function() {
+                  var e = Object(j.a)(
+                    w.a.mark(function e(t) {
+                      var a, n, r, o;
+                      return w.a.wrap(
+                        function(e) {
+                          for (;;)
+                            switch ((e.prev = e.next)) {
+                              case 0:
+                                return (
+                                  (a = this.data.url),
+                                  (n = a.concat(t)),
+                                  (r = ["apikey", this.API_KEY].join(":")),
+                                  (o = {
+                                    "Content-type":
+                                      "application/json; charset=UTF-8",
+                                    Authorization: "Basic " + r
+                                  }),
+                                  (e.next = 6),
+                                  ne.a
+                                    .post(n, {
+                                      headers: o,
+                                      withCredentials: !0,
+                                      data: this.formatSubscriber(
+                                        Object(ee.a)(this.el)
+                                      )
+                                    })
+                                    .then(function(e) {
+                                      console.log(e);
+                                    })
+                                );
+                              case 6:
+                                return e.abrupt("return", e.sent);
+                              case 7:
+                              case "end":
+                                return e.stop();
+                            }
+                        },
+                        e,
+                        this
+                      );
+                    })
+                  );
+                  return function(t) {
+                    return e.apply(this, arguments);
+                  };
+                })()
+              }
+            ]),
+            e
+          );
+        })(),
+        oe = (function(e) {
           function t(e) {
             var a;
             return (
@@ -601,68 +680,99 @@
                 key: "validate",
                 value: function() {
                   var e = document.querySelector(".newsletter__form").elements,
-                    t = e.EMAIL.value;
+                    t = e.email_address.value;
                   this.setState({ errors: [] }),
-                    !1 === Object(ee.c)(e) &&
-                      this.setState(function(e) {
-                        return {
-                          errors: Object(Q.a)(e.errors).concat([
-                            {
-                              key: "empty_fields",
-                              message: "Please fill all required fields!"
-                            }
-                          ])
-                        };
-                      }),
-                    !1 === Object(ee.b)(t) &&
-                      this.setState(function(e) {
-                        return {
-                          errors: Object(Q.a)(e.errors).concat([
-                            {
-                              key: "invalid_email",
-                              message: "Email address appears to be invalid."
-                            }
-                          ])
-                        };
-                      });
+                    !1 === Object(ee.d)(e)
+                      ? this.setState(function(e) {
+                          return {
+                            errors: Object(Q.a)(e.errors).concat([
+                              {
+                                key: "empty_fields",
+                                message: "Please fill all required fields!"
+                              }
+                            ])
+                          };
+                        })
+                      : !1 === Object(ee.c)(t) &&
+                        this.setState(function(e) {
+                          return {
+                            errors: Object(Q.a)(e.errors).concat([
+                              {
+                                key: "invalid_email",
+                                message: "Email address appears to be invalid."
+                              }
+                            ])
+                          };
+                        });
                 }
               },
               {
                 key: "generateErrors",
                 value: function() {
-                  var e = document.querySelector(".newsletter__messages");
-                  (e.classList.add("d-none"),
-                  (e.innerHTML = ""),
-                  0 !== this.state.errors.length) &&
-                    (this.state.errors.map(function(t) {
-                      var a = document.createElement("div");
-                      return (
-                        a.classList.add("error"),
-                        a.classList.add("error--" + t.key),
-                        (a.innerHTML = t.message.toString()),
-                        e.appendChild(a)
-                      );
-                    }),
-                    e.classList.remove("d-none"),
-                    setTimeout(function() {
-                      (e.innerHTML = ""), e.classList.add("d-none");
-                    }, 5e3));
+                  var e = document.querySelector(".newsletter__form").elements
+                      .email_address,
+                    t = document.querySelector(".newsletter__messages");
+                  if (
+                    (t.classList.add("d-none"),
+                    (t.innerHTML = ""),
+                    e.classList.remove("is-invalid"),
+                    0 !== this.state.errors.length)
+                  ) {
+                    var a = this.state.errors;
+                    e.classList.add("is-invalid"),
+                      a.map(function(e) {
+                        var a = document.createElement("div");
+                        return (
+                          a.classList.add("error"),
+                          a.classList.add("error--" + e.key),
+                          (a.innerHTML = e.message.toString()),
+                          t.appendChild(a)
+                        );
+                      }),
+                      t.classList.remove("d-none"),
+                      setTimeout(function() {
+                        (t.innerHTML = ""),
+                          t.classList.add("d-none"),
+                          e.classList.remove("is-invalid");
+                      }, 5e3);
+                  }
                 }
               },
               {
                 key: "handleSubmit",
-                value: function(e) {
-                  var t = this;
+                value: function() {
+                  var e = this;
                   if (this.state.isSubmiting) return !1;
-                  var a = document.querySelector(".newsletter__form");
-                  a.elements[0].addEventListener("keyup", function() {
-                    t.validate(), t.generateErrors();
-                  }),
-                    a.addEventListener("submit", function(e) {
-                      e.preventDefault(),
-                        t.validate(),
-                        t.generateErrors(),
-                        0 === t.state.errors.length && a.submit();
+                  var t = document.querySelector(".newsletter__form");
+                  t.elements.email_address.addEventListener(
+                    "keyup",
+                    function() {
+                      e.validate(), e.generateErrors();
+                    }
+                  ),
+                    t.addEventListener("submit", function(a) {
+                      (a.preventDefault(),
+                      e.validate(),
+                      e.generateErrors(),
+                      0 === e.state.errors.length) &&
+                        new re(t, "sadxasa")
+                          .setData({
+                            url: "https://usX.api.mailchimp.com/3.0/",
+                            user: ""
+                          })
+                          .send("lists/57afe96172/members")
+                          .then(function(e) {
+                            var t = document.querySelector(
+                                ".newsletter__messages"
+                              ),
+                              a = document.createElement("div");
+                            (a.innerHTML = e.message.toString()),
+                              t.appendChild(a),
+                              t.classList.remove("d-none"),
+                              setTimeout(function() {
+                                (t.innerHTML = ""), t.classList.add("d-none");
+                              }, 5e3);
+                          });
                     });
                 }
               },
@@ -691,8 +801,7 @@
                         null,
                         o.a.createElement(F.f, {
                           placeholder: "Email Address",
-                          name: "EMAIL",
-                          id: "EMAIL",
+                          name: "email_address",
                           type: "email",
                           required: "required"
                         }),
@@ -719,8 +828,8 @@
             t
           );
         })(r.Component),
-        ae = a(26),
-        ne = (function(e) {
+        se = a(25),
+        ce = (function(e) {
           function t() {
             return (
               Object(v.a)(this, t),
@@ -741,7 +850,7 @@
               {
                 key: "componentWillUnmount",
                 value: function() {
-                  ae.b.killAll(!1, !1, !0);
+                  se.b.killAll(!1, !1, !0);
                 }
               },
               {
@@ -758,46 +867,46 @@
                     a = e.length,
                     n = Object(Q.a)(Array(a).keys()),
                     r = -1;
-                  ae.b.set(document.querySelectorAll(".companies__logo"), {
+                  se.b.set(document.querySelectorAll(".companies__logo"), {
                     autoAlpha: 0
                   });
                   for (var o = 0; o < a; o++)
-                    for (var c = 0; c < 5; c++)
-                      if (o === c && c < a) {
-                        var s = document.querySelectorAll(".companies")[o];
-                        ae.b.set(s.children[c], { autoAlpha: 1 });
+                    for (var s = 0; s < 5; s++)
+                      if (o === s && s < a) {
+                        var c = document.querySelectorAll(".companies")[o];
+                        se.b.set(c.children[s], { autoAlpha: 1 });
                       }
-                  ae.b.delayedCall(1, function e() {
+                  se.b.delayedCall(1, function e() {
                     var o = Math.floor(Math.random() * a);
                     o !== r
                       ? ((function e(r) {
                           for (
-                            var o = Math.floor(Math.random() * t), c = 0;
-                            c < a;
-                            c++
+                            var o = Math.floor(Math.random() * t), s = 0;
+                            s < a;
+                            s++
                           )
-                            if (o === n[c]) return void e(r);
-                          for (var s = 0; s < t; s++) {
+                            if (o === n[s]) return void e(r);
+                          for (var c = 0; c < t; c++) {
                             var i = document.querySelectorAll(".companies")[r]
-                              .children[s];
+                              .children[c];
                             if (
                               window
                                 .getComputedStyle(i)
                                 .getPropertyValue("opacity") > 0.5
                             ) {
-                              if (o === s) return void e(r);
-                              ae.b.to(i, 0.75, { autoAlpha: 0 });
+                              if (o === c) return void e(r);
+                              se.b.to(i, 0.75, { autoAlpha: 0 });
                             } else
-                              o === s &&
-                                (ae.b.to(i, 0.75, {
+                              o === c &&
+                                (se.b.to(i, 0.75, {
                                   autoAlpha: 1,
                                   delay: 0.25
                                 }),
-                                (n[r] = s));
+                                (n[r] = c));
                           }
                         })(o),
                         (r = o),
-                        ae.b.delayedCall(2.5, e))
+                        se.b.delayedCall(2.5, e))
                       : e();
                   });
                 }
@@ -877,10 +986,10 @@
             t
           );
         })(r.Component),
-        re = Object(l.connect)(function(e) {
+        ie = Object(l.connect)(function(e) {
           return { clients: e.api.clients };
-        })(ne),
-        oe = function() {
+        })(ce),
+        le = function() {
           return o.a.createElement(
             "footer",
             {
@@ -889,7 +998,7 @@
               itemScope: "",
               itemType: "http://schema.org/WPFooter"
             },
-            o.a.createElement(re, null),
+            o.a.createElement(ie, null),
             o.a.createElement(
               "div",
               { className: "footer__newsletter footer-newsletter" },
@@ -923,7 +1032,7 @@
                   o.a.createElement(
                     "div",
                     { className: "col-lg-6" },
-                    o.a.createElement(te, null)
+                    o.a.createElement(oe, null)
                   )
                 )
               )
@@ -941,7 +1050,7 @@
                     "div",
                     { className: "col-md-6 text-center text-md-left" },
                     o.a.createElement(V, null),
-                    o.a.createElement(K, null)
+                    o.a.createElement($, null)
                   ),
                   o.a.createElement(
                     "div",
@@ -958,10 +1067,10 @@
             )
           );
         },
-        ce = a(21),
-        se = a(20),
-        ie = a(211),
-        le = function() {
+        ue = a(98),
+        me = a(16),
+        de = a(211),
+        pe = function() {
           return o.a.createElement(
             "div",
             { className: "about-me__content" },
@@ -1056,17 +1165,17 @@
             )
           );
         },
-        ue = a(118),
-        me = a.n(ue),
-        de = a(119),
-        pe = a.n(de),
-        he = a(120),
+        he = a(118),
         fe = a.n(he),
-        ve = a(121),
+        ve = a(119),
         be = a.n(ve),
-        ge = a(122),
+        ge = a(120),
         _e = a.n(ge),
-        Ee = (function(e) {
+        Ee = a(121),
+        ye = a.n(Ee),
+        we = a(122),
+        je = a.n(we),
+        Oe = (function(e) {
           function t(e) {
             var a;
             return (
@@ -1153,17 +1262,17 @@
                       (n = n || window.event), (e = n.pageX), (t = n.pageY);
                       var r = (e / a.offsetWidth) * 100 - 100,
                         o = (t / a.offsetHeight) * 100 - 100;
-                      ae.b.to(a, 0.5, {
+                      se.b.to(a, 0.5, {
                         rotationY: 0.15 * r,
                         rotationX: -0.15 * o,
                         scale: 1.07,
-                        ease: ae.a.easeOut,
+                        ease: se.a.easeOut,
                         transformPerspective: 500,
                         transformOrigin: "center"
                       });
                     }),
                       a.addEventListener("mouseleave", function() {
-                        ae.b.to(a, 0.5, {
+                        se.b.to(a, 0.5, {
                           rotationY: 0,
                           rotationX: 0,
                           scale: 1
@@ -1202,12 +1311,12 @@
                               o.a.createElement("div", {
                                 className: "shown",
                                 style: {
-                                  backgroundImage: "url('".concat(be.a, "')")
+                                  backgroundImage: "url('".concat(ye.a, "')")
                                 }
                               }),
                               o.a.createElement("div", {
                                 style: {
-                                  backgroundImage: "url('".concat(_e.a, "')")
+                                  backgroundImage: "url('".concat(je.a, "')")
                                 }
                               })
                             )
@@ -1250,7 +1359,7 @@
                               "a",
                               { href: "#footer", className: "about-me__link" },
                               o.a.createElement(D.a, {
-                                src: me.a,
+                                src: fe.a,
                                 svgClassName:
                                   "svg-icon svg-icon--about-section",
                                 className: "about-me__link-icon"
@@ -1275,7 +1384,7 @@
                                 onTouchStart: this._onMouseOver
                               },
                               o.a.createElement(D.a, {
-                                src: pe.a,
+                                src: be.a,
                                 svgClassName:
                                   "svg-icon svg-icon--about-section",
                                 className: "about-me__link-icon"
@@ -1287,10 +1396,10 @@
                             "div",
                             { className: "col-4 col-lg-3 text-center" },
                             o.a.createElement(
-                              ie.a,
+                              de.a,
                               { to: "/portfolio", className: "about-me__link" },
                               o.a.createElement(D.a, {
-                                src: fe.a,
+                                src: _e.a,
                                 svgClassName:
                                   "svg-icon svg-icon--about-section",
                                 className: "about-me__link-icon"
@@ -1301,7 +1410,7 @@
                         )
                       )
                     ),
-                    o.a.createElement(le, null)
+                    o.a.createElement(pe, null)
                   );
                 }
               }
@@ -1309,7 +1418,7 @@
             t
           );
         })(r.Component),
-        ye = (function(e) {
+        Ne = (function(e) {
           function t(e) {
             var a;
             return (
@@ -1330,7 +1439,7 @@
                   },
                   {
                     jobTitle: "Freelancer",
-                    company: "Individuals",
+                    company: "Individual",
                     description:
                       'I\'m into web development since I was in highschool, however I really started to learn\n                    more about it since 2015, when I started to develop my own WordPress theme, named\n                    <a href="https://www.wecodeart.com/" target="_blank">WeCodeArt Framework</a>. The idea was simple \n                    - to build something fast and non-bloated with tons of features that you will never use.',
                     meta: {
@@ -1355,7 +1464,7 @@
                     t = document.querySelectorAll(".timeline-box"),
                     r = t[0],
                     o = t[t.length - 1],
-                    c = function() {
+                    s = function() {
                       var t, a;
                       window.innerWidth < 768
                         ? ((t = r.offsetHeight),
@@ -1364,10 +1473,10 @@
                         (e.style.top = t + "px"),
                         (e.style.bottom = a + "px");
                     };
-                  c(),
+                  s(),
                     setTimeout(function() {
                       window.onresize = function() {
-                        return c();
+                        return s();
                       };
                     }, 500);
                 }
@@ -1389,12 +1498,12 @@
                     for (var r = 0; r < e.length; r++)
                       e[r].classList.add("timeline-box--animated");
                   } else if (!1 !== this.state.scrollmagic)
-                    for (var o = new n.Controller(), c = 0; c < e.length; c++)
-                      new n.Scene({ triggerElement: t[c], triggerHook: 0.85 })
-                        .setClassToggle(t[c], "timeline-box__animation--ended")
+                    for (var o = new n.Controller(), s = 0; s < e.length; s++)
+                      new n.Scene({ triggerElement: t[s], triggerHook: 0.85 })
+                        .setClassToggle(t[s], "timeline-box__animation--ended")
                         .addTo(o),
-                        new n.Scene({ triggerElement: e[c], triggerHook: 0.8 })
-                          .setClassToggle(e[c], "timeline-box--animated")
+                        new n.Scene({ triggerElement: e[s], triggerHook: 0.8 })
+                          .setClassToggle(e[s], "timeline-box--animated")
                           .addTo(o);
                 }
               },
@@ -1421,20 +1530,20 @@
                         r.getUTCDate()
                       )
                     ),
-                    c = new Date(
+                    s = new Date(
                       Date.UTC(
                         n.getUTCFullYear(),
                         n.getUTCMonth(),
                         n.getUTCDate()
                       )
                     ),
-                    s = o.getDate() - c.getDate();
-                  s < 0 &&
+                    c = o.getDate() - s.getDate();
+                  c < 0 &&
                     (o.setMonth(o.getMonth() - 1),
-                    (s += this.getDaysInMonths(o)));
-                  var i = o.getMonth() - c.getMonth();
+                    (c += this.getDaysInMonths(o)));
+                  var i = o.getMonth() - s.getMonth();
                   i < 0 && (o.setFullYear(o.getFullYear() - 1), (i += 12));
-                  var l = o.getFullYear() - c.getFullYear();
+                  var l = o.getFullYear() - s.getFullYear();
                   return (
                     l +
                     (l > 1 ? " years" : " year") +
@@ -1442,8 +1551,8 @@
                     i +
                     (i > 1 ? " months" : " month") +
                     ", and " +
-                    s +
-                    (s > 1 ? " days" : " day")
+                    c +
+                    (c > 1 ? " days" : " day")
                   );
                 }
               },
@@ -1456,7 +1565,7 @@
                     return t.map(function(t, a) {
                       var n = t.meta,
                         r = n.from,
-                        c = n.to;
+                        s = n.to;
                       return o.a.createElement(
                         "article",
                         {
@@ -1512,9 +1621,9 @@
                                       className:
                                         "timeline-box__meta-range__to-date"
                                     },
-                                    c === new Date().toDateString()
+                                    s === new Date().toDateString()
                                       ? "Present"
-                                      : c
+                                      : s
                                   )
                                 ),
                                 o.a.createElement(
@@ -1523,7 +1632,7 @@
                                     className: "timeline-box__meta-range__age"
                                   },
                                   "(",
-                                  e.renderWorkDuration({ from: r, to: c }),
+                                  e.renderWorkDuration({ from: r, to: s }),
                                   ")"
                                 )
                               ),
@@ -1630,7 +1739,7 @@
             t
           );
         })(r.Component),
-        we = (function(e) {
+        ke = (function(e) {
           function t() {
             return (
               Object(v.a)(this, t),
@@ -1663,8 +1772,8 @@
                     o.a.createElement(
                       "div",
                       { id: "content", className: "content" },
-                      o.a.createElement(Ee, null),
-                      o.a.createElement(ye, null)
+                      o.a.createElement(Oe, null),
+                      o.a.createElement(Ne, null)
                     )
                   );
                 }
@@ -1673,9 +1782,9 @@
             t
           );
         })(r.Component),
-        je = a(56),
-        Oe = a(84),
-        Ne = (function() {
+        Ce = a(56),
+        xe = a(83),
+        Se = (function() {
           var e = Object(j.a)(
             w.a.mark(function e(t) {
               return w.a.wrap(
@@ -1707,7 +1816,7 @@
             return e.apply(this, arguments);
           };
         })(),
-        ke = (function(e) {
+        Me = (function(e) {
           function t() {
             return (
               Object(v.a)(this, t),
@@ -1759,8 +1868,8 @@
                     o.a.createElement(
                       "div",
                       { id: "content", className: "content content--page" },
-                      o.a.createElement(je.a, { pageTitle: t }),
-                      o.a.createElement(Oe.a, {
+                      o.a.createElement(Ce.a, { pageTitle: t }),
+                      o.a.createElement(xe.a, {
                         posts: this.props.posts,
                         isSingle: !0
                       })
@@ -1772,16 +1881,16 @@
             t
           );
         })(r.Component),
-        xe = Object(l.connect)(
+        Te = Object(l.connect)(
           function(e) {
             var t = e.api;
             return { posts: (t = void 0 === t ? [] : t).posts };
           },
           function(e) {
-            return Object(C.b)({ fetchDispatcher: k.j }, e);
+            return Object(x.b)({ fetchDispatcher: k.j }, e);
           }
-        )(Object(m.frontloadConnect)(Ne, { onMount: !0, onUpdate: !1 })(ke)),
-        Ce = function() {
+        )(Object(m.frontloadConnect)(Se, { onMount: !0, onUpdate: !1 })(Me)),
+        Ie = function() {
           return o.a.createElement(
             o.a.Fragment,
             null,
@@ -1793,7 +1902,7 @@
             o.a.createElement(
               "div",
               { id: "content", className: "content content--404 text-center" },
-              o.a.createElement(je.a, { pageTitle: "404 - Not Found" }),
+              o.a.createElement(Ce.a, { pageTitle: "404 - Not Found" }),
               o.a.createElement(
                 "div",
                 { className: "container" },
@@ -1814,32 +1923,32 @@
             )
           );
         },
-        Me = a(40),
-        Se = s()({
+        Le = a(39),
+        De = c()({
           loader: function() {
             return a.e(1).then(a.bind(null, 219));
           },
-          loading: Me.a,
+          loading: Le.a,
           modules: ["portfolio"]
         }),
-        Te = [
-          { path: "/", exact: !0, component: we },
+        Ae = [
+          { path: "/", exact: !0, component: ke },
           {
             path: "/portfolio",
             exact: !0,
-            component: s()({
+            component: c()({
               loader: function() {
                 return a.e(2).then(a.bind(null, 220));
               },
-              loading: Me.a,
+              loading: Le.a,
               modules: ["projects"]
             })
           },
-          { path: "/portfolio/:slug", exact: !0, component: Se },
-          { path: "/p/:slug", component: xe },
-          { path: "*", component: Ce }
+          { path: "/portfolio/:slug", exact: !0, component: De },
+          { path: "/p/:slug", component: Te },
+          { path: "*", component: Ie }
         ],
-        Ie = function() {
+        Pe = function() {
           return o.a.createElement(
             o.a.Fragment,
             null,
@@ -1855,59 +1964,100 @@
             ),
             o.a.createElement(J, null),
             o.a.createElement(
-              ce.a,
+              ue.a,
               null,
-              Te.map(function(e, t) {
+              Ae.map(function(e, t) {
                 var a = e.path,
                   n = e.exact,
                   r = e.component,
-                  c = Object(p.a)(e, ["path", "exact", "component"]);
-                return o.a.createElement(se.a, {
+                  s = Object(p.a)(e, ["path", "exact", "component"]);
+                return o.a.createElement(me.a, {
                   key: t,
                   path: a,
                   exact: n,
                   render: function(e) {
-                    return o.a.createElement(r, Object.assign({}, e, c));
+                    return o.a.createElement(r, Object.assign({}, e, s));
                   }
                 });
               })
             ),
-            o.a.createElement(oe, null)
+            o.a.createElement(le, null)
           );
         },
-        Le = (a(215), Object(d.a)()),
-        De = Le.store,
-        Ae = Le.history,
-        Pe = o.a.createElement(
+        Fe = (a(215), Object(d.a)()),
+        Ue = Fe.store,
+        Be = Fe.history,
+        He = o.a.createElement(
           l.Provider,
-          { store: De },
+          { store: Ue },
           o.a.createElement(
             u.ConnectedRouter,
-            { history: Ae },
+            { history: Be },
             o.a.createElement(
               m.Frontload,
               { noServerRender: !0 },
-              o.a.createElement(Ie, null)
+              o.a.createElement(Pe, null)
             )
           )
         ),
-        Fe = document.getElementById("wecodeartReact");
-      !0 === Fe.hasChildNodes()
-        ? s.a.preloadReady().then(function() {
-            Object(i.hydrate)(Pe, Fe);
+        Re = document.getElementById("wecodeartReact");
+      !0 === Re.hasChildNodes()
+        ? c.a.preloadReady().then(function() {
+            Object(i.hydrate)(He, Re);
           })
-        : Object(i.render)(Pe, Fe);
+        : Object(i.render)(He, Re);
     },
     28: function(e, t, a) {
+      "use strict";
+      a.d(t, "a", function() {
+        return n;
+      }),
+        a.d(t, "c", function() {
+          return r;
+        }),
+        a.d(t, "d", function() {
+          return o;
+        }),
+        a.d(t, "b", function() {
+          return s;
+        });
+      var n = function(e) {
+          return [].reduce.call(
+            e.elements,
+            function(e, t) {
+              return "" !== t.value && (e[t.name] = t.value), e;
+            },
+            {}
+          );
+        },
+        r = function(e) {
+          return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+            String(e).toLowerCase()
+          );
+        },
+        o = function(e) {
+          for (var t = 0; t < e.length; t++)
+            if (e[t].hasAttribute("required") && "" === e[t].value) return !1;
+          return !0;
+        },
+        s = function(e) {
+          var t = "";
+          for (var a in e)
+            "" !== t && (t += "&"),
+              (t += encodeURIComponent(a) + "=" + encodeURIComponent(e[a]));
+          return t;
+        };
+    },
+    29: function(e, t, a) {
       "use strict";
       a.d(t, "d", function() {
         return o;
       }),
         a.d(t, "a", function() {
-          return c;
+          return s;
         }),
         a.d(t, "c", function() {
-          return s;
+          return c;
         }),
         a.d(t, "b", function() {
           return i;
@@ -1917,15 +2067,15 @@
         o = function(e) {
           return localStorage.setItem("authToken", e);
         },
-        c = function() {
+        s = function() {
           return localStorage.getItem("authToken");
         },
-        s = function() {
+        c = function() {
           return localStorage.removeItem("authToken");
         };
       function i() {
         try {
-          var e = c();
+          var e = s();
           if (e && e.length) {
             var t = r()(e),
               a = new Date().getTime() / 1e3;
@@ -1937,34 +2087,25 @@
         }
       }
     },
-    35: function(e, t, a) {
+    39: function(e, t, a) {
       "use strict";
-      a.d(t, "b", function() {
-        return n;
-      }),
-        a.d(t, "c", function() {
-          return r;
-        }),
-        a.d(t, "a", function() {
-          return o;
-        });
-      var n = function(e) {
-          return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-            String(e).toLowerCase()
-          );
-        },
-        r = function(e) {
-          for (var t = 0; t < e.length; t++)
-            if (e[t].hasAttribute("required") && "" === e[t].value) return !1;
-          return !0;
-        },
-        o = function(e) {
-          var t = "";
-          for (var a in e)
-            "" !== t && (t += "&"),
-              (t += encodeURIComponent(a) + "=" + encodeURIComponent(e[a]));
-          return t;
-        };
+      var n = a(1),
+        r = a.n(n),
+        o = a(128),
+        s = a.n(o);
+      t.a = function(e) {
+        e.type, e.color;
+        return r.a.createElement(
+          "div",
+          { className: "download-loader" },
+          r.a.createElement(s.a, {
+            type: "bubbles",
+            color: "#08c",
+            height: "100%",
+            width: "100%"
+          })
+        );
+      };
     },
     4: function(e, t, a) {
       "use strict";
@@ -1999,21 +2140,21 @@
           return N;
         }),
         a.d(t, "l", function() {
-          return x;
+          return C;
         }),
         a.d(t, "j", function() {
-          return M;
+          return S;
         });
-      var n = a(17),
+      var n = a(13),
         r = a.n(n),
-        o = a(24),
-        c = a(29),
-        s = a(79),
-        i = a.n(s),
+        o = a(19),
+        s = a(26),
+        c = a(51),
+        i = a.n(c),
         l = a(59),
         u = a.n(l),
         m = a(109),
-        d = a(35),
+        d = a(28),
         p = "FETCHING",
         h = "FETCH_MENU_FULFILLED",
         f = "FETCH_USER_FULFILLED",
@@ -2031,7 +2172,7 @@
         return k.apply(this, arguments);
       }
       function k() {
-        return (k = Object(c.a)(
+        return (k = Object(s.a)(
           r.a.mark(function e(t) {
             var a, n, o;
             return r.a.wrap(
@@ -2047,7 +2188,7 @@
                         (o = {
                           method: "post",
                           url: "jwt-auth/v1/token",
-                          data: Object(d.a)({ username: a, password: n })
+                          data: Object(d.b)({ username: a, password: n })
                         }),
                         (e.prev = 3),
                         (e.next = 6),
@@ -2071,11 +2212,11 @@
           })
         )).apply(this, arguments);
       }
-      function x(e) {
-        return C.apply(this, arguments);
+      function C(e) {
+        return x.apply(this, arguments);
       }
-      function C() {
-        return (C = Object(c.a)(
+      function x() {
+        return (x = Object(s.a)(
           r.a.mark(function e(t) {
             var a, n, o;
             return r.a.wrap(
@@ -2092,9 +2233,10 @@
                         (o = n.data.user.id),
                         (e.prev = 4),
                         (e.next = 7),
-                        O.get("wp/v2/users/" + o, { headers: a }).then(function(
-                          e
-                        ) {
+                        O.get("wp/v2/users/" + o, {
+                          headers: a,
+                          withCredentials: !0
+                        }).then(function(e) {
                           return e.data;
                         })
                       );
@@ -2114,7 +2256,7 @@
           })
         )).apply(this, arguments);
       }
-      function M() {
+      function S() {
         var e =
             arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "",
           t =
@@ -2124,9 +2266,9 @@
           n =
             arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : {};
         return function(r) {
-          var c = Object(d.a)(t);
+          var s = Object(d.b)(t);
           return (
-            c && (e = e.concat("?", c)),
+            s && (e = e.concat("?", s)),
             r({ type: p, payload: !0 }),
             O.get(e, Object(o.a)({}, n))
               .then(function(e) {
@@ -2138,26 +2280,6 @@
           );
         };
       }
-    },
-    40: function(e, t, a) {
-      "use strict";
-      var n = a(1),
-        r = a.n(n),
-        o = a(128),
-        c = a.n(o);
-      t.a = function(e) {
-        e.type, e.color;
-        return r.a.createElement(
-          "div",
-          { className: "download-loader" },
-          r.a.createElement(c.a, {
-            type: "bubbles",
-            color: "#08c",
-            height: "100%",
-            width: "100%"
-          })
-        );
-      };
     },
     56: function(e, t, a) {
       "use strict";
@@ -2192,13 +2314,13 @@
     },
     61: function(e, t, a) {
       "use strict";
-      var n = a(14),
-        r = a(18),
+      var n = a(15),
+        r = a(22),
         o = a(108),
-        c = a(130),
-        s = (a(179), a(51)),
-        i = a(19),
-        l = a(24),
+        s = a(130),
+        c = (a(179), a(50)),
+        i = a(23),
+        l = a(19),
         u = a(4),
         m = a(30),
         d = {
@@ -2246,19 +2368,19 @@
           case u.c:
             var r = e.posts,
               o = Object(m.find)(r, { featured_media: t.payload.id }),
-              c = Object(m.findIndex)(r, { featured_media: t.payload.id });
+              s = Object(m.findIndex)(r, { featured_media: t.payload.id });
             return (
               (o.featured_object = t.payload),
-              r.splice(c, 1, o),
+              r.splice(s, 1, o),
               Object(l.a)({}, e, { fetching: !1, posts: r })
             );
           case u.d:
-            var s = e.menus;
+            var c = e.menus;
             return (
-              void 0 === s && (s = [t.payload]),
+              void 0 === c && (c = [t.payload]),
               Object(l.a)({}, e, {
                 fetching: !1,
-                menus: Object(i.a)(s).concat([t.payload])
+                menus: Object(i.a)(c).concat([t.payload])
               })
             );
           case u.i:
@@ -2281,13 +2403,13 @@
               ? arguments[0]
               : "/",
           t = h ? Object(n.c)({ initialEntries: [e] }) : Object(n.a)(),
-          a = [Object(s.routerMiddleware)(t), Object(c.a)(), o.a],
+          a = [Object(c.routerMiddleware)(t), Object(s.a)(), o.a],
           i = h ? {} : window.__PRELOADED_STATE__;
         return (
           h || delete window.__PRELOADED_STATE__,
           {
             store: Object(r.e)(
-              Object(r.c)({ router: Object(s.connectRouter)(t), api: p }),
+              Object(r.c)({ router: Object(c.connectRouter)(t), api: p }),
               i,
               r.d.apply(void 0, [r.a.apply(void 0, a)].concat([]))
             ),
@@ -2299,16 +2421,16 @@
     62: function(e, t, a) {
       e.exports = a.p + "static/media/placeholder-bold.81ba79bb.png";
     },
-    80: function(e, t, a) {
+    79: function(e, t, a) {
       e.exports = a.p + "static/media/user.07e599b6.svg";
     },
-    84: function(e, t, a) {
+    83: function(e, t, a) {
       "use strict";
-      var n = a(19),
+      var n = a(23),
         r = a(5),
         o = a(6),
-        c = a(8),
-        s = a(7),
+        s = a(8),
+        c = a(7),
         i = a(9),
         l = a(1),
         u = a.n(l),
@@ -2337,7 +2459,7 @@
           function t() {
             return (
               Object(r.a)(this, t),
-              Object(c.a)(this, Object(s.a)(t).apply(this, arguments))
+              Object(s.a)(this, Object(c.a)(t).apply(this, arguments))
             );
           }
           return (
@@ -2402,7 +2524,7 @@
           function t() {
             return (
               Object(r.a)(this, t),
-              Object(c.a)(this, Object(s.a)(t).apply(this, arguments))
+              Object(s.a)(this, Object(c.a)(t).apply(this, arguments))
             );
           }
           return (
@@ -2436,7 +2558,7 @@
             t
           );
         })(l.Component),
-        g = a(15),
+        g = a(17),
         _ = a(124),
         E = a.n(_),
         y = a(125),
@@ -2445,22 +2567,22 @@
         O = a.n(j),
         N = a(127),
         k = a.n(N),
-        x = { clock: E.a, banknote: w.a, website: O.a, money: k.a },
-        C = function(e) {
+        C = { clock: E.a, banknote: w.a, website: O.a, money: k.a },
+        x = function(e) {
           var t = e.date_gmt,
             a = e.date_human,
             r = e.acf.meta,
             o = r ? parseInt(r.cost) : 0,
-            c = Object(n.a)(Array(o));
-          c = c.map(function(e, t) {
+            s = Object(n.a)(Array(o));
+          s = s.map(function(e, t) {
             return u.a.createElement(g.a, {
               className: "portfolio__cost-svg",
               key: t,
-              src: x.banknote,
+              src: C.banknote,
               svgClassName: "svg-icon svg-icon--cost"
             });
           });
-          var s = '<a target="_blank" href="'.concat(
+          var c = '<a target="_blank" href="'.concat(
             r ? r.website : "#",
             '">Live Site</a>'
           );
@@ -2472,12 +2594,12 @@
               { className: "portfolio__meta-item", title: "Live url" },
               u.a.createElement(g.a, {
                 className: "portfolio__meta-label",
-                src: x.website,
+                src: C.website,
                 svgClassName: "svg-icon svg-icon--portfolio-meta"
               }),
               u.a.createElement("span", {
                 className: "portfolio__website",
-                dangerouslySetInnerHTML: { __html: s }
+                dangerouslySetInnerHTML: { __html: c }
               })
             ),
             u.a.createElement(
@@ -2485,13 +2607,13 @@
               { className: "portfolio__meta-item", title: "Cost range" },
               u.a.createElement(g.a, {
                 className: "portfolio__meta-label",
-                src: x.money,
+                src: C.money,
                 svgClassName: "svg-icon svg-icon--portfolio-meta"
               }),
               u.a.createElement(
                 "span",
                 { className: "portfolio__cost" },
-                o > 0 ? c : "Free"
+                o > 0 ? s : "Free"
               )
             ),
             u.a.createElement(
@@ -2499,7 +2621,7 @@
               { className: "portfolio__meta-item", title: "Went live on:" },
               u.a.createElement(g.a, {
                 className: "portfolio__meta-label",
-                src: x.clock,
+                src: C.clock,
                 svgClassName: "svg-icon svg-icon--portfolio-meta"
               }),
               u.a.createElement(
@@ -2510,20 +2632,20 @@
             )
           );
         },
-        M = a(17),
-        S = a.n(M),
-        T = a(29),
-        I = a(23),
+        S = a(13),
+        M = a.n(S),
+        T = a(26),
+        I = a(21),
         L = a(4),
-        D = a(40),
+        D = a(39),
         A = a(62),
         P = a.n(A),
-        F = a(18),
+        F = a(22),
         U = a(33),
         B = (function() {
           var e = Object(T.a)(
-            S.a.mark(function e(t) {
-              return S.a.wrap(
+            M.a.mark(function e(t) {
+              return M.a.wrap(
                 function(e) {
                   for (;;)
                     switch ((e.prev = e.next)) {
@@ -2556,7 +2678,7 @@
           function t() {
             return (
               Object(r.a)(this, t),
-              Object(c.a)(this, Object(s.a)(t).apply(this, arguments))
+              Object(s.a)(this, Object(c.a)(t).apply(this, arguments))
             );
           }
           return (
@@ -2639,7 +2761,7 @@
           function t() {
             return (
               Object(r.a)(this, t),
-              Object(c.a)(this, Object(s.a)(t).apply(this, arguments))
+              Object(s.a)(this, Object(c.a)(t).apply(this, arguments))
             );
           }
           return (
@@ -2679,9 +2801,9 @@
                         { className: "col" },
                         !this.props.isSingle &&
                           u.a.createElement(f, this.props),
-                        this.props.isSingle && u.a.createElement(C, this.props),
+                        this.props.isSingle && u.a.createElement(x, this.props),
                         u.a.createElement(v, this.props),
-                        !this.props.isSingle && u.a.createElement(C, this.props)
+                        !this.props.isSingle && u.a.createElement(x, this.props)
                       )
                     )
                   );
@@ -2702,7 +2824,7 @@
           function t() {
             return (
               Object(r.a)(this, t),
-              Object(c.a)(this, Object(s.a)(t).apply(this, arguments))
+              Object(s.a)(this, Object(c.a)(t).apply(this, arguments))
             );
           }
           return (
@@ -2789,4 +2911,4 @@
   },
   [[131, 5, 4]]
 ]);
-//# sourceMappingURL=main.9632b0aa.chunk.js.map
+//# sourceMappingURL=main.a8c9a474.chunk.js.map
