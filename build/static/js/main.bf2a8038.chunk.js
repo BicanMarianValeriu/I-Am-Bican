@@ -1,58 +1,58 @@
 (window.webpackJsonp = window.webpackJsonp || []).push([
   [0],
   {
-    109: function(e) {
+    110: function(e) {
       e.exports = { a: { REST: "http://www.iambican.com/dashboard/wp-json/" } };
     },
-    114: function(e, t, a) {
+    115: function(e, t, a) {
       e.exports = a.p + "static/media/logout.e75855a1.svg";
     },
-    116: function(e, t, a) {
+    117: function(e, t, a) {
       e.exports = a.p + "static/media/facebook.d1ac3589.svg";
     },
-    117: function(e, t, a) {
+    118: function(e, t, a) {
       e.exports = a.p + "static/media/linkedin.fc75bb7d.svg";
     },
-    118: function(e, t, a) {
+    120: function(e, t, a) {
       e.exports = a.p + "static/media/email.1037f077.svg";
     },
-    119: function(e, t, a) {
+    121: function(e, t, a) {
       e.exports = a.p + "static/media/paper-plane.14b73f92.svg";
     },
-    120: function(e, t, a) {
+    122: function(e, t, a) {
       e.exports = a.p + "static/media/suitcase.b73ef297.svg";
     },
-    121: function(e, t, a) {
+    123: function(e, t, a) {
       e.exports = a.p + "static/media/bican.9d90f6b5.jpg";
     },
-    122: function(e, t, a) {
+    124: function(e, t, a) {
       e.exports = a.p + "static/media/bican-old.19e754c9.jpg";
     },
-    124: function(e, t, a) {
+    126: function(e, t, a) {
       e.exports = a.p + "static/media/clock-o.46727951.svg";
     },
-    125: function(e, t, a) {
+    127: function(e, t, a) {
       e.exports = a.p + "static/media/banknote.d1b091fb.svg";
     },
-    126: function(e, t, a) {
+    128: function(e, t, a) {
       e.exports = a.p + "static/media/website.73103064.svg";
     },
-    127: function(e, t, a) {
+    129: function(e, t, a) {
       e.exports = a.p + "static/media/get-money.a0f406bf.svg";
     },
-    131: function(e, t, a) {
-      e.exports = a(217);
+    133: function(e, t, a) {
+      e.exports = a(221);
     },
-    213: function(e, t, a) {
+    214: function(e, t, a) {
       "use strict";
       a.r(t);
-      var n = a(35),
+      var n = a(36),
         r = a.n(n),
         o = a(28),
         s = a(29),
         c = a(60),
         i = a.n(c),
-        l = a(4),
+        l = a(3),
         u = a(61),
         m = {
           createToast: r.a.mixin({
@@ -132,37 +132,37 @@
         };
       t.default = m;
     },
-    215: function(e, t, a) {},
-    217: function(e, t, a) {
+    219: function(e, t, a) {},
+    221: function(e, t, a) {
       "use strict";
       a.r(t);
-      a(132);
+      a(134);
       var n,
         r = a(1),
         o = a.n(r),
-        s = a(49),
+        s = a(50),
         c = a.n(s),
-        i = a(31),
-        l = a(21),
-        u = a(50),
-        m = a(33),
+        i = a(32),
+        l = a(15),
+        u = a(51),
+        m = a(34),
         d = a(61),
-        p = a(129),
-        h = a(34),
+        p = a(131),
+        h = a(35),
         f = a.n(h),
-        v = a(5),
-        b = a(6),
-        g = a(8),
-        _ = a(7),
-        E = a(9),
-        y = a(13),
+        v = a(4),
+        b = a(5),
+        g = a(7),
+        _ = a(6),
+        E = a(8),
+        y = a(14),
         w = a.n(y),
-        j = a(26),
-        O = a(222),
-        N = a(218),
-        k = a(4),
-        C = a(30),
-        x = a(22),
+        j = a(30),
+        O = a(226),
+        N = a(222),
+        k = a(3),
+        C = a(31),
+        x = a(16),
         S = (function() {
           var e = Object(j.a)(
             w.a.mark(function e(t) {
@@ -299,24 +299,24 @@
             }
           )(Object(m.frontloadConnect)(S, { onMount: !0, onUpdate: !1 })(M))
         ),
-        I = function() {
+        L = function() {
           return o.a.createElement(
             "div",
             { className: "header__menu menu col pr-0" },
             o.a.createElement(T, { wpMenuId: 2, className: "menu__header" })
           );
         },
-        L = a(18),
-        D = a(17),
+        I = a(20),
+        D = a(19),
         A = a(60),
-        P = a.n(A),
-        F = a(20),
-        U = a(79),
+        F = a.n(A),
+        P = a(23),
+        U = a(80),
         B = a.n(U),
-        H = a(114),
-        R = a.n(H),
-        q = a(29),
-        W = a(213),
+        H = a(115),
+        q = a.n(H),
+        R = a(29),
+        W = a(214),
         Y = (function(e) {
           function t(e) {
             var a;
@@ -327,15 +327,15 @@
                 dropdownOpen: !1
               }),
               (a._onMouseOver = a._onMouseOver.bind(
-                Object(L.a)(Object(L.a)(a))
+                Object(I.a)(Object(I.a)(a))
               )),
               (a._onButtonClick = a._onButtonClick.bind(
-                Object(L.a)(Object(L.a)(a))
+                Object(I.a)(Object(I.a)(a))
               )),
               (a._onLogoutClick = a._onLogoutClick.bind(
-                Object(L.a)(Object(L.a)(a))
+                Object(I.a)(Object(I.a)(a))
               )),
-              (a.toggle = a.toggle.bind(Object(L.a)(Object(L.a)(a)))),
+              (a.toggle = a.toggle.bind(Object(I.a)(Object(I.a)(a)))),
               a
             );
           }
@@ -348,7 +348,7 @@
                   var e = this;
                   null === this.state.Modal &&
                     Promise.resolve()
-                      .then(a.bind(null, 213))
+                      .then(a.bind(null, 214))
                       .then(function(t) {
                         return e.setState({ Modal: t.default });
                       });
@@ -360,22 +360,22 @@
                   var e = this;
                   null === this.state.Modal &&
                     Promise.resolve()
-                      .then(a.bind(null, 213))
+                      .then(a.bind(null, 214))
                       .then(function(t) {
                         return e.setState({ Modal: t.default });
                       }),
                     null === this.state.Modal ||
-                      Object(q.b)() ||
+                      Object(R.b)() ||
                       this.state.Modal.renderModal();
                 }
               },
               {
                 key: "_onLogoutClick",
                 value: function() {
-                  Object(q.b)() &&
-                    (Object(q.c)(),
+                  Object(R.b)() &&
+                    (Object(R.c)(),
                     this.props.dispatch({ type: k.h }),
-                    P.a.remove("authToken"),
+                    F.a.remove("authToken"),
                     W.default.createToast({
                       type: "success",
                       title: "Logged out. See you soon :)."
@@ -394,8 +394,8 @@
                 key: "componentDidMount",
                 value: function() {
                   var e = this.props.dispatch;
-                  Object(q.b)() &&
-                    Object(k.l)(Object(q.a)()).then(function(t) {
+                  Object(R.b)() &&
+                    Object(k.l)(Object(R.a)()).then(function(t) {
                       e({ type: k.g, payload: t });
                     });
                 }
@@ -408,13 +408,13 @@
                     a = e.avatar_urls,
                     n = ["header__login", "col-auto", "pl-0", "header-login"];
                   return (
-                    Object(q.b)() && n.push(["header-login--is-auth"]),
+                    Object(R.b)() && n.push(["header-login--is-auth"]),
                     o.a.createElement(
                       "div",
                       { className: n.join(" ") },
-                      Object(q.b)()
+                      Object(R.b)()
                         ? o.a.createElement(
-                            F.b,
+                            P.b,
                             {
                               isOpen: this.state.dropdownOpen,
                               toggle: this.toggle,
@@ -422,7 +422,7 @@
                               direction: "left"
                             },
                             o.a.createElement(
-                              F.e,
+                              P.e,
                               {
                                 className: "header-login__btn float-right btn"
                               },
@@ -439,25 +439,25 @@
                                   })
                             ),
                             o.a.createElement(
-                              F.d,
+                              P.d,
                               { right: !0 },
                               o.a.createElement(
-                                F.c,
+                                P.c,
                                 { header: !0 },
                                 "Howdy ",
                                 t
                               ),
-                              o.a.createElement(F.c, { divider: !0 }),
-                              o.a.createElement(F.c, null, "Another Action"),
-                              o.a.createElement(F.c, { divider: !0 }),
+                              o.a.createElement(P.c, { divider: !0 }),
+                              o.a.createElement(P.c, null, "Another Action"),
+                              o.a.createElement(P.c, { divider: !0 }),
                               o.a.createElement(
-                                F.c,
+                                P.c,
                                 {
                                   className: "text-muted",
                                   onClick: this._onLogoutClick
                                 },
                                 o.a.createElement(D.a, {
-                                  src: R.a,
+                                  src: q.a,
                                   svgClassName: "svg-icon",
                                   className: "header-logout__svg"
                                 }),
@@ -513,7 +513,7 @@
                 o.a.createElement(
                   "div",
                   { className: "row" },
-                  o.a.createElement(I, null),
+                  o.a.createElement(L, null),
                   o.a.createElement(z, null)
                 )
               )
@@ -529,11 +529,11 @@
             " - All rights reserved."
           );
         },
-        G = a(116),
-        X = a.n(G),
-        Z = a(117),
-        K = a.n(Z),
-        $ = function() {
+        G = a(117),
+        Z = a.n(G),
+        X = a(118),
+        $ = a.n(X),
+        K = function() {
           return o.a.createElement(
             "ul",
             { className: "footer__social social social--footer" },
@@ -548,7 +548,7 @@
                   target: "_blank"
                 },
                 o.a.createElement(D.a, {
-                  src: X.a,
+                  src: Z.a,
                   svgClassName: "svg-icon svg-icon--social-footer",
                   className: "social__icon social__icon--facebook"
                 })
@@ -566,7 +566,7 @@
                   target: "_blank"
                 },
                 o.a.createElement(D.a, {
-                  src: K.a,
+                  src: $.a,
                   svgClassName: "svg-icon svg-icon--social-footer",
                   className: "social__icon social__icon--linkedin"
                 })
@@ -574,88 +574,11 @@
             )
           );
         },
-        Q = a(23),
-        ee = a(28),
-        te = a(19),
-        ae = a(51),
-        ne = a.n(ae),
-        re = (function() {
-          function e(t, a) {
-            Object(v.a)(this, e),
-              (this.el = t),
-              (this.API_KEY = a),
-              (this.data = { url: "https://usX.api.mailchimp.com/3.0/" });
-          }
-          return (
-            Object(b.a)(e, [
-              {
-                key: "setData",
-                value: function(e) {
-                  this.data = e;
-                }
-              },
-              {
-                key: "formatSubscriber",
-                value: function(e) {
-                  var t = Object(te.a)({}, e, { status: "subscribed" });
-                  return JSON.stringify(t);
-                }
-              },
-              {
-                key: "send",
-                value: (function() {
-                  var e = Object(j.a)(
-                    w.a.mark(function e(t) {
-                      var a, n, r, o;
-                      return w.a.wrap(
-                        function(e) {
-                          for (;;)
-                            switch ((e.prev = e.next)) {
-                              case 0:
-                                return (
-                                  (a = this.data.url),
-                                  (n = a.concat(t)),
-                                  (r = ["apikey", this.API_KEY].join(":")),
-                                  (o = {
-                                    "Content-type":
-                                      "application/json; charset=UTF-8",
-                                    Authorization: "Basic " + r
-                                  }),
-                                  (e.next = 6),
-                                  ne.a
-                                    .post(n, {
-                                      headers: o,
-                                      withCredentials: !0,
-                                      data: this.formatSubscriber(
-                                        Object(ee.a)(this.el)
-                                      )
-                                    })
-                                    .then(function(e) {
-                                      console.log(e);
-                                    })
-                                );
-                              case 6:
-                                return e.abrupt("return", e.sent);
-                              case 7:
-                              case "end":
-                                return e.stop();
-                            }
-                        },
-                        e,
-                        this
-                      );
-                    })
-                  );
-                  return function(t) {
-                    return e.apply(this, arguments);
-                  };
-                })()
-              }
-            ]),
-            e
-          );
-        })(),
-        oe = (function(e) {
+        Q = a(17),
+        ee = a(119),
+        te = a.n(ee),
+        ae = a(28),
+        ne = (function(e) {
           function t(e) {
             var a;
             return (
@@ -673,16 +596,63 @@
               {
                 key: "componentDidMount",
                 value: function() {
-                  this.handleSubmit();
+                  var e = this,
+                    t = document.querySelector(".newsletter__form");
+                  t.elements[0].addEventListener("keyup", function() {
+                    e.validate(), e.generateErrors();
+                  }),
+                    t.addEventListener("submit", function(t) {
+                      t.preventDefault(),
+                        e.validate(),
+                        e.generateErrors(),
+                        0 === e.state.errors.length && e.onSubmit();
+                    });
+                }
+              },
+              {
+                key: "onSubmit",
+                value: function() {
+                  var e = this;
+                  if (!this.state.isSubmiting) {
+                    this.setState({ isSubmiting: !0 });
+                    var t = document.querySelector(".newsletter__form"),
+                      a = ""
+                        .concat(
+                          "//wecodeart.us2.list-manage.com/subscribe/post?u=ab68e00b82ffb88387f008ce7&amp;id=abee3454c2",
+                          "&"
+                        )
+                        .concat(Object(ae.b)(Object(ae.a)(t)))
+                        .replace("/post?", "/post-json?");
+                    te()(a, { param: "c" }, function(a, n) {
+                      e.setState({ isSubmiting: !1 });
+                      var r,
+                        o = document.querySelector(".newsletter__messages");
+                      "success" === n.result &&
+                        ((r = "alert-success"),
+                        o.classList.remove("alert-danger")),
+                        "error" === n.result &&
+                          ((r = "alert-danger"),
+                          o.classList.remove("alert-success"));
+                      var s = document.createElement("div");
+                      (s.innerHTML = n.msg),
+                        o.appendChild(s),
+                        o.classList.add(r),
+                        o.classList.remove("d-none"),
+                        (t.elements[0].value = ""),
+                        setTimeout(function() {
+                          (o.innerHTML = ""), o.classList.add("d-none");
+                        }, 5e3);
+                    });
+                  }
                 }
               },
               {
                 key: "validate",
                 value: function() {
                   var e = document.querySelector(".newsletter__form").elements,
-                    t = e.email_address.value;
+                    t = e[0].value;
                   this.setState({ errors: [] }),
-                    !1 === Object(ee.d)(e)
+                    !1 === Object(ae.d)(e)
                       ? this.setState(function(e) {
                           return {
                             errors: Object(Q.a)(e.errors).concat([
@@ -693,7 +663,7 @@
                             ])
                           };
                         })
-                      : !1 === Object(ee.c)(t) &&
+                      : !1 === Object(ae.c)(t) &&
                         this.setState(function(e) {
                           return {
                             errors: Object(Q.a)(e.errors).concat([
@@ -710,7 +680,7 @@
                 key: "generateErrors",
                 value: function() {
                   var e = document.querySelector(".newsletter__form").elements
-                      .email_address,
+                      .EMAIL,
                     t = document.querySelector(".newsletter__messages");
                   if (
                     (t.classList.add("d-none"),
@@ -729,56 +699,16 @@
                           t.appendChild(a)
                         );
                       }),
-                      t.classList.remove("d-none"),
-                      setTimeout(function() {
-                        (t.innerHTML = ""),
-                          t.classList.add("d-none"),
-                          e.classList.remove("is-invalid");
-                      }, 5e3);
+                      t.classList.remove("alert-success"),
+                      t.classList.add("alert-danger"),
+                      t.classList.remove("d-none");
                   }
-                }
-              },
-              {
-                key: "handleSubmit",
-                value: function() {
-                  var e = this;
-                  if (this.state.isSubmiting) return !1;
-                  var t = document.querySelector(".newsletter__form");
-                  t.elements.email_address.addEventListener(
-                    "keyup",
-                    function() {
-                      e.validate(), e.generateErrors();
-                    }
-                  ),
-                    t.addEventListener("submit", function(a) {
-                      (a.preventDefault(),
-                      e.validate(),
-                      e.generateErrors(),
-                      0 === e.state.errors.length) &&
-                        new re(t, "sadxasa")
-                          .setData({
-                            url: "https://usX.api.mailchimp.com/3.0/",
-                            user: ""
-                          })
-                          .send("lists/57afe96172/members")
-                          .then(function(e) {
-                            var t = document.querySelector(
-                                ".newsletter__messages"
-                              ),
-                              a = document.createElement("div");
-                            (a.innerHTML = e.message.toString()),
-                              t.appendChild(a),
-                              t.classList.remove("d-none"),
-                              setTimeout(function() {
-                                (t.innerHTML = ""), t.classList.add("d-none");
-                              }, 5e3);
-                          });
-                    });
                 }
               },
               {
                 key: "render",
                 value: function() {
+                  var e = this.state.isSubmiting ? "LOADING..." : "SUBSCRIBE";
                   return o.a.createElement(
                     "div",
                     { className: "newsletter newsletter--footer" },
@@ -788,35 +718,27 @@
                     }),
                     o.a.createElement(
                       "form",
-                      {
-                        className: "newsletter__form",
-                        action:
-                          "//wecodeart.us2.list-manage.com/subscribe/post?u=ab68e00b82ffb88387f008ce7&id=abee3454c2",
-                        method: "POST",
-                        noValidate: "novalidate",
-                        target: "_blank"
-                      },
+                      { className: "newsletter__form", noValidate: !0 },
                       o.a.createElement(
-                        F.g,
+                        P.g,
                         null,
-                        o.a.createElement(F.f, {
+                        o.a.createElement(P.f, {
                           placeholder: "Email Address",
-                          name: "email_address",
+                          name: "EMAIL",
                           type: "email",
                           required: "required"
                         }),
                         o.a.createElement(
-                          F.h,
+                          P.h,
                           { addonType: "append" },
                           o.a.createElement(
-                            F.a,
+                            P.a,
                             {
-                              className:
-                                "newsletter__button btn btn--primary text-color-light",
                               type: "submit",
-                              onClick: this.handleSubmit.bind(this)
+                              className:
+                                "newsletter__button btn btn--primary text-color-light"
                             },
-                            "SUBSCRIBE"
+                            e
                           )
                         )
                       )
@@ -828,8 +750,8 @@
             t
           );
         })(r.Component),
-        se = a(25),
-        ce = (function(e) {
+        re = a(26),
+        oe = (function(e) {
           function t() {
             return (
               Object(v.a)(this, t),
@@ -850,7 +772,7 @@
               {
                 key: "componentWillUnmount",
                 value: function() {
-                  se.b.killAll(!1, !1, !0);
+                  re.b.killAll(!1, !1, !0);
                 }
               },
               {
@@ -867,16 +789,16 @@
                     a = e.length,
                     n = Object(Q.a)(Array(a).keys()),
                     r = -1;
-                  se.b.set(document.querySelectorAll(".companies__logo"), {
+                  re.b.set(document.querySelectorAll(".companies__logo"), {
                     autoAlpha: 0
                   });
                   for (var o = 0; o < a; o++)
                     for (var s = 0; s < 5; s++)
                       if (o === s && s < a) {
                         var c = document.querySelectorAll(".companies")[o];
-                        se.b.set(c.children[s], { autoAlpha: 1 });
+                        re.b.set(c.children[s], { autoAlpha: 1 });
                       }
-                  se.b.delayedCall(1, function e() {
+                  re.b.delayedCall(1, function e() {
                     var o = Math.floor(Math.random() * a);
                     o !== r
                       ? ((function e(r) {
@@ -895,10 +817,10 @@
                                 .getPropertyValue("opacity") > 0.5
                             ) {
                               if (o === c) return void e(r);
-                              se.b.to(i, 0.75, { autoAlpha: 0 });
+                              re.b.to(i, 0.75, { autoAlpha: 0 });
                             } else
                               o === c &&
-                                (se.b.to(i, 0.75, {
+                                (re.b.to(i, 0.75, {
                                   autoAlpha: 1,
                                   delay: 0.25
                                 }),
@@ -906,7 +828,7 @@
                           }
                         })(o),
                         (r = o),
-                        se.b.delayedCall(2.5, e))
+                        re.b.delayedCall(2.5, e))
                       : e();
                   });
                 }
@@ -986,10 +908,10 @@
             t
           );
         })(r.Component),
-        ie = Object(l.connect)(function(e) {
+        se = Object(l.connect)(function(e) {
           return { clients: e.api.clients };
-        })(ce),
-        le = function() {
+        })(oe),
+        ce = function() {
           return o.a.createElement(
             "footer",
             {
@@ -998,7 +920,7 @@
               itemScope: "",
               itemType: "http://schema.org/WPFooter"
             },
-            o.a.createElement(ie, null),
+            o.a.createElement(se, null),
             o.a.createElement(
               "div",
               { className: "footer__newsletter footer-newsletter" },
@@ -1032,7 +954,7 @@
                   o.a.createElement(
                     "div",
                     { className: "col-lg-6" },
-                    o.a.createElement(oe, null)
+                    o.a.createElement(ne, null)
                   )
                 )
               )
@@ -1050,7 +972,7 @@
                     "div",
                     { className: "col-md-6 text-center text-md-left" },
                     o.a.createElement(V, null),
-                    o.a.createElement($, null)
+                    o.a.createElement(K, null)
                   ),
                   o.a.createElement(
                     "div",
@@ -1067,10 +989,10 @@
             )
           );
         },
-        ue = a(98),
-        me = a(16),
-        de = a(211),
-        pe = function() {
+        ie = a(21),
+        le = a(18),
+        ue = a(212),
+        me = function() {
           return o.a.createElement(
             "div",
             { className: "about-me__content" },
@@ -1165,17 +1087,17 @@
             )
           );
         },
-        he = a(118),
+        de = a(120),
+        pe = a.n(de),
+        he = a(121),
         fe = a.n(he),
-        ve = a(119),
+        ve = a(122),
         be = a.n(ve),
-        ge = a(120),
+        ge = a(123),
         _e = a.n(ge),
-        Ee = a(121),
+        Ee = a(124),
         ye = a.n(Ee),
-        we = a(122),
-        je = a.n(we),
-        Oe = (function(e) {
+        we = (function(e) {
           function t(e) {
             var a;
             return (
@@ -1184,10 +1106,10 @@
                 Modal: null
               }),
               (a._onMouseOver = a._onMouseOver.bind(
-                Object(L.a)(Object(L.a)(a))
+                Object(I.a)(Object(I.a)(a))
               )),
               (a._onButtonClick = a._onButtonClick.bind(
-                Object(L.a)(Object(L.a)(a))
+                Object(I.a)(Object(I.a)(a))
               )),
               a
             );
@@ -1202,7 +1124,7 @@
                   null === this.state.Modal &&
                     a
                       .e(3)
-                      .then(a.bind(null, 221))
+                      .then(a.bind(null, 225))
                       .then(function(t) {
                         return e.setState({ Modal: t.default });
                       });
@@ -1215,7 +1137,7 @@
                   null === this.state.Modal &&
                     a
                       .e(3)
-                      .then(a.bind(null, 221))
+                      .then(a.bind(null, 225))
                       .then(function(t) {
                         return e.setState({ Modal: t.default });
                       })
@@ -1262,17 +1184,17 @@
                       (n = n || window.event), (e = n.pageX), (t = n.pageY);
                       var r = (e / a.offsetWidth) * 100 - 100,
                         o = (t / a.offsetHeight) * 100 - 100;
-                      se.b.to(a, 0.5, {
+                      re.b.to(a, 0.5, {
                         rotationY: 0.15 * r,
                         rotationX: -0.15 * o,
                         scale: 1.07,
-                        ease: se.a.easeOut,
+                        ease: re.a.easeOut,
                         transformPerspective: 500,
                         transformOrigin: "center"
                       });
                     }),
                       a.addEventListener("mouseleave", function() {
-                        se.b.to(a, 0.5, {
+                        re.b.to(a, 0.5, {
                           rotationY: 0,
                           rotationX: 0,
                           scale: 1
@@ -1311,12 +1233,12 @@
                               o.a.createElement("div", {
                                 className: "shown",
                                 style: {
-                                  backgroundImage: "url('".concat(ye.a, "')")
+                                  backgroundImage: "url('".concat(_e.a, "')")
                                 }
                               }),
                               o.a.createElement("div", {
                                 style: {
-                                  backgroundImage: "url('".concat(je.a, "')")
+                                  backgroundImage: "url('".concat(ye.a, "')")
                                 }
                               })
                             )
@@ -1359,7 +1281,7 @@
                               "a",
                               { href: "#footer", className: "about-me__link" },
                               o.a.createElement(D.a, {
-                                src: fe.a,
+                                src: pe.a,
                                 svgClassName:
                                   "svg-icon svg-icon--about-section",
                                 className: "about-me__link-icon"
@@ -1384,7 +1306,7 @@
                                 onTouchStart: this._onMouseOver
                               },
                               o.a.createElement(D.a, {
-                                src: be.a,
+                                src: fe.a,
                                 svgClassName:
                                   "svg-icon svg-icon--about-section",
                                 className: "about-me__link-icon"
@@ -1396,10 +1318,10 @@
                             "div",
                             { className: "col-4 col-lg-3 text-center" },
                             o.a.createElement(
-                              de.a,
+                              ue.a,
                               { to: "/portfolio", className: "about-me__link" },
                               o.a.createElement(D.a, {
-                                src: _e.a,
+                                src: be.a,
                                 svgClassName:
                                   "svg-icon svg-icon--about-section",
                                 className: "about-me__link-icon"
@@ -1410,7 +1332,7 @@
                         )
                       )
                     ),
-                    o.a.createElement(pe, null)
+                    o.a.createElement(me, null)
                   );
                 }
               }
@@ -1418,7 +1340,7 @@
             t
           );
         })(r.Component),
-        Ne = (function(e) {
+        je = (function(e) {
           function t(e) {
             var a;
             return (
@@ -1459,7 +1381,7 @@
               {
                 key: "componentDidMount",
                 value: function() {
-                  (n = a(214)), this.setState({ scrollmagic: !0 });
+                  (n = a(218)), this.setState({ scrollmagic: !0 });
                   var e = document.querySelector(".timeline__bar"),
                     t = document.querySelectorAll(".timeline-box"),
                     r = t[0],
@@ -1739,7 +1661,7 @@
             t
           );
         })(r.Component),
-        ke = (function(e) {
+        Oe = (function(e) {
           function t() {
             return (
               Object(v.a)(this, t),
@@ -1772,8 +1694,8 @@
                     o.a.createElement(
                       "div",
                       { id: "content", className: "content" },
-                      o.a.createElement(Oe, null),
-                      o.a.createElement(Ne, null)
+                      o.a.createElement(we, null),
+                      o.a.createElement(je, null)
                     )
                   );
                 }
@@ -1782,9 +1704,9 @@
             t
           );
         })(r.Component),
-        Ce = a(56),
-        xe = a(83),
-        Se = (function() {
+        Ne = a(56),
+        ke = a(84),
+        Ce = (function() {
           var e = Object(j.a)(
             w.a.mark(function e(t) {
               return w.a.wrap(
@@ -1816,7 +1738,7 @@
             return e.apply(this, arguments);
           };
         })(),
-        Me = (function(e) {
+        xe = (function(e) {
           function t() {
             return (
               Object(v.a)(this, t),
@@ -1868,8 +1790,8 @@
                     o.a.createElement(
                       "div",
                       { id: "content", className: "content content--page" },
-                      o.a.createElement(Ce.a, { pageTitle: t }),
-                      o.a.createElement(xe.a, {
+                      o.a.createElement(Ne.a, { pageTitle: t }),
+                      o.a.createElement(ke.a, {
                         posts: this.props.posts,
                         isSingle: !0
                       })
@@ -1881,7 +1803,7 @@
             t
           );
         })(r.Component),
-        Te = Object(l.connect)(
+        Se = Object(l.connect)(
           function(e) {
             var t = e.api;
             return { posts: (t = void 0 === t ? [] : t).posts };
@@ -1889,8 +1811,8 @@
           function(e) {
             return Object(x.b)({ fetchDispatcher: k.j }, e);
           }
-        )(Object(m.frontloadConnect)(Se, { onMount: !0, onUpdate: !1 })(Me)),
-        Ie = function() {
+        )(Object(m.frontloadConnect)(Ce, { onMount: !0, onUpdate: !1 })(xe)),
+        Me = function() {
           return o.a.createElement(
             o.a.Fragment,
             null,
@@ -1902,7 +1824,7 @@
             o.a.createElement(
               "div",
               { id: "content", className: "content content--404 text-center" },
-              o.a.createElement(Ce.a, { pageTitle: "404 - Not Found" }),
+              o.a.createElement(Ne.a, { pageTitle: "404 - Not Found" }),
               o.a.createElement(
                 "div",
                 { className: "container" },
@@ -1923,32 +1845,32 @@
             )
           );
         },
-        Le = a(39),
-        De = c()({
+        Te = a(40),
+        Le = c()({
           loader: function() {
-            return a.e(1).then(a.bind(null, 219));
+            return a.e(1).then(a.bind(null, 223));
           },
-          loading: Le.a,
+          loading: Te.a,
           modules: ["portfolio"]
         }),
-        Ae = [
-          { path: "/", exact: !0, component: ke },
+        Ie = [
+          { path: "/", exact: !0, component: Oe },
           {
             path: "/portfolio",
             exact: !0,
             component: c()({
               loader: function() {
-                return a.e(2).then(a.bind(null, 220));
+                return a.e(2).then(a.bind(null, 224));
               },
-              loading: Le.a,
+              loading: Te.a,
               modules: ["projects"]
             })
           },
-          { path: "/portfolio/:slug", exact: !0, component: De },
-          { path: "/p/:slug", component: Te },
-          { path: "*", component: Ie }
+          { path: "/portfolio/:slug", exact: !0, component: Le },
+          { path: "/p/:slug", component: Se },
+          { path: "*", component: Me }
         ],
-        Pe = function() {
+        De = function() {
           return o.a.createElement(
             o.a.Fragment,
             null,
@@ -1964,14 +1886,14 @@
             ),
             o.a.createElement(J, null),
             o.a.createElement(
-              ue.a,
+              ie.a,
               null,
-              Ae.map(function(e, t) {
+              Ie.map(function(e, t) {
                 var a = e.path,
                   n = e.exact,
                   r = e.component,
                   s = Object(p.a)(e, ["path", "exact", "component"]);
-                return o.a.createElement(me.a, {
+                return o.a.createElement(le.a, {
                   key: t,
                   path: a,
                   exact: n,
@@ -1981,31 +1903,31 @@
                 });
               })
             ),
-            o.a.createElement(le, null)
+            o.a.createElement(ce, null)
           );
         },
-        Fe = (a(215), Object(d.a)()),
-        Ue = Fe.store,
-        Be = Fe.history,
-        He = o.a.createElement(
+        Ae = (a(219), Object(d.a)()),
+        Fe = Ae.store,
+        Pe = Ae.history,
+        Ue = o.a.createElement(
           l.Provider,
-          { store: Ue },
+          { store: Fe },
           o.a.createElement(
             u.ConnectedRouter,
-            { history: Be },
+            { history: Pe },
             o.a.createElement(
               m.Frontload,
               { noServerRender: !0 },
-              o.a.createElement(Pe, null)
+              o.a.createElement(De, null)
             )
           )
         ),
-        Re = document.getElementById("wecodeartReact");
-      !0 === Re.hasChildNodes()
+        Be = document.getElementById("wecodeartReact");
+      !0 === Be.hasChildNodes()
         ? c.a.preloadReady().then(function() {
-            Object(i.hydrate)(He, Re);
+            Object(i.hydrate)(Ue, Be);
           })
-        : Object(i.render)(He, Re);
+        : Object(i.render)(Ue, Be);
     },
     28: function(e, t, a) {
       "use strict";
@@ -2087,27 +2009,7 @@
         }
       }
     },
-    39: function(e, t, a) {
-      "use strict";
-      var n = a(1),
-        r = a.n(n),
-        o = a(128),
-        s = a.n(o);
-      t.a = function(e) {
-        e.type, e.color;
-        return r.a.createElement(
-          "div",
-          { className: "download-loader" },
-          r.a.createElement(s.a, {
-            type: "bubbles",
-            color: "#08c",
-            height: "100%",
-            width: "100%"
-          })
-        );
-      };
-    },
-    4: function(e, t, a) {
+    3: function(e, t, a) {
       "use strict";
       a.d(t, "a", function() {
         return p;
@@ -2145,15 +2047,15 @@
         a.d(t, "j", function() {
           return S;
         });
-      var n = a(13),
+      var n = a(14),
         r = a.n(n),
-        o = a(19),
-        s = a(26),
-        c = a(51),
+        o = a(24),
+        s = a(30),
+        c = a(78),
         i = a.n(c),
         l = a(59),
         u = a.n(l),
-        m = a(109),
+        m = a(110),
         d = a(28),
         p = "FETCHING",
         h = "FETCH_MENU_FULFILLED",
@@ -2281,9 +2183,29 @@
         };
       }
     },
+    40: function(e, t, a) {
+      "use strict";
+      var n = a(1),
+        r = a.n(n),
+        o = a(130),
+        s = a.n(o);
+      t.a = function(e) {
+        e.type, e.color;
+        return r.a.createElement(
+          "div",
+          { className: "download-loader" },
+          r.a.createElement(s.a, {
+            type: "bubbles",
+            color: "#08c",
+            height: "100%",
+            width: "100%"
+          })
+        );
+      };
+    },
     56: function(e, t, a) {
       "use strict";
-      var n = a(123),
+      var n = a(125),
         r = a(1),
         o = a.n(r);
       t.a = function(e) {
@@ -2314,15 +2236,15 @@
     },
     61: function(e, t, a) {
       "use strict";
-      var n = a(15),
-        r = a(22),
-        o = a(108),
-        s = a(130),
-        c = (a(179), a(50)),
-        i = a(23),
-        l = a(19),
-        u = a(4),
-        m = a(30),
+      var n = a(13),
+        r = a(16),
+        o = a(109),
+        s = a(132),
+        c = (a(181), a(51)),
+        i = a(17),
+        l = a(24),
+        u = a(3),
+        m = a(31),
         d = {
           user: { authentificated: !1 },
           posts: [],
@@ -2421,22 +2343,22 @@
     62: function(e, t, a) {
       e.exports = a.p + "static/media/placeholder-bold.81ba79bb.png";
     },
-    79: function(e, t, a) {
+    80: function(e, t, a) {
       e.exports = a.p + "static/media/user.07e599b6.svg";
     },
-    83: function(e, t, a) {
+    84: function(e, t, a) {
       "use strict";
-      var n = a(23),
-        r = a(5),
-        o = a(6),
-        s = a(8),
-        c = a(7),
-        i = a(9),
+      var n = a(17),
+        r = a(4),
+        o = a(5),
+        s = a(7),
+        c = a(6),
+        i = a(8),
         l = a(1),
         u = a.n(l),
-        m = a(211),
-        d = a(218),
-        p = a(30),
+        m = a(212),
+        d = a(222),
+        p = a(31),
         h = void 0,
         f = Object(d.a)(function(e) {
           var t = e.type,
@@ -2558,14 +2480,14 @@
             t
           );
         })(l.Component),
-        g = a(17),
-        _ = a(124),
+        g = a(19),
+        _ = a(126),
         E = a.n(_),
-        y = a(125),
+        y = a(127),
         w = a.n(y),
-        j = a(126),
+        j = a(128),
         O = a.n(j),
-        N = a(127),
+        N = a(129),
         k = a.n(N),
         C = { clock: E.a, banknote: w.a, website: O.a, money: k.a },
         x = function(e) {
@@ -2632,16 +2554,16 @@
             )
           );
         },
-        S = a(13),
+        S = a(14),
         M = a.n(S),
-        T = a(26),
-        I = a(21),
-        L = a(4),
-        D = a(39),
+        T = a(30),
+        L = a(15),
+        I = a(3),
+        D = a(40),
         A = a(62),
-        P = a.n(A),
-        F = a(22),
-        U = a(33),
+        F = a.n(A),
+        P = a(16),
+        U = a(34),
         B = (function() {
           var e = Object(T.a)(
             M.a.mark(function e(t) {
@@ -2655,7 +2577,7 @@
                           t.fetchDispatcher(
                             "wp/v2/media/" + t.mediaId,
                             {},
-                            { success: L.c }
+                            { success: I.c }
                           )
                         );
                       case 2:
@@ -2691,7 +2613,7 @@
                     this.props.fetchDispatcher(
                       "wp/v2/media/" + this.props.mediaId,
                       {},
-                      { success: L.c }
+                      { success: I.c }
                     );
                 }
               },
@@ -2699,7 +2621,7 @@
                 key: "getMediaImage",
                 value: function(e) {
                   var t = e.media_details.sizes.medium_large;
-                  return t ? t.source_url : P.a;
+                  return t ? t.source_url : F.a;
                 }
               },
               {
@@ -2709,7 +2631,7 @@
                     t = this.props.fetchedMedia,
                     a = (t ? t.media_details.sizes : {}).medium_large;
                   return (
-                    (a ? a.source_url : P.a) === P.a &&
+                    (a ? a.source_url : F.a) === F.a &&
                       e.push(["entry__media--placeholder"]),
                     e.join(" ")
                   );
@@ -2745,7 +2667,7 @@
             t
           );
         })(l.Component),
-        R = Object(I.connect)(
+        q = Object(L.connect)(
           function(e, t) {
             var a = e.api.posts;
             return {
@@ -2754,10 +2676,10 @@
             };
           },
           function(e) {
-            return Object(F.b)({ fetchDispatcher: L.j }, e);
+            return Object(P.b)({ fetchDispatcher: I.j }, e);
           }
         )(Object(U.frontloadConnect)(B, { onMount: !0, onUpdate: !1 })(H)),
-        q = (function(e) {
+        R = (function(e) {
           function t() {
             return (
               Object(r.a)(this, t),
@@ -2794,7 +2716,7 @@
                         u.a.createElement(
                           "div",
                           { className: "col-sm-12 col-lg-5" },
-                          u.a.createElement(R, { mediaId: e })
+                          u.a.createElement(q, { mediaId: e })
                         ),
                       u.a.createElement(
                         "div",
@@ -2860,7 +2782,7 @@
                         switch (t.type) {
                           case "portfolio":
                             a = u.a.createElement(
-                              q,
+                              R,
                               Object.assign({ key: t.id }, t, {
                                 isSingle: e.isSingle()
                               })
@@ -2909,6 +2831,6 @@
       t.a = Y;
     }
   },
-  [[131, 5, 4]]
+  [[133, 5, 4]]
 ]);
-//# sourceMappingURL=main.a8c9a474.chunk.js.map
+//# sourceMappingURL=main.bf2a8038.chunk.js.map

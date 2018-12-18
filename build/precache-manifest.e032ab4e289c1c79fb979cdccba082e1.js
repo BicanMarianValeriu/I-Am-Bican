@@ -4,28 +4,28 @@ self.__precacheManifest = [
     url: "/static/media/paper-plane.14b73f92.svg"
   },
   {
-    revision: "a8c9a474fc8529fb58b3",
-    url: "/static/css/main.539d26e2.chunk.css"
+    revision: "bf2a803802c0338488e6",
+    url: "/static/css/main.0087456f.chunk.css"
   },
   {
-    revision: "1a4a5ab8314e976bd561",
-    url: "/static/js/portfolio.1a4a5ab8.chunk.js"
+    revision: "3eef94fb72ced782ad50",
+    url: "/static/js/portfolio.3eef94fb.chunk.js"
   },
   {
-    revision: "28d663c49ab7e3aec761",
-    url: "/static/js/projects.28d663c4.chunk.js"
+    revision: "952da6ba888db5b3253e",
+    url: "/static/js/projects.952da6ba.chunk.js"
   },
   {
-    revision: "ef778f18ab35fd5c9013",
-    url: "/static/js/swalcontact.ef778f18.chunk.js"
+    revision: "5d2ca9429dff242c8064",
+    url: "/static/js/swalcontact.5d2ca942.chunk.js"
   },
   {
-    revision: "e1d07112c2cafc66824f",
-    url: "/static/js/4.e1d07112.chunk.js"
+    revision: "7e1121258111ed91c258",
+    url: "/static/js/4.7e112125.chunk.js"
   },
   {
-    revision: "f9fa10ab0dc4cf678f22",
-    url: "/static/js/runtime~main.f9fa10ab.js"
+    revision: "d9a79718074bd7f8e49a",
+    url: "/static/js/runtime~main.d9a79718.js"
   },
   {
     revision: "81ba79bb3fd7955d0e819cbb8d0280e7",
@@ -52,8 +52,8 @@ self.__precacheManifest = [
     url: "/static/media/email.1037f077.svg"
   },
   {
-    revision: "a8c9a474fc8529fb58b3",
-    url: "/static/js/main.a8c9a474.chunk.js"
+    revision: "bf2a803802c0338488e6",
+    url: "/static/js/main.bf2a8038.chunk.js"
   },
   {
     revision: "b73ef297d889a719af95e7b53e79f474",
@@ -104,7 +104,7 @@ self.__precacheManifest = [
     url: "/static/media/ShadowsIntoLight.fae49bdc.svg"
   },
   {
-    revision: "383c6f49804cb4a87798d8fef19eef47",
+    revision: "f1db43537424b75281f13cc2a99c5eb0",
     url: "/index.html"
   }
 ];

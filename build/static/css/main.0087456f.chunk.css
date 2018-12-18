@@ -7245,6 +7245,8 @@ hr {
   background: #fff;
   border: 10px solid #fff;
   margin-bottom: 2rem;
+  -webkit-perspective: 650px;
+  perspective: 650px;
 }
 @media (min-width: 991px) {
   .about-me__profile {
@@ -7961,4 +7963,4 @@ body.swal2-toast-shown {
 .content--404 {
   color: #383838;
 }
-/*# sourceMappingURL=main.539d26e2.chunk.css.map */
+/*# sourceMappingURL=main.0087456f.chunk.css.map */

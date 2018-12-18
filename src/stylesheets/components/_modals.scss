@@ -29,7 +29,6 @@ body.swal2-toast-shown {
           #0088cc 100%
         ) !important;
       }
-
       &:focus {
         box-shadow: none;
       }
@@ -39,19 +38,15 @@ body.swal2-toast-shown {
       }
     }
   }
-
   &.swal-contact {
     .swal2 {
       &-actions {
         align-items: flex-start;
-        justify-content: left;
-        //margin: 0;
-
+        justify-content: left; // margin: 0;
         .swal2-confirm {
           margin-left: 0;
         }
       }
-
       &-header {
         border-bottom: 1px solid #fafafa;
       }
@@ -60,12 +55,10 @@ body.swal2-toast-shown {
         justify-content: center;
         width: 100%;
         font-size: 1.5rem;
-
         @media (max-width: 768px) {
           font-size: 1.2rem;
         }
       }
-
       &-input,
       &-textarea {
         border-radius: 0;
@@ -74,17 +67,14 @@ body.swal2-toast-shown {
         height: auto;
         background-color: #fafafa;
         font-size: 1rem !important;
-
         @media (max-width: 576px) {
           font-size: 0.8rem;
         }
       }
-
       &-textarea {
         min-height: 120px;
       }
     }
-
     form p {
       @media (max-width: 576px) {
         font-size: 13px;

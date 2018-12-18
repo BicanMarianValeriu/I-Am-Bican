@@ -1,44 +1,54 @@
-const WPCF7 = {
-	apiUrl: 'http://working.on/iambican/wordpress/wp-json/contact-form-7/v1',
+import axios from "axios";
+import { merge } from "lodash";
 
-	setApiUrl: function (url) {
-		this.apiUrl = url;
-	},
+class WPCF7 {
+  /**
+   * Construct Animate instance
+   * @constructor
+   * @param {Element} el
+   * @param {Object} options
+   */
+  constructor(el, options) {
+    this.el = document.querySelector(el);
+    this.el.WPCF7 = this;
+    this.options = merge({}, WPCF7.defaults, options);
+  }
 
-	getApiUrl: function () {
-		return this.apiUrl;
-	},
+  static get defaults() {
+    return {
+      apiUrl: "http://working.on/iambican/wordpress/wp-json/contact-form-7/v1",
+      formId: ""
+    };
+  }
 
-	getRoute: function (path) {
-		var namespace = 'contact-form-7/v1';
+  getApiUrl() {
+    return this.options.apiUrl;
+  }
 
-		var url = this.getApiUrl();
-		url = url.replace(namespace, namespace + path);
+  getRoute(path) {
+    let namespace = "contact-form-7/v1";
+    let url = this.getApiUrl();
+    return url.replace(namespace, namespace + path);
+  }
 
-		return url;
-	},
+  getFormId() {
+    let id =
+      this.options.formId ||
+      this.el.getAttribute("data-wpcf7-form") ||
+      this.el
+        .getAttribute("id")
+        .split("-")
+        .pop();
+    return parseInt(id, 10);
+  }
 
-	getFormId: function (form) {
-		let formEl = document.getElementById(form)
-		let formId = formEl.getAttribute('data-wpcf7-form') || formEl.getAttribute('id').split('-').pop()
-		return parseInt(formId, 10);
-	},
-
-	sendMail: async function (form) {
-		var formEl = document.getElementById(form);
-		var formData = new FormData(formEl);
-
-		var url = this.getRoute('/contact-forms/' + this.getFormId(form) + '/feedback')
-
-		const response = await fetch(url, {
-			method: 'POST',
-			body: formData
-		}).then((response) => {
-			return response.json();
-		})
-
-		return response;
-	}
-};
+  async sendMail() {
+    let formData = new FormData(this.el);
+    let url = this.getRoute("/contact-forms/" + this.getFormId() + "/feedback");
+    return await axios
+      .post(url, { data: formData })
+      .then(result => result.data);
+  }
+}
 
 export default WPCF7;

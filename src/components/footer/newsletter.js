@@ -1,8 +1,12 @@
 import React, { Component } from "react";
+import jsonp from "jsonp";
 import { InputGroup, InputGroupAddon, Button, Input } from "reactstrap";
-import { validateFields, validateEmail } from "../../functions/helpers";
-import MailChimp from "../../functions/mailchimp";
-//import MailChimp from '../../functions/mailchimp';
+import {
+  validateFields,
+  validateEmail,
+  getFormData,
+  serializeData
+} from "../../functions/helpers";
 
 class NewsLetter extends Component {
   constructor(props) {
@@ -14,13 +18,68 @@ class NewsLetter extends Component {
   }
 
   componentDidMount() {
-    this.handleSubmit();
+    var formEl = document.querySelector(".newsletter__form");
+    var email = formEl.elements[0];
+
+    email.addEventListener("keyup", () => {
+      this.validate();
+      this.generateErrors();
+    });
+
+    formEl.addEventListener("submit", e => {
+      e.preventDefault();
+      this.validate();
+      this.generateErrors();
+      if (this.state.errors.length === 0) this.onSubmit();
+    });
+  }
+
+  onSubmit() {
+    const { isSubmiting } = this.state;
+
+    if (isSubmiting) return;
+
+    this.setState({ isSubmiting: true });
+
+    var formEl = document.querySelector(".newsletter__form");
+    let path =
+      "//wecodeart.us2.list-manage.com/subscribe/post?u=ab68e00b82ffb88387f008ce7&amp;id=abee3454c2";
+    let url = `${path}&${serializeData(getFormData(formEl))}`;
+    let fullUrl = url.replace("/post?", "/post-json?");
+
+    jsonp(fullUrl, { param: "c" }, (err, data) => {
+      this.setState({ isSubmiting: false });
+      var messages = document.querySelector(".newsletter__messages");
+
+      let msgClass;
+      if (data.result === "success") {
+        msgClass = "alert-success";
+        messages.classList.remove("alert-danger");
+      }
+      if (data.result === "error") {
+        msgClass = "alert-danger";
+        messages.classList.remove("alert-success");
+      }
+
+      let msg = document.createElement("div");
+      msg.innerHTML = data.msg;
+
+      messages.appendChild(msg);
+      messages.classList.add(msgClass);
+      messages.classList.remove("d-none");
+      formEl.elements[0].value = "";
+
+      setTimeout(() => {
+        messages.innerHTML = "";
+        messages.classList.add("d-none");
+      }, 5000);
+    });
   }
 
   validate() {
     var formEl = document.querySelector(".newsletter__form");
     let fields = formEl.elements;
-    let email = fields["email_address"].value;
+    let email = fields[0].value;
 
     this.setState({ errors: [] });
 
@@ -47,9 +106,9 @@ class NewsLetter extends Component {
   }
 
   generateErrors() {
-    var formEl = document.querySelector(".newsletter__form");
-    var email = formEl.elements["email_address"];
+    var email = document.querySelector(".newsletter__form").elements["EMAIL"];
     var messages = document.querySelector(".newsletter__messages");
+
     messages.classList.add("d-none");
     messages.innerHTML = "";
     email.classList.remove("is-invalid");
@@ -68,79 +127,31 @@ class NewsLetter extends Component {
       return messages.appendChild(errorEl);
     });
 
+    messages.classList.remove("alert-success");
+    messages.classList.add("alert-danger");
     messages.classList.remove("d-none");
-
-    setTimeout(() => {
-      messages.innerHTML = "";
-      messages.classList.add("d-none");
-      email.classList.remove("is-invalid");
-    }, 5000);
-  }
-
-  handleSubmit() {
-    const { isSubmiting } = this.state;
-    if (isSubmiting) return false;
-
-    var formEl = document.querySelector(".newsletter__form");
-    var email = formEl.elements["email_address"];
-
-    email.addEventListener("keyup", () => {
-      this.validate();
-      this.generateErrors();
-    });
-
-    formEl.addEventListener("submit", e => {
-      e.preventDefault();
-      this.validate();
-      this.generateErrors();
-      if (this.state.errors.length === 0) {
-        let MC = new MailChimp(formEl, "sadxasa").setData({
-          url: "https://usX.api.mailchimp.com/3.0/",
-          user: ""
-        });
-
-        MC.send("lists/57afe96172/members").then(data => {
-          var messages = document.querySelector(".newsletter__messages");
-          let msg = document.createElement("div");
-          msg.innerHTML = data.message.toString();
-
-          messages.appendChild(msg);
-          messages.classList.remove("d-none");
-
-          setTimeout(() => {
-            messages.innerHTML = "";
-            messages.classList.add("d-none");
-          }, 5000);
-        });
-      }
-    });
   }
 
   render() {
+    const { isSubmiting } = this.state;
+    let text = isSubmiting ? "LOADING..." : "SUBSCRIBE";
     return (
       <div className="newsletter newsletter--footer">
         <div className="newsletter__messages alert alert-danger d-none" />
-        <form
-          className="newsletter__form"
-          action="//wecodeart.us2.list-manage.com/subscribe/post?u=ab68e00b82ffb88387f008ce7&amp;id=abee3454c2"
-          method="POST"
-          noValidate="novalidate"
-          target="_blank"
-        >
+        <form className="newsletter__form" noValidate>
           <InputGroup>
             <Input
               placeholder="Email Address"
-              name="email_address"
+              name="EMAIL"
               type="email"
               required="required"
             />
             <InputGroupAddon addonType="append">
               <Button
-                className="newsletter__button btn btn--primary text-color-light"
                 type="submit"
-                onClick={this.handleSubmit.bind(this)}
+                className="newsletter__button btn btn--primary text-color-light"
               >
-                SUBSCRIBE
+                {text}
               </Button>
             </InputGroupAddon>
           </InputGroup>
