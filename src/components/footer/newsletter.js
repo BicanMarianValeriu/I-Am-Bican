@@ -43,8 +43,7 @@ class NewsLetter extends Component {
 		this.setState({ isSubmiting: true });
 
 		var formEl = document.querySelector(".newsletter__form");
-		let path =
-			"//wecodeart.us2.list-manage.com/subscribe/post?u=ab68e00b82ffb88387f008ce7&amp;id=abee3454c2";
+		let path = "//wecodeart.us2.list-manage.com/subscribe/post?u=ab68e00b82ffb88387f008ce7&amp;id=abee3454c2";
 		let url = `${path}&${serializeData(getFormData(formEl))}`;
 		let fullUrl = url.replace("/post?", "/post-json?");
 
@@ -131,6 +130,12 @@ class NewsLetter extends Component {
 		messages.classList.remove("alert-success");
 		messages.classList.add("alert-danger");
 		messages.classList.remove("d-none");
+
+		setTimeout(() => {
+			messages.innerHTML = "";
+			messages.classList.add("d-none");
+			email.classList.remove("is-invalid");
+		}, 5000);
 	}
 
 	render() {
