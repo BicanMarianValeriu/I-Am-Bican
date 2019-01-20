@@ -1,11 +1,11 @@
 // Deps
-import swal from "sweetalert2/dist/sweetalert2.js";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 import WPCF7 from "./../../functions/wpcf7";
 import { validateEmail, validateFields } from "./../../functions/helpers";
 
 const SwalContact = {
 	renderModal: function () {
-		const alert = swal({
+		const alert = Swal.fire({
 			title: "Thanks for your interest in contacting me!",
 			html: `<form name="swal-contact" id="wpcf7-6" data-wpcf7-form="6">
             <div class="row">
@@ -40,23 +40,23 @@ const SwalContact = {
 				var email = fields["your-email"].value;
 
 				if (validateFields(fields) === false)
-					return swal.showValidationMessage(`Please fill all fields.`);
+					return Swal.showValidationMessage(`Please fill all fields.`);
 
 				if (validateEmail(email) === false)
-					return swal.showValidationMessage(`Email address is not valid.`);
+					return Swal.showValidationMessage(`Email address is not valid.`);
 
 				const WPCF = new WPCF7("#wpcf7-6", {
 					apiUrl: "http://www.iambican.com/dashboard/wp-json/contact-form-7/v1"
 				});
 				WPCF.sendMail().then(result => {
 					if (result.status === "mail_sent") {
-						swal({
+						Swal.fire({
 							title: `Awesome`,
 							text: result.message,
 							type: "success"
 						});
 					} else {
-						swal({
+						Swal.fire({
 							title: `Something is wrong`,
 							text: result.message,
 							type: "error"
@@ -64,10 +64,10 @@ const SwalContact = {
 					}
 				});
 			},
-			allowOutsideClick: () => !swal.isLoading()
+			allowOutsideClick: () => !Swal.isLoading()
 		}).then(result => {
 			if (result.dismiss) return;
-			swal({
+			Swal.fire({
 				title: `Sending message, please wait...`,
 				type: "info",
 				showConfirmButton: false,

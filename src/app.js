@@ -1,8 +1,8 @@
 // The basics
 import React from 'react';
 import Helmet from 'react-helmet';
-import Header from './components/header';
-import Footer from './components/footer';
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 import { Route, Switch } from 'react-router';
 import routes from './routes';
 

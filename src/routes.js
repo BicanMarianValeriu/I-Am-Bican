@@ -1,54 +1,48 @@
 import Loadable from "react-loadable";
 
-import Home from "./components/pages/home";
-import Page from "./containers/page";
-import FourOFour from "./components/pages/404";
+import Home from "./pages/home";
+import Page from "./pages/page";
+import FourOFour from "./pages/404";
 import DownloadLoader from "./components/download-loader";
 
 const Portfolio = Loadable({
-  loader: () =>
-    import(/* webpackChunkName: "portfolio" */ "./containers/portfolio"),
-  loading: DownloadLoader,
-  modules: ["portfolio"]
+	loader: () =>
+		import(/* webpackChunkName: "portfolio" */ "./pages/portfolio"),
+	loading: DownloadLoader,
+	modules: ["portfolio"]
 });
 
 const Projects = Loadable({
-  loader: () =>
-    import(/* webpackChunkName: "projects" */ "./containers/projects"),
-  loading: DownloadLoader,
-  modules: ["projects"]
+	loader: () =>
+		import(/* webpackChunkName: "projects" */ "./pages/projects"),
+	loading: DownloadLoader,
+	modules: ["projects"]
 });
 
 const routes = [
-  {
-    path: "/",
-    exact: true,
-    component: Home
-  },
-  {
-    path: "/portfolio",
-    exact: true,
-    component: Projects
-    /* routes: [
-            {
-                path: '/portfolio/:slug',
-                component: Portfolio
-            }
-        ] */
-  },
-  {
-    path: "/portfolio/:slug",
-    exact: true,
-    component: Portfolio
-  },
-  {
-    path: "/p/:slug",
-    component: Page
-  },
-  {
-    path: "*",
-    component: FourOFour
-  }
+	{
+		path: "/",
+		exact: true,
+		component: Home
+	},
+	{
+		path: "/portfolio",
+		exact: true,
+		component: Projects 
+	},
+	{
+		path: "/portfolio/:slug",
+		exact: true,
+		component: Portfolio
+	},
+	{
+		path: "/p/:slug",
+		component: Page
+	},
+	{
+		path: "*",
+		component: FourOFour
+	}
 ];
 
 export default routes;

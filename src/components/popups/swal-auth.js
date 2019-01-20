@@ -1,4 +1,4 @@
-import swal from "sweetalert2/dist/sweetalert2.js";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 import { validateFields } from "./../../functions/helpers";
 import { setAuthToken } from "../../functions/auth";
 import Cookies from "js-cookie";
@@ -10,14 +10,17 @@ import {
 import createStore from "./../../store";
 
 const SwalLogin = {
-	createToast: swal.mixin({
-		toast: true,
-		position: "top-end",
-		showConfirmButton: false,
-		timer: 3000
-	}),
+	createToast: (args) => {
+		Swal.fire({
+			toast: true,
+			position: "top-end",
+			showConfirmButton: false,
+			timer: 3000,
+			...args
+		})
+	},
 	renderModal: function () {
-		return swal({
+		return Swal.fire({
 			title: `Login`,
 			html: `<form name="swal-login">
             <div class="row">
@@ -60,7 +63,7 @@ const SwalLogin = {
 				var password = fields["password"].value;
 
 				if (validateFields(fields) === false)
-					return swal.showValidationMessage(`Please fill all fields.`);
+					return Swal.showValidationMessage(`Please fill all fields.`);
 
 				requestUserToken({ username, password }).then(response => {
 					let token = response && response.token;
@@ -82,7 +85,7 @@ const SwalLogin = {
 								})
 							);
 					} else {
-						swal({
+						Swal.fire({
 							title: `Something went wrong.`,
 							html: `Invalid login credentials.`,
 							type: "error",
@@ -92,16 +95,15 @@ const SwalLogin = {
 							cancelButtonColor: "#01acf4",
 							showConfirmButton: false
 						}).then(result => {
-							if (result.dismiss === swal.DismissReason.cancel)
-								SwalLogin.renderModal();
+							if (result.dismiss === Swal.DismissReason.cancel) SwalLogin.renderModal();
 						});
 					}
 				});
 			},
-			allowOutsideClick: () => !swal.isLoading()
+			allowOutsideClick: () => !Swal.isLoading()
 		}).then(result => {
 			if (result.dismiss) return;
-			swal({
+			Swal.fire({
 				title: `Checking details, please wait...`,
 				type: "question",
 				showConfirmButton: false,

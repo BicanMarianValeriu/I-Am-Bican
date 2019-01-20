@@ -35,19 +35,14 @@ class WPCF7 {
 		let id =
 			this.options.formId ||
 			this.el.getAttribute("data-wpcf7-form") ||
-			this.el
-				.getAttribute("id")
-				.split("-")
-				.pop();
+			this.el.getAttribute("id").split("-").pop();
 		return parseInt(id, 10);
 	}
 
 	async sendMail() {
 		let formData = new FormData(this.el);
 		let url = this.getRoute("/contact-forms/" + this.getFormId() + "/feedback");
-		return await axios
-			.post(url, { data: formData })
-			.then(result => result.data);
+		return await axios.post(url, { data: formData }).then(result => result.data);
 	}
 }
 

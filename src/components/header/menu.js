@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Navigation from '../../containers/navigation'
+import Navigation from '../navigation'
 
 export default () => (
     <div className="header__menu menu col pr-0">

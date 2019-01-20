@@ -25,9 +25,9 @@ export const requestApi = axios.create(apiConfig);
  * @param condition
  */
 export function setHasMorePosts(condition) {
-  return function(dispatch) {
-    dispatch({ type: FETCH_POSTS_FULFILLED, payload: condition });
-  };
+	return function (dispatch) {
+		dispatch({ type: FETCH_POSTS_FULFILLED, payload: condition });
+	};
 }
 
 /**
@@ -35,41 +35,41 @@ export function setHasMorePosts(condition) {
  * @param  { object } data - Am object that must contain an username and password
  */
 export async function requestUserToken(data) {
-  const { username, password } = data;
-  if (username && password) {
-    const config = {
-      method: "post",
-      url: "jwt-auth/v1/token",
-      data: serializeData({ username, password })
-    };
-    try {
-      return await requestApi(config).then(response => response.data);
-    } catch (e) {
-      console.log(e);
-    }
-  }
+	const { username, password } = data;
+	if (username && password) {
+		const config = {
+			method: "post",
+			url: "jwt-auth/v1/token",
+			data: serializeData({ username, password })
+		};
+		try {
+			return await requestApi(config).then(response => response.data);
+		} catch (e) {
+			console.log(e);
+		}
+	}
 }
 
 /**
  * Sets current user
  */
 export async function setCurrentUser(token) {
-  const headers = { Authorization: `Bearer ${token}` };
-  if (token) {
-    const decoded = JWTDecode(token);
-    const {
-      data: {
-        user: { id }
-      }
-    } = decoded;
-    try {
-      return await requestApi
-        .get("wp/v2/users/" + id, { headers, withCredentials: true })
-        .then(response => response.data);
-    } catch (e) {
-      console.log(e);
-    }
-  }
+	const headers = { Authorization: `Bearer ${token}` };
+	if (token) {
+		const decoded = JWTDecode(token);
+		const {
+			data: {
+				user: { id }
+			}
+		} = decoded;
+		try {
+			return await requestApi
+				.get("wp/v2/users/" + id, { headers, withCredentials: true })
+				.then(response => response.data);
+		} catch (e) {
+			console.log(e);
+		}
+	}
 }
 
 /**
@@ -80,27 +80,27 @@ export async function setCurrentUser(token) {
  * @param   { object } options  - fetch Headers/Body etc
  */
 export function fetchDispatcher(
-  endpoint = "",
-  query = {},
-  action = {},
-  options = {}
+	endpoint = "",
+	query = {},
+	action = {},
+	options = {}
 ) {
-  return function(dispatch) {
-    var serialized = serializeData(query);
-    if (serialized) endpoint = endpoint.concat("?", serialized);
-    // Dispatch the fetching action
-    dispatch({ type: FETCHING, payload: true });
-    // Fetch
-    return requestApi
-      .get(endpoint, { ...options })
-      .then(response =>
-        dispatch({ type: action.success, payload: response.data })
-      )
-      .catch(error =>
-        dispatch({
-          type: action.failed ? action.failed : FETCH_REJECTED,
-          payload: error
-        })
-      );
-  };
+	return function (dispatch) {
+		var serialized = serializeData(query);
+		if (serialized) endpoint = endpoint.concat("?", serialized);
+		// Dispatch the fetching action
+		dispatch({ type: FETCHING, payload: true });
+		// Fetch
+		return requestApi
+			.get(endpoint, { ...options })
+			.then(response =>
+				dispatch({ type: action.success, payload: response.data })
+			)
+			.catch(error =>
+				dispatch({
+					type: action.failed ? action.failed : FETCH_REJECTED,
+					payload: error
+				})
+			);
+	};
 }
