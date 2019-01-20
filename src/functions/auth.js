@@ -42,17 +42,13 @@ export function isAuthentificated() {
 
 		if (token && token.length) {
 			const decoded = JWTDecode(token);
-			const current_time = new Date().getTime() / 1000;
-			// Check if token has expired
-			if (decoded.exp < current_time) {
-				return false;
-			}
+			const current_time = new Date().getTime() / 1000; 
+			if (decoded.exp < current_time) return false; 
 			return true;
 		} else {
 			return false;
 		}
-	} catch (err) {
-		// Client side logging of errors
+	} catch (err) { 
 		return false;
 	}
 }

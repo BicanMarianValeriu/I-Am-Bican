@@ -9,35 +9,19 @@ export default class Skills extends Component {
         this.state = { 
             skills: [
                 {
-                    title: "Plain Javascript",
-                    icon: 'fab fa-js fa-fw',
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc.`,
-                },
-                {
                     title: "React JS",
                     icon: 'fab fa-react fa-fw',
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc.`,
+                    description: `One of the reasons (after ES6+) I started to love Javascript so much, and because you can make super fast SPA's.`,
                 },
                 {
                     title: "WordPress",
                     icon: 'fab fa-wordpress-simple fa-fw',
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc.`,
-                }
-                ,
+                    description: `Best things in life are <strong class="text-font--cursive">free</strong>, and WordPress is one of them. As Automatic says: "Code is poetry".`,
+                },
                 {
                     title: "PHP",
                     icon: 'fab fa-php fa-fw',
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc.`,
-                },
-                {
-                    title: "WooCommerce",
-                    icon: 'fas fa-shopping-cart fa-fw',
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc.`,
-                },
-                {
-                    title: "HTML5",
-                    icon: 'fab fa-html5 fa-fw',
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc.`,
+                    description: `One of the must-have skills of every full-stack developer. Average with it, I've learned it following WP coding standards.`,
                 },
                 {
                     title: "GULP/WEBPACK",
@@ -45,14 +29,29 @@ export default class Skills extends Component {
                     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc.`,
                 },
                 {
-                    title: "CSS/SCSS",
+                    title: "CSS3/SCSS",
                     icon: 'fab fa-sass fa-fw',
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc.`,
+                    description: `You are not a good web developer without CSS3. I use SASS/SCSS to pimp it and have awesome/readable code.`,
                 },
                 {
                     title: "GIT/Bitbucket",
                     icon: 'fab fa-git fa-fw',
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc.`,
+                    description: `Two of my favorite tools for version control. I use them with Bitbucket Desktop APP to manage my repositories.`,
+                },
+                {
+                    title: "WooCommerce",
+                    icon: 'fas fa-shopping-cart fa-fw',
+                    description: `That's my favorite WP plugin for building amazing shops. I love it since is highly customizable.`,
+                },
+                {
+                    title: "Javascript (ES6+)",
+                    icon: 'fab fa-js fa-fw',
+                    description: `JavaScript has become one of my favorite programming language lately. From hating it to loving it.`,
+                },
+                {
+                    title: "HTML5",
+                    icon: 'fab fa-html5 fa-fw',
+                    description: `The must-have skill of every developer. This is what I've learned firstly when I started web development.`,
                 }
             ]
         };
@@ -66,16 +65,14 @@ export default class Skills extends Component {
         ScrollMagic = require("scrollmagic");
         this.setState({ scrollmagic: true });
 
-        let boxes = document.querySelectorAll(".skill-box"); 
-
 		/* if (window.innerWidth < 576) {
 			for (let i = 0; i < boxes.length; i++) boxes[i].classList.add("skill-box--animated"); 
 			return;
 		} */
 
 		if (this.state.scrollmagic === false) return;
-
 		let controller = new ScrollMagic.Controller();
+        let boxes = document.querySelectorAll(".skill-box"); 
 
 		for (let i = 0; i < boxes.length; i++) { 
 			new ScrollMagic.Scene({
@@ -101,7 +98,9 @@ export default class Skills extends Component {
                                 </div>
                                 {item.title}
                             </h3>
-                            <p className="skill-box__description mb-md-5 pb-3 ml-5">{item.description}</p>
+                            <p className="skill-box__description mb-md-5 pb-3 ml-5" dangerouslySetInnerHTML={{
+                                __html: item.description
+                            }}></p>
                         </div>
                     </div>
                 );
