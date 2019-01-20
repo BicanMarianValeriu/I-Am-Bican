@@ -223,9 +223,7 @@ export default class AboutExperience extends Component {
 				<div className="container">
 					<div className="row">
 						<div className="col">
-							<h2 className="about-experience__headline text-uppercase">
-								Experience
-              </h2>
+							<h2 className="about-experience__headline text-uppercase">Experience</h2>
 						</div>
 					</div>
 				</div>

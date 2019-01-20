@@ -30,7 +30,7 @@ class AboutContent extends React.Component {
                     <div className="row">
                         <div className="col-12">
                             <div className="col-lg-6 ml-5 mb-5 mb-lg-4 float-right about-me__box box-shadow box-shadow--big">
-                                <h4>Personal Details</h4>
+                                <h6>Personal Details</h6>
                                 <div className="row">
                                     <div className="col-md-5">
                                         <ul className="about-me__box-list p-0 mb-0">

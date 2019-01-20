@@ -1,5 +1,5 @@
 .about-experience {
-	padding: 60px 0;
+	padding: 3rem 0 5rem;
 	background-color: #ecf1f7;
 
 	@include media-breakpoint-down(sm) {
@@ -133,7 +133,7 @@
 	}
 
 	&__meta {
-		background-color: #08c;
+		background-color: theme-color( 'primary' );
 		color: #fff;
 
 		&::before {
@@ -145,7 +145,7 @@
 			height: 14px;
 			width: 14px;
 			z-index: 0;
-			background: #08c;
+			background: theme-color( 'primary' );
 			border: none;
 			transform: translateY(-50%) rotate(45deg);
 	
@@ -181,8 +181,9 @@
 
 		&-company {
 			&__name {
+				color: white;
 				font-size: 18px;
-				font-weight: 500;
+				font-weight: 600;
 				margin-bottom: 0;
 			}
 			
