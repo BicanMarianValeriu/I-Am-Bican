@@ -23,6 +23,13 @@
 	&__headline,
 	&__description {
 		display: block;
+		opacity: 0;
+		transition: all .3s ease-in-out;
+		animation-duration: 750ms;
+
+		&.maskUp {
+			opacity: 1;
+		}
 	}
 
 	&__pre {
@@ -31,7 +38,7 @@
 	}
 }
 
-
+/* A single Skill Box */
 .skill-box {
 	opacity: 0;
 	transform: translate3d(0,30px,0);

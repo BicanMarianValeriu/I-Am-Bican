@@ -23,7 +23,24 @@ hr {
 	
 	&-color {
 		&--primary {
-			color: #00aaff;
+			color: theme-color( 'primary' );
 		}
 	}
+}
+
+/* Mask Animation */
+.maskUp { 
+	animation-name: maskUp;
+}
+
+.maskRight { 
+	animation-name: maskRight;
+}
+
+.maskLeft { 
+	animation-name: maskLeft;
+}
+
+.maskDown { 
+	animation-name: maskDown;
 }

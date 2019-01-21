@@ -1,7 +1,7 @@
 {
-  "main.css": "/static/css/main.39f74b98.chunk.css",
-  "main.js": "/static/js/main.4e03b997.chunk.js",
-  "main.js.map": "/static/js/main.4e03b997.chunk.js.map",
+  "main.css": "/static/css/main.c91857aa.chunk.css",
+  "main.js": "/static/js/main.28e59895.chunk.js",
+  "main.js.map": "/static/js/main.28e59895.chunk.js.map",
   "portfolio.js": "/static/js/portfolio.56e14b3f.chunk.js",
   "portfolio.js.map": "/static/js/portfolio.56e14b3f.chunk.js.map",
   "projects.js": "/static/js/projects.1a87c0a6.chunk.js",
@@ -12,7 +12,7 @@
   "static/js/4.4e48cbae.chunk.js.map": "/static/js/4.4e48cbae.chunk.js.map",
   "runtime~main.js": "/static/js/runtime~main.f3fde5e9.js",
   "runtime~main.js.map": "/static/js/runtime~main.f3fde5e9.js.map",
-  "static/media/index.scss": "/static/media/ShadowsIntoLight.4141b2ff.ttf",
+  "static/media/index.scss": "/static/media/ShadowsIntoLight.33adae67.eot",
   "static/media/placeholder-bold.png": "/static/media/placeholder-bold.81ba79bb.png",
   "static/media/logout.svg": "/static/media/logout.e75855a1.svg",
   "static/media/facebook.svg": "/static/media/facebook.d1ac3589.svg",
@@ -27,8 +27,8 @@
   "static/media/website.svg": "/static/media/website.73103064.svg",
   "static/media/get-money.svg": "/static/media/get-money.a0f406bf.svg",
   "static/media/user.svg": "/static/media/user.07e599b6.svg",
-  "static/css/main.39f74b98.chunk.css.map": "/static/css/main.39f74b98.chunk.css.map",
+  "static/css/main.c91857aa.chunk.css.map": "/static/css/main.c91857aa.chunk.css.map",
   "index.html": "/index.html",
-  "precache-manifest.42af0305d5bcd879b443c78e0a3c8960.js": "/precache-manifest.42af0305d5bcd879b443c78e0a3c8960.js",
+  "precache-manifest.f53d83d82274b300fe1364e2fd989f98.js": "/precache-manifest.f53d83d82274b300fe1364e2fd989f98.js",
   "service-worker.js": "/service-worker.js"
 }

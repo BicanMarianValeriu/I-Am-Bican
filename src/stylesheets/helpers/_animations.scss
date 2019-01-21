@@ -13,3 +13,103 @@
     from {transform:rotate(0deg);}
     to {transform:rotate(360deg);}
 }
+
+/* Mask Up */
+@-webkit-keyframes maskUp {
+	from {
+		-webkit-transform: translate(0, 100%);
+		transform: translate(0, 100%);
+	}
+
+	to {
+		-webkit-transform: translate(0, 0);
+		transform: translate(0, 0);
+	}
+}
+
+@keyframes maskUp {
+	from {
+		-webkit-transform: translate(0, 100%);
+		transform: translate(0, 100%);
+	}
+
+	to {
+		-webkit-transform: translate(0, 0);
+		transform: translate(0, 0);
+	}
+}
+
+/* Mask Right */
+@-webkit-keyframes maskRight {
+	from {
+		-webkit-transform: translate(-100%, 0);
+		transform: translate(-100%, 0);
+	}
+
+	to {
+		-webkit-transform: translate(0, 0);
+		transform: translate(0, 0);
+	}
+}
+
+@keyframes maskRight {
+	from {
+		-webkit-transform: translate(-100%, 0);
+		transform: translate(-100%, 0);
+	}
+
+	to {
+		-webkit-transform: translate(0, 0);
+		transform: translate(0, 0);
+	}
+}
+
+/* Mask Down */
+@-webkit-keyframes maskDown {
+	from {
+		-webkit-transform: translate(0, -100%);
+		transform: translate(0, -100%);
+	}
+
+	to {
+		-webkit-transform: translate(0, 0);
+		transform: translate(0, 0);
+	}
+}
+
+@keyframes maskDown {
+	from {
+		-webkit-transform: translate(0, -100%);
+		transform: translate(0, -100%);
+	}
+
+	to {
+		-webkit-transform: translate(0, 0);
+		transform: translate(0, 0);
+	}
+}
+
+/* Mask Left */
+@-webkit-keyframes maskLeft {
+	from {
+		-webkit-transform: translate(100%, 0);
+		transform: translate(100%, 0);
+	}
+
+	to {
+		-webkit-transform: translate(0, 0);
+		transform: translate(0, 0);
+	}
+}
+
+@keyframes maskLeft {
+	from {
+		-webkit-transform: translate(100%, 0);
+		transform: translate(100%, 0);
+	}
+
+	to {
+		-webkit-transform: translate(0, 0);
+		transform: translate(0, 0);
+	}
+}

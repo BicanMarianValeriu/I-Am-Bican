@@ -6,7 +6,7 @@ let ScrollMagic;
 export default class Skills extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             skills: [
                 {
                     title: "React JS",
@@ -59,7 +59,7 @@ export default class Skills extends Component {
 
     componentDidMount() {
         // Add Icons to FA Library
-        library.add(brands); 
+        library.add(brands);
 
         // Add Animations
         ScrollMagic = require("scrollmagic");
@@ -70,16 +70,26 @@ export default class Skills extends Component {
 			return;
 		} */
 
-		if (this.state.scrollmagic === false) return;
-		let controller = new ScrollMagic.Controller();
-        let boxes = document.querySelectorAll(".skill-box"); 
+        if (this.state.scrollmagic === false) return;
+        let controller = new ScrollMagic.Controller();
+        let boxes = document.querySelectorAll(".skill-box");
 
-		for (let i = 0; i < boxes.length; i++) { 
-			new ScrollMagic.Scene({
-				triggerElement: boxes[i],
-				triggerHook: 1
-			}).setClassToggle(boxes[i], "skill-box--animated").addTo(controller);
-		}
+        new ScrollMagic.Scene({
+            triggerElement: '.about-skills__headline',
+            triggerHook: .8
+        }).setClassToggle('.about-skills__headline', "maskUp").addTo(controller);
+
+        new ScrollMagic.Scene({
+            triggerElement: '.about-skills__headline',
+            triggerHook: .75
+        }).setClassToggle('.about-skills__description', "maskUp").addTo(controller);
+
+        for (let i = 0; i < boxes.length; i++) {
+            new ScrollMagic.Scene({
+                triggerElement: boxes[i],
+                triggerHook: 1
+            }).setClassToggle(boxes[i], "skill-box--animated").addTo(controller);
+        }
     }
 
     renderSkills() {
@@ -88,7 +98,7 @@ export default class Skills extends Component {
             return skills.map((item, index) => {
                 let style = {
                     '--animation-delay': 100 * index + 'ms'
-                }; 
+                };
                 return (
                     <div id={`skill-box-${index + 1}`} className="col-md-6 col-lg-4" key={index} >
                         <div className="skill-box" style={style}>
@@ -112,15 +122,19 @@ export default class Skills extends Component {
         return (
             <section id="about-skills" className="about-skills">
                 <div className="container">
-                    <div className="row"> 
+                    <div className="row">
                         <div className="col text-center">
                             <span className="about-skills__pre text-uppercase text-font--cursive">Just few of my</span>
-                            <h2 className="about-skills__headline">Amazing Skills</h2>
-                            <p className="about-skills__description lead mb-5 pb-xlg">...in addition, I'm allways open into learning new things and technologies.</p>
-                        </div>    
-                    </div> 
+                            <div style={{overflow:'hidden'}}>
+                                <h2 className="about-skills__headline">Amazing Skills</h2>
+                            </div>
+                            <div style={{overflow:'hidden'}}>
+                                <p className="about-skills__description lead mb-5 pb-xlg">...in addition, I'm allways open into learning new things and technologies.</p>
+                            </div>
+                        </div>
+                    </div>
                     <div className="row row align-items-baseline">{this.renderSkills()}</div>
-                </div> 
+                </div>
             </section>
         )
     }
