@@ -15,6 +15,12 @@ hr {
 } 
 
 .text {
+	&-weight {
+		&--light {
+			font-weight: 300;
+		}
+	}
+	
 	&-font {
 		&--cursive {
 			font-family: "Shadows Into Light", cursive;

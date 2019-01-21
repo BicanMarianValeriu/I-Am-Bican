@@ -129,7 +129,7 @@
 		position: absolute;
 		top: -50px;
 		left: -40px;
-		width: 120px;
+		width: 110px;
 		pointer-events: none;
 
 		@include media-breakpoint-down(sm) {
@@ -138,6 +138,7 @@
 		}
 
 		@include media-breakpoint-down(xs) {
+			width: 90px;
 			top: -105px;
 			left: -0;
 		}

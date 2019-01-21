@@ -3,24 +3,22 @@ import React from 'react';
 class AboutContent extends React.Component {
 
     componentDidMount() {
-        document.addEventListener('DOMContentLoaded', function () {
-            var willOpen = true;
-            var description = document.querySelector('.about-me__content-text');
-            var descButton = document.querySelector('.about-me__content-more');
+        var willOpen = true;
+        var description = document.querySelector('.about-me__content-text');
+        var descButton = document.querySelector('.about-me__content-more');
 
-            descButton.addEventListener('click', function () {
-                if (willOpen) {
-                    description.classList.add('about-me__content-text--opened');
-                    this.innerHTML = this.getAttribute('data-less-label');
-                    willOpen = false;
-                } else {
-                    description.classList.remove('about-me__content-text--opened');
-                    this.innerHTML = this.getAttribute('data-more-label');
-                    willOpen = true;
-                }
-            });
-        });
-    }
+        descButton.addEventListener('click', function () {
+            if (willOpen) {
+                description.classList.add('about-me__content-text--opened');
+                this.innerHTML = this.getAttribute('data-less-label');
+                willOpen = false;
+            } else {
+                description.classList.remove('about-me__content-text--opened');
+                this.innerHTML = this.getAttribute('data-more-label');
+                willOpen = true;
+            }
+        }); 
+    } 
 
     render() {
 

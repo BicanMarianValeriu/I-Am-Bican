@@ -1,0 +1,56 @@
+/* 	= CTA Section
+--------------------------------------------------------------- */
+.calltoaction { 
+    background-color: theme-color( primary );
+    font-family: $font-family-base;
+    color: white; 
+    padding: 2.5rem 0; 
+
+    h3 {
+        font-family: $font-family-base;
+        color: white; 
+    }
+
+    p {  
+        margin-bottom: 0; 
+
+        @include media-breakpoint-down( md ) { 
+            margin-bottom: 1.5rem; 
+        }
+    } 
+
+    strong {
+        display: inline-block;
+        margin: 0 8px;
+    }
+}
+
+.calltoaction { 
+    &__button {
+        margin: 0;
+        padding: .8rem 2rem;
+        background: transparent;
+        color: theme-color( primary );
+        transition: all .3s ease;
+        border: 3px solid white;
+        color: white;
+        border-radius: 99px; 
+
+        &:hover {
+            background: transparent; 
+            color: white; 
+            border-color: white;
+            box-shadow: rgba(0, 0, 0, 0.07) 0px 15px 20px;
+            transform: translate3d(0,-5px,0);
+        }
+
+        @include media-breakpoint-down( xs ) {
+            width: 100%;
+            margin-bottom: 1rem; 
+        }
+
+        svg {
+            margin-right: 8px;
+        }
+    }
+}

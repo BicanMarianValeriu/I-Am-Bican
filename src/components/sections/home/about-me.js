@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import ReactSVG from "react-svg";
 import { Link } from "react-router-dom";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import icons from './../../../functions/svg-icons';
 
 // Components
 import AboutContent from "./about-me-info";
@@ -53,6 +55,9 @@ export default class AboutMe extends Component {
 		if (blockId === "#sendmsg") this._onButtonClick();
 		this.animateProfilePicture();
 		this.handlePictureChange();
+
+		// Add Icons to FA Library
+        library.add(icons);
 	}
 
 	handlePictureChange() {
@@ -107,23 +112,14 @@ export default class AboutMe extends Component {
 						<div className="row">
 							<div className="col-lg-4 about-me__image">
 								<div className="about-me__profile box-shadow box-shadow--profile">
-									<div
-										className="shown"
-										style={{ backgroundImage: `url('${Bican}')` }}
-									/>
+									<div className="shown" style={{ backgroundImage: `url('${Bican}')` }} />
 									<div style={{ backgroundImage: `url('${BicanOld}')` }} />
 								</div>
 							</div>
 							<div className="col-lg-8 about-me__info">
-								<h1 className="about-me__headline mb-4">
-									Bican Marian Valeriu
-                </h1>
-								<p className="about-me__subline mb-2 mb-md-3">
-									WordPress/React Developer at myZone/AM2Studio
-                </p>
-								<p className="about-me__subline mb-1 mb-md-2">
-									Targu Jiu, Gorj, Romania
-                </p>
+								<h1 className="about-me__headline mb-4">Bican Marian Valeriu</h1>
+								<p className="about-me__subline mb-2 mb-md-3">WordPress/React Developer at myZone/AM2Studio</p>
+								<p className="about-me__subline mb-1 mb-md-2">Targu Jiu, Gorj, Romania</p>
 							</div>
 						</div>
 					</div>
@@ -142,13 +138,11 @@ export default class AboutMe extends Component {
 								</a>
 							</div>
 							<div className="col-4 col-lg-2 text-center">
-								<a
-									href="#sendmsg"
+								<a href="#sendmsg"
 									className="about-me__link"
 									onClick={this._onButtonClick}
 									onMouseOver={this._onMouseOver}
-									onTouchStart={this._onMouseOver}
-								>
+									onTouchStart={this._onMouseOver}>
 									<ReactSVG
 										src={Icon2}
 										svgClassName="svg-icon svg-icon--about-section"

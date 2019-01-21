@@ -3,6 +3,7 @@ import Helmet from "react-helmet";
 import AboutMe from "./../components/sections/home/about-me";
 import AboutExperience from "./../components/sections/home/experience";
 import Skills from './../components/sections/home/skills';
+import Calltoaction from "../components/sections/Calltoaction";
 
 export default class Home extends Component {
 	componentDidMount() {
@@ -25,6 +26,7 @@ export default class Home extends Component {
 					<AboutMe />
 					<AboutExperience />
 					<Skills />
+					<Calltoaction />
 				</div>
 			</React.Fragment>
 		);
