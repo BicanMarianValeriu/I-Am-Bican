@@ -125,11 +125,11 @@ export default class Skills extends Component {
                     <div className="row">
                         <div className="col text-center">
                             <span className="about-skills__pre text-uppercase text-font--cursive">Just few of my</span>
-                            <div style={{overflow:'hidden'}}>
-                                <h2 className="about-skills__headline">Amazing Skills</h2>
+                            <div className="mb-2" style={{overflow:'hidden'}}>
+                                <h2 className="about-skills__headline mb-0">Amazing Skills</h2>
                             </div>
-                            <div style={{overflow:'hidden'}}>
-                                <p className="about-skills__description lead mb-5 pb-xlg">...in addition, I'm allways open into learning new things and technologies.</p>
+                            <div className="mb-5" style={{overflow:'hidden'}}>
+                                <p className="about-skills__description lead mb-0">...in addition, I'm allways open into learning new things and technologies.</p>
                             </div>
                         </div>
                     </div>
