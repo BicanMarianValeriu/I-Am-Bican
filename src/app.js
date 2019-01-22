@@ -1,8 +1,8 @@
 // The basics
 import React, { Component }  from 'react';
 import Helmet from 'react-helmet';
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import { dom } from '@fortawesome/fontawesome-svg-core';
 import { Route, Switch } from 'react-router';
 import routes from './routes'; 

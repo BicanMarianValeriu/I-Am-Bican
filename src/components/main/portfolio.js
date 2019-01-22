@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import Title from './../article/title';
+import Title from './../Article/title';
 import Meta from '../portfolio/meta';
-import Content from './../article/content';
-import FeaturedMedia from '../article/featured-media';
+import Content from './../Article/content';
+import FeaturedMedia from '../Article/featured-media';
 
 class Portfolio extends Component {
 	getClasses() {
