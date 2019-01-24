@@ -19,7 +19,7 @@ class Portfolio extends Component {
 	componentDidUpdate() {
 		window.scrollTo(0, 0);
 	} 
-
+ 
 	render() {
 		const entry = this.props.posts[0];
 		const { location: { pathname } } = this.props;

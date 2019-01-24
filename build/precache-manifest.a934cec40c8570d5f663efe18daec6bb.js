@@ -4,36 +4,36 @@ self.__precacheManifest = [
     "url": "/static/media/bican.9d90f6b5.jpg"
   },
   {
-    "revision": "c7c1c0b5fe65aafa5efd",
+    "revision": "aa2ee81c9cdf00ce5764",
     "url": "/static/css/main.c0fe4f7c.chunk.css"
   },
   {
-    "revision": "7a9169a6372b34e9de98",
-    "url": "/static/js/portfolio.7a9169a6.chunk.js"
+    "revision": "5fa2d13ca715f8d4a22e",
+    "url": "/static/js/portfolio.5fa2d13c.chunk.js"
   },
   {
-    "revision": "6b18c7e363bbe8580350",
-    "url": "/static/js/projects.6b18c7e3.chunk.js"
+    "revision": "e4bebb21929c4d00b3a4",
+    "url": "/static/js/projects.e4bebb21.chunk.js"
   },
   {
     "revision": "87556ae00e5efa76ce88",
     "url": "/static/js/swalcontact.87556ae0.chunk.js"
   },
   {
-    "revision": "e95ab439028ade5855f8",
-    "url": "/static/js/4.e95ab439.chunk.js"
+    "revision": "6a330940d6d08ca28aa0",
+    "url": "/static/js/4.6a330940.chunk.js"
   },
   {
-    "revision": "482c49f9ef109b537af4",
-    "url": "/static/js/runtime~main.482c49f9.js"
+    "revision": "8b839a6d06a034c58758",
+    "url": "/static/js/runtime~main.8b839a6d.js"
   },
   {
     "revision": "81ba79bb3fd7955d0e819cbb8d0280e7",
     "url": "/static/media/placeholder-bold.81ba79bb.png"
   },
   {
-    "revision": "c7c1c0b5fe65aafa5efd",
-    "url": "/static/js/main.c7c1c0b5.chunk.js"
+    "revision": "aa2ee81c9cdf00ce5764",
+    "url": "/static/js/main.aa2ee81c.chunk.js"
   },
   {
     "revision": "19e754c923fa5e2c55add1c8902201cf",
@@ -60,7 +60,7 @@ self.__precacheManifest = [
     "url": "/static/media/ShadowsIntoLight.3c74097f.svg"
   },
   {
-    "revision": "28b9b394426042ee1421a1dd7f147dbc",
+    "revision": "444496d1b0969356d607e6b6dff59999",
     "url": "/index.html"
   }
 ];

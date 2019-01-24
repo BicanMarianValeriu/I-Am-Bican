@@ -27,19 +27,17 @@ export default (url = '/') => {
 	if (process.env.NODE_ENV === 'development' && !isServer) {
 		const devToolsExtension = window.devToolsExtension;
 		if (typeof devToolsExtension === 'function') enhancers.push(devToolsExtension()); 
-		middlewaresArr.push(createLogger());
 	}
-
+	
+	middlewaresArr.push(createLogger());
 	// Do we have preloaded state available? Great, save it.
-	const initialState = !isServer ? window.__PRELOADED_STATE__ : {};
-
-	// Delete it once we have it stored in a variable
+	const initialState = !isServer ? window.__PRELOADED_STATE__ : {}; 
 	if (!isServer) delete window.__PRELOADED_STATE__; 
 
 	// Create the store
 	const store = createStore(
 		combineReducers({ router: connectRouter(history), api: reducer }),
-		initialState, // Used on SSR
+		initialState, // Preloaded from server
 		compose(applyMiddleware(...middlewaresArr), ...enhancers)
 	);
 

@@ -79,28 +79,20 @@ export async function setCurrentUser(token) {
  * @param   { object } action   - Object with success/failed properties and ACTIONS values for this keys.
  * @param   { object } options  - fetch Headers/Body etc
  */
-export function fetchDispatcher(
-	endpoint = "",
-	query = {},
-	action = {},
-	options = {}
-) {
+export function fetchDispatcher(endpoint = "", query = {}, action = {}, options = {}) {
 	return function (dispatch) {
 		var serialized = serializeData(query);
 		if (serialized) endpoint = endpoint.concat("?", serialized);
 		// Dispatch the fetching action
-		dispatch({ type: FETCHING, payload: true });
-		// Fetch
-		return requestApi
-			.get(endpoint, { ...options })
+		// CAUTION: NEVER DO THIS !!! Spent 5h+ to identify the issue since 
+		// it happens only on minified/production
+		// dispatch({ type: FETCHING, payload: true });
+		return requestApi.get(endpoint, { ...options })
 			.then(response =>
 				dispatch({ type: action.success, payload: response.data })
 			)
 			.catch(error =>
-				dispatch({
-					type: action.failed ? action.failed : FETCH_REJECTED,
-					payload: error
-				})
+				dispatch({ type: action.failed ? action.failed : FETCH_REJECTED, payload: error })
 			);
 	};
 }
