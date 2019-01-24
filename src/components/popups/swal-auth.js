@@ -51,6 +51,7 @@ const SwalAuth = {
 			footer: `View your privacy policy &nbsp;<a href="/p/privacy-policy">here</a>.`,
 			customClass: "swal-auth",
 			buttonsStyling: false,
+			confirmButtonClass: 'btn btn-primary',
 			confirmButtonText: "Login",
 			showLoaderOnConfirm: true,
 			backdrop: `rgba(0,0,0,0.2)`,

@@ -1,22 +1,9 @@
-import React, { Component } from "react"; 
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import Cookies from "js-cookie";
-import {
-	Dropdown,
-	DropdownToggle,
-	DropdownMenu,
-	DropdownItem
-} from "reactstrap"; 
-import {
-	isAuthentificated,
-	removeAuthToken,
-	getAuthToken
-} from "../../api/auth";
-import {
-	LOGOUT_USER,
-	setCurrentUser,
-	FETCH_USER_FULFILLED
-} from "../../api/actions/actions";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+import { isAuthentificated, removeAuthToken, getAuthToken } from "../../api/auth";
+import { LOGOUT_USER, setCurrentUser, FETCH_USER_FULFILLED } from "../../api/actions/actions";
 import SwalAuth from "../Popups/swal-auth";
 
 class Login extends Component {
@@ -35,19 +22,16 @@ class Login extends Component {
 
 	_onMouseOver() {
 		if (this.state.Modal !== null) return;
-		import(/* webpackChunkName: "swalauth" */ "../Popups/swal-auth").then(
-			modal => this.setState({ Modal: modal.default })
-		);
+		import(/* webpackChunkName: "swalauth" */ "../Popups/swal-auth")
+			.then(modal => this.setState({ Modal: modal.default }));
 	}
 
 	_onButtonClick() {
 		if (this.state.Modal === null) {
-			import(/* webpackChunkName: "swalauth" */ "../Popups/swal-auth").then(
-				modal => this.setState({ Modal: modal.default })
-			);
+			import(/* webpackChunkName: "swalauth" */ "../Popups/swal-auth")
+				.then(modal => this.setState({ Modal: modal.default }));
 		}
-		if (this.state.Modal !== null && !isAuthentificated())
-			this.state.Modal.renderModal();
+		if (this.state.Modal !== null && !isAuthentificated()) this.state.Modal.renderModal();
 	}
 
 	_onLogoutClick() {
@@ -83,12 +67,7 @@ class Login extends Component {
 		return (
 			<div className={classes.join(" ")}>
 				{isAuthentificated() ? (
-					<Dropdown
-						isOpen={this.state.dropdownOpen}
-						toggle={this.toggle}
-						size="lg"
-						direction="left"
-					>
+					<Dropdown size="lg" direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
 						<DropdownToggle className="header-login__btn float-right btn">
 							{name ? (
 								<img
@@ -98,7 +77,7 @@ class Login extends Component {
 								/>
 							) : (
 									<div className="header-login__icon-svg">
-										<i className="far fa-user-alt fa-fw"></i>
+										<i className="far fa-user fa-fw"></i>
 									</div>
 								)}
 						</DropdownToggle>
@@ -135,9 +114,7 @@ class Login extends Component {
 
 // Binds Query / Query Result
 const mapStateToProps = store => {
-	const {
-		api: { user }
-	} = store;
+	const { api: { user } } = store;
 	return { user };
 };
 

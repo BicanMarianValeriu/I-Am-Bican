@@ -12,12 +12,17 @@ const frontload = async props => await props.fetchDispatcher('wp/v2/media/' + pr
     success: FETCH_MEDIA_FULFILLED
 });
 
-class FeaturedMedia extends Component { 
+class FeaturedMedia extends Component {
 
-    componentWillReceiveProps(nextProps) { 
-        if(nextProps.fetchedMedia === undefined) {
-            this.props.fetchDispatcher('wp/v2/media/' + this.props.mediaId, {}, { success: FETCH_MEDIA_FULFILLED }); 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.fetchedMedia === undefined) {
+            this.props.fetchDispatcher('wp/v2/media/' + this.props.mediaId, {}, { success: FETCH_MEDIA_FULFILLED });
         }
+    }
+
+    shouldComponentUpdate(nextProps) {
+        // When we have finished fetching the Media
+        return (nextProps.fetchedMedia !== undefined);
     }
 
     getMediaImage(fetchedMedia) {

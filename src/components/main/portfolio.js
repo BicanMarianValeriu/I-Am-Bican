@@ -14,7 +14,7 @@ class Portfolio extends Component {
 	}
 
 	render() {
-		const { featured_media } = this.props;
+		const { featured_media } = this.props; 
 		return (
 			<article className={this.getClasses()}>
 				<div className="row">

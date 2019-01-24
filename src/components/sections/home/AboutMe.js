@@ -20,24 +20,17 @@ export default class AboutMe extends Component {
 		this._onButtonClick = this._onButtonClick.bind(this);
 	}
 
-	_onMouseOver() {
+	_onMouseOver() { 
 		if (this.state.Modal !== null) return;
 		import(/* webpackChunkName: "swalcontact" */ "../../Popups/swal-contact").then(
-			modal =>
-				this.setState({
-					Modal: modal.default
-				})
+			modal => this.setState({ Modal: modal.default })
 		);
 	}
 
 	_onButtonClick() {
 		if (this.state.Modal === null) {
 			import(/* webpackChunkName: "swalcontact" */ "../../Popups/swal-contact")
-				.then(modal =>
-					this.setState({
-						Modal: modal.default
-					})
-				)
+				.then(modal => this.setState({ Modal: modal.default }) )
 				.then(() => this.state.Modal.renderModal());
 		}
 		if (this.state.Modal) this.state.Modal.renderModal();

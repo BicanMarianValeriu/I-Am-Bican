@@ -6,15 +6,13 @@ import FourOFour from "../pages/404";
 import DownloadLoader from "../components/download-loader";
 
 const Portfolio = Loadable({
-	loader: () =>
-		import(/* webpackChunkName: "portfolio" */ "../pages/Portfolio"),
+	loader: () => import(/* webpackChunkName: "portfolio" */ "../pages/Portfolio"),
 	loading: DownloadLoader,
 	modules: ["portfolio"]
 });
 
 const Projects = Loadable({
-	loader: () =>
-		import(/* webpackChunkName: "projects" */ "../pages/Projects"),
+	loader: () => import(/* webpackChunkName: "projects" */ "../pages/Projects"),
 	loading: DownloadLoader,
 	modules: ["projects"]
 });

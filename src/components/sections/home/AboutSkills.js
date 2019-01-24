@@ -82,7 +82,7 @@ export default class AboutSkills extends Component {
         for (let i = 0; i < boxes.length; i++) {
             new ScrollMagic.Scene({
                 triggerElement: boxes[i],
-                triggerHook: 1
+                triggerHook: .95
             }).setClassToggle(boxes[i], "skill-box--animated").addTo(controller);
         }
     }
@@ -90,9 +90,12 @@ export default class AboutSkills extends Component {
     renderSkills() {
         const { skills } = this.state;
         if (skills.length) {
+            let count = 0;
             return skills.map((item, index) => {
+                if (index % 3 === 0) count = 0;
+                count++;
                 let style = {
-                    '--animation-delay': 100 * index + 'ms'
+                    '--animation-delay': 150 * count + 'ms'
                 };
                 return (
                     <div id={`skill-box-${index + 1}`} className="col-md-6 col-lg-4" key={index} >

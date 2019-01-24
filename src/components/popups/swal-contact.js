@@ -1,7 +1,7 @@
-// Deps
+// Deps 
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import WPCF7 from "./../../api/wpcf7";
-import { validateEmail, validateFields } from "./../../utilities/helpers"; 
+import { validateEmail, validateFields } from "./../../utilities/helpers";  
 
 const SwalContact = {
 	renderModal: function () {
@@ -37,12 +37,10 @@ const SwalContact = {
 			confirmButtonClass: 'btn btn-primary',
 			confirmButtonText: "Send Message",
 			showLoaderOnConfirm: true,
-			showCloseButton: true, 
+			showCloseButton: true,
 			width: "40rem",
 			preConfirm: () => {
-				var fields = document.forms["swal-contact"].getElementsByClassName(
-					"required"
-				);
+				var fields = document.forms["swal-contact"].getElementsByClassName("required");
 				var email = fields["your-email"].value;
 
 				if (validateFields(fields) === false)
