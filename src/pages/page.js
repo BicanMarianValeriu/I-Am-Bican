@@ -9,37 +9,19 @@ import Main from "../components/Main/index";
 import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../api/actions/actions";
 
 // Server Side Stuff
-const frontload = async props =>
-	await props.fetchDispatcher(
-		'wp/v2/pages',
-		{ slug: props.match.params.slug },
-		{ success: FETCH_POSTS_FULFILLED }
-	);
+const frontload = async props => await props.fetchDispatcher(
+	'wp/v2/pages',
+	{ slug: props.match.params.slug },
+	{ success: FETCH_POSTS_FULFILLED }
+);
 
 class Page extends Component {
-	componentWillReceiveProps(nextProps) {
-		if (this.props.location.pathname !== nextProps.location.pathname) { 
-			this.props.fetchDispatcher(
-				'wp/v2/pages', 
-				{ slug: nextProps.match.params.slug }, 
-				{ success: FETCH_POSTS_FULFILLED }
-			);
-		}
-	}
-
-	shouldComponentUpdate(nextProps) {
-		return ( // When Length Changes or ID
-			this.props.posts.length !== nextProps.posts.length ||
-			this.props.posts[0].id !== nextProps.posts[0].id
-		);
-	}
-
 	componentDidUpdate() {
 		window.scrollTo(0, 0);
-	}
+	} 
 
 	render() {
-		const page = this.props.posts[0]; 
+		const page = this.props.posts[0];
 		var title = page && page.title.rendered;
 		const { pathname } = this.props.location;
 		const meta = {
@@ -64,7 +46,7 @@ class Page extends Component {
 
 // Binds menu items to navigation container
 const mapStateToProps = store => {
-	const { api: { posts } = [] } = store;
+	const { api: { posts } } = store;
 	return { posts };
 };
 

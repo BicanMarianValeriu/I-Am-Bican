@@ -59,9 +59,7 @@ class Login extends Component {
 	}
 
 	render() {
-		const {
-			user: { name, avatar_urls }
-		} = this.props;
+		const { user: { name, avatar_urls } } = this.props;
 		let classes = ["header__login", "col-auto", "pl-0", "header-login"];
 		if (isAuthentificated()) classes.push(["header-login--is-auth"]);
 		return (

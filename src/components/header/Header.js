@@ -14,7 +14,7 @@ export default withRouter((props) => {
     else classes.push(['header--site']);
 
     const CTA = () => {
-        if (condition) return null;
+        if (condition) return '';
         return (
             <div className="header__cta col">
                 <GetInTouch className="header__cta-btn" label="Get In Touch" />

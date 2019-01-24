@@ -1,20 +1,20 @@
 import Loadable from "react-loadable";
 
 import Home from "../pages/Home";
-import Page from "../pages/Page";
+import Page from "../pages/Page";  
 import FourOFour from "../pages/404";
-import DownloadLoader from "../components/download-loader";
+import DownloadLoader from "../components/download-loader"; 
 
 const Portfolio = Loadable({
 	loader: () => import(/* webpackChunkName: "portfolio" */ "../pages/Portfolio"),
 	loading: DownloadLoader,
-	modules: ["portfolio"]
+	modules: ["../pages/Portfolio"]
 });
 
 const Projects = Loadable({
 	loader: () => import(/* webpackChunkName: "projects" */ "../pages/Projects"),
 	loading: DownloadLoader,
-	modules: ["projects"]
+	modules: ["../pages/Projects"]
 });
 
 const routes = [

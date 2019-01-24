@@ -16,7 +16,7 @@ class Main extends Component {
 		let classes = ['col', 'main'];
 		classes.push(this.isSingle() ? 'main--single' : 'main--archive');
 		return classes.join(' ');
-	}
+	} 
 
 	renderPosts() {
 		const { posts } = this.props;

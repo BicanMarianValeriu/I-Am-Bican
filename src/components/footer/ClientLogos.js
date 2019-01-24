@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { TweenMax } from "gsap/TweenMax";
-import {
-	fetchDispatcher,
-	FETCH_CLIENTS_FULFILLED
-} from "../../api/actions/actions";
+import { fetchDispatcher, FETCH_CLIENTS_FULFILLED } from "../../api/actions/actions";
 import { connect } from "react-redux";
 
 class ClientLogos extends Component {
@@ -13,12 +10,12 @@ class ClientLogos extends Component {
 		);
 	}
 
-	componentWillUnmount() {
-		TweenMax.killAll(false, false, true);
+	shouldComponentUpdate(nextProps) {
+		return( this.props.clients !== nextProps.clients );
 	}
 
-	shouldComponentUpdate(nextProps) {
-		return this.props.clients !== nextProps.clients;
+	componentWillUnmount() {
+		TweenMax.killAll(false, false, true);
 	}
 
 	componentDidUpdate() {
@@ -28,9 +25,7 @@ class ClientLogos extends Component {
 		var current = [...Array(columns).keys()]; // IE bug with keys -> polyfil should fix this but I dont care
 		var lastFrame = -1;
 
-		TweenMax.set(document.querySelectorAll(".companies__logo"), {
-			autoAlpha: 0
-		});
+		TweenMax.set(document.querySelectorAll(".companies__logo"), { autoAlpha: 0 });
 		for (var j = 0; j < columns; j++) {
 			for (var i = 0; i < 5; i++) {
 				if (j === i && i < columns) {
@@ -97,20 +92,15 @@ class ClientLogos extends Component {
 	renderLogos() {
 		const { clients } = this.props;
 
-		if (clients)
-			return clients.map((item, i) => {
-				const { acf } = item;
-				const { client_logo } = acf;
-				return (
-					<div key={i} className="companies__logo">
-						<img
-							width="200"
-							src={client_logo && client_logo.url}
-							alt={item.name}
-						/>
-					</div>
-				);
-			});
+		if (clients) return clients.map((item, i) => {
+			const { acf } = item;
+			const { client_logo } = acf;
+			return (
+				<div key={i} className="companies__logo">
+					<img width="200" src={client_logo && client_logo.url} alt={item.name} />
+				</div>
+			);
+		});
 	}
 
 	render() {
@@ -121,7 +111,7 @@ class ClientLogos extends Component {
 						<div className="col text-center mb-4">
 							<h3 className="text-font--cursive text-color--primary company-logos__title">
 								Just Few Of The Clients
-              </h3>
+              				</h3>
 						</div>
 					</div>
 					<div className="row">{this.renderColumns()}</div>
@@ -134,9 +124,7 @@ class ClientLogos extends Component {
 
 // Binds menu items to navigation container
 const mapStateToProps = store => {
-	const {
-		api: { clients }
-	} = store;
+	const { api: { clients } } = store;
 	return { clients };
 };
 

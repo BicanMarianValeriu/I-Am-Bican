@@ -6,7 +6,7 @@ import Navigation from '../Navigation';
 import ClientLogos from './ClientLogos';
 import CallToAction from './CallToAction';
 
-export default class Footer extends Component {  
+export default class Footer extends Component {
     render() {
         return (
             <footer id="footer" className="footer" itemScope="" itemType="http://schema.org/WPFooter">
@@ -33,10 +33,7 @@ export default class Footer extends Component {
                                 <Social />
                             </div>
                             <div className="col-md-6">
-                                <Navigation
-                                    className="footer__menu"
-                                    wpMenuId={7}
-                                    menuClass="nav justify-content-center justify-content-md-end" />
+                                <Navigation className="footer__menu" wpMenuId={7} menuClass="nav justify-content-center justify-content-md-end" />
                             </div>
                         </div>
                     </div>

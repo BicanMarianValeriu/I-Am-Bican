@@ -9,26 +9,16 @@ import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
 
 // Server Side Stuff
-const frontload = async props =>
-	await props.fetchDispatcher(
-		"wp/v2/portfolio",
-		{ slug: props.match.params.slug },
-		{ success: FETCH_POSTS_FULFILLED }
-	);
+const frontload = async props => await props.fetchDispatcher(
+	"wp/v2/portfolio",
+	{ slug: props.match.params.slug },
+	{ success: FETCH_POSTS_FULFILLED }
+);
 
 class Portfolio extends Component {
-	componentWillReceiveProps(nextProps) {
-		if (this.props.location.pathname !== nextProps.location.pathname) {
-			var query = { slug: nextProps.match.params.slug };
-			this.props.fetchDispatcher("wp/v2/portfolio", query, {
-				success: FETCH_POSTS_FULFILLED
-			});
-		}
-	}
-
 	componentDidUpdate() {
 		window.scrollTo(0, 0);
-	}
+	} 
 
 	render() {
 		const entry = this.props.posts[0];
@@ -44,9 +34,7 @@ class Portfolio extends Component {
 				<Helmet>
 					<title>{meta.title}</title>
 					<link rel="canonical" href={meta.canonical} />
-					{meta.description && (
-						<meta name="description" content={meta.description} />
-					)}
+					{meta.description && <meta name="description" content={meta.description} />}
 				</Helmet>
 				<div id="content" className="content">
 					<PrevNext />

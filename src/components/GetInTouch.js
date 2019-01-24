@@ -11,6 +11,12 @@ export default class GetInTouch extends Component {
         this._onButtonClick = this._onButtonClick.bind(this);
     }
 
+    componentDidMount() {
+        var hash = window.location.hash;
+		var blockId = hash.split("-").pop();
+		if (blockId === "#sendmsg") this._onButtonClick();
+    }
+    
     _onMouseOver() {
         if (this.state.Modal !== null) return;
         import(/* webpackChunkName: "swalcontact" */ "./Popups/swal-contact")

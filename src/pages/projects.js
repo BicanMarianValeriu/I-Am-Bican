@@ -7,12 +7,11 @@ import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
 
 // Server Side Stuff
-const frontload = async props =>
-	await props.fetchDispatcher(
-		"wp/v2/portfolio",
-		{ per_page: 10 },
-		{ success: FETCH_POSTS_FULFILLED }
-	);
+const frontload = async props => await props.fetchDispatcher(
+	"wp/v2/portfolio",
+	{ per_page: 10 },
+	{ success: FETCH_POSTS_FULFILLED }
+);
 
 class Projects extends Component {
 	componentDidUpdate() {
@@ -31,9 +30,7 @@ class Projects extends Component {
 
 // Binds menu items to navigation container
 const mapStateToProps = store => {
-	const {
-		api: { posts }
-	} = store;
+	const { api: { posts } } = store;
 	return { posts };
 };
 
@@ -41,12 +38,6 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => bindActionCreators({ fetchDispatcher }, dispatch);
 
 // Export container while connected to store and SSR
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(
-	frontloadConnect(frontload, {
-		onMount: true,
-		onUpdate: false
-	})(Projects)
+export default connect(mapStateToProps, mapDispatchToProps)(
+	frontloadConnect(frontload, { onMount: true, onUpdate: false })(Projects)
 );

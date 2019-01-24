@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import jsonp from "jsonp";
 import { InputGroup, InputGroupAddon, Button, Input } from "reactstrap";
-import {
-	validateFields,
-	validateEmail,
-	getFormData,
-	serializeData
-} from "../../utilities/helpers";
+import { validateFields, validateEmail, getFormData, serializeData } from "../../utilities/helpers";
 import NewsletterElement from "./../../static/images/spam-free.png";
 
 class NewsLetter extends Component {

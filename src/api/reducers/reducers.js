@@ -53,7 +53,7 @@ export default function reducer(state = initialState, action) {
 			return {
 				...state,
 				fetching: false,
-				posts: action.payload.length ? action.payload : false
+				posts: action.payload.length ? action.payload : []
 			};
 		}
 		case FETCH_CLIENTS_FULFILLED: {

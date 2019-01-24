@@ -10,37 +10,8 @@ import { TweenMax, Power1 } from "gsap/TweenMax";
 import Bican from "./../../../static/images/bican.jpg";
 import BicanOld from "./../../../static/images/bican-old.jpg";
 
-export default class AboutMe extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			Modal: null
-		};
-		// Preload the component on mouseover
-		this._onMouseOver = this._onMouseOver.bind(this);
-		this._onButtonClick = this._onButtonClick.bind(this);
-	}
-
-	_onMouseOver() { 
-		if (this.state.Modal !== null) return;
-		import(/* webpackChunkName: "swalcontact" */ "../../Popups/swal-contact").then(
-			modal => this.setState({ Modal: modal.default })
-		);
-	}
-
-	_onButtonClick() {
-		if (this.state.Modal === null) {
-			import(/* webpackChunkName: "swalcontact" */ "../../Popups/swal-contact")
-				.then(modal => this.setState({ Modal: modal.default }) )
-				.then(() => this.state.Modal.renderModal());
-		}
-		if (this.state.Modal) this.state.Modal.renderModal();
-	}
-
-	componentDidMount() {
-		var hash = window.location.hash;
-		var blockId = hash.split("-").pop();
-		if (blockId === "#sendmsg") this._onButtonClick();
+export default class AboutMe extends Component {  
+	componentDidMount() { 
 		this.animateProfilePicture();
 		this.handlePictureChange(); 
 	}
