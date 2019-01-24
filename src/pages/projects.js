@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PageIntro from "../components/sections/page-intro";
-import Main from "./../components/main/index";
-import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../actions/actions";
+import Main from "../components/Main/index";
+import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../api/actions/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
@@ -10,9 +10,7 @@ import { frontloadConnect } from "react-frontload";
 const frontload = async props =>
 	await props.fetchDispatcher(
 		"wp/v2/portfolio",
-		{
-			per_page: 10
-		},
+		{ per_page: 10 },
 		{ success: FETCH_POSTS_FULFILLED }
 	);
 
@@ -40,8 +38,7 @@ const mapStateToProps = store => {
 };
 
 // Connect fetchDispatch function to props.fetchDispatch
-const mapDispatchToProps = dispatch =>
-	bindActionCreators({ fetchDispatcher }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchDispatcher }, dispatch);
 
 // Export container while connected to store and SSR
 export default connect(

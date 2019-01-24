@@ -6,8 +6,8 @@ import {
 	validateEmail,
 	getFormData,
 	serializeData
-} from "../../functions/helpers";
-import NewsletterElement from "./../../assets/images/spam-free.png";
+} from "../../utilities/helpers";
+import NewsletterElement from "./../../static/images/spam-free.png";
 
 class NewsLetter extends Component {
 	constructor(props) {

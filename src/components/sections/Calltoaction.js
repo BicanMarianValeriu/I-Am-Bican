@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+let ScrollMagic;
 
-export default class Calltoaction extends Component {
+export default class CallToAction extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,19 +14,38 @@ export default class Calltoaction extends Component {
 
     _onMouseOver() {
         if (this.state.Modal !== null) return;
-        import(/* webpackChunkName: "swalcontact" */ "./../popups/swal-contact").then(
-            modal => this.setState({ Modal: modal.default })
-        );
+        import(/* webpackChunkName: "swalcontact" */ "../Popups/swal-contact")
+            .then( modal => this.setState({ Modal: modal.default }) );
     }
 
     _onButtonClick() {
         if (this.state.Modal === null) {
-            import(/* webpackChunkName: "swalcontact" */ "./../popups/swal-contact")
+            import(/* webpackChunkName: "swalcontact" */ "../Popups/swal-contact")
                 .then(modal => this.setState({ Modal: modal.default }))
                 .then(() => this.state.Modal.renderModal());
         }
         if (this.state.Modal) this.state.Modal.renderModal();
     } 
+
+    componentDidMount() { 
+        // Add Animations
+        ScrollMagic = require("scrollmagic");
+        this.setState({ scrollmagic: true }); 
+
+        if (this.state.scrollmagic === false) return;
+
+        let controller = new ScrollMagic.Controller(); 
+
+        new ScrollMagic.Scene({
+            triggerElement: '.calltoaction',
+            triggerHook: 1
+        }).setClassToggle('.calltoaction__text', "fadeInLeft").addTo(controller);
+
+        new ScrollMagic.Scene({
+            triggerElement: '.calltoaction',
+            triggerHook: 1
+        }).setClassToggle('.calltoaction__buttons', "fadeInRight").addTo(controller);
+    }
 
     render() {
         return (

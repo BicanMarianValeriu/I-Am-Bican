@@ -1,38 +1,44 @@
 // Deps
 import Swal from "sweetalert2/dist/sweetalert2.js";
-import WPCF7 from "./../../functions/wpcf7";
-import { validateEmail, validateFields } from "./../../functions/helpers";
+import WPCF7 from "./../../api/wpcf7";
+import { validateEmail, validateFields } from "./../../utilities/helpers"; 
 
 const SwalContact = {
 	renderModal: function () {
 		const alert = Swal.fire({
 			title: "Thanks for your interest in contacting me!",
 			html: `<form name="swal-contact" id="wpcf7-6" data-wpcf7-form="6">
-            <div class="row">
-                <div class="col-md-6">
-                    <span class="wpcf7-form-control-wrap your-name">
-                        <input id="swal-input1" class="swal2-input required" name="your-name" type="text" placeholder="Your Name" required/>
-                    </span>
-                </div>
-                <div class="col-md-6">
-                    <span class="wpcf7-form-control-wrap your-email">
-                        <input id="swal-input2" class="swal2-input required" name="your-email" type="email" placeholder="Your Email" required/>
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <textarea id="swal-input3" class="swal2-textarea required" name="your-message" placeholder="Your Message" required></textarea>
-                </div>
-            </div></form>`,
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-6">
+						<span class="wpcf7-form-control-wrap your-name">
+							<input id="swal-input1" class="form-control required" name="your-name" type="text" placeholder="Your Name" required/>
+						</span>
+					</div>
+					<div class="col-md-6">
+						<span class="wpcf7-form-control-wrap your-email">
+							<input id="swal-input2" class="form-control required" name="your-email" type="email" placeholder="Your Email" required/>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col">
+						<textarea id="swal-input3" class="form-control required" name="your-message" placeholder="Your Message" required></textarea>
+					</div>
+				</div>
+			</div>
+			</form>`,
 			footer: `View your privacy policy &nbsp;<a href="/p/privacy-policy">here</a>.`,
 			focusConfirm: false,
 			customClass: "swal-contact",
+			buttonsStyling: false,
+			confirmButtonClass: 'btn btn-primary',
 			confirmButtonText: "Send Message",
 			showLoaderOnConfirm: true,
-			showCloseButton: true,
-			onClose: () => (window.location.hash = ""),
-			width: "45rem",
+			showCloseButton: true, 
+			width: "40rem",
 			preConfirm: () => {
 				var fields = document.forms["swal-contact"].getElementsByClassName(
 					"required"

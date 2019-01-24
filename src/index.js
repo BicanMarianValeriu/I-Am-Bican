@@ -7,10 +7,10 @@ import { render, hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { Frontload } from 'react-frontload';
-import createStore from './store';
+import createStore from './api/store';
 
-import App from './app'; 
-import './index.scss';
+import App from './App'; 
+import './static/scss/style.scss';
 
 // Create a store and get back itself and its history object
 const { store, history } = createStore();

@@ -1,15 +1,15 @@
 import Swal from "sweetalert2/dist/sweetalert2.js";
-import { validateFields } from "./../../functions/helpers";
-import { setAuthToken } from "../../functions/auth";
+import { validateFields } from "./../../utilities/helpers";
+import { setAuthToken } from "../../api/auth";
 import Cookies from "js-cookie";
 import {
 	requestUserToken,
 	FETCH_USER_FULFILLED,
 	setCurrentUser
-} from "../../actions/actions";
-import createStore from "./../../store";
+} from "../../api/actions/actions";
+import createStore from "./../../api/store";
 
-const SwalLogin = {
+const SwalAuth = {
 	createToast: (args) => {
 		Swal.fire({
 			toast: true,
@@ -50,6 +50,7 @@ const SwalLogin = {
             </div></form>`,
 			footer: `View your privacy policy &nbsp;<a href="/p/privacy-policy">here</a>.`,
 			customClass: "swal-auth",
+			buttonsStyling: false,
 			confirmButtonText: "Login",
 			showLoaderOnConfirm: true,
 			backdrop: `rgba(0,0,0,0.2)`,
@@ -79,7 +80,7 @@ const SwalLogin = {
 								});
 							})
 							.then(
-								SwalLogin.createToast({
+								SwalAuth.createToast({
 									type: "success",
 									title: `Welcome back ${response.user_display_name}.`
 								})
@@ -95,7 +96,7 @@ const SwalLogin = {
 							cancelButtonColor: "#01acf4",
 							showConfirmButton: false
 						}).then(result => {
-							if (result.dismiss === Swal.DismissReason.cancel) SwalLogin.renderModal();
+							if (result.dismiss === Swal.DismissReason.cancel) SwalAuth.renderModal();
 						});
 					}
 				});
@@ -114,4 +115,4 @@ const SwalLogin = {
 	}
 };
 
-export default SwalLogin;
+export default SwalAuth;

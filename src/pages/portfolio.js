@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Helmet from "react-helmet";
 // Deps
 import PageIntro from "../components/sections/page-intro";
-import Main from "./../components/main/index";
-import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../actions/actions";
+import Main from "../components/Main/index";
+import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../api/actions/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
@@ -12,9 +12,7 @@ import { frontloadConnect } from "react-frontload";
 const frontload = async props =>
 	await props.fetchDispatcher(
 		"wp/v2/portfolio",
-		{
-			slug: props.match.params.slug
-		},
+		{ slug: props.match.params.slug },
 		{ success: FETCH_POSTS_FULFILLED }
 	);
 

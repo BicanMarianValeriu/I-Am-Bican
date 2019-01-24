@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-import { getTitle } from './../../functions/functions';
+import { getTitle } from './../../utilities/functions';
 
 const Title = (props) => {
     const { type, slug } = props;

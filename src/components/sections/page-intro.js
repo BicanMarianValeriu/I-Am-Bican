@@ -1,6 +1,4 @@
-import React from "react";
-//import ReactSVG from 'react-svg';
-//import Background from '../assets/svg/shape-bg.svg';
+import React from "react"; 
 
 const PageIntro = ({ ...props }) => {
 	const { pageTitle } = props;

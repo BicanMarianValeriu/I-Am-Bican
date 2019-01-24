@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Title from './../Article/title';
-import Meta from '../portfolio/meta';
+import Meta from '../Portfolio/meta';
 import Content from './../Article/content';
 import FeaturedMedia from '../Article/featured-media';
 

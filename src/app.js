@@ -1,14 +1,19 @@
 // The basics
 import React, { Component }  from 'react';
 import Helmet from 'react-helmet';
+import { Route, Switch } from 'react-router';
+import { dom } from '@fortawesome/fontawesome-svg-core'; 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import icons, { brands } from './utilities/svg-icons';
+import routes from './api/routes'; 
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import { dom } from '@fortawesome/fontawesome-svg-core';
-import { Route, Switch } from 'react-router';
-import routes from './routes'; 
 
 export default class App extends Component {
 	componentDidMount() {
+		// Add Icons to FA Library
+		library.add(icons);
+		library.add(brands);
 		dom.watch();
 	}
 

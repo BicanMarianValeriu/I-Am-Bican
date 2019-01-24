@@ -1,19 +1,19 @@
-import React from 'react';
-import ReactSVG from 'react-svg'; 
-
-import Facebook from '../../assets/svg/social/facebook.svg';
-import Linkedin from '../../assets/svg/social/linkedin.svg';
+import React from 'react'; 
 
 const Social = () =>
     <ul className="footer__social social social--footer">
         <li className="social__item">
             <a href="https://www.facebook.com/bican.marian.valeriu" rel="noopener noreferrer" target="_blank">
-                <ReactSVG src={Facebook} svgClassName="svg-icon svg-icon--social-footer" className="social__icon social__icon--facebook" />
+                <div className="social__icon social__icon--facebook">
+                    <i className="fab fa-facebook fa-fw"></i>
+                </div>            
             </a>
         </li>
         <li className="social__item">
             <a href="https://www.linkedin.com/in/marian-valeriu-bican-b12169103/" rel="noopener noreferrer" target="_blank">
-                <ReactSVG src={Linkedin} svgClassName="svg-icon svg-icon--social-footer" className="social__icon social__icon--linkedin" />
+                <div className="social__icon social__icon--linkedin">
+                    <i className="fab fa-linkedin fa-fw"></i>
+                </div>           
             </a>
         </li>
     </ul>;

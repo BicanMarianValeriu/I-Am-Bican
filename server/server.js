@@ -47,25 +47,25 @@ app.use(loader);
 
 // We tell React Loadable to load all required assets and start listening - ROCK AND ROLL!
 Loadable.preloadAll().then(() =>
-  app.listen(PORT, console.log(`App listening on port ${PORT}!`))
+	app.listen(PORT, console.log(`App listening on port ${PORT}!`))
 );
 
 // Handle the bugs somehow
 app.on("error", error => {
-  if (error.syscall !== "listen") {
-    throw error;
-  }
-  const bind = typeof PORT === "string" ? "Pipe " + PORT : "Port " + PORT;
-  switch (error.code) {
-    case "EACCES":
-      console.error(bind + " requires elevated privileges");
-      process.exit(1);
-      break;
-    case "EADDRINUSE":
-      console.error(bind + " is already in use");
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
+	if (error.syscall !== "listen") {
+		throw error;
+	}
+	const bind = typeof PORT === "string" ? "Pipe " + PORT : "Port " + PORT;
+	switch (error.code) {
+		case "EACCES":
+			console.error(bind + " requires elevated privileges");
+			process.exit(1);
+			break;
+		case "EADDRINUSE":
+			console.error(bind + " is already in use");
+			process.exit(1);
+			break;
+		default:
+			throw error;
+	}
 });

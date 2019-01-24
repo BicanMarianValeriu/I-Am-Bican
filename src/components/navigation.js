@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom'; 
 import { connect } from 'react-redux';
-import { fetchDispatcher, FETCH_MENU_FULFILLED } from './../actions/actions';
-import { find } from 'lodash';
 import { bindActionCreators } from 'redux';
 import { frontloadConnect } from 'react-frontload';
+import { find } from 'lodash';
+import { fetchDispatcher, FETCH_MENU_FULFILLED } from './../api/actions/actions';
 
 // Server Side Stuff
 const frontload = async props => await props.fetchDispatcher('wp/v2/menu/' + props.wpMenuId, {}, { 
@@ -12,7 +12,6 @@ const frontload = async props => await props.fetchDispatcher('wp/v2/menu/' + pro
 });
 
 class Navigation extends Component { 
-
     renderMenuItems(menu) {  
         if (this.props.wpMenuId === menu.ID) {
             return menu.items.map((item, index) => {

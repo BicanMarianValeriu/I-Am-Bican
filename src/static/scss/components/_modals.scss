@@ -1,0 +1,32 @@
+body.swal2-show:not(.swal2-toast-shown) {
+  	padding-right: 20px !important;
+}
+
+body.swal2-toast-shown {
+  	padding-right: 0 !important;
+}
+
+.swal2-container {
+  	padding: 20px;
+}
+
+.swal2-popup {
+  	border-radius: 0;
+
+	.swal2-styled.swal2 {
+		&-confirm { 
+			border-radius: 50px;
+			border-top-left-radius: 50px;
+			border-bottom-left-radius: 50px; 
+			padding: 10px 42px; 
+
+			&:focus {
+				box-shadow: none;
+			}
+
+			@media (max-width: 576px) {
+				font-size: 0.9rem;
+			}
+		}
+	} 
+}

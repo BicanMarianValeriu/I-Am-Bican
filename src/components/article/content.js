@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { getExcerpt, getContent } from './../../functions/functions';
+import { getExcerpt, getContent } from './../../utilities/functions';
 
 class Content extends Component {
 

@@ -1,6 +1,6 @@
 import React from 'react'; 
-import Menu from './menu';
-import Login from './login';
+import Menu from './Menu';
+import Login from './Login';
 
 export default () => (
     <header id="header" className="header" itemScope="" itemType="http://schema.org/WPHeader">

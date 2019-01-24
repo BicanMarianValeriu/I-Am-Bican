@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import ReactSVG from "react-svg";
+import React, { Component } from "react"; 
 import { connect } from "react-redux";
 import Cookies from "js-cookie";
 import {
@@ -7,20 +6,18 @@ import {
 	DropdownToggle,
 	DropdownMenu,
 	DropdownItem
-} from "reactstrap";
-import Icon from "../../assets/svg/user.svg";
-import Logout from "../../assets/svg/logout.svg";
+} from "reactstrap"; 
 import {
 	isAuthentificated,
 	removeAuthToken,
 	getAuthToken
-} from "../../functions/auth";
+} from "../../api/auth";
 import {
 	LOGOUT_USER,
 	setCurrentUser,
 	FETCH_USER_FULFILLED
-} from "../../actions/actions";
-import SwalLogin from "../popups/swal-auth";
+} from "../../api/actions/actions";
+import SwalAuth from "../Popups/swal-auth";
 
 class Login extends Component {
 	constructor(props) {
@@ -38,14 +35,14 @@ class Login extends Component {
 
 	_onMouseOver() {
 		if (this.state.Modal !== null) return;
-		import(/* webpackChunkName: "swalauth" */ "./../popups/swal-auth").then(
+		import(/* webpackChunkName: "swalauth" */ "../Popups/swal-auth").then(
 			modal => this.setState({ Modal: modal.default })
 		);
 	}
 
 	_onButtonClick() {
 		if (this.state.Modal === null) {
-			import(/* webpackChunkName: "swalauth" */ "./../popups/swal-auth").then(
+			import(/* webpackChunkName: "swalauth" */ "../Popups/swal-auth").then(
 				modal => this.setState({ Modal: modal.default })
 			);
 		}
@@ -58,7 +55,7 @@ class Login extends Component {
 			removeAuthToken();
 			this.props.dispatch({ type: LOGOUT_USER });
 			Cookies.remove("authToken");
-			SwalLogin.createToast({
+			SwalAuth.createToast({
 				type: "success",
 				title: `Logged out. See you soon :).`
 			});
@@ -100,11 +97,9 @@ class Login extends Component {
 									className="header-login__btn-avatar"
 								/>
 							) : (
-									<ReactSVG
-										src={Icon}
-										svgClassName="svg-icon svg-icon--header"
-										className="header-login__icon-svg"
-									/>
+									<div className="header-login__icon-svg">
+										<i className="far fa-user-alt fa-fw"></i>
+									</div>
 								)}
 						</DropdownToggle>
 						<DropdownMenu right>
@@ -112,15 +107,10 @@ class Login extends Component {
 							<DropdownItem divider />
 							<DropdownItem>Another Action</DropdownItem>
 							<DropdownItem divider />
-							<DropdownItem
-								className="text-muted"
-								onClick={this._onLogoutClick}
-							>
-								<ReactSVG
-									src={Logout}
-									svgClassName="svg-icon"
-									className="header-logout__svg"
-								/>
+							<DropdownItem className="text-muted" onClick={this._onLogoutClick} >
+								<div className="header-logout__svg">
+									<i className="fas fa-sign-out-alt"></i>
+								</div>
 								<span className="header-logout__label">LogOut</span>
 							</DropdownItem>
 						</DropdownMenu>
@@ -133,11 +123,9 @@ class Login extends Component {
 							onMouseOver={this._onMouseOver}
 							onTouchStart={this._onMouseOver}
 						>
-							<ReactSVG
-								src={Icon}
-								svgClassName="svg-icon svg-icon--header"
-								className="header-login__icon-svg"
-							/>
+							<div className="header-login__icon-svg">
+								<i className="far fa-user fa-fw"></i>
+							</div>
 						</button>
 					)}
 			</div>

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Copyright from './copyright';
-import Social from './social';
-import Newsletter from './newsletter';
-import Navigation from '../navigation';
-import ClientLogos from './client-logos';
+import Copyright from './Copyright';
+import Social from './Social';
+import Newsletter from './Newsletter';
+import Navigation from '../Navigation';
+import ClientLogos from './ClientLogos';
 
 export default class Footer extends Component {  
     render() {
