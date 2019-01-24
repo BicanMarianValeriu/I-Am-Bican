@@ -1,0 +1,107 @@
+.entry {
+    &--portfolio {
+        &.entry--single {
+            .portfolio {
+                &__meta {
+                    padding: 20px;
+                    margin-bottom: 2rem;
+
+                    @include media-breakpoint-down(md) { 
+                        padding: 5px;
+                    }
+                }
+            }
+        }
+
+        &.entry--archive {
+            &:last-child {
+                @include media-breakpoint-down(md) { 
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .entry {
+            &__media {
+                &--placeholder {
+                    background-color: #f3f3f3;
+                }
+            }
+        }
+    }
+}
+
+.portfolio {
+    &__meta {  
+        border-width: 1px 1px 1px 1px;
+        border-style: solid;
+        border-color: #f5f5f5;
+        background-color: #fafafa;
+        opacity: .7;
+
+        @include media-breakpoint-down(sm) { 
+            display: flex;
+            flex-flow: row wrap;
+        }
+
+        &-item {
+            display: inline-block;
+            padding: 5px;
+            margin-right: 20px;
+
+            @include media-breakpoint-down(sm) { 
+                min-width: 50%;
+                flex: 0 0 50%;
+                margin-right: 0;
+                font-size: 13px;
+            } 
+
+            > * {
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+
+        &-label { 
+            margin-right: 10px; 
+
+            svg {
+                display: block;
+                width: 25px;
+                height: 25px;
+
+                @include media-breakpoint-down(sm) { 
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+    }
+
+    &__cost {
+        display: inline-flex;
+        flex-flow: row nowrap; 
+        font-style: italic;
+
+        &-svg {
+            display: inline-block;
+            margin-right: 3px;
+
+            svg {
+                width: 23px;
+                height: 23px;
+                fill: green; 
+
+                @include media-breakpoint-down(sm) { 
+                    width: 17px;
+                    height: 17px;
+                }
+            }
+        }
+    }
+
+    &__website,
+    &__date {
+        font-style: italic;
+    }
+}

@@ -1,0 +1,89 @@
+.nav {
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &-pills {
+        .nav {
+            &-link {
+                position: relative;
+                @extend .text-font--cursive;
+                font-size: 25px;
+                line-height: 40px;
+                color: white; 
+                transition: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+                padding: .75rem .55rem 0.2rem .55rem;
+                margin: 0 3px; 
+                border-radius: 0;
+
+                @include media-breakpoint-down(md) {
+                    font-size: 20px;
+                    line-height: 30px;
+                    padding: .75rem .75rem 0 .75rem; 
+                }
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    width: 0;
+                    transform: translate3d(-50%,0,0);
+                    border-top: 3px solid transparent;
+                    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                }
+
+                &:hover,
+                &.active {
+                    background-color: transparent;
+
+                    &::after {
+                        border-color: #fff;
+                        width: 100%;
+                    }
+                } 
+            
+                &--dropdown {
+                    line-height: 40px;
+                    background-color: transparent;
+                    color: #555;
+                }
+            }
+
+            &-item {
+                position: relative;
+
+                &:hover {
+                    .nav-item__dropdown {
+                        top: 100%;
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+
+                &__dropdown {
+                    position: absolute;
+                    top: calc( 100% + 30px );
+                    left: 0;
+                    opacity: 0;
+                    visibility: hidden;
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    min-width: 208px;
+                    background: white;
+                    transition: all .3s ease-in-out;
+                }
+            }
+        }
+    } 
+}
+
+.menu__header {
+    &.loading {
+        opacity: .5;
+    } 
+}
