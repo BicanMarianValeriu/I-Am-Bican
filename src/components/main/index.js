@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Article from './article';
 import Portfolio from './portfolio';
+import PortfolioSingle from './PortfolioSingle';
 import Empty from './empty';
 
 class Main extends Component {
@@ -23,7 +24,9 @@ class Main extends Component {
 			return posts.map((post) => {
 				var postType;
 				switch (post.type) {
-					case 'portfolio': postType = <Portfolio key={post.id} {...post} isSingle={this.isSingle()} />;
+					case 'portfolio': postType = this.isSingle() ?
+						<PortfolioSingle key={post.id} {...post} /> :
+						<Portfolio key={post.id} {...post} isSingle={this.isSingle()} />;
 						break;
 					default: postType = <Article key={post.id} {...post} isSingle={this.isSingle()} />;
 				}

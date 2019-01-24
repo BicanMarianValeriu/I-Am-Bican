@@ -1,9 +1,61 @@
 .header {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	z-index: 1000;
+	background-color: $gray-100;
+	
+	&--absolute {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		z-index: 1000;
+		background-color: transparent;
+	}
+
+	&--site {
+		background-color: #fbfbfb;
+		border-bottom: 1px solid $gray-100;
+
+		.nav-pills {
+			.nav-link {
+				color: theme-color( 'primary' );
+
+				&:hover,
+				&.active {
+					&::after {
+						width: 100%;
+						border-color: theme-color( 'primary' );
+					}
+				}
+			}
+		}
+
+		.header-login {
+			&--is-auth {
+				.header-login {
+					&__btn {
+						&[aria-expanded="true"] {
+							img {
+								box-shadow: 0 0 0 3px $gray-500;
+							}
+						}
+					}
+				}
+			}
+
+			&__btn {
+				color: $gray-400;
+
+				&:hover, 
+				&:focus,
+				&:active {
+					color: $gray-400!important;
+				}
+			}
+			
+			&__icon-svg {
+				border-color: $gray-400;
+			}
+		}
+	}
 
 	&-login {
 		&__icon {
@@ -32,8 +84,8 @@
 			border-radius: 0;
 			background-color: transparent;
 			border-color: transparent;
-			width: 62px;
-			height: 62px;
+			width: 55px;
+			height: 55px;
 			color: white;
 
 			@include media-breakpoint-down(md) {
@@ -141,6 +193,25 @@
 				width: 15px;
 				height: 15px;
 			}
+		}
+	}
+
+	&__cta {
+		.btn {
+			border: 2px solid $black;
+			border-radius: 50px;
+			box-shadow: none;
+			color: $black;
+
+			&:hover {
+				background-color: theme-color( 'primary' );
+				border-color: theme-color( 'primary' );
+				color: white;
+			}
+		}
+
+		.svg-inline--fa {
+			margin-right: 10px;
 		}
 	}
 }

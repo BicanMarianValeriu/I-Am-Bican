@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
 // Deps
-import PageIntro from "../components/sections/page-intro";
+import PrevNext from "../components/Portfolio/PrevNext";
 import Main from "../components/Main/index";
 import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../api/actions/actions";
 import { connect } from "react-redux";
@@ -32,12 +32,9 @@ class Portfolio extends Component {
 
 	render() {
 		const entry = this.props.posts[0];
-		const {
-			location: { pathname }
-		} = this.props;
+		const { location: { pathname } } = this.props;
 		const meta = {
-			title:
-				(entry && entry.yoast_meta.title) || (entry && entry.title.rendered),
+			title: (entry && entry.yoast_meta.title) || (entry && entry.title.rendered),
 			description: entry && entry.yoast_meta.description,
 			canonical: "http://www.iambican.com" + pathname
 		};
@@ -52,7 +49,7 @@ class Portfolio extends Component {
 					)}
 				</Helmet>
 				<div id="content" className="content">
-					<PageIntro pageTitle={entry && entry.title.rendered} />
+					<PrevNext />
 					<Main posts={this.props.posts} isSingle={true} />
 				</div>
 			</React.Fragment>
@@ -62,23 +59,14 @@ class Portfolio extends Component {
 
 // Binds Query / Query Result
 const mapStateToProps = store => {
-	const {
-		api: { posts }
-	} = store;
+	const { api: { posts } } = store;
 	return { posts };
 };
 
 // Connect fetchDispatch function to props.fetchDispatch
-const mapDispatchToProps = dispatch =>
-	bindActionCreators({ fetchDispatcher }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchDispatcher }, dispatch);
 
 // Export container while connected to store and SSR
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(
-	frontloadConnect(frontload, {
-		onMount: true,
-		onUpdate: false
-	})(Portfolio)
+export default connect(mapStateToProps, mapDispatchToProps)(
+	frontloadConnect(frontload, { onMount: true, onUpdate: false })(Portfolio)
 );

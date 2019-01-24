@@ -1,0 +1,53 @@
+.portfolio-prev-next {
+    position: relative;
+
+    &__item {
+        &--prev {
+            svg {
+                margin-right: 15px;
+            }
+        }
+
+        &--next {
+            svg {
+                margin-left: 15px;
+            }
+        }
+    }
+
+    &__title {
+        font-size: 1rem;
+    }
+
+    &__subtitle {
+        font-size: .9rem;
+    }
+
+    &__breadcrumbs {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        .list-inline-item {
+            &.active {  
+                &::before {
+                    content: "\00BB";
+                    display: inline-block;
+                    text-align: left;
+                    width: 15px;
+                }
+            }
+        }
+    }
+
+    &__all {
+        font-size: .9rem;
+        color: $black;
+    }
+
+    & + .container {
+        main {
+            padding-top: 0;
+        }
+    }
+}

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 // Components
 import AboutMeInfo from "./AboutMeInfo";
+import GetInTouch from '../../GetInTouch';
 import { TweenMax, Power1 } from "gsap/TweenMax";
 
 // Assets 
@@ -112,29 +113,17 @@ export default class AboutMe extends Component {
 					<div className="container">
 						<div className="row justify-content-end">
 							<div className="col-4 col-lg-3 text-center">
-								<a href="#footer" className="about-me__link">
-									<div className="about-me__link-icon">
-										<i className="far fa-envelope"></i>
-									</div> 
+								<a href="#footer" className="about-me__link"> 
+									<i className="far fa-envelope"></i> 
 									<span>Contact Information</span>
 								</a>
 							</div>
 							<div className="col-4 col-lg-2 text-center">
-								<button className="about-me__link btn btn-link"
-									onClick={this._onButtonClick}
-									onMouseOver={this._onMouseOver}
-									onTouchStart={this._onMouseOver}>
-									<div className="about-me__link-icon">
-										<i className="far fa-paper-plane"></i>
-									</div> 
-									<span>Send Message</span>
-								</button>
+								<GetInTouch className="about-me__link btn-link" label="Send Message" /> 
 							</div>
 							<div className="col-4 col-lg-3 text-center">
 								<Link to="/portfolio" className="about-me__link">  
-									<div className="about-me__link-icon">
-										<i className="fas fa-puzzle-piece"></i>
-									</div> 
+									<i className="fas fa-puzzle-piece"></i> 
 									<span>View Portfolio</span> 
 								</Link>
 							</div>

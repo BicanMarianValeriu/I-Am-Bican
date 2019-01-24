@@ -20,8 +20,11 @@
 		}
 	}
 
-	.row > div {
-		margin-bottom: 25px;
+	&__newsletter,
+	&__bottom {
+		.row > div {
+			margin-bottom: 25px;
+		}
 	}
 
 	.header__menu {

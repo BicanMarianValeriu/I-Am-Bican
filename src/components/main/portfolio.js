@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-import Title from './../Article/title';
-import Meta from '../Portfolio/meta';
-import Content from './../Article/content';
+import Title from '../Article/Title'; 
+import Content from '../Article/Content';
 import FeaturedMedia from '../Article/featured-media';
 
 class Portfolio extends Component {
@@ -24,10 +23,8 @@ class Portfolio extends Component {
 						</div>
 					}
 					<div className="col">
-						{!this.props.isSingle && <Title {...this.props} />}
-						{this.props.isSingle && <Meta {...this.props} />}
-						<Content {...this.props} />
-						{!this.props.isSingle && <Meta {...this.props} />}
+						{!this.props.isSingle && <Title {...this.props} />} 
+						<Content {...this.props} /> 
 					</div>
 				</div>
 			</article>

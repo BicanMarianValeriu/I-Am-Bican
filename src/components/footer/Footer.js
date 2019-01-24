@@ -4,11 +4,13 @@ import Social from './Social';
 import Newsletter from './Newsletter';
 import Navigation from '../Navigation';
 import ClientLogos from './ClientLogos';
+import CallToAction from './CallToAction';
 
 export default class Footer extends Component {  
     render() {
         return (
             <footer id="footer" className="footer" itemScope="" itemType="http://schema.org/WPFooter">
+                <CallToAction />
                 <ClientLogos />
                 <div className="footer__newsletter footer-newsletter">
                     <div className="container">

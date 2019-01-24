@@ -1,59 +1,43 @@
 import React from "react";
-import ReactSVG from "react-svg";
-import clock from "./../../static/svg/clock-o.svg";
-import banknote from "./../../static/svg/banknote.svg";
-import website from "./../../static/svg/website.svg";
-import money from "./../../static/svg/get-money.svg";
-
-const icons = { clock, banknote, website, money };
 
 const Meta = props => {
 	const { date_gmt, date_human, acf } = props;
-	const { meta } = acf;
+	const { meta } = acf; 
 	var count = meta ? parseInt(meta.cost) : 0;
 	var money = [...Array(count)];
-	money = money.map((val, i) => (
-		<ReactSVG
-			className="portfolio__cost-svg"
-			key={i}
-			src={icons.banknote}
-			svgClassName="svg-icon svg-icon--cost"
-		/>
+	money = money.map((val, index) => (
+		<div key={index} className="portfolio-meta__item-value__svg">
+			<i className="far fa-money-bill-alt svg-icon--cost"></i>
+		</div>
 	));
 
-	var website = `<a target="_blank" href="${meta ? meta.website : "#"}">Live Site</a>`;
+	let website = `<a target="_blank" href="${meta ? meta.website : "#"}">Visit Live Site</a>`;
 
 	return (
-		<div className="portfolio__meta">
-			<span className="portfolio__meta-item" title="Live url">
-				<ReactSVG
-					className="portfolio__meta-label"
-					src={icons.website}
-					svgClassName="svg-icon svg-icon--portfolio-meta"
-				/>
-				<span
-					className="portfolio__website"
-					dangerouslySetInnerHTML={{ __html: website }}
-				/>
-			</span>
-			<span className="portfolio__meta-item" title="Cost range">
-				<ReactSVG
-					className="portfolio__meta-label"
-					src={icons.money}
-					svgClassName="svg-icon svg-icon--portfolio-meta"
-				/>
-				<span className="portfolio__cost">{count > 0 ? money : "Free"}</span>
-			</span>
-			<span className="portfolio__meta-item" title="Went live on:">
-				<ReactSVG
-					className="portfolio__meta-label"
-					src={icons.clock}
-					svgClassName="svg-icon svg-icon--portfolio-meta"
-				/>
-				<time className="portfolio__date" dateTime={date_gmt}>
-					{date_human}
-				</time>
-			</span>
+		<div className="portfolio__meta portfolio-meta">
+			<div className="row">
+				<div className="portfolio-meta__item col-md-6 col-lg-3 mb-3 mb-lg-0" title="Went Live">
+					<span className="portfolio-meta__item-label">Date</span>
+					<hr className="my-2" />
+					<time className="portfolio-meta__item-value" dateTime={date_gmt}>{date_human}</time>
+				</div>
+				<div className="portfolio-meta__item col-md-6 col-lg-3 mb-3 mb-lg-0" title="Cost Range">
+					<span className="portfolio-meta__item-label">Cost</span>
+					<hr className="my-2" />
+					<span className="portfolio-meta__item-value">{count > 0 ? money : "Free"}</span>
+				</div>
+				<div className="portfolio-meta__item col-md-6 col-lg-3 mb-3 mb-lg-0" title="Client">
+					<span className="portfolio-meta__item-label">Client</span>
+					<hr className="my-2" />
+					<span className="portfolio-meta__item-value">An Amazing Person</span>
+				</div>
+				<div className="portfolio-meta__item col-md-6 col-lg-3 mb-3 mb-lg-0" title="Live URL">
+					<span className="portfolio-meta__item-label">Link</span>
+					<hr className="my-2" />
+					<span className="portfolio-meta__item-value portfolio-meta__item-value--url"
+						dangerouslySetInnerHTML={{ __html: website }} />
+				</div>
+			</div>
 		</div>
 	);
 };
