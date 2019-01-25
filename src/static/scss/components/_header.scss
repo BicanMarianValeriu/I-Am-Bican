@@ -34,7 +34,7 @@
 					&__btn {
 						&[aria-expanded="true"] {
 							img {
-								box-shadow: 0 0 0 3px $gray-500;
+								box-shadow: 0 0 0 3px theme-color( 'primary' );
 							}
 						}
 					}
@@ -116,8 +116,8 @@
 			}
 
 			&-avatar {
-				width: 31px;
-				height: 31px;
+				width: 30px;
+				height: 30px;
 				border-radius: 100%;
 				box-shadow: 0 0 0 3px #fff;
 			}
