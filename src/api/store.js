@@ -27,9 +27,9 @@ export default (url = '/') => {
 	if (process.env.NODE_ENV === 'development' && !isServer) {
 		const devToolsExtension = window.devToolsExtension;
 		if (typeof devToolsExtension === 'function') enhancers.push(devToolsExtension()); 
+		middlewaresArr.push(createLogger());
 	}
 	
-	middlewaresArr.push(createLogger());
 	// Do we have preloaded state available? Great, save it.
 	const initialState = !isServer ? window.__PRELOADED_STATE__ : {}; 
 	if (!isServer) delete window.__PRELOADED_STATE__; 
