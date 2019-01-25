@@ -196,22 +196,41 @@
 		}
 	}
 
-	&__cta {
+	&__cta { 
+		@include media-breakpoint-down(xs) {
+			flex-grow: 0;
+		}
+
 		.btn {
 			border: 2px solid $black;
 			border-radius: 50px;
 			box-shadow: none;
 			color: $black;
 
+			@include media-breakpoint-down(xs) {
+				padding: .4rem;
+    			line-height: 1;
+			}
+
 			&:hover {
 				background-color: theme-color( 'primary' );
 				border-color: theme-color( 'primary' );
 				color: white;
 			}
+
+			span {
+				@include media-breakpoint-down(xs) {
+					display: none;
+				}
+			}
 		}
 
 		.svg-inline--fa {
 			margin-right: 10px;
+
+			@include media-breakpoint-down(xs) {
+				margin-right: 0;
+			}
 		}
 	}
 }

@@ -11,12 +11,12 @@ export default class CallToAction extends Component {
 
         new ScrollMagic.Scene({
             triggerElement: '.calltoaction',
-            triggerHook: .8
+            triggerHook: .8 
         }).setClassToggle('.calltoaction__text', "fadeInLeft").addTo(controller);
 
         new ScrollMagic.Scene({
             triggerElement: '.calltoaction',
-            triggerHook: .8
+            triggerHook: .8 
         }).setClassToggle('.calltoaction__buttons', "fadeInRight").addTo(controller);
     }
 

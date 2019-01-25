@@ -15,14 +15,14 @@
                 line-height: 40px;
                 color: white; 
                 transition: cubic-bezier(0.95, 0.05, 0.795, 0.035);
-                padding: .75rem .55rem 0.2rem .55rem;
+                padding: .75rem .55rem 0.3rem .55rem;
                 margin: 0 3px; 
                 border-radius: 0;
 
                 @include media-breakpoint-down(md) {
                     font-size: 20px;
                     line-height: 30px;
-                    padding: .75rem .75rem 0 .75rem; 
+                    padding: .5rem .5rem .3rem .5rem; 
                 }
 
                 &:after {

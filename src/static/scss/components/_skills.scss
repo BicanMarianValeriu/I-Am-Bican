@@ -1,5 +1,5 @@
 .about-skills {
-	position: relative;
+	position: relative; 
 	padding: 4.5rem 0 0;
 
 	& > .container { 
@@ -9,12 +9,14 @@
 		box-shadow: 0px -10px 15px -3px rgba(153, 153, 153, 0.1);
 		padding: 4rem 3rem 0;
 		z-index: 0;
+		overflow: hidden;
 
 		@include media-breakpoint-up(lg) {
 			max-width: 1110px;
 		}
 
 		@include media-breakpoint-down(sm) {
+			margin-top: -5rem;
 			padding-left: 15px;
 			padding-right: 15px;
 		}

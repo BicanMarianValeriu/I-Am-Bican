@@ -1,7 +1,7 @@
 {
-  "main.css": "/static/css/main.c0fe4f7c.chunk.css",
-  "main.js": "/static/js/main.aa2ee81c.chunk.js",
-  "main.js.map": "/static/js/main.aa2ee81c.chunk.js.map",
+  "main.css": "/static/css/main.164b4f0d.chunk.css",
+  "main.js": "/static/js/main.8c8dc7a4.chunk.js",
+  "main.js.map": "/static/js/main.8c8dc7a4.chunk.js.map",
   "portfolio.js": "/static/js/portfolio.5fa2d13c.chunk.js",
   "portfolio.js.map": "/static/js/portfolio.5fa2d13c.chunk.js.map",
   "projects.js": "/static/js/projects.e4bebb21.chunk.js",
@@ -16,8 +16,8 @@
   "static/media/bican-old.jpg": "/static/media/bican-old.19e754c9.jpg",
   "static/media/style.scss": "/static/media/ShadowsIntoLight.3c74097f.svg",
   "static/media/bican.jpg": "/static/media/bican.9d90f6b5.jpg",
-  "static/css/main.c0fe4f7c.chunk.css.map": "/static/css/main.c0fe4f7c.chunk.css.map",
+  "static/css/main.164b4f0d.chunk.css.map": "/static/css/main.164b4f0d.chunk.css.map",
   "index.html": "/index.html",
-  "precache-manifest.a934cec40c8570d5f663efe18daec6bb.js": "/precache-manifest.a934cec40c8570d5f663efe18daec6bb.js",
+  "precache-manifest.2e32744d0118150b0e62c050c195356e.js": "/precache-manifest.2e32744d0118150b0e62c050c195356e.js",
   "service-worker.js": "/service-worker.js"
 }

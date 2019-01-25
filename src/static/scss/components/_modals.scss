@@ -13,6 +13,24 @@ body.swal2-toast-shown {
 .swal2-popup {
   	border-radius: 0;
 
+	&.swal-contact {
+		.swal2-title {
+			margin-bottom: 1.5rem;
+
+			@include media-breakpoint-down(sm) {
+				font-size: 1rem;
+			} 
+		}
+
+		.your-name {
+			.form-control {
+				@include media-breakpoint-down(sm) {
+					margin-bottom: 1rem;
+				} 
+			}
+		}
+	}
+
 	.swal2-styled.swal2 {
 		&-confirm { 
 			border-radius: 50px;
