@@ -49,6 +49,10 @@
 				&:active {
 					color: $gray-400!important;
 				}
+
+				img {
+					box-shadow: 0 0 0 3px $black;
+				}
 			}
 			
 			&__icon-svg {
@@ -122,11 +126,10 @@
 				box-shadow: 0 0 0 3px #fff;
 			}
 
-			& + .dropdown-menu {
-				margin-top: -5px;
+			& + .dropdown-menu { 
 				border: 0 !important;
 				box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
-				transition: opacity 0.5s, transform 0.5s;
+				transition: opacity 0.5s, transform 0.2s;
 				transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
 				min-width: 175px;
 

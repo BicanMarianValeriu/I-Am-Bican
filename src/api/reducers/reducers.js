@@ -18,7 +18,7 @@ const initialState = {
 	},
 	posts: [],
 	menus: [],
-	fetching: false,
+	fetching: true,
 	hasMorePosts: false,
 	error: null
 };
@@ -34,6 +34,7 @@ export default function reducer(state = initialState, action) {
 		case FETCH_USER_FULFILLED: {
 			const { user } = state;
 			user.authentificated = true;
+			document.dispatchEvent(new CustomEvent('isUserAuth'));
 			return {
 				...state,
 				fetching: false,
@@ -60,7 +61,7 @@ export default function reducer(state = initialState, action) {
 			return {
 				...state,
 				fetching: false,
-				clients: action.payload.length ? action.payload : false
+				clients: action.payload.length ? action.payload : []
 			};
 		}
 		case FETCH_MEDIA_FULFILLED: {

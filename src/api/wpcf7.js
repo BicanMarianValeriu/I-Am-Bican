@@ -32,10 +32,7 @@ class WPCF7 {
 	}
 
 	getFormId() {
-		let id =
-			this.options.formId ||
-			this.el.getAttribute("data-wpcf7-form") ||
-			this.el.getAttribute("id").split("-").pop();
+		let id = this.options.formId || this.el.getAttribute("data-wpcf7-id") || this.el.getAttribute("id").split("-").pop();
 		return parseInt(id, 10);
 	}
 

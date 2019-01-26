@@ -57,14 +57,9 @@ export async function setCurrentUser(token) {
 	const headers = { Authorization: `Bearer ${token}` };
 	if (token) {
 		const decoded = JWTDecode(token);
-		const {
-			data: {
-				user: { id }
-			}
-		} = decoded;
+		const { data: { user: { id } } } = decoded;
 		try {
-			return await requestApi
-				.get("wp/v2/users/" + id, { headers, withCredentials: true })
+			return await requestApi.get("wp/v2/users/" + id, { headers, withCredentials: true })
 				.then(response => response.data);
 		} catch (e) {
 			console.log(e);

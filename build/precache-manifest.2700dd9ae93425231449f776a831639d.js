@@ -4,36 +4,36 @@ self.__precacheManifest = [
     "url": "/static/media/bican.9d90f6b5.jpg"
   },
   {
-    "revision": "930fac9382dbb122cf3c",
-    "url": "/static/css/main.b6e266f3.chunk.css"
+    "revision": "c8d70e3a6ce4ed43f71b",
+    "url": "/static/css/main.932d244a.chunk.css"
   },
   {
-    "revision": "5fa2d13ca715f8d4a22e",
-    "url": "/static/js/portfolio.5fa2d13c.chunk.js"
+    "revision": "00fa12e6650145f61274",
+    "url": "/static/js/page.00fa12e6.chunk.js"
   },
   {
-    "revision": "e4bebb21929c4d00b3a4",
-    "url": "/static/js/projects.e4bebb21.chunk.js"
+    "revision": "79c71bfd654b2d4a949a",
+    "url": "/static/js/portfolio.79c71bfd.chunk.js"
   },
   {
-    "revision": "87556ae00e5efa76ce88",
-    "url": "/static/js/swalcontact.87556ae0.chunk.js"
+    "revision": "ce1f7669f264412f0451",
+    "url": "/static/js/projects.ce1f7669.chunk.js"
   },
   {
-    "revision": "016fc697a820af2a7765",
-    "url": "/static/js/4.016fc697.chunk.js"
+    "revision": "213b526a3345887897e6",
+    "url": "/static/js/swalcontact.213b526a.chunk.js"
   },
   {
-    "revision": "8b839a6d06a034c58758",
-    "url": "/static/js/runtime~main.8b839a6d.js"
+    "revision": "8b67d3710079983a4f0f",
+    "url": "/static/js/5.8b67d371.chunk.js"
   },
   {
-    "revision": "81ba79bb3fd7955d0e819cbb8d0280e7",
-    "url": "/static/media/placeholder-bold.81ba79bb.png"
+    "revision": "f4e4dfd63fe4798485b2",
+    "url": "/static/js/runtime~main.f4e4dfd6.js"
   },
   {
-    "revision": "930fac9382dbb122cf3c",
-    "url": "/static/js/main.930fac93.chunk.js"
+    "revision": "c8d70e3a6ce4ed43f71b",
+    "url": "/static/js/main.c8d70e3a.chunk.js"
   },
   {
     "revision": "19e754c923fa5e2c55add1c8902201cf",
@@ -60,7 +60,11 @@ self.__precacheManifest = [
     "url": "/static/media/ShadowsIntoLight.3c74097f.svg"
   },
   {
-    "revision": "17e6d51116d54259f3da9bc39cec33d3",
+    "revision": "81ba79bb3fd7955d0e819cbb8d0280e7",
+    "url": "/static/media/placeholder-bold.81ba79bb.png"
+  },
+  {
+    "revision": "0f39807552dcbf9ba0b09abf63d444b9",
     "url": "/index.html"
   }
 ];

@@ -1,23 +1,23 @@
 // Deps 
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import WPCF7 from "./../../api/wpcf7";
-import { validateEmail, validateFields } from "./../../utilities/helpers";  
+import { validateEmail, validateFields } from "./../../utilities/helpers";
 
 const SwalContact = {
 	renderModal: function () {
 		const alert = Swal.fire({
 			title: "Thanks for your interest in contacting me!",
-			html: `<form name="swal-contact" id="wpcf7-6" data-wpcf7-form="6">
+			html: `<form name="swal-contact" id="wpcf7-6" data-wpcf7-id="6">
 			<div class="form-group">
 				<div class="row">
 					<div class="col-md-6">
 						<span class="wpcf7-form-control-wrap your-name">
-							<input id="swal-input1" class="form-control required" name="your-name" type="text" placeholder="Your Name" required/>
+							<input class="form-control required" name="your-name" type="text" placeholder="Your Name" required/>
 						</span>
 					</div>
 					<div class="col-md-6">
 						<span class="wpcf7-form-control-wrap your-email">
-							<input id="swal-input2" class="form-control required" name="your-email" type="email" placeholder="Your Email" required/>
+							<input class="form-control required" name="your-email" type="email" placeholder="Your Email" required/>
 						</span>
 					</div>
 				</div>
@@ -25,7 +25,7 @@ const SwalContact = {
 			<div class="form-group">
 				<div class="row">
 					<div class="col">
-						<textarea id="swal-input3" class="form-control required" name="your-message" placeholder="Your Message" required></textarea>
+						<textarea class="form-control required" name="your-message" placeholder="Your Message" required></textarea>
 					</div>
 				</div>
 			</div>
@@ -50,14 +50,17 @@ const SwalContact = {
 					return Swal.showValidationMessage(`Email address is not valid.`);
 
 				const WPCF = new WPCF7("#wpcf7-6", {
-					apiUrl: "http://www.iambican.com/dashboard/wp-json/contact-form-7/v1"
+					apiUrl: "//www.iambican.com/dashboard/wp-json/contact-form-7/v1"
 				});
 				WPCF.sendMail().then(result => {
+					console.log(result)
 					if (result.status === "mail_sent") {
 						Swal.fire({
-							title: `Awesome`,
+							title: 'Awesome',
 							text: result.message,
-							type: "success"
+							type: "success",
+							showConfirmButton: false,
+							timer: 2500
 						});
 					} else {
 						Swal.fire({

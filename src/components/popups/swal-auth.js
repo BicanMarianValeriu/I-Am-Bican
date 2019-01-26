@@ -1,13 +1,9 @@
 import Swal from "sweetalert2/dist/sweetalert2.js";
-import { validateFields } from "./../../utilities/helpers";
+import { validateFields } from "../../utilities/helpers";
 import { setAuthToken } from "../../api/auth";
 import Cookies from "js-cookie";
-import {
-	requestUserToken,
-	FETCH_USER_FULFILLED,
-	setCurrentUser
-} from "../../api/actions/actions";
-import createStore from "./../../api/store";
+import { requestUserToken, FETCH_USER_FULFILLED, setCurrentUser } from "../../api/actions/actions";
+import createStore from "../../api/store";
 
 const SwalAuth = {
 	createToast: (args) => {
@@ -58,14 +54,11 @@ const SwalAuth = {
 			showCloseButton: true,
 			width: "35rem",
 			preConfirm: () => {
-				var fields = document.forms["swal-login"].getElementsByClassName(
-					"required"
-				);
+				var fields = document.forms["swal-login"].getElementsByClassName("required");
 				var username = fields["username"].value;
 				var password = fields["password"].value;
 
-				if (validateFields(fields) === false)
-					return Swal.showValidationMessage(`Please fill all fields.`);
+				if (validateFields(fields) === false) return Swal.showValidationMessage(`Please fill all fields.`);
 
 				requestUserToken({ username, password }).then(response => {
 					let token = response && response.token;
@@ -74,18 +67,8 @@ const SwalAuth = {
 						Cookies.set("authToken", token, { expires: 7 });
 						const { store } = createStore();
 						setCurrentUser(token)
-							.then(response => {
-								store.dispatch({
-									type: FETCH_USER_FULFILLED,
-									payload: response
-								});
-							})
-							.then(
-								SwalAuth.createToast({
-									type: "success",
-									title: `Welcome back ${response.user_display_name}.`
-								})
-							);
+							.then(response => { store.dispatch({ type: FETCH_USER_FULFILLED, payload: response }); }) 
+							.then(SwalAuth.createToast({ type: "success", title: `Welcome back ${response.user_display_name}.` }));
 					} else {
 						Swal.fire({
 							title: `Something went wrong.`,
