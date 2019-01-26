@@ -16,6 +16,20 @@ const frontload = async props => await props.fetchDispatcher(
 );
 
 class Portfolio extends Component {
+	componentWillReceiveProps(nextProps) {
+		if (this.props.location.pathname !== nextProps.location.pathname) {
+			return this.props.dispatch(fetchDispatcher(
+				'wp/v2/portfolio',
+				{ slug: nextProps.match.params.slug },
+				{ success: FETCH_POSTS_FULFILLED }
+			));
+		}
+	}
+
+	shouldComponentUpdate(nextProps) {
+		return (JSON.stringify(this.props) !== JSON.stringify(nextProps))
+	}
+
 	componentDidUpdate() {
 		window.scrollTo(0, 0);
 	} 

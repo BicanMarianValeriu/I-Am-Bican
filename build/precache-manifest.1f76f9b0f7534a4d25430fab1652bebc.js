@@ -4,36 +4,36 @@ self.__precacheManifest = [
     "url": "/static/media/bican.9d90f6b5.jpg"
   },
   {
-    "revision": "c8d70e3a6ce4ed43f71b",
+    "revision": "f6a96505e8addb15e110",
     "url": "/static/css/main.932d244a.chunk.css"
   },
   {
-    "revision": "00fa12e6650145f61274",
-    "url": "/static/js/page.00fa12e6.chunk.js"
+    "revision": "11749a1c832b21ba913e",
+    "url": "/static/js/page.11749a1c.chunk.js"
   },
   {
-    "revision": "79c71bfd654b2d4a949a",
-    "url": "/static/js/portfolio.79c71bfd.chunk.js"
+    "revision": "fd2b9295e0f3abc15f72",
+    "url": "/static/js/portfolio.fd2b9295.chunk.js"
   },
   {
-    "revision": "ce1f7669f264412f0451",
-    "url": "/static/js/projects.ce1f7669.chunk.js"
+    "revision": "93c639232fbe14d6a089",
+    "url": "/static/js/projects.93c63923.chunk.js"
   },
   {
-    "revision": "213b526a3345887897e6",
-    "url": "/static/js/swalcontact.213b526a.chunk.js"
+    "revision": "8ed71a597138ea74aba4",
+    "url": "/static/js/swalcontact.8ed71a59.chunk.js"
   },
   {
-    "revision": "8b67d3710079983a4f0f",
-    "url": "/static/js/5.8b67d371.chunk.js"
+    "revision": "9b604018eb6e1335c236",
+    "url": "/static/js/5.9b604018.chunk.js"
   },
   {
-    "revision": "f4e4dfd63fe4798485b2",
-    "url": "/static/js/runtime~main.f4e4dfd6.js"
+    "revision": "54914c19d92641ab510b",
+    "url": "/static/js/runtime~main.54914c19.js"
   },
   {
-    "revision": "c8d70e3a6ce4ed43f71b",
-    "url": "/static/js/main.c8d70e3a.chunk.js"
+    "revision": "f6a96505e8addb15e110",
+    "url": "/static/js/main.f6a96505.chunk.js"
   },
   {
     "revision": "19e754c923fa5e2c55add1c8902201cf",
@@ -64,7 +64,7 @@ self.__precacheManifest = [
     "url": "/static/media/placeholder-bold.81ba79bb.png"
   },
   {
-    "revision": "0f39807552dcbf9ba0b09abf63d444b9",
+    "revision": "a22c1d3be3e532562dd4279f9b4a4f72",
     "url": "/index.html"
   }
 ];
