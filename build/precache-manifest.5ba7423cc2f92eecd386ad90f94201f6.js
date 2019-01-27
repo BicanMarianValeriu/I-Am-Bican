@@ -4,40 +4,40 @@ self.__precacheManifest = [
     "url": "/static/media/bican.9d90f6b5.jpg"
   },
   {
-    "revision": "f5b0997b16f47e7e06c6",
+    "revision": "ba0476a68e016b84b997",
     "url": "/static/css/main.fed90dbe.chunk.css"
   },
   {
-    "revision": "c0a5416bfe728b6fbdea",
-    "url": "/static/js/page.c0a5416b.chunk.js"
+    "revision": "7dd7ba54ce25d40c035c",
+    "url": "/static/js/page.7dd7ba54.chunk.js"
   },
   {
-    "revision": "edd95cda8acc24d5acee",
-    "url": "/static/js/portfolio.edd95cda.chunk.js"
+    "revision": "8463d139030a20c6e60e",
+    "url": "/static/js/portfolio.8463d139.chunk.js"
   },
   {
-    "revision": "32f150ce713d0b693d3d",
-    "url": "/static/js/projects.32f150ce.chunk.js"
+    "revision": "7d83b186a91367d85614",
+    "url": "/static/js/projects.7d83b186.chunk.js"
   },
   {
-    "revision": "82d2c77b5e24cb493de6",
-    "url": "/static/js/swalcontact.82d2c77b.chunk.js"
+    "revision": "ab808f867670d022be26",
+    "url": "/static/js/swalcontact.ab808f86.chunk.js"
   },
   {
     "revision": "81ba79bb3fd7955d0e819cbb8d0280e7",
     "url": "/static/media/placeholder-bold.81ba79bb.png"
   },
   {
-    "revision": "e3b0b11a99e62512ec5f",
-    "url": "/static/js/5.e3b0b11a.chunk.js"
+    "revision": "1460b1443a180c04ec41",
+    "url": "/static/js/5.1460b144.chunk.js"
   },
   {
-    "revision": "f3a3a62e707cda68ed65",
-    "url": "/static/js/runtime~main.f3a3a62e.js"
+    "revision": "ada87cf61c492157966b",
+    "url": "/static/js/runtime~main.ada87cf6.js"
   },
   {
-    "revision": "f5b0997b16f47e7e06c6",
-    "url": "/static/js/main.f5b0997b.chunk.js"
+    "revision": "ba0476a68e016b84b997",
+    "url": "/static/js/main.ba0476a6.chunk.js"
   },
   {
     "revision": "19e754c923fa5e2c55add1c8902201cf",
@@ -52,23 +52,23 @@ self.__precacheManifest = [
     "url": "/static/media/ShadowsIntoLight.4e21f1ae.woff"
   },
   {
-    "revision": "33adae677fab86b44462b81620210061",
-    "url": "/static/media/ShadowsIntoLight.33adae67.eot"
-  },
-  {
     "revision": "4141b2ff16a24a462106e206def679c1",
     "url": "/static/media/ShadowsIntoLight.4141b2ff.ttf"
+  },
+  {
+    "revision": "33adae677fab86b44462b81620210061",
+    "url": "/static/media/ShadowsIntoLight.33adae67.eot"
   },
   {
     "revision": "3c74097fbedcb8364bad02341117e51d",
     "url": "/static/media/ShadowsIntoLight.3c74097f.svg"
   },
   {
-    "revision": "e3b0b11a99e62512ec5f",
+    "revision": "1460b1443a180c04ec41",
     "url": "/static/css/5.93ce77fe.chunk.css"
   },
   {
-    "revision": "82d625740b90da11e3053b7ca5090b3d",
+    "revision": "cba5a014d0a0a54c4ec8aa56cd9f5ec1",
     "url": "/index.html"
   }
 ];

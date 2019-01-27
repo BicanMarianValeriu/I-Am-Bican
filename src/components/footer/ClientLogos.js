@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { TweenMax } from "gsap/TweenMax";
 import { fetchDispatcher, FETCH_CLIENTS_FULFILLED } from "../../api/actions/actions";
-import { connect } from "react-redux";
-import Splitting from 'splitting';
+import { connect } from "react-redux"; 
 let ScrollMagic;
+let Splitting;
 
 class ClientLogos extends Component {
 	componentDidMount() {
@@ -11,7 +11,9 @@ class ClientLogos extends Component {
 			fetchDispatcher("wp/v2/clients", {}, { success: FETCH_CLIENTS_FULFILLED })
 		);
 		
-        ScrollMagic = require("scrollmagic"); 
+		ScrollMagic = require("scrollmagic");
+		Splitting = require("splitting"); 
+		 
 		let controller = new ScrollMagic.Controller();
 		
 		const target = document.querySelector('.company-logos__title');

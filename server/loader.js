@@ -12,10 +12,10 @@ import { Frontload, frontloadServerRender } from "react-frontload";
 import Loadable from "react-loadable";
 
 // Our store, entrypoint, and manifest
-import createStore from "../src/api/store";
-import App from "../src/App";
-import manifest from "../build/asset-manifest.json";
-import { setCurrentUser, LOGOUT_USER, FETCH_USER_FULFILLED } from "../src/api/actions/actions";
+import createStore from "./../src/api/store";
+import App from "./../src/App";
+import manifest from "./../build/asset-manifest.json";
+import { setCurrentUser, LOGOUT_USER, FETCH_USER_FULFILLED } from "./../src/api/actions/actions";
 
 // LOADER
 export default (req, res) => {

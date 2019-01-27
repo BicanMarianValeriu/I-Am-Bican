@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import Splitting from 'splitting';
+import React, { Component } from 'react'; 
 
 let ScrollMagic;
+let Splitting;
 
 export default class AboutSkills extends Component {
     constructor(props) {
@@ -60,7 +60,8 @@ export default class AboutSkills extends Component {
     componentDidMount() { 
         // Add Animations
         ScrollMagic = require("scrollmagic");
-        
+        Splitting = require("splitting");
+
         let controller = new ScrollMagic.Controller();
         let boxes = document.querySelectorAll(".skill-box");
 
