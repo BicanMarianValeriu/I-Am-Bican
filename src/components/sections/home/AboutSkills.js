@@ -67,7 +67,7 @@ export default class AboutSkills extends Component {
 
         new ScrollMagic.Scene({
             triggerElement: '.about-skills__headline',
-            triggerHook: .8
+            triggerHook: .75
         }).setClassToggle('.about-skills__headline', "maskUp").addTo(controller);
 
         new ScrollMagic.Scene({
@@ -89,17 +89,19 @@ export default class AboutSkills extends Component {
             triggerElement: '.about-skills__headline',
             triggerHook: .75
         }).setClassToggle('.about-skills__pre', "about-skills__pre--animated").addTo(controller);
+        
     }
 
-    renderSkills() {
+    renderSkills() { 
         const { skills } = this.state;
         if (skills.length) {
             let count = 0;
             return skills.map((item, index) => {
                 if (index % 3 === 0) count = 0;
                 count++;
+                let delay = window.innerWidth > 992 ? 150 * count : 0;
                 let style = {
-                    '--animation-delay': 150 * count + 'ms'
+                    '--animation-delay': delay + 'ms'
                 };
                 return (
                     <div id={`skill-box-${index + 1}`} className="col-md-6 col-lg-4" key={index} >

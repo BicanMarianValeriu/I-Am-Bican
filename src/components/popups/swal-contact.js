@@ -50,10 +50,9 @@ const SwalContact = {
 					return Swal.showValidationMessage(`Email address is not valid.`);
 
 				const WPCF = new WPCF7("#wpcf7-6", {
-					apiUrl: "//www.iambican.com/dashboard/wp-json/contact-form-7/v1"
+					apiUrl: "//www.iambican.com/dashboard/wp-json/contact-form-7/v1" 
 				});
-				WPCF.sendMail().then(result => {
-					console.log(result)
+				WPCF.sendMail().then(result => { 
 					if (result.status === "mail_sent") {
 						Swal.fire({
 							title: 'Awesome',

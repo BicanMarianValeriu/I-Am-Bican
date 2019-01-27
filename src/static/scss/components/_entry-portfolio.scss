@@ -59,7 +59,7 @@
         position: relative;
         padding: 4.5rem 0;
     
-        @include media-breakpoint-down(sm) { 
+        @include media-breakpoint-down(md) { 
             padding: 2.5rem 0;
         }
 
@@ -69,15 +69,14 @@
             background-color: $gray-100;
             top: 0;
             bottom: 0;
-            left: calc(-100vw / 2 + 100% / 2 + 17px / 2);
-            right: calc(-100vw / 2 + 100% / 2 + 17px / 2);
+            left: calc(-100vw / 2 + 100% / 2 );
+            right: calc(-100vw / 2 + 100% / 2 );
             z-index: -1;
         }
     } 
 }
 
 .portfolio-meta {  
-
     &__item {
         &-label {
             font-size: .8rem;

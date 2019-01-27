@@ -11,27 +11,27 @@ const Meta = props => {
 		</div>
 	));
 
-	let website = `<a target="_blank" href="${meta ? meta.website : "#"}">Visit Live Site</a>`;
+	let website = `<a target="_blank" href="${meta ? meta.website : "#"}">View Live Site</a>`;
 
 	return (
 		<div className="portfolio__meta portfolio-meta">
 			<div className="row">
-				<div className="portfolio-meta__item col-md-6 col-lg-3 mb-3 mb-lg-0" title="Went Live">
+				<div className="portfolio-meta__item col-sm-6 col-lg-3 mb-3 mb-lg-0" title="Went Live">
 					<span className="portfolio-meta__item-label">Date</span>
 					<hr className="my-2" />
 					<time className="portfolio-meta__item-value" dateTime={date_gmt}>{date_human}</time>
 				</div>
-				<div className="portfolio-meta__item col-md-6 col-lg-3 mb-3 mb-lg-0" title="Cost Range">
+				<div className="portfolio-meta__item col-sm-6 col-lg-3 mb-3 mb-lg-0" title="Cost Range">
 					<span className="portfolio-meta__item-label">Cost</span>
 					<hr className="my-2" />
 					<span className="portfolio-meta__item-value">{count > 0 ? money : "Free"}</span>
 				</div>
-				<div className="portfolio-meta__item col-md-6 col-lg-3 mb-3 mb-lg-0" title="Client">
+				<div className="portfolio-meta__item col-sm-6 col-lg-3 mb-3 mb-lg-0" title="Client">
 					<span className="portfolio-meta__item-label">Client</span>
 					<hr className="my-2" />
 					<span className="portfolio-meta__item-value">An Amazing Person</span>
 				</div>
-				<div className="portfolio-meta__item col-md-6 col-lg-3 mb-3 mb-lg-0" title="Live URL">
+				<div className="portfolio-meta__item col-sm-6 col-lg-3 mb-3 mb-lg-0" title="Live URL">
 					<span className="portfolio-meta__item-label">Link</span>
 					<hr className="my-2" />
 					<span className="portfolio-meta__item-value portfolio-meta__item-value--url"

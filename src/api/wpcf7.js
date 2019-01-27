@@ -38,8 +38,8 @@ class WPCF7 {
 
 	async sendMail() {
 		let formData = new FormData(this.el);
-		let url = this.getRoute("/contact-forms/" + this.getFormId() + "/feedback");
-		return await axios.post(url, { data: formData }).then(result => result.data);
+		let url = this.getRoute("/contact-forms/" + this.getFormId() + "/feedback"); 
+		return await axios({ method: 'post', url: url, data: formData }).then(result => result.data);
 	}
 }
 

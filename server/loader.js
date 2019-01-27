@@ -48,10 +48,9 @@ export default (req, res) => {
 
 			// If the user has a cookie (i.e. they're signed in) - set them as the current user
 			// Otherwise, we want to set the current state to be logged out, just in case this isn't the default
-			if ("authToken" in req.cookies)
-				setCurrentUser(req.cookies.authToken).then(response =>
-					store.dispatch({ type: FETCH_USER_FULFILLED, payload: response })
-				);
+			if ("authToken" in req.cookies) setCurrentUser(req.cookies.authToken).then(response =>
+				store.dispatch({ type: FETCH_USER_FULFILLED, payload: response })
+			);
 			else store.dispatch({ type: LOGOUT_USER });
 
 			const context = {};
@@ -74,8 +73,7 @@ export default (req, res) => {
 					// If context has a url property, then we need to handle a redirection in Redux Router
 					res.writeHead(302, { Location: context.url });
 					res.end();
-				} else {
-					// Otherwise, we carry on...
+				} else { 
 					// Let's give ourself a function to load all our page-specific JS assets for code splitting
 					const extractAssets = (assets, chunks) =>
 						Object.keys(assets)
@@ -83,11 +81,7 @@ export default (req, res) => {
 							.map(k => assets[k]);
 					// Let's format those assets into pretty <script> tags
 					const extraChunks = extractAssets(manifest, modules).map(
-						c =>
-							`<script type="text/javascript" src="/${c.replace(
-								/^\//,
-								""
-							)}"></script>`
+						c => `<script type="text/javascript" src="/${c.replace(/^\//, "")}"></script>`
 					);
 					// We need to tell Helmet to compute the right meta tags, title, and such
 					const helmet = Helmet.renderStatic();

@@ -18,11 +18,11 @@ const frontload = async props => await props.fetchDispatcher(
 class Portfolio extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (this.props.location.pathname !== nextProps.location.pathname) {
-			return this.props.dispatch(fetchDispatcher(
+			this.props.fetchDispatcher(
 				'wp/v2/portfolio',
 				{ slug: nextProps.match.params.slug },
 				{ success: FETCH_POSTS_FULFILLED }
-			));
+			);
 		}
 	}
 
@@ -32,8 +32,8 @@ class Portfolio extends Component {
 
 	componentDidUpdate() {
 		window.scrollTo(0, 0);
-	} 
- 
+	}
+
 	render() {
 		const entry = this.props.posts[0];
 		const { location: { pathname } } = this.props;
@@ -51,7 +51,7 @@ class Portfolio extends Component {
 					{meta.description && <meta name="description" content={meta.description} />}
 				</Helmet>
 				<div id="content" className="content">
-					<PrevNext />
+					<PrevNext posts={this.props.posts} />
 					<Main posts={this.props.posts} isSingle={true} />
 				</div>
 			</React.Fragment>
