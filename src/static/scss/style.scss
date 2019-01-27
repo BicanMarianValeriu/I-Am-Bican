@@ -77,6 +77,8 @@
 /* Vendor */
 @import "abstracts/variables-swal2";
 @import "../../../node_modules/sweetalert2/src/sweetalert2.scss";
+@import "../../../node_modules/splitting/dist/splitting.css";
+@import "../../../node_modules/splitting/dist/splitting-cells.css";
 
 /* Helpers */
 @import "helpers/helpers";

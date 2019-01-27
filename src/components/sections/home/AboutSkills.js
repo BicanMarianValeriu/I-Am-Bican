@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Splitting from 'splitting';
+
 let ScrollMagic;
 
 export default class AboutSkills extends Component {
@@ -58,14 +60,7 @@ export default class AboutSkills extends Component {
     componentDidMount() { 
         // Add Animations
         ScrollMagic = require("scrollmagic");
-        this.setState({ scrollmagic: true });
-
-		/* if (window.innerWidth < 576) {
-			for (let i = 0; i < boxes.length; i++) boxes[i].classList.add("skill-box--animated"); 
-			return;
-		} */
-
-        if (this.state.scrollmagic === false) return;
+        
         let controller = new ScrollMagic.Controller();
         let boxes = document.querySelectorAll(".skill-box");
 
@@ -85,6 +80,14 @@ export default class AboutSkills extends Component {
                 triggerHook: .95
             }).setClassToggle(boxes[i], "skill-box--animated").addTo(controller);
         }
+
+        const target = document.querySelector('.about-skills__pre');
+        Splitting({ target: target });
+
+        new ScrollMagic.Scene({
+            triggerElement: '.about-skills__headline',
+            triggerHook: .75
+        }).setClassToggle('.about-skills__pre', "about-skills__pre--animated").addTo(controller);
     }
 
     renderSkills() {

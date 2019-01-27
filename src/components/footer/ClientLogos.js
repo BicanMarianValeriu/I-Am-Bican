@@ -2,12 +2,25 @@ import React, { Component } from "react";
 import { TweenMax } from "gsap/TweenMax";
 import { fetchDispatcher, FETCH_CLIENTS_FULFILLED } from "../../api/actions/actions";
 import { connect } from "react-redux";
+import Splitting from 'splitting';
+let ScrollMagic;
 
 class ClientLogos extends Component {
 	componentDidMount() {
 		this.props.dispatch(
 			fetchDispatcher("wp/v2/clients", {}, { success: FETCH_CLIENTS_FULFILLED })
 		);
+		
+        ScrollMagic = require("scrollmagic"); 
+		let controller = new ScrollMagic.Controller();
+		
+		const target = document.querySelector('.company-logos__title');
+        Splitting({ target: target });
+
+        new ScrollMagic.Scene({
+            triggerElement: '.company-logos__title',
+            triggerHook: .75
+        }).setClassToggle('.company-logos__title', "company-logos__title--animated").addTo(controller);
 	}
 
 	shouldComponentUpdate(nextProps) {
@@ -90,8 +103,7 @@ class ClientLogos extends Component {
 	}
 
 	renderLogos() {
-		const { clients } = this.props;
-
+		const { clients } = this.props; 
 		if (clients) return clients.map((item, i) => {
 			const { acf } = item;
 			const { client_logo } = acf;
