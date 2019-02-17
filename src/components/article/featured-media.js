@@ -26,17 +26,18 @@ class FeaturedMedia extends Component {
     }
 
     getMediaImage(fetchedMedia) {
-        const { medium_large } = fetchedMedia.media_details.sizes;
-        let imageUrl = medium_large ? medium_large.source_url : placeholder;
+        const { large } = fetchedMedia.media_details.sizes;
+        let imageUrl = large ? large.source_url : placeholder;
         return imageUrl;
     }
 
     getClasses() {
         let classes = ['entry__media', 'box-shadow', 'box-shadow--big'];
         const { fetchedMedia } = this.props;
-        const { medium_large } = fetchedMedia ? fetchedMedia.media_details.sizes : {};
-        let imageUrl = medium_large ? medium_large.source_url : placeholder;
+        const { large } = fetchedMedia ? fetchedMedia.media_details.sizes : {};
+        let imageUrl = large ? large.source_url : placeholder;
         if (imageUrl === placeholder) classes.push(['entry__media--placeholder']);
+        if (this.props.isMain) classes.push(['entry__media--main']);
         return classes.join(' ');
     }
 

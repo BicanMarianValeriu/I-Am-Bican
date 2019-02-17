@@ -1,6 +1,11 @@
 .page-intro {
     position: relative;
-    background: linear-gradient(45deg,#0052a4 0,#06c 25%,rgba(0,221,255,.8) 100%);
+    background: linear-gradient(
+		45deg,
+		darken( theme-color( 'primary' ), 15% ) 5%,
+		theme-color( 'primary' ) 35%,
+		lighten( theme-color( 'primary' ), 10% ) 100%
+	);
     padding: 130px 0 80px;
     z-index: 1;
 

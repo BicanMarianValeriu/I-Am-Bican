@@ -13,10 +13,8 @@
          url('../fonts/ShadowsIntoLight.svg#ShadowsIntoLight') format('svg'); 
 }
 
-// Setup 
-@import "../../../node_modules/bootstrap/scss/functions";
-@import "../../../node_modules/bootstrap/scss/mixins";
-@import "abstracts/variables";
+// Setup  
+@import "abstracts/bootstrap-required";
 
 // Optional
 @import "../../../node_modules/bootstrap/scss/reboot";
@@ -84,12 +82,10 @@
 @import "helpers/helpers";
 @import "helpers/animations";
 
-/* Custom Code */
+/* Custom Common Code */
 @import "components/header.scss";
 @import "components/menu.scss"; 
 @import "components/entry.scss";
-@import "components/entry-portfolio.scss";
-@import "components/portfolio-prev-next.scss";
 @import "components/preloader.scss";
 @import "components/page-intro.scss";
 @import "components/about-me.scss";
@@ -99,7 +95,4 @@
 @import "components/client-logos.scss";
 @import "components/modals.scss"; 
 @import "components/footer.scss"; 
-@import "components/svg-icons.scss";
-
-/* Pages */
-@import "pages/404.scss"; 
+@import "components/svg-icons.scss"; 

@@ -13,13 +13,15 @@ const frontload = async props => await props.fetchDispatcher('wp/v2/menu/' + pro
 
 class Navigation extends Component {
     renderMenuItems(menu) {
+        let { pathname } = this.props.location;
+
         if (this.props.wpMenuId === menu.ID) {
             return menu.items.map((item, index) => {
 
                 let classes = ['nav-link'];
                 let _classes = (item.classes.length) ? item.classes.split(' ') : '';
                 if (_classes) for (let i = 0; i < _classes.length; i++) classes.push(_classes[i]);
-
+                if (item.url !== '/' && pathname.includes(item.url)) classes.push('active');
                 let liClasses = ['nav-item'];
                 if (item.children) liClasses.push('nav-item--has-dropdown');
 
@@ -37,7 +39,7 @@ class Navigation extends Component {
         }
     }
 
-    renderDropdown(items) {
+    renderDropdown(items) { 
         return items.map((item) => {
             let classes = ['nav-link', 'nav-link--dropdown'];
             let _classes = (item.classes.length) ? item.classes.split(' ') : '';

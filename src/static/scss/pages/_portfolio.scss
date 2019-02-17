@@ -1,0 +1,65 @@
+@import "./../abstracts/bootstrap-required";
+
+.header {
+    &--portfolio {
+        .nav-pills {
+			.nav-link {
+				color: white;
+
+				&:hover,
+				&.active {
+					&::after {
+						width: 100%;
+						border-color: white;
+					}
+				}
+			}
+		}
+
+		.header {
+            &-login {
+                &--is-auth {
+                    .header-login {
+                        &__btn {
+                            &[aria-expanded="true"] {
+                                img {
+                                    box-shadow: 0 0 0 3px white;
+                                }
+                            }
+                        }
+                    }
+                }
+    
+                &__btn {
+                    color: white;
+    
+                    &:hover, 
+                    &:focus,
+                    &:active {
+                        color: white!important;
+                    }
+    
+                    img {
+                        box-shadow: 0 0 0 3px $white;
+                    }
+                }
+                
+                &__icon-svg {
+                    border-color: $white;
+                }
+            } 
+
+            &__cta {
+                &-btn {
+                    border-color: white;
+                    color: white;
+
+                    &:hover {
+                        color: $black;
+                        background-color: white;
+                    }
+                }
+            }
+        }
+	}
+} 

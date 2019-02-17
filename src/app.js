@@ -15,13 +15,20 @@ export default class App extends Component {
 		library.add(icons);
 		library.add(brands);
 		dom.watch();
+
+		// Window sizes
+		var wecodeart = window.wecodeart = {};
+		wecodeart.winsize = {};
+		const calcWinsize = () => wecodeart.winsize = { width: window.innerWidth, height: window.innerHeight };
+		calcWinsize();
+		window.addEventListener('resize', calcWinsize); 
 	}
 
 	render() {
 		return (
 			<React.Fragment>
 				<Helmet titleTemplate="%s - IAmBican">
-					<title>Howdy</title>
+					<title>FullStack Developer</title>
 					<meta name="description"
 						content="WordPress/React Developer at myZone/AM2Studio. You can now hire me for your website/projects." />
 				</Helmet>

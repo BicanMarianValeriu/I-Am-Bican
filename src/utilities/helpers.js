@@ -4,14 +4,10 @@
  */
 const getFormData = function (formEl) {
 	// Like THIS Because IE/EDGE does not f*king know how to read FormData entries
-	return [].reduce.call(
-		formEl.elements,
-		(data, element) => {
-			if (element.value !== "") data[element.name] = element.value;
-			return data;
-		},
-		{}
-	);
+	return [].reduce.call(formEl.elements, (data, element) => {
+		if (element.value !== "") data[element.name] = element.value;
+		return data;
+	}, {});
 };
 
 /**
@@ -50,4 +46,58 @@ const serializeData = function (data) {
 	return str;
 };
 
-export { getFormData, validateEmail, validateFields, serializeData };
+/**
+ * Lerp
+ * @param {*} a 
+ * @param {*} b 
+ * @param {*} n 
+ */
+const lerp = (a, b, n) => (1 - n) * a + n * b;
+
+/**
+ * Get Mouse Position
+ * @param {e} JS Event
+ */
+const getMousePos = (e) => {
+	let body = document.body;
+	let posx = 0;
+	let posy = 0;
+	if (!e) e = window.event;
+	if (e.pageX || e.pageY) {
+		posx = e.pageX;
+		posy = e.pageY;
+	} else if (e.clientX || e.clientY) {
+		posx = e.clientX + body.scrollLeft + document.documentElement.scrollLeft;
+		posy = e.clientY + body.scrollTop + document.documentElement.scrollTop;
+	}
+	return { x: posx, y: posy }
+}
+
+/**
+ * Line EQ
+ * @param {*} y2 
+ * @param {*} y1 
+ * @param {*} x2 
+ * @param {*} x1 
+ * @param {*} currentVal 
+ */
+const lineEq = (y2, y1, x2, x1, currentVal) => {
+	let m = (y2 - y1) / (x2 - x1);
+	let b = y1 - m * x1;
+	return m * currentVal + b;
+};
+
+/**
+ * ShuffleArray
+ * @param {*} arr 
+ */
+const shuffleArray = arr => arr.sort(() => Math.random() - 0.5);
+
+/**
+ * Randomize between
+ * @param {*} min 
+ * @param {*} max 
+ */
+const randomize = (min, max) => (Math.random() * (max - min)) + min; 
+
+export { getFormData, validateEmail, validateFields, serializeData, lerp, lineEq, getMousePos, shuffleArray, randomize };

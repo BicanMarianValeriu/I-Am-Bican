@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import { isAuthentificated, removeAuthToken, getAuthToken } from "../../api/auth";
 import { LOGOUT_USER, setCurrentUser, FETCH_USER_FULFILLED } from "../../api/actions/actions";
-import SwalAuth from "../Popups/swal-auth";
+import { SwalToast } from "../Popups/swal-auth";
 
 class Login extends Component {
 	constructor(props) {
@@ -30,7 +30,7 @@ class Login extends Component {
 		if (this.state.Modal === null) {
 			import(/* webpackChunkName: "swalauth" */ "../Popups/swal-auth").then(modal => this.setState({ Modal: modal.default }));
 		}
-		if (this.state.Modal !== null && !isAuthentificated()) this.state.Modal.renderModal();
+		if (this.state.Modal !== null && !isAuthentificated()) this.state.Modal();
 	}
 
 	_onLogoutClick() {
@@ -38,7 +38,7 @@ class Login extends Component {
 			removeAuthToken();
 			this.props.dispatch({ type: LOGOUT_USER });
 			Cookies.remove("authToken");
-			SwalAuth.createToast({ type: "success", title: `Logged out. See you soon :).` });
+			SwalToast.fire({ type: "success", title: `Logged out. See you soon :).` });
 		}
 	}
 

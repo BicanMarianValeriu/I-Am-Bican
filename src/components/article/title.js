@@ -1,17 +1,21 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-
 import { getTitle } from '../../utilities/functions';
 
 const Title = (props) => {
     const { type, slug } = props;
 
-    let headingClass = []; // No Class if is archive
-    if (props.isSingle) headingClass.push(['entry__title']);
+    // Title
+    let title = getTitle(props); 
 
-    const title = <h1 className={headingClass.join(' ')} dangerouslySetInnerHTML={getTitle(props)} />;
+    // Class
+    let headingClass = ['entry__title'];
 
-    return (props.isSingle ? title : <Link className="entry__title" to={`${type}/${slug}`}>{title}</Link>);
+    return (<h1 className={headingClass.join(' ')}>{
+        props.isSingle ?
+            <span dangerouslySetInnerHTML={title}></span> :
+            <Link to={`${type}/${slug}`} dangerouslySetInnerHTML={title}></Link>
+    }</h1>);
 };
 
 export default withRouter(Title);

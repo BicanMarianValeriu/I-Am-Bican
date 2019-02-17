@@ -8,6 +8,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
 
+// SCSS
+import "./../static/scss/components/_portfolio-prev-next.scss";
+import "./../static/scss/components/_entry-portfolio.scss";
+
 // Server Side Stuff
 const frontload = async props => await props.fetchDispatcher(
 	"wp/v2/portfolio",

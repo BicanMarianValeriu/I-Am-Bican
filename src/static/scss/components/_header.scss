@@ -6,13 +6,40 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-		z-index: 1000;
+		z-index: 500;
 		background-color: transparent;
+	} 
+
+	&--home {
+		.header {
+			&__bar { 
+				@include media-breakpoint-down(md) {
+					margin-top: 10px;
+				}
+			}
+		}
+	}
+	
+	&--white {
+		.header {
+			&__cta {
+				&-btn {
+					border-color: white;
+					color: white;
+
+					&:hover {
+						background-color: white;
+						color: theme-color( 'primary' );
+					}
+				}
+			}
+		}
 	}
 
-	&--site {
+	&--blue {
 		background-color: #fbfbfb;
 		border-bottom: 1px solid $gray-100;
+		z-index: 500;
 
 		.nav-pills {
 			.nav-link {
@@ -70,8 +97,8 @@
 
 				.svg-inline--fa {
 					display: block;
-					width: 21px;
-					height: 21px;
+					width: 20px;
+					height: 20px;
 		
 					@include media-breakpoint-down(md) {
 						width: 18px;
@@ -88,13 +115,13 @@
 			border-radius: 0;
 			background-color: transparent;
 			border-color: transparent;
-			width: 55px;
-			height: 55px;
+			width: 41px;
+			height: 41px;
 			color: white;
 
 			@include media-breakpoint-down(md) {
-				width: 50px;
-				height: 50px;
+				width: 36px;
+				height: 36px;
 			}
 
 			&:hover,
@@ -199,25 +226,24 @@
 		}
 	}
 
-	&__cta { 
+	&__cta {  
 		@include media-breakpoint-down(xs) {
 			flex-grow: 0;
 		}
 
-		.btn {
-			border: 2px solid $black;
+		&-btn {
+			border: 2px solid theme-color( 'primary' );
 			border-radius: 50px;
 			box-shadow: none;
-			color: $black;
+			color: theme-color( 'primary' );
 
 			@include media-breakpoint-down(xs) {
 				padding: .4rem;
     			line-height: 1;
 			}
 
-			&:hover {
+			&:hover { 
 				background-color: theme-color( 'primary' );
-				border-color: theme-color( 'primary' );
 				color: white;
 			}
 

@@ -16,7 +16,7 @@ const initialState = {
 	user: {
 		authentificated: false
 	},
-	posts: [],
+	posts: [], 
 	menus: [],
 	fetching: true,
 	hasMorePosts: false,

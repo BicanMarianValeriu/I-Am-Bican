@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 // Components
 import AboutMeInfo from "./AboutMeInfo";
 import GetInTouch from '../../GetInTouch';
-import { TweenMax, Power1 } from "gsap/TweenMax";
+import { TweenMax, Power2, Elastic } from "gsap/TweenMax";
+import { randomize } from './../../../utilities/helpers';
+import Splitting from 'splitting';
 
 // Assets 
 import Bican from "./../../../static/images/bican.jpg";
@@ -12,6 +14,7 @@ import BicanOld from "./../../../static/images/bican-old.jpg";
 
 export default class AboutMe extends Component {
 	componentDidMount() {
+		this.initAnimations();
 		this.animateProfilePicture();
 		this.handlePictureChange();
 	}
@@ -43,7 +46,7 @@ export default class AboutMe extends Component {
 				rotationY: 0.15 * xPos,
 				rotationX: -0.15 * yPos,
 				scale: 1.07,
-				ease: Power1.easeOut,
+				ease: Power2.easeOut,
 				transformPerspective: 500,
 				transformOrigin: "center"
 			});
@@ -58,6 +61,27 @@ export default class AboutMe extends Component {
 		});
 	}
 
+	initAnimations() {
+		let targets = [...document.querySelectorAll('.about-me__subline'), document.querySelector('.about-me__headline')];
+		Splitting({ target: targets });
+		let nameChars = [...document.querySelectorAll('.about-me__headline .char')];
+		TweenMax.staggerFrom(nameChars, .8, {
+			opacity: 0,
+			y: 50,
+			z: 0,
+			ease: Elastic.easeOut.config(1, 0.8),
+		}, .10); 
+		let sublinesChars = document.querySelectorAll('.about-me__subline .char');
+		for (let i = 0; i < sublinesChars.length; i++) TweenMax.from(sublinesChars[i], 1.5, {
+			opacity: 0,
+			x: randomize(-300, 300),
+			y: randomize(-300, 300),
+			z: randomize(-300, 300),
+			scale: .1,
+			delay: i * .02
+		}); 
+	}
+
 	render() {
 		return (
 			<section id="about-me" className="about-me">
@@ -69,6 +93,9 @@ export default class AboutMe extends Component {
 								<div className="about-me__profile box-shadow box-shadow--profile">
 									<div className="shown" style={{ backgroundImage: `url('${Bican}')` }} />
 									<div style={{ backgroundImage: `url('${BicanOld}')` }} />
+									<svg className="about-me__profile-decoration" viewBox="0 0 300 415">
+										<path d="M20.5,20.5h260v375h-260V20.5z"></path>
+									</svg>
 								</div>
 							</div>
 							<div className="col-lg-8 about-me__info">

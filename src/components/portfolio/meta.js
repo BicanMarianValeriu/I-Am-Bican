@@ -4,7 +4,7 @@ const Meta = props => {
 	const { date_gmt, date_human, acf } = props;
 	const { meta } = acf; 
 	var count = meta ? parseInt(meta.cost) : 0;
-	var money = [...Array(count)];
+	var money = [...Array(count).keys()];
 	money = money.map((val, index) => (
 		<div key={index} className="portfolio-meta__item-value__svg">
 			<i className="far fa-money-bill-alt svg-icon--cost"></i>
@@ -24,7 +24,7 @@ const Meta = props => {
 				<div className="portfolio-meta__item col-sm-6 col-lg-3 mb-3 mb-lg-0" title="Cost Range">
 					<span className="portfolio-meta__item-label">Cost</span>
 					<hr className="my-2" />
-					<span className="portfolio-meta__item-value">{count > 0 ? money : "Free"}</span>
+					<span className="portfolio-meta__item-value">{count > 0 ? money : "Priceless"}</span>
 				</div>
 				<div className="portfolio-meta__item col-sm-6 col-lg-3 mb-3 mb-lg-0" title="Client">
 					<span className="portfolio-meta__item-label">Client</span>

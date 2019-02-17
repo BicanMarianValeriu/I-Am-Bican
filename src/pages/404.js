@@ -2,6 +2,9 @@ import React from "react";
 import Helmet from "react-helmet";
 import PageIntro from "../components/sections/page-intro";
 
+// SCSS 
+import "./../static/scss/pages/_404.scss";
+
 const FourOFour = () => {
 	const meta = {
 		title: "Pshht - not found | I Am Bican"

@@ -15,25 +15,25 @@
                 line-height: 40px;
                 color: white; 
                 transition: cubic-bezier(0.95, 0.05, 0.795, 0.035);
-                padding: .75rem .55rem 0.3rem .55rem;
+                padding: .65rem .55rem .45rem .55rem;
                 margin: 0 3px; 
                 border-radius: 0;
 
                 @include media-breakpoint-down(md) {
                     font-size: 20px;
                     line-height: 30px;
-                    padding: .5rem .5rem .3rem .5rem; 
+                    padding: .55rem .5rem .45rem .5rem; 
                 }
 
                 &:after {
                     content: '';
                     position: absolute;
-                    top: 100%;
+                    top: calc( 100% - 2px );
                     left: 50%;
                     width: 0;
                     transform: translate3d(-50%,0,0);
                     border-top: 3px solid transparent;
-                    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
                 }
 
                 &:hover,
