@@ -1,8 +1,8 @@
 {
 	"name": "I Am Bican",
 	"description": "Just another WordPress site",
-	"url": "http://www.iambican.com/dashboard/",
+	"url": "https://www.iambican.com/dashboard/",
 	"routes": {
-		"REST": "http://www.iambican.com/dashboard/wp-json/" 
+		"REST": "https://www.iambican.com/dashboard/wp-json/" 
 	}
 }

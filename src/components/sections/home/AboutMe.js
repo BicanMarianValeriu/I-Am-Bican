@@ -15,8 +15,17 @@ import BicanOld from "./../../../static/images/bican-old.jpg";
 export default class AboutMe extends Component {
 	componentDidMount() {
 		this.initAnimations();
-		this.animateProfilePicture();
+		this.setupEventHandlers();
 		this.handlePictureChange();
+
+		window.addEventListener('resize', () => {
+			let image = document.querySelector(".about-me__profile");
+			if (window.innerWidth < 991) {
+				image.removeEventListener('mousemove', this._handleMouseMoveBound); 
+			} else {
+				image.addEventListener('mousemove', this._handleMouseMoveBound); 
+			};
+		});
 	}
 
 	handlePictureChange() {
@@ -28,12 +37,10 @@ export default class AboutMe extends Component {
 		}, 5000);
 	}
 
-	animateProfilePicture() {
-		if (window.innerWidth < 576) return;
-		let image = document.querySelector(".about-me__profile");
-		var mouseX, mouseY;
+	setupEventHandlers() { 
+		let image = document.querySelector(".about-me__profile"), mouseX, mouseY;
 
-		image.addEventListener("mousemove", e => {
+		const onMouseMove = (e) => {
 			e = e || window.event;
 
 			mouseX = e.pageX;
@@ -50,27 +57,29 @@ export default class AboutMe extends Component {
 				transformPerspective: 500,
 				transformOrigin: "center"
 			});
-		});
+		};
 
-		image.addEventListener("mouseleave", () => {
-			TweenMax.to(image, 0.5, {
-				rotationY: 0,
-				rotationX: 0,
-				scale: 1
-			});
-		});
+		const onMouseLeave = () => { TweenMax.to(image, 0.5, { rotationY: 0, rotationX: 0, scale: 1 }) };
+
+		this._handleMouseMoveBound = onMouseMove.bind(this);
+		this._handleMouseLeaveBound = onMouseLeave.bind(this);
+
+		image.addEventListener('mousemove', this._handleMouseMoveBound);
+		image.addEventListener('mouseleave', this._handleMouseLeaveBound);
 	}
 
 	initAnimations() {
 		let targets = [...document.querySelectorAll('.about-me__subline'), document.querySelector('.about-me__headline')];
 		Splitting({ target: targets });
+
 		let nameChars = [...document.querySelectorAll('.about-me__headline .char')];
 		TweenMax.staggerFrom(nameChars, .8, {
 			opacity: 0,
 			y: 50,
 			z: 0,
 			ease: Elastic.easeOut.config(1, 0.8),
-		}, .10); 
+		}, .10);
+
 		let sublinesChars = document.querySelectorAll('.about-me__subline .char');
 		for (let i = 0; i < sublinesChars.length; i++) TweenMax.from(sublinesChars[i], 1.5, {
 			opacity: 0,
@@ -79,7 +88,7 @@ export default class AboutMe extends Component {
 			z: randomize(-300, 300),
 			scale: .1,
 			delay: i * .02
-		}); 
+		});
 	}
 
 	render() {

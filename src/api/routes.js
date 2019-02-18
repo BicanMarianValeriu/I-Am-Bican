@@ -34,6 +34,11 @@ const routes = [
 		component: Home
 	},
 	{
+		path: "/index.html",
+		exact: true,
+		component: Home
+	},
+	{
 		path: "/portfolio",
 		exact: true,
 		component: Projects 

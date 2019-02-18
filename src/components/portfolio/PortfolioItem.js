@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Title from '../Article/Title';
 import Content from '../Article/Content';
-import FeaturedMedia from '../Article/featured-media'; 
+import FeaturedMedia from '../Article/FeaturedMedia'; 
 
 class PortfolioSlide extends Component {
 	getClasses() {

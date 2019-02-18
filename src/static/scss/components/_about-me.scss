@@ -42,7 +42,7 @@
 		margin-bottom: 2rem;
 		perspective: 650px; 
 
-		@include media-breakpoint-up(md) { 
+		@include media-breakpoint-up(lg) { 
 			position: absolute;
 			max-width: 90%;
 			top: -60px;
@@ -51,7 +51,7 @@
 
 		@include media-breakpoint-down(sm) { 
 			max-width: 75%;
-			margin: 1rem auto 2rem;
+			margin: 1rem auto 3rem;
 		} 
 
 		@include media-breakpoint-down(xs) { 

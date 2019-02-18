@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import Article from './article';
-import PortfolioItem from './PortfolioItem';
-import PortfolioSingle from './PortfolioSingle';
+import PortfolioItem from './../Portfolio/PortfolioItem';
+import Portfolio from './Portfolio';
 import Empty from './empty';
 
 class Main extends Component {
@@ -36,7 +36,7 @@ class Main extends Component {
 				var postType;
 				switch (post.type) {
 					case 'portfolio': postType = this.isSingle() ?
-						<PortfolioSingle key={post.id} {...post} /> :
+						<Portfolio key={post.id} {...post} /> :
 						<PortfolioItem key={post.id} {...post} isSingle={this.isSingle()} />;
 						break;
 					default: postType = <Article key={post.id} {...post} isSingle={this.isSingle()} />;

@@ -1,7 +1,7 @@
 .entry {
     &--empty {
         position: relative;
-        min-height: 250px;
+        min-height: 230px;
         margin-bottom: 50px;
 
         .download-loader {
@@ -30,12 +30,16 @@
 
     &__media { 
         > img, 
-        > div {
+        > div { 
             height: 100%;
             min-height: 230px;
 
             @include media-breakpoint-down(md) { 
                 margin-bottom: 1rem;
+            }
+
+            &.download-loader {
+                position: relative;
             }
 
             div {

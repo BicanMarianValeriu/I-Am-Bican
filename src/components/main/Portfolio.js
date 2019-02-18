@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Header from './../Portfolio/Header';
+import Header from '../Portfolio/Header';
 import Content from '../Article/Content';
 
 class Portfolio extends Component {
