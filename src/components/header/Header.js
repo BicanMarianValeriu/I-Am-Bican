@@ -9,12 +9,12 @@ export default withRouter(props => {
     let { location: { pathname } } = props;
     let isPage = pathname.split('/')[1];
     // On home/page/portfolio we need the header to overlap content
-    let condition = (pathname === '/' || isPage === 'p' || pathname === '/portfolio');
+    let condition = (pathname === '/' || isPage === 'p' || pathname === '/portfolio' || pathname === '/index.html');
     if (condition) {
         classes.push('header--absolute');
         classes.push('header--white');
     } else classes.push(['header--blue']);
-    if (pathname === '/') classes.push(['header--home']);
+    if (pathname === '/' || pathname === '/index.html') classes.push(['header--home']);
 
     const CTA = () => {
         return (

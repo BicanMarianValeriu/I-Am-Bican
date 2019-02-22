@@ -16,8 +16,8 @@ self.__precacheManifest = [
     "url": "/static/media/placeholder-bold.81ba79bb.png"
   },
   {
-    "revision": "af679851a89b14b424aa",
-    "url": "/static/js/main.af679851.chunk.js"
+    "revision": "78b19c61197f2ed1b657",
+    "url": "/static/js/main.78b19c61.chunk.js"
   },
   {
     "revision": "5e554debb816d782e413",
@@ -48,8 +48,8 @@ self.__precacheManifest = [
     "url": "/static/media/ShadowsIntoLight.33adae67.eot"
   },
   {
-    "revision": "7a088887950c94ab6abc614def27f5ea",
-    "url": "/static/media/ShadowsIntoLight.7a088887.woff2"
+    "revision": "4e21f1ae69399656ab676b0e11d0c370",
+    "url": "/static/media/ShadowsIntoLight.4e21f1ae.woff"
   },
   {
     "revision": "84ab6f9799b6db647fda",
@@ -64,8 +64,8 @@ self.__precacheManifest = [
     "url": "/static/media/bican-old.19e754c9.jpg"
   },
   {
-    "revision": "4e21f1ae69399656ab676b0e11d0c370",
-    "url": "/static/media/ShadowsIntoLight.4e21f1ae.woff"
+    "revision": "7a088887950c94ab6abc614def27f5ea",
+    "url": "/static/media/ShadowsIntoLight.7a088887.woff2"
   },
   {
     "revision": "34365e34129e45b93d6f",
@@ -76,7 +76,7 @@ self.__precacheManifest = [
     "url": "/static/css/portfolio.9a6cd9db.chunk.css"
   },
   {
-    "revision": "af679851a89b14b424aa",
+    "revision": "78b19c61197f2ed1b657",
     "url": "/static/css/main.2fc75333.chunk.css"
   },
   {
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/static/css/404.b582dffa.chunk.css"
   },
   {
-    "revision": "897a38d008c785231f966c2731033117",
+    "revision": "cfa38c81600025b9b9d70ebe146ea8e6",
     "url": "/index.html"
   }
 ];

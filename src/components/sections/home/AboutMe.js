@@ -17,13 +17,17 @@ export default class AboutMe extends Component {
 		this.initAnimations();
 		this.setupEventHandlers();
 		this.handlePictureChange();
+		this.setupResizeEvent();
+	}
 
+	setupResizeEvent() {
+		let image = document.querySelector(".about-me__profile");
+		if (!image) return;
 		window.addEventListener('resize', () => {
-			let image = document.querySelector(".about-me__profile");
 			if (window.innerWidth < 991) {
-				image.removeEventListener('mousemove', this._handleMouseMoveBound); 
+				image.removeEventListener('mousemove', this._handleMouseMoveBound);
 			} else {
-				image.addEventListener('mousemove', this._handleMouseMoveBound); 
+				image.addEventListener('mousemove', this._handleMouseMoveBound);
 			};
 		});
 	}
@@ -37,7 +41,7 @@ export default class AboutMe extends Component {
 		}, 5000);
 	}
 
-	setupEventHandlers() { 
+	setupEventHandlers() {
 		let image = document.querySelector(".about-me__profile"), mouseX, mouseY;
 
 		const onMouseMove = (e) => {
