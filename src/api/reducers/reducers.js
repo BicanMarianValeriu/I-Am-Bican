@@ -3,6 +3,7 @@ import {
 	FETCH_MENU_FULFILLED,
 	FETCH_POSTS_FULFILLED,
 	FETCH_CLIENTS_FULFILLED,
+	FETCH_CLIENT_FULFILLED,
 	FETCH_MEDIA_FULFILLED,
 	FETCH_REJECTED,
 	SET_HAS_MORE_POSTS,
@@ -10,13 +11,13 @@ import {
 	LOGOUT_USER
 } from "../actions/actions";
 
-import { find, findIndex } from "lodash";
+import { find, findIndex, flow, property, partialRight, some } from "lodash";
 
 const initialState = {
 	user: {
 		authentificated: false
 	},
-	posts: [], 
+	posts: [],
 	menus: [],
 	fetching: true,
 	hasMorePosts: false,
@@ -62,6 +63,19 @@ export default function reducer(state = initialState, action) {
 				...state,
 				fetching: false,
 				clients: action.payload.length ? action.payload : []
+			};
+		}
+		case FETCH_CLIENT_FULFILLED: {
+			const { posts } = state;
+			let clientPost = find(posts, flow(property('clients'), partialRight(some, action.payload.id)));
+			let index = findIndex(posts, flow(property('clients'), partialRight(some, action.payload.id)));
+			console.log(clientPost);
+			clientPost.clientObj = action.payload;
+			posts.splice(index, 1, clientPost);
+			return {
+				...state,
+				fetching: false,
+				posts: posts
 			};
 		}
 		case FETCH_MEDIA_FULFILLED: {

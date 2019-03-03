@@ -93,6 +93,21 @@
                 color: $black;
             }
 
+            &.loading {
+                position: relative; 
+                opacity: .5;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -8px;
+                    right: -8px;
+                    bottom: 0;
+                    background-color: rgba( #000000, .1);
+                }
+            }
+
             &__svg {
                 display: inline-block;
                 margin-right: 5px;

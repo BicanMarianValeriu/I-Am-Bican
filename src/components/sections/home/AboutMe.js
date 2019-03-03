@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import scrollToElement from 'scroll-to-element';
 
 // Components
 import AboutMeInfo from "./AboutMeInfo";
 import GetInTouch from '../../GetInTouch';
 import { TweenMax, Power2, Elastic } from "gsap/TweenMax";
-import { randomize } from './../../../utilities/helpers'; 
+import { randomize } from './../../../utilities/helpers';
 
 // Assets 
 import Bican from "./../../../static/images/bican.jpg";
@@ -74,6 +75,10 @@ export default class AboutMe extends Component {
 
 		image.addEventListener('mousemove', this._handleMouseMoveBound);
 		image.addEventListener('mouseleave', this._handleMouseLeaveBound);
+		document.querySelector('a[href="#footer"]').addEventListener('click', e => {
+			e.preventDefault();
+			scrollToElement('#footer');
+		});
 	}
 
 	initAnimations() {

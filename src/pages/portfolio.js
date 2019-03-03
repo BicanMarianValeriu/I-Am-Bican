@@ -25,14 +25,14 @@ class Portfolio extends Component {
 		scrollToElement('.header');
 	}
 
-	componentDidUpdate(prevProps) { 
+	componentDidUpdate(prevProps) {
 		if (this.props.location.pathname !== prevProps.location.pathname) {
 			scrollToElement('.header');
 			this.props.fetchDispatcher(
 				'wp/v2/portfolio',
 				{ slug: this.props.match.params.slug },
 				{ success: FETCH_POSTS_FULFILLED }
-			);
+			); 
 		}
 	}
 
