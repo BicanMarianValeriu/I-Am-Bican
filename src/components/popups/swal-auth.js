@@ -1,7 +1,6 @@
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { validateFields } from "../../utilities/helpers";
-import { setAuthToken } from "../../api/auth";
-import Cookies from "js-cookie";
+import { setAuthToken } from "../../api/auth"; 
 import { requestUserToken, FETCH_USER_FULFILLED, setCurrentUser } from "../../api/actions/actions";
 import createStore from "../../api/store";
 
@@ -60,8 +59,7 @@ const SwalAuth = () => {
 			requestUserToken({ username, password }).then(response => {
 				let token = response && response.token;
 				if (token) {
-					setAuthToken(token);
-					Cookies.set("authToken", token, { expires: 7 });
+					setAuthToken(token); 
 					const { store } = createStore();
 					setCurrentUser(token)
 						.then(response => { store.dispatch({ type: FETCH_USER_FULFILLED, payload: response }); })

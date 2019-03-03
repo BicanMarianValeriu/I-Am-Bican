@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import Cookies from "js-cookie";
+import { connect } from "react-redux"; 
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import { isAuthentificated, removeAuthToken, getAuthToken } from "../../api/auth";
 import { LOGOUT_USER, setCurrentUser, FETCH_USER_FULFILLED } from "../../api/actions/actions";
@@ -35,9 +34,8 @@ class Login extends Component {
 
 	_onLogoutClick() {
 		if (isAuthentificated()) {
+			this.props.dispatch({ type: LOGOUT_USER }); 
 			removeAuthToken();
-			this.props.dispatch({ type: LOGOUT_USER });
-			Cookies.remove("authToken");
 			SwalToast.fire({ type: "success", title: `Logged out. See you soon :).` });
 		}
 	}

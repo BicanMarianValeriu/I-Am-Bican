@@ -1,29 +1,32 @@
 import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 
 import Title from '../Article/Title';
 import Content from '../Article/Content';
-import FeaturedMedia from '../Article/FeaturedMedia'; 
+import FeaturedMedia from '../Article/FeaturedMedia';
 
 class PortfolioSlide extends Component {
 	getClasses() {
 		const { acf: { meta: { layout } } } = this.props;
-		let classes = ['entry', 'entry--portfolio', 'entry--archive', 'portfolio', `portfolio--layout-${layout}`];
+		let classes = ['col-md-6', 'col-lg-4', 'entry', 'entry--portfolio', 'entry--archive', 'portfolio', `portfolio--layout-${layout}`];
 		return classes.join(' ');
-	}
+	} 
 
-	render() { 
+	render() {
 
-		const { featured_media } = this.props;
+		const { featured_media, slug } = this.props;
 
 		return (
 			<article className={this.getClasses()}>
-				<div className="row">
-					<div className="col-12 col-md-5 col-lg-4">
-						<FeaturedMedia mediaId={featured_media}/>
-					</div>
-					<div className="col-12 col-md-7 col-lg-8">
-						<Title {...this.props} />
-						<Content {...this.props} />
+				<FeaturedMedia mediaId={featured_media} />
+				<div className="portfolio__description">
+					<Title {...this.props} />
+					<Content {...this.props} />
+					<div className="text-center">
+						<Link to={`portfolio/${slug}`} className="btn btn-link portfolio__more">
+							<span>View More</span>
+							<i className="fas fa-arrow-right"></i>
+						</Link>
 					</div>
 				</div>
 			</article>
@@ -31,4 +34,4 @@ class PortfolioSlide extends Component {
 	}
 }
 
-export default PortfolioSlide;
+export default withRouter(PortfolioSlide);

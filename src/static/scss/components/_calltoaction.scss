@@ -2,11 +2,25 @@
 --------------------------------------------------------------- */
 .calltoaction { 
     position: relative;
-    overflow: hidden;
-    background-color: theme-color( primary );
+    overflow: hidden; 
     font-family: $font-family-base;
     color: white; 
-    padding: 2.5rem 0; 
+    padding: 2.5rem 0;  
+    background-color: theme-color( 'primary' ); 
+    background-position: center;
+    background-size: cover;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: theme-color( 'primary' );
+        opacity: .8;
+        pointer-events: none; 
+    } 
 
     h3 {
         font-family: $font-family-base;
@@ -27,8 +41,9 @@
     }
 }
 
-.calltoaction {  
-    &__text,
+.calltoaction {   
+
+    &__text, 
     &__buttons {
         opacity: 0; 
         transition: all .7s ease-in-out;

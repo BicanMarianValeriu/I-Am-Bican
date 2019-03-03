@@ -63,3 +63,100 @@
         }
 	}
 } 
+
+.content--projects {
+    .main--archive {
+        max-width: initial;
+    }
+}
+
+.portfolio {
+
+    &:hover {
+        @include media-breakpoint-up(lg) {
+            .portfolio { 
+                &__description {
+                        border-color: $gray-100;
+                        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+                    } 
+                }
+                
+            .entry {
+                &__media {
+                    &-figure {
+                        &__src {
+                            transform: scale(1.1) rotate(-4deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &__description {
+        transition: all .3s ease-in-out;
+        border: 1px solid transparent;
+        border-top: none;
+        padding: 15px 15px 10px;
+    }
+
+    &__more {
+        font-size: .7rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        
+        span {
+            display: inline-block;
+            margin-right: 8px;
+        }
+    }
+
+    .entry {
+        &__title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: $dark;
+            text-align: center;
+
+            a {
+                color: inherit;
+            }
+        }
+
+        &__media {
+            position: relative;
+            overflow: hidden; 
+
+            &::before,
+            &::after {
+                content: ' ';
+                position: absolute; 
+                z-index: 3;
+            }
+
+            &::before {
+                top: 13px;
+                right: 13px;
+                bottom: -15px;
+                left: 13px;
+                border: 5px solid #FFF;
+            }
+
+            &::after {
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(theme-color('primary'), .10);
+                z-index: 2;
+            }
+
+            &-figure {
+                &__src {
+                    transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    transition-delay: 50ms;
+                }
+            }
+        }
+    }
+}

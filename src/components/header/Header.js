@@ -8,12 +8,15 @@ export default withRouter(props => {
     let classes = ['header'];
     let { location: { pathname } } = props;
     let isPage = pathname.split('/')[1];
-    // On home/page/portfolio we need the header to overlap content
-    let condition = (pathname === '/' || isPage === 'p' || pathname === '/portfolio' || pathname === '/index.html');
-    if (condition) {
+    const routes = ['/', 'p', '/portfolio', '/index.html'];
+    
+    // On home/page/portfolio we need the header to overlap content 
+    if (routes.includes(pathname) || isPage === 'p') {
         classes.push('header--absolute');
         classes.push('header--white');
     } else classes.push(['header--blue']);
+
+    // Home (index.html due to https redirect)
     if (pathname === '/' || pathname === '/index.html') classes.push(['header--home']);
 
     const CTA = () => {

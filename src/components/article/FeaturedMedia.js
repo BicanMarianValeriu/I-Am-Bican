@@ -32,7 +32,7 @@ class FeaturedMedia extends Component {
     }
 
     getClasses() {
-        let classes = ['entry__media', 'box-shadow', 'box-shadow--big'];
+        let classes = ['entry__media'];
         const { fetchedMedia } = this.props;
         const { large } = fetchedMedia ? fetchedMedia.media_details.sizes : {};
         let imageUrl = large ? large.source_url : placeholder;

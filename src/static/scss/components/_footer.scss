@@ -103,6 +103,14 @@
 		border-top-left-radius: 50px;
 		border-bottom-left-radius: 50px;
 		height: auto; 
+
+		&.is-invalid {
+			background-position: 100% calc(.75em + .1875rem);
+
+			@include media-breakpoint-down(sm) {
+				background-position: 100% calc(.70em + .1875rem);
+			}
+		}
 	}
 
 	&__button {

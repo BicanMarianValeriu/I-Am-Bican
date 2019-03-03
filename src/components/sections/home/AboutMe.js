@@ -5,31 +5,35 @@ import { Link } from "react-router-dom";
 import AboutMeInfo from "./AboutMeInfo";
 import GetInTouch from '../../GetInTouch';
 import { TweenMax, Power2, Elastic } from "gsap/TweenMax";
-import { randomize } from './../../../utilities/helpers';
-import Splitting from 'splitting';
+import { randomize } from './../../../utilities/helpers'; 
 
 // Assets 
 import Bican from "./../../../static/images/bican.jpg";
 import BicanOld from "./../../../static/images/bican-old.jpg";
 
+let Splitting;
+
 export default class AboutMe extends Component {
 	componentDidMount() {
+		Splitting = require("splitting");
 		this.initAnimations();
 		this.setupEventHandlers();
 		this.handlePictureChange();
-		this.setupResizeEvent();
+		this.initEvent();
 	}
 
-	setupResizeEvent() {
+	initEvent() {
 		let image = document.querySelector(".about-me__profile");
 		if (!image) return;
-		window.addEventListener('resize', () => {
+		const maybeInit = () => {
 			if (window.innerWidth < 991) {
 				image.removeEventListener('mousemove', this._handleMouseMoveBound);
 			} else {
 				image.addEventListener('mousemove', this._handleMouseMoveBound);
 			};
-		});
+		}
+		window.addEventListener('load', maybeInit);
+		window.addEventListener('resize', maybeInit);
 	}
 
 	handlePictureChange() {
@@ -103,12 +107,14 @@ export default class AboutMe extends Component {
 					<div className="container">
 						<div className="row">
 							<div className="col-lg-4 about-me__image">
-								<div className="about-me__profile box-shadow box-shadow--profile">
-									<div className="shown" style={{ backgroundImage: `url('${Bican}')` }} />
-									<div style={{ backgroundImage: `url('${BicanOld}')` }} />
-									<svg className="about-me__profile-decoration" viewBox="0 0 300 415">
-										<path d="M20.5,20.5h260v375h-260V20.5z"></path>
-									</svg>
+								<div className="about-me__image-wrap">
+									<div className="about-me__profile box-shadow box-shadow--profile">
+										<div className="shown" style={{ backgroundImage: `url('${Bican}')` }} />
+										<div style={{ backgroundImage: `url('${BicanOld}')` }} />
+										<svg className="about-me__profile-decoration" viewBox="0 0 300 415">
+											<path d="M20.5,20.5h260v375h-260V20.5z"></path>
+										</svg>
+									</div>
 								</div>
 							</div>
 							<div className="col-lg-8 about-me__info">

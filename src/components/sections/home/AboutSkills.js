@@ -1,4 +1,5 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
+import { isServer } from '../../../api/store';
 
 let ScrollMagic;
 let Splitting;
@@ -57,7 +58,7 @@ export default class AboutSkills extends Component {
         };
     }
 
-    componentDidMount() { 
+    componentDidMount() {
         // Add Animations
         ScrollMagic = require("scrollmagic");
         Splitting = require("splitting");
@@ -89,17 +90,21 @@ export default class AboutSkills extends Component {
             triggerElement: '.about-skills__headline',
             triggerHook: .75
         }).setClassToggle('.about-skills__pre', "about-skills__pre--animated").addTo(controller);
-        
+
     }
 
-    renderSkills() { 
+    renderSkills() {
         const { skills } = this.state;
         if (skills.length) {
             let count = 0;
             return skills.map((item, index) => {
                 if (index % 3 === 0) count = 0;
                 count++;
-                let delay = window.innerWidth > 992 ? 150 * count : 0;
+
+                let delay;
+                if (!isServer) delay = window.innerWidth > 992 ? 150 * count : 0;
+                else delay = 0;
+
                 let style = {
                     '--animation-delay': delay + 'ms'
                 };
@@ -129,10 +134,10 @@ export default class AboutSkills extends Component {
                     <div className="row">
                         <div className="col text-center">
                             <span className="about-skills__pre text-uppercase text-font--cursive">Just few of my</span>
-                            <div className="mb-2" style={{overflow:'hidden'}}>
+                            <div className="mb-2" style={{ overflow: 'hidden' }}>
                                 <h2 className="about-skills__headline mb-0">Amazing Skills</h2>
                             </div>
-                            <div className="mb-5" style={{overflow:'hidden'}}>
+                            <div className="mb-5" style={{ overflow: 'hidden' }}>
                                 <p className="about-skills__description lead mb-0">...in addition, I'm allways open into learning new things and technologies.</p>
                             </div>
                         </div>

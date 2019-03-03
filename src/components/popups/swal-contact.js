@@ -6,7 +6,7 @@ import { validateEmail, validateFields } from "./../../utilities/helpers";
 const SwalContact = {
 	renderModal: function () {
 		const alert = Swal.fire({
-			title: "Thanks for your interest in contacting me!",
+			title: "Have an idea? Let's see it!",
 			html: `<form name="swal-contact" id="wpcf7-6" data-wpcf7-id="6">
 			<div class="form-group">
 				<div class="row">

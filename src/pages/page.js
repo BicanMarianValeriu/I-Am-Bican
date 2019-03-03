@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Helmet from "react-helmet";
 import { connect } from "react-redux";
 import { frontloadConnect } from "react-frontload";
+import scrollToElement from 'scroll-to-element';
 // Deps
 import PageIntro from "../components/sections/page-intro";
 import Main from "../components/Main/index";
@@ -15,15 +16,16 @@ const frontload = async props => await props.dispatch(fetchDispatcher(
 ));
 
 class Page extends Component {
-	componentDidUpdate() {
-		window.scrollTo(0, 0);
+	componentDidMount() {
+		scrollToElement('.header');
 	}
-
-	componentWillReceiveProps(nextProps) {
-		if (this.props.location.pathname !== nextProps.location.pathname) {
+	
+	componentDidUpdate(prevProps) { 
+		if (this.props.location.pathname !== prevProps.location.pathname) {
+			scrollToElement('.header');
 			return this.props.dispatch(fetchDispatcher(
 				'wp/v2/pages',
-				{ slug: nextProps.match.params.slug },
+				{ slug: this.props.match.params.slug },
 				{ success: FETCH_POSTS_FULFILLED }
 			));
 		}

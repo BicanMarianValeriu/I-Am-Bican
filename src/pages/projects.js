@@ -7,9 +7,10 @@ import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../api/actions/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
+import scrollToElement from 'scroll-to-element';
 
 // SCSS 
-import "./../static/scss/pages/_portfolio.scss"; 
+import "./../static/scss/pages/_portfolio.scss";
 
 // Server Side Stuff
 const frontload = async props => await props.fetchDispatcher(
@@ -20,9 +21,9 @@ const frontload = async props => await props.fetchDispatcher(
 
 class Projects extends Component {
 
-	componentDidUpdate() {
-		window.scrollTo(0, 0);
-	}
+	componentDidMount() {
+		scrollToElement('.header');
+	} 
 
 	renderNavigation() {
 		return (
@@ -39,14 +40,17 @@ class Projects extends Component {
 		);
 	}
 
-	render() { 
+	render() {
 		const { location: { pathname } } = this.props;
 		const meta = {
-			title: 'Portfolio',
+			title: 'View my portfolio',
 			description: 'View my best work and see what resources I`ve used to do it',
 			canonical: "http://www.iambican.com" + pathname
 		};
-		
+		const loading = {
+			elements: 6,
+			classes: { outer: 'col-md-6 col-lg-4' }
+		};
 		return (
 			<React.Fragment>
 				<Helmet>
@@ -56,7 +60,7 @@ class Projects extends Component {
 				</Helmet>
 				<div id="content" className="content content--projects">
 					<PageIntro pageTitle='Portfolio' />
-					<Main posts={this.props.posts} />
+					<Main posts={this.props.posts} isSingle={false} options={{ loading: loading }} />
 				</div>
 			</React.Fragment>
 		);

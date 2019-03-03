@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import GetInTouch from '../GetInTouch';
+import Background from "./../../static/images/parallax-1.jpg";
 let ScrollMagic;
 
 class CallToAction extends Component {
@@ -48,7 +49,7 @@ class CallToAction extends Component {
 
     render() {
         return (
-            <div className="footer__calltoaction calltoaction">
+            <div className="footer__calltoaction calltoaction" style={{ backgroundImage: `url('${Background}')` }}>
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-12 col-lg text-center text-lg-left calltoaction__text">

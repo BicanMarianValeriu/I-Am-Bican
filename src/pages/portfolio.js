@@ -7,6 +7,7 @@ import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../api/actions/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
+import scrollToElement from 'scroll-to-element';
 
 // SCSS
 import "./../static/scss/components/_portfolio-prev-next.scss";
@@ -20,11 +21,16 @@ const frontload = async props => await props.fetchDispatcher(
 );
 
 class Portfolio extends Component {
-	componentWillReceiveProps(nextProps) {
-		if (this.props.location.pathname !== nextProps.location.pathname) {
+	componentDidMount() {
+		scrollToElement('.header');
+	}
+
+	componentDidUpdate(prevProps) { 
+		if (this.props.location.pathname !== prevProps.location.pathname) {
+			scrollToElement('.header');
 			this.props.fetchDispatcher(
 				'wp/v2/portfolio',
-				{ slug: nextProps.match.params.slug },
+				{ slug: this.props.match.params.slug },
 				{ success: FETCH_POSTS_FULFILLED }
 			);
 		}
@@ -32,10 +38,6 @@ class Portfolio extends Component {
 
 	shouldComponentUpdate(nextProps) {
 		return (JSON.stringify(this.props) !== JSON.stringify(nextProps))
-	}
-
-	componentDidUpdate() {
-		window.scrollTo(0, 0);
 	}
 
 	render() {

@@ -3,10 +3,11 @@ import Helmet from "react-helmet";
 import AboutMe from "../components/sections/home/AboutMe";
 import AboutExperience from "../components/sections/home/AboutExperience";
 import AboutSkills from '../components/sections/home/AboutSkills'; 
+import scrollToElement from 'scroll-to-element';
 
 export default class Home extends Component {
 	componentDidMount() {
-		window.scrollTo(0, 0);
+		scrollToElement('.header');
 	}
 
 	render() {

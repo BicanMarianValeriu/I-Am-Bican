@@ -12,20 +12,21 @@ class Main extends Component {
 		return (isSingle || 1 === posts.length);
 	}
 
-	getClasses() {
-		let classes = ['col', 'main'];
-		classes.push(this.isSingle() ? 'main--single' : 'main--archive');
-		return classes.join(' ');
-	}
-
 	getOptions() {
-		const { options } = this.props;
+		const { options = {} } = this.props;
 		return {
 			...{
-				container: 'container',
-				row: 'row'
+				classes: { outer: 'container', inner: 'row' },
+				loading: { enable: true, classes: { outer: 'placeholder' }, elements: this.isSingle() ? 1 : 6 }
 			}, ...options
 		};
+	}
+
+	getClasses() {
+		let _classes = this.getOptions().classes;
+		let classes = ['col', 'main', !this.isSingle() && _classes.inner];
+		classes.push(this.isSingle() ? 'main--single' : 'main--archive');
+		return classes.join(' ');
 	}
 
 	renderPosts() {
@@ -36,26 +37,25 @@ class Main extends Component {
 				var postType;
 				switch (post.type) {
 					case 'portfolio': postType = this.isSingle() ?
-						<Portfolio key={post.id} {...post} /> :
-						<PortfolioItem key={post.id} {...post} isSingle={this.isSingle()} />;
+						<Portfolio key={post.id} {...post} /> : <PortfolioItem key={post.id} {...post} />;
 						break;
 					default: postType = <Article key={post.id} {...post} isSingle={this.isSingle()} />;
 				}
 				return postType;
 			});
 		} else {
-			if(options.loading === false) return;
-			var items = this.isSingle() ? [...Array(1)] : [...Array(6)];
-			return items.map((val, i) => <Empty key={i} />);
+			if (options.loading.enable === false) return;
+			var items = this.isSingle() ? [...Array(1)] : [...Array(options.loading.elements)];
+			return items.map((val, i) => <Empty key={i} options={{ ...options.loading }} />);
 		}
 	}
 
 	render() {
 		const options = this.getOptions();
-		let { container, row } = options;
+		const { classes: { outer, inner } } = options;
 		return (
-			<div className={container.toString()}>
-				<div className={row.toString()}>
+			<div className={outer.toString()}>
+				<div className={inner.toString()}>
 					<main id="postsContainer" className={this.getClasses()}>
 						{this.renderPosts()}
 					</main>

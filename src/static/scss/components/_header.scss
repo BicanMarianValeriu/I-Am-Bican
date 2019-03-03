@@ -1,5 +1,5 @@
 .header {
-	background-color: $gray-100;
+	background-color: $gray-100; 
 	
 	&--absolute {
 		position: absolute;
@@ -15,6 +15,14 @@
 			&__bar { 
 				@include media-breakpoint-down(md) {
 					margin-top: 10px;
+				}
+			}
+
+			&__cta {
+				&-btn {
+					@include media-breakpoint-down(md) {
+						margin-left: 2px;
+					}
 				}
 			}
 		}
@@ -88,144 +96,6 @@
 		}
 	}
 
-	&-login {
-		&__icon {
-			&-svg {
-				border: 2px solid white;
-				border-radius: 100%;
-				padding: 5px;
-
-				.svg-inline--fa {
-					display: block;
-					width: 20px;
-					height: 20px;
-		
-					@include media-breakpoint-down(md) {
-						width: 18px;
-						height: 18px;
-					}
-				}
-			}
-		}
-
-		&__btn {
-			position: relative;
-			padding: 0;
-			border: none;
-			border-radius: 0;
-			background-color: transparent;
-			border-color: transparent;
-			width: 41px;
-			height: 41px;
-			color: white;
-
-			@include media-breakpoint-down(md) {
-				width: 36px;
-				height: 36px;
-			}
-
-			&:hover,
-			&:active,
-			&:focus {
-				background-color: transparent !important;
-				border-color: transparent !important;
-				box-shadow: none !important;
-				color: white!important;
-			}
-
-			&[aria-expanded="true"] {
-				img {
-					box-shadow: 0 0 0 3px #424753;
-				}
-			}
-
-			& > * {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate3d(-50%, -50%, 0);
-			}
-
-			&-avatar {
-				width: 30px;
-				height: 30px;
-				border-radius: 100%;
-				box-shadow: 0 0 0 3px #fff;
-			}
-
-			& + .dropdown-menu { 
-				border: 0 !important;
-				box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
-				transition: opacity 0.5s, transform 0.2s;
-				transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-				min-width: 175px;
-
-				&.show {
-					transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
-				}
-			}
-		}
-
-		.dropdown {
-		&-divider {
-			margin: 0;
-			border-top: 1px solid rgba(0, 0, 0, 0.05);
-		}
-
-		&-item {
-			color: #222;
-			padding: 0.8rem 1.5rem;
-			font-weight: bold;
-			font-size: 0.8125rem;
-			font-weight: 600;
-			line-height: 1.1538;
-			text-transform: uppercase;
-			cursor: pointer;
-
-			span {
-				color: inherit;
-				font-weight: bold;
-				font-size: inherit;
-				font-weight: inherit;
-				line-height: inherit;
-				text-transform: inherit;
-			}
- 
-			&:active {
-				color: white!important;
-				outline: none;
-
-				span {
-					color: white;
-				} 
-			}
-		}
-
-		&-header {
-				font-size: 1rem;
-				font-weight: 600;
-				color: #222;
-			}
-		}
-	}
-
-	&-logout {
-		&__svg,
-		&__label {
-			display: inline-block;
-			vertical-align: middle;
-		}
-
-		&__svg {
-			margin-right: 10px;
-			
-			svg { 
-				width: 15px;
-				height: 15px;
-			}
-		}
-	}
-
 	&__cta {  
 		@include media-breakpoint-down(xs) {
 			flex-grow: 0;
@@ -238,7 +108,7 @@
 			color: theme-color( 'primary' );
 
 			@include media-breakpoint-down(xs) {
-				padding: .4rem;
+				padding: .45rem;
     			line-height: 1;
 			}
 
@@ -263,3 +133,5 @@
 		}
 	}
 }
+
+@import 'header-login';

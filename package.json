@@ -49,6 +49,7 @@
 		"redux-logger": "^3.0.6",
 		"redux-promise-middleware": "^5.1.1",
 		"redux-thunk": "^2.3.0",
+		"scroll-to-element": "^2.0.2",
 		"scrollmagic": "^2.0.6",
 		"splitting": "^1.0.6",
 		"sweetalert2": "^8.0.7"

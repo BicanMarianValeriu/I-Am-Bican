@@ -33,6 +33,12 @@
 		}
 	}
 
+	&__image {
+		&-wrap {
+			position: relative;  
+		}
+	}
+
 	&__profile {
 		position: relative;
 		display: block;
@@ -43,14 +49,16 @@
 		perspective: 650px; 
 
 		@include media-breakpoint-up(lg) { 
-			position: absolute;
-			max-width: 90%;
+			position: absolute; 
 			top: -60px;
-			z-index: 15;
+			z-index: 15; 
 		}  
 
-		@include media-breakpoint-down(sm) { 
-			max-width: 75%;
+		@include media-breakpoint-down(lg) {  
+			pointer-events: none;
+		}
+
+		@include media-breakpoint-down(sm) {  
 			margin: 1rem auto 3rem;
 		} 
 

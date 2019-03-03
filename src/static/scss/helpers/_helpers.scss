@@ -1,3 +1,16 @@
+body { 
+	overflow-x: hidden;
+
+	&.swal2-shown {
+		.header--absolute {
+			@include media-breakpoint-up(lg) {
+				right: 17px;
+				width: auto;
+			} 
+		}
+	}
+}
+
 /* Box Shadow */
 .box-shadow {
 	&--big,
