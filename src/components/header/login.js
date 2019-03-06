@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux"; 
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
-import { isAuthentificated, removeAuthToken, getAuthToken } from "../../api/auth";
-import { LOGOUT_USER, setCurrentUser, FETCH_USER_FULFILLED } from "../../api/actions/actions";
+import { isAuthentificated, removeAuthToken, getAuthToken } from "../../utilities/auth";
+import { LOGOUT_USER, setCurrentUser, FETCH_USER_FULFILLED } from "../../redux/actions/actions";
 import { SwalToast } from "../Popups/swal-auth";
 
 class Login extends Component {

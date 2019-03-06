@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router';
 import { dom } from '@fortawesome/fontawesome-svg-core'; 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import icons, { brands } from './utilities/svg-icons';
-import routes from './api/routes'; 
+import routes from './redux/routes'; 
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 

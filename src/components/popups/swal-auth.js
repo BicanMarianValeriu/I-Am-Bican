@@ -1,8 +1,8 @@
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { validateFields } from "../../utilities/helpers";
-import { setAuthToken } from "../../api/auth"; 
-import { requestUserToken, FETCH_USER_FULFILLED, setCurrentUser } from "../../api/actions/actions";
-import createStore from "../../api/store";
+import { setAuthToken } from "../../utilities/auth"; 
+import { requestUserToken, FETCH_USER_FULFILLED, setCurrentUser } from "../../redux/actions/actions";
+import createStore from "../../redux/store";
 
 const SwalToast = Swal.mixin({
 	toast: true,

@@ -7,7 +7,7 @@ import { createLogger } from 'redux-logger';
 import { routerMiddleware, connectRouter } from 'connected-react-router';
 
 // Reducers
-import reducer from "./reducers/reducers";
+import reducer from "../redux/reducers/reducers";
 
 // A nice helper to tell us if we're on the server
 export const isServer = !(typeof window !== 'undefined' && window.document && window.document.createElement);

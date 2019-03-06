@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { requestApi } from '../../api/actions/actions';
+import { requestApi } from '../../redux/actions/actions';
 import classNames from 'classnames';
 
 export default class Meta extends Component {

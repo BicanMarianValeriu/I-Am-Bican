@@ -1,6 +1,6 @@
 // Deps 
 import Swal from "sweetalert2/dist/sweetalert2.js";
-import WPCF7 from "./../../api/wpcf7";
+import WPCF7 from "./../../utilities/wpcf7";
 import { validateEmail, validateFields } from "./../../utilities/helpers";
 
 const SwalContact = {

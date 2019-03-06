@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { frontloadConnect } from 'react-frontload';
-import { fetchDispatcher, FETCH_MEDIA_FULFILLED } from '../../api/actions/actions';
+import { fetchDispatcher, FETCH_MEDIA_FULFILLED } from '../../redux/actions/actions';
 import { find } from "lodash";
 import DownloadLoader from '../download-loader';
 import placeholder from '../../static/images/placeholder-bold.png';

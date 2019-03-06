@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
-
-import Main from "../components/Main/index";
-import PageIntro from "../components/sections/page-intro";
-import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../api/actions/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
+
 import scrollToElement from 'scroll-to-element';
+import Main from "../components/Main/index";
+import PageIntro from "../components/sections/page-intro";
+
+import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../redux/actions/actions";
 
 // SCSS 
 import "./../static/scss/pages/_portfolio.scss";

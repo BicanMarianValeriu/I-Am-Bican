@@ -4,6 +4,8 @@ import { routes as _routes } from "./../rest-routes.json";
 import { serializeData } from "../../utilities/helpers";
 
 export const FETCHING = "FETCHING";
+export const SHOW_LOADING = "SHOW_LOADING";
+export const HIDE_LOADING = "HIDE_LOADING";
 export const FETCH_MENU_FULFILLED = "FETCH_MENU_FULFILLED";
 export const FETCH_USER_FULFILLED = "FETCH_USER_FULFILLED";
 export const LOGOUT_USER = "LOGOUT_USER";

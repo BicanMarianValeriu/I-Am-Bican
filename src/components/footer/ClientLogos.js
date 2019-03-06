@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { TweenMax } from "gsap/TweenMax";
-import { fetchDispatcher, FETCH_CLIENTS_FULFILLED } from "../../api/actions/actions";
+import { fetchDispatcher, FETCH_CLIENTS_FULFILLED } from "../../redux/actions/actions";
 import { connect } from "react-redux"; 
 let ScrollMagic;
 let Splitting;

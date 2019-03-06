@@ -3,7 +3,7 @@ import Helmet from "react-helmet";
 // Deps
 import PrevNext from "../components/Portfolio/PrevNext";
 import Main from "../components/Main/index";
-import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../api/actions/actions";
+import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../redux/actions/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";

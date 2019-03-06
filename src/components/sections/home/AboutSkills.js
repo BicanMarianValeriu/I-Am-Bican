@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { isServer } from '../../../api/store';
+import { isServer } from '../../../redux/store';
 
 let ScrollMagic;
 let Splitting;

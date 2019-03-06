@@ -3,8 +3,8 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { frontloadConnect } from 'react-frontload';
-import { find } from 'lodash';
-import { fetchDispatcher, FETCH_MENU_FULFILLED } from './../api/actions/actions';
+import find from 'lodash/find';
+import { fetchDispatcher, FETCH_MENU_FULFILLED } from './../redux/actions/actions';
 
 // Server Side Stuff
 const frontload = async props => await props.fetchDispatcher('wp/v2/menu/' + props.wpMenuId, {}, {

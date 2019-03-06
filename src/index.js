@@ -7,7 +7,7 @@ import { render, hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { Frontload } from 'react-frontload';
-import createStore from './api/store';
+import createStore from './redux/store';
 
 import App from './App'; 
 import './static/scss/style.scss';

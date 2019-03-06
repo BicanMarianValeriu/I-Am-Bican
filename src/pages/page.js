@@ -6,7 +6,7 @@ import scrollToElement from 'scroll-to-element';
 // Deps
 import PageIntro from "../components/sections/page-intro";
 import Main from "../components/Main/index";
-import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../api/actions/actions";
+import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../redux/actions/actions";
 
 // Server Side Stuff
 const frontload = async props => await props.dispatch(fetchDispatcher(
