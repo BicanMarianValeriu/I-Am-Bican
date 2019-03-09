@@ -9,7 +9,7 @@ import {
 	SET_HAS_MORE_POSTS,
 	FETCH_USER_FULFILLED,
 	LOGOUT_USER
-} from "../actions/actions";
+} from "../actions/actions"; 
 
 import { find, findIndex, flow, property, partialRight, some } from "lodash";
 

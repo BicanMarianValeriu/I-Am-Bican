@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 
 import Article from './article';
 import PortfolioItem from './../Portfolio/PortfolioItem';
@@ -24,16 +25,19 @@ class Main extends Component {
 
 	getClasses() {
 		let _classes = this.getOptions().classes;
-		let classes = ['col', 'main', !this.isSingle() && _classes.inner];
-		classes.push(this.isSingle() ? 'main--single' : 'main--archive');
-		return classes.join(' ');
+		let innerClass = _classes.inner
+		let isSingle = this.isSingle();
+		var arr = ['col', 'main', isSingle ? 'main--single' : 'main-archive', { 
+			[innerClass]: !isSingle,  
+			'main--is-loading:': this.props.loading
+		}];
+		return classNames(arr);
 	}
 
 	renderPosts() {
-		const { posts } = this.props;
-		const options = this.getOptions();
-		if (posts.length) {
-			return posts.map((post) => {
+		const { posts, loading } = this.props;
+		if (!loading && posts.length) {
+			return posts.map(post => {
 				var postType;
 				switch (post.type) {
 					case 'portfolio': postType = this.isSingle() ?
@@ -44,8 +48,12 @@ class Main extends Component {
 				return postType;
 			});
 		} else {
+			const options = this.getOptions();
+
 			if (options.loading.enable === false) return;
-			var items = this.isSingle() ? [...Array(1)] : [...Array(options.loading.elements)];
+
+			let items = this.isSingle() ? [...Array(1)] : [...Array(options.loading.elements)];
+
 			return items.map((val, i) => <Empty key={i} options={{ ...options.loading }} />);
 		}
 	}

@@ -3,6 +3,8 @@ import JWTDecode from "jwt-decode";
 import { routes as _routes } from "./../rest-routes.json";
 import { serializeData } from "../../utilities/helpers";
 
+export const API_REQUEST = '[iambican] API Request';
+
 export const FETCHING = "FETCHING";
 export const SHOW_LOADING = "SHOW_LOADING";
 export const HIDE_LOADING = "HIDE_LOADING";
@@ -94,3 +96,9 @@ export function fetchDispatcher(endpoint = "", query = {}, action = {}, options 
 			);
 	};
 }
+
+export const apiRequest = (endpoint, query, events, options) => ({
+	type: API_REQUEST,
+	payload: query,
+	meta: { endpoint, events, options }
+});

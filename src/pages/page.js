@@ -1,49 +1,47 @@
 import React, { Component } from "react";
-import Helmet from "react-helmet";
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { frontloadConnect } from "react-frontload";
+import Helmet from "react-helmet";
 import scrollToElement from 'scroll-to-element';
+import _find from 'lodash/find';
+
 // Deps
 import PageIntro from "../components/sections/page-intro";
 import Main from "../components/Main/index";
-import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../redux/actions/actions";
+import { getPage } from "../redux/actions/pages";   
 
 // Server Side Stuff
-const frontload = async props => await props.dispatch(fetchDispatcher(
-	'wp/v2/pages',
-	{ slug: props.match.params.slug },
-	{ success: FETCH_POSTS_FULFILLED }
-));
+const frontload = async props => await props.getPage({ slug: props.match.params.slug });
 
 class Page extends Component {
 	componentDidMount() {
 		scrollToElement('.header');
 	}
-	
-	componentDidUpdate(prevProps) { 
+
+	componentDidUpdate(prevProps) {
 		if (this.props.location.pathname !== prevProps.location.pathname) {
 			scrollToElement('.header');
-			return this.props.dispatch(fetchDispatcher(
-				'wp/v2/pages',
-				{ slug: this.props.match.params.slug },
-				{ success: FETCH_POSTS_FULFILLED }
-			));
+			return this.props.getPage({ slug: this.props.match.params.slug });
 		}
 	}
 
 	shouldComponentUpdate(nextProps) {
-		return (JSON.stringify(this.props) !== JSON.stringify(nextProps))
+		return (this.props.selectedPage !== nextProps.selectedPage)
 	}
 
 	render() {
-		const page = this.props.posts[0];
-		var title = page && page.title.rendered;
-		const { pathname } = this.props.location;
+		const { selectedPage, location: { pathname } } = this.props;
+		const title = selectedPage && selectedPage.title.rendered;
 		const meta = {
 			title,
-			canonical: "http://www.iambican.com" + pathname
+			canonical: "https://www.iambican.com" + pathname
 		};
 
+		let posts = [];
+		posts.push(selectedPage);
+		posts = posts.filter(el => el != null); // Dirty
+		
 		return (
 			<React.Fragment>
 				<Helmet>
@@ -52,7 +50,7 @@ class Page extends Component {
 				</Helmet>
 				<div id="content" className="content content--page">
 					<PageIntro pageTitle={title} />
-					<Main posts={this.props.posts} isSingle={true} />
+					<Main posts={posts} isSingle={true} loading={!selectedPage} />
 				</div>
 			</React.Fragment>
 		);
@@ -60,12 +58,18 @@ class Page extends Component {
 }
 
 // Binds menu items to navigation container
-const mapStateToProps = store => {
-	const { api: { posts } } = store;
-	return { posts };
-};
+const mapStateToProps = (store, props) => {
+	const { pages } = store;
+	const { slug } = props.match.params;
+	let selectedPage = _find(pages, { slug });
+
+	return ({ selectedPage });
+}; 
+
+// mapDispatchToProps -> getPage
+const mapDispatchToProps = dispatch => bindActionCreators({ getPage }, dispatch);
 
 // Export container while connected to store with frontload
-export default connect(mapStateToProps)(
+export default connect(mapStateToProps, mapDispatchToProps)(
 	frontloadConnect(frontload, { onMount: true, onUpdate: false })(Page)
 );

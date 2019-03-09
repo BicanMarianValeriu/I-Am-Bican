@@ -67,7 +67,7 @@ const getTime = (data, format) => {
  */
 const getDate = (data, format) => {
 	if (!data) return;
-	if( data.date_human) return data.date_human;
+	if (data.date_human) return data.date_human;
 	if (!format) format = 'MMMM Do, YYYY';
 	let date = new Date(data.date_gmt);
 	return date(format);
@@ -78,16 +78,10 @@ const getDate = (data, format) => {
  * @param {WP_Post object} data 
  * @returns media
  */
-const getFeaturedMedia = ( data ) => {
-	if ( ! data._embedded ) {
-		return false;
-	}
-	if ( 'undefined' === typeof data._embedded['wp:featuredmedia'] ) {
-		return false;
-	}
-	let media = find( data._embedded['wp:featuredmedia'], function( item ) {
-		return ( 'undefined' !== typeof item.source_url );
-	} );
+const getFeaturedMedia = (data) => {
+	if (!data._embedded) return false;
+	if ('undefined' === typeof data._embedded['wp:featuredmedia']) return false;
+	let media = find(data._embedded['wp:featuredmedia'], item => ('undefined' !== typeof item.source_url));
 	return media;
 };
 

@@ -1,55 +1,55 @@
 self.__precacheManifest = [
   {
-    "revision": "594f9826d92b2c7ad649",
+    "revision": "efe53c05e40361e90de6",
     "url": "/static/css/7.313316d7.chunk.css"
   },
   {
-    "revision": "990aa5b723f6bc6e3222",
+    "revision": "c31b9f9ed0c17b52f1d3",
     "url": "/static/css/404.b582dffa.chunk.css"
   },
   {
-    "revision": "8a6850b2fc7514788a7c",
+    "revision": "1d39f67d45f48bdc990e",
     "url": "/static/css/main.c3fa455e.chunk.css"
   },
   {
-    "revision": "8a6850b2fc7514788a7c",
-    "url": "/static/js/main.8a6850b2.chunk.js"
+    "revision": "1d39f67d45f48bdc990e",
+    "url": "/static/js/main.1d39f67d.chunk.js"
   },
   {
-    "revision": "2e5fc1d580032bdeac96",
-    "url": "/static/js/page.2e5fc1d5.chunk.js"
+    "revision": "1f17b66c0fcafc7f6008",
+    "url": "/static/js/page.1f17b66c.chunk.js"
   },
   {
-    "revision": "3552923840e350ba65c6",
+    "revision": "514fad7901428095d18c",
     "url": "/static/css/portfolio.bccf4b3e.chunk.css"
   },
   {
-    "revision": "3552923840e350ba65c6",
-    "url": "/static/js/portfolio.35529238.chunk.js"
+    "revision": "514fad7901428095d18c",
+    "url": "/static/js/portfolio.514fad79.chunk.js"
   },
   {
-    "revision": "c2c5f65692951b5ad41b",
+    "revision": "655208c5de629a7829bd",
     "url": "/static/css/projects.38c3aeb1.chunk.css"
   },
   {
-    "revision": "c2c5f65692951b5ad41b",
-    "url": "/static/js/projects.c2c5f656.chunk.js"
+    "revision": "655208c5de629a7829bd",
+    "url": "/static/js/projects.655208c5.chunk.js"
   },
   {
-    "revision": "49093e23b47680b94cc5",
-    "url": "/static/js/runtime~main.49093e23.js"
+    "revision": "cbc14e547cf00d2bde16",
+    "url": "/static/js/runtime~main.cbc14e54.js"
   },
   {
-    "revision": "15861130beb37acc6983",
-    "url": "/static/js/swalcontact.15861130.chunk.js"
+    "revision": "e1d5a6affed7544f5f60",
+    "url": "/static/js/swalcontact.e1d5a6af.chunk.js"
   },
   {
-    "revision": "990aa5b723f6bc6e3222",
-    "url": "/static/js/404.990aa5b7.chunk.js"
+    "revision": "c31b9f9ed0c17b52f1d3",
+    "url": "/static/js/404.c31b9f9e.chunk.js"
   },
   {
-    "revision": "594f9826d92b2c7ad649",
-    "url": "/static/js/7.594f9826.chunk.js"
+    "revision": "efe53c05e40361e90de6",
+    "url": "/static/js/7.efe53c05.chunk.js"
   },
   {
     "revision": "9d90f6b589b4b60b77a34b7c2d694c53",
@@ -64,20 +64,20 @@ self.__precacheManifest = [
     "url": "/static/media/parallax-1.75c99c88.jpg"
   },
   {
-    "revision": "4e21f1ae69399656ab676b0e11d0c370",
-    "url": "/static/media/ShadowsIntoLight.4e21f1ae.woff"
-  },
-  {
     "revision": "7a088887950c94ab6abc614def27f5ea",
     "url": "/static/media/ShadowsIntoLight.7a088887.woff2"
   },
   {
-    "revision": "33adae677fab86b44462b81620210061",
-    "url": "/static/media/ShadowsIntoLight.33adae67.eot"
+    "revision": "4e21f1ae69399656ab676b0e11d0c370",
+    "url": "/static/media/ShadowsIntoLight.4e21f1ae.woff"
   },
   {
     "revision": "4141b2ff16a24a462106e206def679c1",
     "url": "/static/media/ShadowsIntoLight.4141b2ff.ttf"
+  },
+  {
+    "revision": "33adae677fab86b44462b81620210061",
+    "url": "/static/media/ShadowsIntoLight.33adae67.eot"
   },
   {
     "revision": "3c74097fbedcb8364bad02341117e51d",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/static/media/placeholder-bold.81ba79bb.png"
   },
   {
-    "revision": "a66d61de9df773a44652174acba20f1f",
+    "revision": "cb1f4bb5378a0590f1cf7b56970efcdd",
     "url": "/index.html"
   }
 ];
