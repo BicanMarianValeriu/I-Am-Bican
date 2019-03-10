@@ -3,37 +3,35 @@ import JWTDecode from "jwt-decode";
 import { routes as _routes } from "./../rest-routes.json";
 import { serializeData } from "../../utilities/helpers";
 
-export const API_REQUEST = '[iambican] API Request';
+export const API_REQUEST = '[iambican] API Request'; 
 
-export const FETCHING = "FETCHING";
-export const SHOW_LOADING = "SHOW_LOADING";
-export const HIDE_LOADING = "HIDE_LOADING";
-export const FETCH_MENU_FULFILLED = "FETCH_MENU_FULFILLED";
 export const FETCH_USER_FULFILLED = "FETCH_USER_FULFILLED";
 export const LOGOUT_USER = "LOGOUT_USER";
-export const FETCH_POSTS_FULFILLED = "FETCH_POSTS_FULFILLED";
-export const FETCH_CLIENTS_FULFILLED = "FETCH_CLIENTS_FULFILLED";
+export const FETCH_POSTS_FULFILLED = "FETCH_POSTS_FULFILLED"; 
 export const FETCH_CLIENT_FULFILLED = "FETCH_CLIENT_FULFILLED";
 export const FETCH_MEDIA_FULFILLED = "FETCH_MEDIA_FULFILLED";
-export const FETCH_REJECTED = "FETCH_REJECTED";
-export const SET_HAS_MORE_POSTS = "SET_HAS_MORE_POSTS";
+export const FETCH_REJECTED = "FETCH_REJECTED"; 
 
 // Axios Settings
 const APIUrl = _routes.REST; //'//working.on/iambican/wordpress/wp-json/';
 axios.defaults.baseURL = APIUrl;
 const apiConfig = { baseURL: APIUrl };
 
+// Export a base axios instance to be used on some cases
 export const requestApi = axios.create(apiConfig);
 
 /**
- * Sets has more post state
- * @param condition
+ * API REQUEST
+ * @param { string } 	endpoint 	- the Rest API URL
+ * @param { mixed } 	payload 	- string or object with query args
+ * @param { object } 	events 		- Redux onSuccess/onError ACTIONS
+ * @param { object } 	options		- Axios Config: { method: `get` } defaults
  */
-export function setHasMorePosts(condition) {
-	return function (dispatch) {
-		dispatch({ type: FETCH_POSTS_FULFILLED, payload: condition });
-	};
-}
+export const apiRequest = (endpoint, payload, events, options) => ({
+	type: API_REQUEST,
+	payload: payload,
+	meta: { endpoint, events, options }
+}); 
 
 /**
  * Request an user token
@@ -96,9 +94,3 @@ export function fetchDispatcher(endpoint = "", query = {}, action = {}, options 
 			);
 	};
 }
-
-export const apiRequest = (endpoint, query, events, options) => ({
-	type: API_REQUEST,
-	payload: query,
-	meta: { endpoint, events, options }
-});

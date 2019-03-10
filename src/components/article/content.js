@@ -1,23 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { getExcerpt, getContent } from '../../utilities/functions';
 
-class Content extends Component {
 
-    getClasses() {
-        let classes = ['entry__content']; 
-        return classes.join(' ');
-    }
+const Content = props => {
+    const { type } = props;
 
-    getContent() {
-        return this.props.isSingle ? getContent(this.props) : getExcerpt(this.props);
-    }
+    let wrapperClass = [`${type}__content`];
 
-    render() {
-        return (
-            <div className={this.getClasses()} dangerouslySetInnerHTML={this.getContent()} />
-        );
-    }
+    let content = props.isSingle ? getContent(props) : getExcerpt(props);
+
+    return <div className={wrapperClass.join(' ')} dangerouslySetInnerHTML={content} />;
 }
 
 export default Content;

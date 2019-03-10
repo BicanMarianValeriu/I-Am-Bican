@@ -3,13 +3,8 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { frontloadConnect } from 'react-frontload';
-import find from 'lodash/find';
-import { fetchDispatcher, FETCH_MENU_FULFILLED } from './../redux/actions/actions';
-
-// Server Side Stuff
-const frontload = async props => await props.fetchDispatcher('wp/v2/menu/' + props.wpMenuId, {}, {
-    success: FETCH_MENU_FULFILLED
-});
+import _find from 'lodash/find';
+import { getMenu } from './../redux/actions/menus';
 
 class Navigation extends Component {
     renderMenuItems(menu) {
@@ -39,7 +34,7 @@ class Navigation extends Component {
         }
     }
 
-    renderDropdown(items) { 
+    renderDropdown(items) {
         return items.map((item) => {
             let classes = ['nav-link', 'nav-link--dropdown'];
             let _classes = (item.classes.length) ? item.classes.split(' ') : '';
@@ -67,14 +62,18 @@ class Navigation extends Component {
 
 // Binds menu items to navigation container
 const mapStateToProps = (store, props) => {
-    const { api: { menus } } = store;
+    const { menus } = store;
     const { wpMenuId } = props;
-    let menu = menus && find(menus, { ID: wpMenuId });
+    let menu = _find(menus, { ID: wpMenuId });
+
     return ({ menu });
 };
 
-// Connect fetchDispatch function to props.fetchDispatch
-const mapDispatchToProps = dispatch => bindActionCreators({ fetchDispatcher }, dispatch);
+// mapDispatchToProps -> getMenu
+const mapDispatchToProps = dispatch => bindActionCreators({ getMenu }, dispatch);
+
+// Server Side Stuff
+const frontload = async props => await props.getMenu(props.wpMenuId);
 
 // Export container while connected to store and SSR
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(

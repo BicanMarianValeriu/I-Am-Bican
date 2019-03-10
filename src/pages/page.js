@@ -9,7 +9,7 @@ import _find from 'lodash/find';
 // Deps
 import PageIntro from "../components/sections/page-intro";
 import Main from "../components/Main/index";
-import { getPage } from "../redux/actions/pages";   
+import { getPage } from "../redux/actions/pages";
 
 // Server Side Stuff
 const frontload = async props => await props.getPage({ slug: props.match.params.slug });
@@ -33,6 +33,7 @@ class Page extends Component {
 	render() {
 		const { selectedPage, location: { pathname } } = this.props;
 		const title = selectedPage && selectedPage.title.rendered;
+
 		const meta = {
 			title,
 			canonical: "https://www.iambican.com" + pathname
@@ -41,7 +42,7 @@ class Page extends Component {
 		let posts = [];
 		posts.push(selectedPage);
 		posts = posts.filter(el => el != null); // Dirty
-		
+
 		return (
 			<React.Fragment>
 				<Helmet>
@@ -64,7 +65,7 @@ const mapStateToProps = (store, props) => {
 	let selectedPage = _find(pages, { slug });
 
 	return ({ selectedPage });
-}; 
+};
 
 // mapDispatchToProps -> getPage
 const mapDispatchToProps = dispatch => bindActionCreators({ getPage }, dispatch);

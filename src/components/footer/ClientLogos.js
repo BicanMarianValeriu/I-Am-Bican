@@ -1,32 +1,32 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { TweenMax } from "gsap/TweenMax";
-import { fetchDispatcher, FETCH_CLIENTS_FULFILLED } from "../../redux/actions/actions";
-import { connect } from "react-redux"; 
+import { getClients } from "../../redux/actions/clients";
+
 let ScrollMagic;
 let Splitting;
 
 class ClientLogos extends Component {
 	componentDidMount() {
-		this.props.dispatch(
-			fetchDispatcher("wp/v2/clients", {}, { success: FETCH_CLIENTS_FULFILLED })
-		);
-		
-		ScrollMagic = require("scrollmagic");
-		Splitting = require("splitting"); 
-		 
-		let controller = new ScrollMagic.Controller();
-		
-		const target = document.querySelector('.company-logos__title');
-        Splitting({ target: target });
+		this.props.getClients();
 
-        new ScrollMagic.Scene({
-            triggerElement: '.company-logos__title',
-            triggerHook: .75
-        }).setClassToggle('.company-logos__title', "company-logos__title--animated").addTo(controller);
+		ScrollMagic = require("scrollmagic");
+		Splitting = require("splitting");
+
+		let controller = new ScrollMagic.Controller();
+
+		const target = document.querySelector('.company-logos__title');
+		Splitting({ target: target });
+
+		new ScrollMagic.Scene({
+			triggerElement: '.company-logos__title',
+			triggerHook: .75
+		}).setClassToggle('.company-logos__title', "company-logos__title--animated").addTo(controller);
 	}
 
 	shouldComponentUpdate(nextProps) {
-		return( this.props.clients !== nextProps.clients );
+		return (this.props.clients !== nextProps.clients);
 	}
 
 	componentWillUnmount() {
@@ -105,13 +105,14 @@ class ClientLogos extends Component {
 	}
 
 	renderLogos() {
-		const { clients } = this.props; 
-		if (clients) return clients.map((item, i) => {
+		const { clients } = this.props;
+
+		return clients.map((item, i) => {
 			const { acf } = item;
 			const { client_logo } = acf;
 			return (
 				<div key={i} className="companies__logo">
-					<img width="200" src={client_logo && client_logo.url} alt={item.name} />
+					<img width="200" src={client_logo.url} alt={item.name} />
 				</div>
 			);
 		});
@@ -136,11 +137,14 @@ class ClientLogos extends Component {
 	}
 }
 
-// Binds menu items to navigation container
+// mapStateToProps -> clients
 const mapStateToProps = store => {
-	const { api: { clients } } = store;
+	const { clients } = store;
 	return { clients };
 };
 
+// mapDispatchToProps -> getClients
+const mapDispatchToProps = dispatch => bindActionCreators({ getClients }, dispatch);
+
 // Export container while connected to store
-export default connect(mapStateToProps)(ClientLogos);
+export default connect(mapStateToProps, mapDispatchToProps)(ClientLogos);

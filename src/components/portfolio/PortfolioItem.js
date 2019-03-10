@@ -21,13 +21,11 @@ class PortfolioSlide extends Component {
 				<FeaturedMedia mediaId={featured_media} />
 				<div className="portfolio__description">
 					<Title {...this.props} />
-					<Content {...this.props} />
-					<div className="text-center">
-						<Link to={`portfolio/${slug}`} className="btn btn-link portfolio__more">
-							<span>View More</span>
-							<i className="fas fa-arrow-right"></i>
-						</Link>
-					</div>
+					<Content {...this.props} /> 
+					<Link to={`portfolio/${slug}`} className="btn btn-link portfolio__more">
+						<span>View More</span>
+						<i className="fas fa-arrow-right"></i>
+					</Link>  
 				</div>
 			</article>
 		);

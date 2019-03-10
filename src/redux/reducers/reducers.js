@@ -1,12 +1,8 @@
-import {
-	FETCHING,
-	FETCH_MENU_FULFILLED,
-	FETCH_POSTS_FULFILLED,
-	FETCH_CLIENTS_FULFILLED,
+import { 
+ 	FETCH_POSTS_FULFILLED, 
 	FETCH_CLIENT_FULFILLED,
 	FETCH_MEDIA_FULFILLED,
-	FETCH_REJECTED,
-	SET_HAS_MORE_POSTS,
+	FETCH_REJECTED, 
 	FETCH_USER_FULFILLED,
 	LOGOUT_USER
 } from "../actions/actions"; 
@@ -17,18 +13,13 @@ const initialState = {
 	user: {
 		authentificated: false
 	},
-	posts: [],
-	menus: [],
-	fetching: true,
-	hasMorePosts: false,
+	posts: [], 
+	fetching: true, 
 	error: null
 };
 
 export default function reducer(state = initialState, action) {
-	switch (action.type) {
-		case FETCHING: {
-			return { ...state, fetching: true };
-		}
+	switch (action.type) { 
 		case FETCH_REJECTED: {
 			return { ...state, fetching: false, error: action.payload };
 		}
@@ -57,19 +48,11 @@ export default function reducer(state = initialState, action) {
 				fetching: false,
 				posts: action.payload.length ? action.payload : []
 			};
-		}
-		case FETCH_CLIENTS_FULFILLED: {
-			return {
-				...state,
-				fetching: false,
-				clients: action.payload.length ? action.payload : []
-			};
-		}
+		} 
 		case FETCH_CLIENT_FULFILLED: {
 			const { posts } = state;
 			let clientPost = find(posts, flow(property('clients'), partialRight(some, action.payload.id)));
-			let index = findIndex(posts, flow(property('clients'), partialRight(some, action.payload.id)));
-			console.log(clientPost);
+			let index = findIndex(posts, flow(property('clients'), partialRight(some, action.payload.id))); 
 			clientPost.clientObj = action.payload;
 			posts.splice(index, 1, clientPost);
 			return {
@@ -89,24 +72,7 @@ export default function reducer(state = initialState, action) {
 				fetching: false,
 				posts: posts
 			};
-		}
-		case FETCH_MENU_FULFILLED: {
-			var { menus } = state;
-			if (menus === undefined) menus = [action.payload];
-
-			return {
-				...state,
-				fetching: false,
-				menus: [...menus, action.payload]
-			};
-		}
-		case SET_HAS_MORE_POSTS: {
-			return {
-				...state,
-				fetching: false,
-				hasMorePosts: action.payload
-			};
-		}
+		}  
 		default:
 			return state;
 	}

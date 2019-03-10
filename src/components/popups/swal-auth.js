@@ -55,12 +55,13 @@ const SwalAuth = () => {
 			var password = fields["password"].value;
 
 			if (validateFields(fields) === false) return Swal.showValidationMessage(`Please fill all fields.`);
-
+			
 			requestUserToken({ username, password }).then(response => {
 				let token = response && response.token;
 				if (token) {
 					setAuthToken(token); 
 					const { store } = createStore();
+
 					setCurrentUser(token)
 						.then(response => { store.dispatch({ type: FETCH_USER_FULFILLED, payload: response }); })
 						.then(SwalToast.fire({ type: "success", title: `Welcome back ${response.user_display_name}.` }));
@@ -78,7 +79,7 @@ const SwalAuth = () => {
 						if (result.dismiss === Swal.DismissReason.cancel) SwalAuth();
 					});
 				}
-			});
+			}); 
 		},
 		allowOutsideClick: () => !Swal.isLoading()
 	}).then(result => {

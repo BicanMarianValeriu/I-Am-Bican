@@ -7,7 +7,7 @@ import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../redux/actions/actions
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
-import scrollToElement from 'scroll-to-element';
+import scrollToElement from 'scroll-to-element'; 
 
 // SCSS
 import "./../static/scss/components/_portfolio-prev-next.scss";
@@ -32,7 +32,7 @@ class Portfolio extends Component {
 				'wp/v2/portfolio',
 				{ slug: this.props.match.params.slug },
 				{ success: FETCH_POSTS_FULFILLED }
-			); 
+			);
 		}
 	}
 
@@ -68,6 +68,7 @@ class Portfolio extends Component {
 // Binds Query / Query Result
 const mapStateToProps = store => {
 	const { api: { posts } } = store;
+
 	return { posts };
 };
 

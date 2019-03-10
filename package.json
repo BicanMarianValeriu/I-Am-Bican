@@ -44,7 +44,7 @@
 		"react-redux": "^6.0.0",
 		"react-router": "^4.3.1",
 		"react-router-dom": "^4.3.1",
-		"react-scripts": "^2.1.5",
+		"react-scripts": "^2.1.8",
 		"react-transition-group": "^2.6.0",
 		"reactstrap": "^7.1.0",
 		"redux": "^4.0.1",
@@ -57,7 +57,9 @@
 		"sweetalert2": "^8.0.7"
 	},
 	"devDependencies": {
-		"babel-plugin-dynamic-import-node": "^2.2.0"
+		"babel-plugin-dynamic-import-node": "^2.2.0",
+		"shipit-cli": "^4.2.0",
+		"shipit-deploy": "^4.1.4"
 	},
 	"scripts": {
 		"start": "cross-env NODE_ENV=production node ./server/index.js",

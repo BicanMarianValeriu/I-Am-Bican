@@ -1,26 +1,15 @@
 import React, { Component } from 'react';
-import { requestApi } from '../../redux/actions/actions';
-import classNames from 'classnames';
+import { connect } from "react-redux";
+import _find from 'lodash/find';
 
-export default class Meta extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			loading: false,
-			client: {}
-		}
-	}
+class Meta extends Component {
 
-	componentDidMount() {
-		const { clients } = this.props;
-		if( clients[0] === undefined ) return;
-		this.setState({ loading: true });
-		requestApi('wp/v2/clients/' + clients[0]).then(payload => this.setState({ client: payload.data, loading: false }));
-	}
-
-	getClient() {
-		const { client: { name = 'Lorem Ipsum' } } = this.state;
-		return name;
+	renderClientImage() { 
+		const { client } = this.props;  
+		if( ! client ) return; 
+		return (
+			<img src={client.acf.client_logo.url} alt={client.name} height="50" />
+		);
 	}
 
 	render() {
@@ -36,27 +25,28 @@ export default class Meta extends Component {
 
 		let website = `<a target="_blank" href="${meta ? meta.website : "#"}">View Live Site</a>`;
 
-		let clientClasses = classNames('portfolio-meta__item-value', { loading: this.state.loading });
+		let itemClass = 'portfolio-meta__item col-6 col-sm-6 col-lg-3 mb-3 mb-lg-0';
+
 		return (
 			<div className="portfolio__meta portfolio-meta">
 				<div className="row">
-					<div className="portfolio-meta__item col-sm-6 col-lg-3 mb-3 mb-lg-0" title="Went Live">
-						<span className="portfolio-meta__item-label">Date</span>
+					<div className={itemClass}>
+						<span className="portfolio-meta__item-label" title="Went Live">Date</span>
 						<hr className="my-2" />
 						<time className="portfolio-meta__item-value" dateTime={date_gmt}>{date_human}</time>
 					</div>
-					<div className="portfolio-meta__item col-sm-6 col-lg-3 mb-3 mb-lg-0" title="Cost Range">
-						<span className="portfolio-meta__item-label">Cost</span>
+					<div className={itemClass}>
+						<span className="portfolio-meta__item-label"  title="Cost Range">Cost</span>
 						<hr className="my-2" />
 						<span className="portfolio-meta__item-value">{count > 0 ? money : "Priceless"}</span>
 					</div>
-					<div className="portfolio-meta__item col-sm-6 col-lg-3 mb-3 mb-lg-0" title="Client">
-						<span className="portfolio-meta__item-label">Client</span>
+					<div className={itemClass}>
+						<span className="portfolio-meta__item-label" title="Client">Client</span>
 						<hr className="my-2" />
-						<span className={clientClasses}>{this.getClient()}</span>
+						<span className='portfolio-meta__item-value'>{this.renderClientImage()}</span>
 					</div>
-					<div className="portfolio-meta__item col-sm-6 col-lg-3 mb-3 mb-lg-0" title="Live URL">
-						<span className="portfolio-meta__item-label">Link</span>
+					<div className={itemClass}>
+						<span className="portfolio-meta__item-label" title="Live URL">Link</span>
 						<hr className="my-2" />
 						<span className="portfolio-meta__item-value portfolio-meta__item-value--url"
 							dangerouslySetInnerHTML={{ __html: website }} />
@@ -65,4 +55,16 @@ export default class Meta extends Component {
 			</div>
 		);
 	}
-} 
+}
+
+// Binds menu items to navigation container
+const mapStateToProps = (store, props) => {
+	const { clients } = store;
+	const clientId = props.clients[0];
+	const client = _find(clients, { id: clientId });
+
+	return ({ client });
+};
+
+// Export container while connected to store with frontload
+export default connect(mapStateToProps)(Meta);

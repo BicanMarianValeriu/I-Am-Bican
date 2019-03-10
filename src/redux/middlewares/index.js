@@ -5,7 +5,10 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
 
 import { api } from "./api";
+import { userMdl } from "./user";
+import { menuMdl } from "./menus";
 import { pageMdl } from "./pages";
+import { clientsMdl } from "./clients";
 import { isServer } from '../store';
 
 export default function ({ history, enhancers }) {
@@ -13,9 +16,13 @@ export default function ({ history, enhancers }) {
         routerMiddleware(history),
         promise(),
         thunk,
+        ...clientsMdl,
         ...pageMdl,
-        api
+        ...menuMdl,
+        ...userMdl,
+        api // first, counting from bottom
     ];
+
     if (process.env.NODE_ENV === 'development' && !isServer) arr.push(createLogger());
 
     return compose(applyMiddleware(...arr), ...enhancers)
