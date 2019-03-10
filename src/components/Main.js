@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
-import Article from './article';
-import PortfolioItem from './../Portfolio/PortfolioItem';
-import Portfolio from './Portfolio';
-import Empty from './empty';
+import Article from './Entry';
+import PortfolioItem from './Portfolio/PortfolioItem';
+import PortfolioSingle from './Portfolio/PortfolioSingle';
+import Empty from './Entry/Empty';
 
 class Main extends Component {
 
@@ -27,7 +27,7 @@ class Main extends Component {
 		let _classes = this.getOptions().classes;
 		let innerClass = _classes.inner
 		let isSingle = this.isSingle();
-		var arr = ['col', 'main', isSingle ? 'main--single' : 'main-archive', { 
+		var arr = ['col', 'main', isSingle ? 'main--single' : 'main--archive', { 
 			[innerClass]: !isSingle,  
 			'main--is-loading:': this.props.loading
 		}];
@@ -41,7 +41,7 @@ class Main extends Component {
 				var postType;
 				switch (post.type) {
 					case 'portfolio': postType = this.isSingle() ?
-						<Portfolio key={post.id} {...post} /> : <PortfolioItem key={post.id} {...post} />;
+						<PortfolioSingle key={post.id} {...post} /> : <PortfolioItem key={post.id} {...post} />;
 						break;
 					default: postType = <Article key={post.id} {...post} isSingle={this.isSingle()} />;
 				}

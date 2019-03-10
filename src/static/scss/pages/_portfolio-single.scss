@@ -1,1 +1,205 @@
-@import "./../abstracts/bootstrap-required"; 
+@import "./../abstracts/bootstrap-required";  
+
+.portfolio {
+    position: relative;
+    
+    &.entry--single { 
+
+        .portfolio {
+            &__meta {
+                padding: 20px 0;
+                margin-bottom: 2rem;
+
+                @include media-breakpoint-down(md) { 
+                    padding: 5px;
+                    margin-bottom: 1rem;
+                }
+            }
+
+            &__title {
+                font-size: 1.8rem;
+                text-align: center; 
+            }
+
+            &__content {
+                padding: 4rem 0;
+
+                h4,
+                h5,
+                h6 {
+                    font-family: $font-family-sans-serif;
+                    font-weight: 400;
+                    margin-bottom: 0;
+                    color: theme-color('primary');
+                }
+
+                p { 
+                    & + h4,
+                    & + h5, 
+                    & + h6 {
+                        padding-top: 1rem;
+                    }
+                }
+            } 
+        } 
+    } 
+
+    &__header {
+        position: relative;
+        padding: 4.5rem 0;
+    
+        @include media-breakpoint-down(md) { 
+            padding: 2.5rem 0;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            background-color: $gray-100;
+            top: 0;
+            bottom: 0;
+            left: calc(-100vw / 2 + 100% / 2 );
+            right: calc(-100vw / 2 + 100% / 2 );
+            z-index: -1;
+        }
+    }  
+} 
+
+.portfolio-prev-next {
+    position: relative;
+
+    &__item {
+        position: relative;
+        display: inline-block;
+
+        &--prev {
+            svg {
+                margin-right: 15px;
+            }
+        }
+
+        &--next {
+            svg {
+                margin-left: 15px;
+            }
+        }
+
+        &--disabled {
+            pointer-events: none;
+
+            .portfolio-prev-next__title,
+            .portfolio-prev-next__subtitle,
+            .svg-inline--fa {
+                color: $gray-400!important;
+            } 
+        }
+
+        .svg-inline--fa {
+            color: theme-color( 'primary' );
+        }
+    
+        .download-loader {
+            position: absolute;
+            opacity: .90;
+    
+            & > div {
+                height: 100%;
+                max-width: 45px;
+    
+                svg {
+                    height: 100%;
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    &__title {
+        font-size: 1rem;
+    }
+
+    &__subtitle {
+        font-size: .9rem;
+        color: theme-color( 'primary' );
+    }
+
+    &__breadcrumbs {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        .list-inline-item {
+            &.active {  
+                &::before {
+                    content: "\00BB";
+                    display: inline-block;
+                    text-align: left;
+                    width: 15px;
+                }
+            }
+        }
+    }
+
+    &__all {
+        font-size: .9rem;
+        color: $black;
+    }
+
+    & + .container {
+        main {
+            min-height: calc( 100vh + 150px );
+            padding-top: 0;
+        }
+    } 
+}
+
+.portfolio-meta {  
+    &__item {
+        &-label {
+            font-size: .8rem;
+            text-transform: uppercase;
+        }
+
+        &-value {  
+            font-size: 1rem;
+            font-weight: bold;
+    
+            &:not(.portfolio-meta__item-value--url) {
+                color: $black;
+            }
+
+            &.loading {
+                position: relative; 
+                opacity: .5;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -8px;
+                    right: -8px;
+                    bottom: 0;
+                    background-color: rgba( #000000, .1);
+                }
+            }
+
+            &__svg {
+                display: inline-block;
+                margin-right: 5px;
+    
+                svg {
+                    width: 23px;  
+    
+                    @include media-breakpoint-down(sm) { 
+                        width: 17px; 
+                    }
+                }
+            }
+        } 
+    }
+
+    hr {
+        height: 0;
+        border-top: 1px solid $gray-300;
+    }
+}

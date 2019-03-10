@@ -1,7 +1,7 @@
 import React, { Component } from 'react';   
 
-import Title from '../Article/Title';
-import Content from '../Article/Content';
+import Title from './Title';
+import Content from './Content';
 
 class Article extends Component { 
 	getClasses() {

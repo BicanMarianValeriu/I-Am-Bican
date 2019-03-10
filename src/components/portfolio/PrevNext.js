@@ -3,23 +3,16 @@ import { Link } from 'react-router-dom';
 import DownloadLoader from './../download-loader';
 
 export default class PrevNext extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            post: {} 
-        }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (this.state.post !== nextProps.posts[0]) this.setState({ post: nextProps.posts[0] });
-    }
 
     renderLink(context) {
-        const { prev_next } = this.state.post;
+        const { current = {} } = this.props;
+
+        const { prev_next = {} } = current;
 
         let obj = prev_next && prev_next[context];
 
         let classes = ['portfolio-prev-next__item', 'portfolio-prev-next__item--' + context];
+
         if (obj) classes.push(['portfolio-prev-next__item--has-obj']);
         else classes.push(['portfolio-prev-next__item--disabled']);
 
@@ -28,10 +21,11 @@ export default class PrevNext extends Component {
         if (context === 'prev') arrow.push(['fa-arrow-left']);
 
         let label = (context === 'prev') ? 'PREVIOUS PROJECT' : 'NEXT PROJECT';
+
         let link = obj ? `/portfolio/${obj.slug}` : '/';
         let title = obj ? obj.title : 'Lorem ipsum dolor';
 
-        const showLoader = JSON.stringify(this.state.post) === '{}';
+        let showLoader = JSON.stringify(current) === '{}' ? true : false;
 
         return (
             <Link className={classes.join(' ')} to={link}>
@@ -48,7 +42,7 @@ export default class PrevNext extends Component {
         );
     }
 
-    render() {
+    render() { 
         return (
             <div className="portfolio-prev-next">
                 <div className="container-fluid">

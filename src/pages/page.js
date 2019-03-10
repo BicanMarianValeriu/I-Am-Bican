@@ -8,11 +8,8 @@ import _find from 'lodash/find';
 
 // Deps
 import PageIntro from "../components/sections/page-intro";
-import Main from "../components/Main/index";
+import Main from "../components/Main";
 import { getPage } from "../redux/actions/pages";
-
-// Server Side Stuff
-const frontload = async props => await props.getPage({ slug: props.match.params.slug });
 
 class Page extends Component {
 	componentDidMount() {
@@ -69,6 +66,9 @@ const mapStateToProps = (store, props) => {
 
 // mapDispatchToProps -> getPage
 const mapDispatchToProps = dispatch => bindActionCreators({ getPage }, dispatch);
+
+// Server Side Stuff
+const frontload = async props => await props.getPage({ slug: props.match.params.slug });
 
 // Export container while connected to store with frontload
 export default connect(mapStateToProps, mapDispatchToProps)(

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import Title from '../Article/Title';
-import Content from '../Article/Content';
+import Title from '../components/Article/Title';
+import Content from '../components/Article/Content';
 import SlideImage from '../Portfolio/SlideImage';
 
-import { shuffleArray } from './../../utilities/helpers';
+import { shuffleArray } from './helpers';
 
 class PortfolioSlide extends Component {
 	getClasses() {

@@ -67,11 +67,13 @@
 .content--projects {
     .main--archive {
         max-width: initial;
+        padding-bottom: 50px;
     }
 }
 
 .portfolio {
-
+    position: relative;
+    
     &:hover {
         @include media-breakpoint-up(lg) {
             .portfolio { 
@@ -89,6 +91,14 @@
                         }
                     }
                 }
+            }
+        }
+    } 
+
+    &.entry--archive {
+        &:last-child {
+            @include media-breakpoint-down(md) { 
+                margin-bottom: 0;
             }
         }
     }

@@ -1,4 +1,4 @@
-import { apiRequest } from "../actions/actions";
+import { apiRequest } from "../actions/api";
 
 import { GET_MENU, GET_MENU_SUCCESS, GET_MENU_ERROR, updateMenus } from "../actions/menus";
 

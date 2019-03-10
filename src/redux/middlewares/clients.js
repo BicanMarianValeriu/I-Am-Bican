@@ -1,4 +1,4 @@
-import { apiRequest } from "../actions/actions";
+import { apiRequest } from "../actions/api";
 import { GET_CLIENTS, GET_CLIENTS_SUCCESS, GET_CLIENTS_ERROR, updateClients } from "../actions/clients";
 
 export const getClientsFlow = ({ dispatch }) => next => action => {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import Header from '../Portfolio/Header';
-import Content from '../Article/Content';
+import Header from './Header';
+import Content from '../Entry/Content';
 
-class Portfolio extends Component {
+class PortfolioSingle extends Component {
 	getClasses() {
 		let classes = ['entry', 'entry--portfolio', 'entry--single', 'portfolio'];
 		return classes.join(' ');
@@ -19,4 +19,4 @@ class Portfolio extends Component {
 	}
 }
 
-export default Portfolio;
+export default PortfolioSingle;

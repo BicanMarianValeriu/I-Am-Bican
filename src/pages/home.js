@@ -13,7 +13,7 @@ export default class Home extends Component {
 	render() {
 		const meta = {
 			title: "WordPress/React Developer",
-			canonical: "http://www.iambican.com/"
+			canonical: "https://www.iambican.com/"
 		};
 
 		return (

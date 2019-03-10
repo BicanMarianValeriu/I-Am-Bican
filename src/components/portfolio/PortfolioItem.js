@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-import Title from '../Article/Title';
-import Content from '../Article/Content';
-import FeaturedMedia from '../Article/FeaturedMedia';
+import Title from '../Entry/Title';
+import Content from '../Entry/Content';
+import FeaturedMedia from '../Entry/FeaturedMedia';
 
 class PortfolioSlide extends Component {
 	getClasses() {

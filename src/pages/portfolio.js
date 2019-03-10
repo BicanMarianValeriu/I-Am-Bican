@@ -1,24 +1,18 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
-// Deps
-import PrevNext from "../components/Portfolio/PrevNext";
-import Main from "../components/Main/index";
-import { fetchDispatcher, FETCH_POSTS_FULFILLED } from "../redux/actions/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
-import scrollToElement from 'scroll-to-element'; 
+import _find from 'lodash/find';
+import scrollToElement from 'scroll-to-element';
 
-// SCSS
-import "./../static/scss/components/_portfolio-prev-next.scss";
-import "./../static/scss/components/_entry-portfolio.scss";
+// Deps
+import PrevNext from "../components/Portfolio/PrevNext";
+import Main from "../components/Main";
+import { getProjects } from "../redux/actions/projects";
 
-// Server Side Stuff
-const frontload = async props => await props.fetchDispatcher(
-	"wp/v2/portfolio",
-	{ slug: props.match.params.slug },
-	{ success: FETCH_POSTS_FULFILLED }
-);
+// SCSS 
+import "./../static/scss/pages/_portfolio-single.scss";
 
 class Portfolio extends Component {
 	componentDidMount() {
@@ -28,26 +22,27 @@ class Portfolio extends Component {
 	componentDidUpdate(prevProps) {
 		if (this.props.location.pathname !== prevProps.location.pathname) {
 			scrollToElement('.header');
-			this.props.fetchDispatcher(
-				'wp/v2/portfolio',
-				{ slug: this.props.match.params.slug },
-				{ success: FETCH_POSTS_FULFILLED }
-			);
+			this.props.getProjects({ slug: this.props.match.params.slug });
 		}
 	}
 
 	shouldComponentUpdate(nextProps) {
-		return (JSON.stringify(this.props) !== JSON.stringify(nextProps))
+		return (this.props.selectedProject !== nextProps.selectedProject)
 	}
 
 	render() {
-		const entry = this.props.posts[0];
-		const { location: { pathname } } = this.props;
+		const { selectedProject, location: { pathname } } = this.props;
+		const seoTitle = selectedProject && selectedProject.yoast_meta.title;
+
 		const meta = {
-			title: (entry && entry.yoast_meta.title) || (entry && entry.title.rendered),
-			description: entry && entry.yoast_meta.description,
-			canonical: "http://www.iambican.com" + pathname
+			title: seoTitle || (selectedProject && selectedProject.title.rendered),
+			description: selectedProject && selectedProject.yoast_meta.description,
+			canonical: "https://www.iambican.com" + pathname
 		};
+
+		let posts = [];
+		posts.push(selectedProject);
+		posts = posts.filter(el => el != null); // Dirty
 
 		return (
 			<React.Fragment>
@@ -57,8 +52,8 @@ class Portfolio extends Component {
 					{meta.description && <meta name="description" content={meta.description} />}
 				</Helmet>
 				<div id="content" className="content">
-					<PrevNext posts={this.props.posts} />
-					<Main posts={this.props.posts} isSingle={true} />
+					<PrevNext current={selectedProject} />
+					<Main posts={posts} isSingle={true} />
 				</div>
 			</React.Fragment>
 		);
@@ -66,14 +61,19 @@ class Portfolio extends Component {
 }
 
 // Binds Query / Query Result
-const mapStateToProps = store => {
-	const { api: { posts } } = store;
+const mapStateToProps = (store, props) => {
+	const { projects } = store;
+	const { slug } = props.match.params;
+	let selectedProject = _find(projects, { slug });
 
-	return { posts };
+	return { selectedProject };
 };
 
 // Connect fetchDispatch function to props.fetchDispatch
-const mapDispatchToProps = dispatch => bindActionCreators({ fetchDispatcher }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getProjects }, dispatch);
+
+// Server Side Stuff
+const frontload = async props => await props.getProjects({ slug: props.match.params.slug });
 
 // Export container while connected to store and SSR
 export default connect(mapStateToProps, mapDispatchToProps)(

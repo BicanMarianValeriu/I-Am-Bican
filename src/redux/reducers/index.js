@@ -1,19 +1,25 @@
 import { combineReducers } from "redux";
 import { connectRouter } from 'connected-react-router';
 
-import reducer from "./reducers";
 import uiReducer from "./ui";
+import apiReducer from "./api";
+import userReducer from "./user";
 import menusReducer from "./menus";
 import pagesReducer from "./pages";
+import mediaReducer from "./media";
 import clientsReducer from "./clients";
+import projectsReducer from "./projects";
 
 export default function ({ history }) { 
     return combineReducers({
         router: connectRouter(history),
-        api: reducer,
         ui: uiReducer,
+        api: apiReducer,
+        user: userReducer,
         menus: menusReducer,
         pages: pagesReducer,
-        clients: clientsReducer
+        media: mediaReducer,
+        clients: clientsReducer,
+        projects: projectsReducer
     });
 }; 

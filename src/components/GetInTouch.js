@@ -29,7 +29,7 @@ export default class GetInTouch extends Component {
                 .then(modal => this.setState({ Modal: modal.default }))
                 .then(() => this.state.Modal.renderModal());
         }
-        if (this.state.Modal) this.state.Modal.renderModal();
+        this.state.Modal.renderModal();
     }
 
     render() {

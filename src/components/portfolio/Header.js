@@ -1,6 +1,6 @@
 import React from 'react';
 import Meta from './Meta';
-import Title from '../Article/Title';
+import Title from '../Entry/Title';
 
 const Header = props =>
     <header className="portfolio__header portfolio-header">

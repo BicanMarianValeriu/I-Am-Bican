@@ -1,8 +1,5 @@
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { validateFields } from "../../utilities/helpers";
-import { setAuthToken } from "../../utilities/auth"; 
-import { requestUserToken, FETCH_USER_FULFILLED, setCurrentUser } from "../../redux/actions/actions";
-import createStore from "../../redux/store";
 
 const SwalToast = Swal.mixin({
 	toast: true,
@@ -11,7 +8,28 @@ const SwalToast = Swal.mixin({
 	timer: 3000
 });
 
-const SwalAuth = () => {
+/**
+ * Render Invalid Credentials Modal
+ * @param { object } props - Contains the functions passed from the login component
+ */
+const SwalInvalidCredentials = (props) => {
+	return Swal.fire({
+		title: `Something went wrong.`,
+		html: `Invalid login credentials.`,
+		type: "error",
+		buttonsStyling: false,
+		showConfirmButton: false,
+		showCloseButton: true,
+		showCancelButton: true,
+		cancelButtonClass: 'btn btn-primary',
+		cancelButtonText: "Try Again" 
+	}).then(result => {
+		// Passing Props Back to Login if Try Again is Clicked
+		if (result.dismiss === Swal.DismissReason.cancel) SwalAuth(props);
+	});
+}
+
+const SwalAuth = (props) => {
 	return Swal.fire({
 		title: `Login`,
 		html: `<form name="swal-login">
@@ -55,31 +73,16 @@ const SwalAuth = () => {
 			var password = fields["password"].value;
 
 			if (validateFields(fields) === false) return Swal.showValidationMessage(`Please fill all fields.`);
-			
-			requestUserToken({ username, password }).then(response => {
-				let token = response && response.token;
-				if (token) {
-					setAuthToken(token); 
-					const { store } = createStore();
 
-					setCurrentUser(token)
-						.then(response => { store.dispatch({ type: FETCH_USER_FULFILLED, payload: response }); })
-						.then(SwalToast.fire({ type: "success", title: `Welcome back ${response.user_display_name}.` }));
-				} else {
-					Swal.fire({
-						title: `Something went wrong.`,
-						html: `Invalid login credentials.`,
-						type: "error",
-						showCloseButton: true,
-						showCancelButton: true,
-						cancelButtonText: "Try Again",
-						cancelButtonColor: "#01acf4",
-						showConfirmButton: false
-					}).then(result => {
-						if (result.dismiss === Swal.DismissReason.cancel) SwalAuth();
-					});
-				}
-			}); 
+			props.afterValidationSuccess({ username, password });
+
+			// On Success
+			document.addEventListener('user/get_token_success', (e) => SwalToast.fire(
+				{ type: "success", title: `Welcome back ${e.detail.user_display_name}.` }
+			));
+
+			// On Error
+			document.addEventListener('user/get_token_error', () => SwalInvalidCredentials(props));
 		},
 		allowOutsideClick: () => !Swal.isLoading()
 	}).then(result => {
@@ -92,7 +95,7 @@ const SwalAuth = () => {
 			allowOutsideClick: false
 		});
 	});
-};
+}
 
 export default SwalAuth;
-export { SwalToast };
+export { SwalToast, SwalInvalidCredentials };

@@ -8,16 +8,14 @@
 		width: 100%;
 		z-index: 500;
 		background-color: transparent;
+
+		@include media-breakpoint-down(md) {
+			margin-top: 10px;
+		}
 	} 
 
 	&--home {
-		.header {
-			&__bar { 
-				@include media-breakpoint-down(md) {
-					margin-top: 10px;
-				}
-			}
-
+		.header {  
 			&__cta {
 				&-btn {
 					@include media-breakpoint-down(md) {

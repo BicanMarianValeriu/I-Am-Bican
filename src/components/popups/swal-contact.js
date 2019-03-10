@@ -52,6 +52,7 @@ const SwalContact = {
 				const WPCF = new WPCF7("#wpcf7-6", {
 					apiUrl: "//www.iambican.com/dashboard/wp-json/contact-form-7/v1" 
 				});
+				
 				WPCF.sendMail().then(result => { 
 					if (result.status === "mail_sent") {
 						Swal.fire({

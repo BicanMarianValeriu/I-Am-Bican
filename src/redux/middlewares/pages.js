@@ -1,5 +1,4 @@
-import { apiRequest } from "../actions/actions";
-
+import { apiRequest } from "../actions/api";
 import { GET_PAGE, GET_PAGE_SUCCESS, GET_PAGE_ERROR, updatePages } from "../actions/pages";
 //import { showSpinner, hideSpinner } from '../actions/ui';
 

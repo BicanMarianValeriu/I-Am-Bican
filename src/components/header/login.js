@@ -1,43 +1,56 @@
 import React, { Component } from "react";
-import { connect } from "react-redux"; 
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
-import { isAuthentificated, removeAuthToken, getAuthToken } from "../../utilities/auth";
-import { LOGOUT_USER, setCurrentUser, FETCH_USER_FULFILLED } from "../../redux/actions/actions";
-import { SwalToast } from "../Popups/swal-auth";
+//import { SwalToast } from "../Popups/swal-auth";
+
+import { getToken, authToken, userLogout } from "../../redux/actions/user";
+import { isAuthentificated, getAuthToken } from "../../utilities/auth";
 
 class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			Modal: null,
-			dropdownOpen: false,
-			isAuthentificated: false
+			dropdownOpen: false
 		};
 		// Preload the component on mouseover
 		this._onMouseOver = this._onMouseOver.bind(this);
 		this._onButtonClick = this._onButtonClick.bind(this);
 		this._onLogoutClick = this._onLogoutClick.bind(this);
+		this._afterValidationSuccess = this._afterValidationSuccess.bind(this);
 		this.toggle = this.toggle.bind(this);
 	}
 
 	_onMouseOver() {
 		if (this.state.Modal !== null) return;
-		import(/* webpackChunkName: "swalauth" */ "../Popups/swal-auth").then(modal => this.setState({ Modal: modal.default }));
+		import(/* webpackChunkName: "swal-auth" */ "../Popups/swal-auth")
+			.then(modal => this.setState({ Modal: modal.default }));
 	}
 
 	_onButtonClick() {
 		if (this.state.Modal === null) {
-			import(/* webpackChunkName: "swalauth" */ "../Popups/swal-auth").then(modal => this.setState({ Modal: modal.default }));
+			import(/* webpackChunkName: "swal-auth" */ "../Popups/swal-auth")
+				.then(modal => this.setState({ Modal: modal.default }))
+				.then(() => this.state.Modal({
+					afterValidationSuccess: this._afterValidationSuccess
+				}));
 		}
-		if (this.state.Modal !== null && !isAuthentificated()) this.state.Modal();
+
+		this.state.Modal({
+			afterValidationSuccess: this._afterValidationSuccess
+		}); 
 	}
 
 	_onLogoutClick() {
 		if (isAuthentificated()) {
-			this.props.dispatch({ type: LOGOUT_USER }); 
-			removeAuthToken();
-			SwalToast.fire({ type: "success", title: `Logged out. See you soon :).` });
+			this.props.userLogout();
+			//SwalToast.fire({ type: 'success', title: `Logged out. See you soon :).` });
 		}
+	}
+
+	_afterValidationSuccess({ username, password }) {
+		return this.props.getToken({ username, password });
 	}
 
 	toggle() {
@@ -45,14 +58,17 @@ class Login extends Component {
 	}
 
 	componentDidMount() {
-		const { dispatch } = this.props;
-		if (isAuthentificated()) setCurrentUser(getAuthToken()).then(response => dispatch({ type: FETCH_USER_FULFILLED, payload: response }));
+		if (isAuthentificated()) this.props.authToken(getAuthToken());
 	}
 
 	render() {
-		const { user: { name, avatar_urls } } = this.props;
+		const { user } = this.props;
+
+		const { data: { name = '', avatar_urls } } = user;
+
 		let classes = ["header__login", "col-auto", "pl-0", "header-login"];
 		if (isAuthentificated()) classes.push(["header-login--is-auth"]);
+
 		let UserIcon = () => {
 			return (
 				<div className="header-login__icon-svg">
@@ -100,10 +116,13 @@ class Login extends Component {
 	}
 }
 
-// Binds Query / Query Result
+// mapStateToProps
 const mapStateToProps = store => {
-	const { api: { user } } = store;
+	const { user } = store;
 	return { user };
 };
 
-export default connect(mapStateToProps)(Login);
+// mapDispatchToProps 
+const mapDispatchToProps = dispatch => bindActionCreators({ getToken, authToken, userLogout }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

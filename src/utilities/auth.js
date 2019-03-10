@@ -4,24 +4,22 @@ import Cookies from "js-cookie";
 /**
  * Set authentication token
  */
-export const setAuthToken = token => {
-	Cookies.set("authToken", token, { expires: 7 });
-	localStorage.setItem("authToken", token);
+export const setAuthToken = token => { 
+	return Cookies.set("authToken", token, { expires: 7 }); 
 };
 
 /**
  * Get stored authentication token
  */
 export const getAuthToken = () => {
-	return localStorage.getItem("authToken") || Cookies.get("authToken");;
+	return Cookies.get("authToken");
 };
 
 /**
  * Remove stored authetification token
  */
 export const removeAuthToken = () => {
-	Cookies.remove("authToken");
-	localStorage.removeItem("authToken");
+	return Cookies.remove("authToken"); 
 };
 
 /**
@@ -41,8 +39,7 @@ export const getAuthHeader = () => {
  */
 export function isAuthentificated() {
 	try {
-		const token = getAuthToken(); 
-
+		const token = getAuthToken();  
 		if (token && token.length) {
 			const decoded = JWTDecode(token);
 			const current_time = new Date().getTime() / 1000;  
@@ -51,7 +48,7 @@ export function isAuthentificated() {
 		} else {
 			return false;
 		}
-	} catch (err) { 
+	} catch (err) {  
 		return false;
 	}
 }

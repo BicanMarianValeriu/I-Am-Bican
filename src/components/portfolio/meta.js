@@ -8,7 +8,7 @@ class Meta extends Component {
 		const { client } = this.props;  
 		if( ! client ) return; 
 		return (
-			<img src={client.acf.client_logo.url} alt={client.name} height="50" />
+			<img src={client.acf.client_logo.url} alt={client.name} height="40" />
 		);
 	}
 
@@ -31,9 +31,9 @@ class Meta extends Component {
 			<div className="portfolio__meta portfolio-meta">
 				<div className="row">
 					<div className={itemClass}>
-						<span className="portfolio-meta__item-label" title="Went Live">Date</span>
+						<span className="portfolio-meta__item-label" title="Client">Client</span>
 						<hr className="my-2" />
-						<time className="portfolio-meta__item-value" dateTime={date_gmt}>{date_human}</time>
+						<span className='portfolio-meta__item-value'>{this.renderClientImage()}</span>
 					</div>
 					<div className={itemClass}>
 						<span className="portfolio-meta__item-label"  title="Cost Range">Cost</span>
@@ -41,10 +41,10 @@ class Meta extends Component {
 						<span className="portfolio-meta__item-value">{count > 0 ? money : "Priceless"}</span>
 					</div>
 					<div className={itemClass}>
-						<span className="portfolio-meta__item-label" title="Client">Client</span>
+						<span className="portfolio-meta__item-label" title="Went Live">Date</span>
 						<hr className="my-2" />
-						<span className='portfolio-meta__item-value'>{this.renderClientImage()}</span>
-					</div>
+						<time className="portfolio-meta__item-value" dateTime={date_gmt}>{date_human}</time>
+					</div> 
 					<div className={itemClass}>
 						<span className="portfolio-meta__item-label" title="Live URL">Link</span>
 						<hr className="my-2" />
