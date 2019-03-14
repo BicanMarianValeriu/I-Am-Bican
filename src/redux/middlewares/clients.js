@@ -1,20 +1,25 @@
 import { apiRequest } from "../actions/api";
 import { GET_CLIENTS, GET_CLIENTS_SUCCESS, GET_CLIENTS_ERROR, updateClients } from "../actions/clients";
 
-export const getClientsFlow = ({ dispatch }) => next => action => {
+export const clientsMiddleware = ({ dispatch }) => next => action => {
     next(action);
 
-    if (action.type === GET_CLIENTS) {
-        dispatch(apiRequest('wp/v2/clients', null, { success: GET_CLIENTS_SUCCESS, error: GET_CLIENTS_ERROR }));
-    }
-}
+    const { type, payload } = action; 
 
-export const processClientsCollection = ({ dispatch }) => next => action => {
-    next(action);
+    switch (type) {
+        case GET_CLIENTS:
+            dispatch(
+                apiRequest(
+                    'wp/v2/clients', null,
+                    { success: GET_CLIENTS_SUCCESS, error: GET_CLIENTS_ERROR }
+                )
+            ); 
+            break;
 
-    if (action.type === GET_CLIENTS_SUCCESS) {
-        dispatch(updateClients(action.payload));
-    }
-};
-
-export const clientsMdl = [getClientsFlow, processClientsCollection];
+        case GET_CLIENTS_SUCCESS:
+            dispatch(updateClients(payload));
+            break;
+            
+        default: return null;
+    } 
+} 

@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
-//import { SwalToast } from "../Popups/swal-auth";
+import { layer, icon } from '@fortawesome/fontawesome-svg-core'
+import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
+import { faCircle } from '@fortawesome/free-regular-svg-icons/faCircle';
 
-import { getToken, authToken, userLogout } from "../../redux/actions/user";
+import { getToken, verifyToken, authToken, userLogout } from "../../redux/actions/user";
 import { isAuthentificated, getAuthToken } from "../../utilities/auth";
 
 class Login extends Component {
@@ -18,7 +20,7 @@ class Login extends Component {
 		this._onMouseOver = this._onMouseOver.bind(this);
 		this._onButtonClick = this._onButtonClick.bind(this);
 		this._onLogoutClick = this._onLogoutClick.bind(this);
-		this._afterValidationSuccess = this._afterValidationSuccess.bind(this);
+		this._afterValidation = this._afterValidation.bind(this);
 		this.toggle = this.toggle.bind(this);
 	}
 
@@ -32,24 +34,19 @@ class Login extends Component {
 		if (this.state.Modal === null) {
 			import(/* webpackChunkName: "swal-auth" */ "../Popups/swal-auth")
 				.then(modal => this.setState({ Modal: modal.default }))
-				.then(() => this.state.Modal({
-					afterValidationSuccess: this._afterValidationSuccess
-				}));
+				.then(() => this.state.Modal({ afterValidation: this._afterValidation }));
 		}
 
-		this.state.Modal({
-			afterValidationSuccess: this._afterValidationSuccess
-		}); 
+		if (this.state.Modal) this.state.Modal({ afterValidation: this._afterValidation });
 	}
 
 	_onLogoutClick() {
 		if (isAuthentificated()) {
 			this.props.userLogout();
-			//SwalToast.fire({ type: 'success', title: `Logged out. See you soon :).` });
 		}
 	}
 
-	_afterValidationSuccess({ username, password }) {
+	_afterValidation({ username, password }) {
 		return this.props.getToken({ username, password });
 	}
 
@@ -64,31 +61,26 @@ class Login extends Component {
 	render() {
 		const { user } = this.props;
 
-		const { data: { name = '', avatar_urls } } = user;
+		const { data: { name = '' } } = user;
 
 		let classes = ["header__login", "col-auto", "pl-0", "header-login"];
 		if (isAuthentificated()) classes.push(["header-login--is-auth"]);
 
-		let UserIcon = () => {
-			return (
-				<div className="header-login__icon-svg">
-					<i className="far fa-user fa-fw"></i>
-				</div>
-			)
+		const UserLoginSVG = () => {
+			const layers = layer((push) => {
+				push(icon(faCircle, { transform: { size: 35 } }));
+				push(icon(faUser, { transform: { size: 20, y: -1 } }));
+			});
+
+			return (<div className="header-login__icon-svg" dangerouslySetInnerHTML={{ __html: layers.html[0] }}></div>);
 		}
-		let UserImage = () => {
-			return (name ?
-				<img src={avatar_urls && avatar_urls[96]} alt={`${name}'s avatar`} className="header-login__btn-avatar" /> :
-				<UserIcon />
-			)
-		};
 
 		return (
 			<div className={classes.join(" ")} >
 				{isAuthentificated() ? (
 					<Dropdown size="lg" direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-						<DropdownToggle className="header-login__btn float-right btn">
-							<UserImage />
+						<DropdownToggle className="header-login__btn">
+							<UserLoginSVG />
 						</DropdownToggle>
 						<DropdownMenu right>
 							<DropdownItem header>Howdy {name}</DropdownItem>
@@ -107,8 +99,8 @@ class Login extends Component {
 						<button id="header-login" className="header-login__btn float-right btn"
 							onClick={this._onButtonClick}
 							onMouseOver={this._onMouseOver}
-							onTouchStart={this._onMouseOver} >
-							<UserIcon />
+							onTouchStart={this._onMouseOver}>
+							<UserLoginSVG />
 						</button>
 					)}
 			</div >
@@ -123,6 +115,6 @@ const mapStateToProps = store => {
 };
 
 // mapDispatchToProps 
-const mapDispatchToProps = dispatch => bindActionCreators({ getToken, authToken, userLogout }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getToken, verifyToken, authToken, userLogout }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

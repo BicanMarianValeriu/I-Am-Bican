@@ -6,21 +6,21 @@ import promise from 'redux-promise-middleware';
 
 import { api } from "./api";
 import { userMdl } from "./user";
-import { menuMdl } from "./menus";
-import { pageMdl } from "./pages";
-import { mediaMdl } from "./media";
-import { clientsMdl } from "./clients";
-import { projectsMdl } from "./projects";
+import { menuMiddleware } from "./menus";
+import { pagesMiddleware } from "./pages";
+import { mediaMiddleware } from "./media";
+import { clientsMiddleware } from "./clients";
+import { projectsMiddleware } from "./projects";
 import { isServer } from '../store';
 
 export default function ({ history, enhancers }) {
     const arr = [ // In reverse order @see `compose`
         routerMiddleware(history),
-        ...projectsMdl,
-        ...clientsMdl,
-        ...mediaMdl,
-        ...pageMdl,
-        ...menuMdl,
+        projectsMiddleware,
+        clientsMiddleware,
+        mediaMiddleware,
+        pagesMiddleware,
+        menuMiddleware,
         ...userMdl,
         promise(),
         thunk,

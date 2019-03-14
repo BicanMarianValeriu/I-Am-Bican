@@ -1,20 +1,25 @@
 import { apiRequest } from "../actions/api";
 import { GET_MEDIA, GET_MEDIA_SUCCESS, GET_MEDIA_ERROR, updateMedia } from "../actions/media";
 
-export const getMediaFlow = ({ dispatch }) => next => action => {
+export const mediaMiddleware = ({ dispatch }) => next => action => {
     next(action);
 
-    if (action.type === GET_MEDIA) {
-        dispatch(apiRequest('wp/v2/media', action.payload, { success: GET_MEDIA_SUCCESS, error: GET_MEDIA_ERROR }));
+    const { type, payload } = action; 
+
+    switch (type) {
+        case GET_MEDIA:
+            dispatch(
+                apiRequest(
+                    'wp/v2/media', payload,
+                    { success: GET_MEDIA_SUCCESS, error: GET_MEDIA_ERROR }
+                )
+            ); 
+            break;
+
+        case GET_MEDIA_SUCCESS:
+            dispatch(updateMedia(payload));
+            break;
+            
+        default: return null;
     }
-}
-
-export const processMediaCollection = ({ dispatch }) => next => action => {
-    next(action);
-
-    if (action.type === GET_MEDIA_SUCCESS) {
-        dispatch(updateMedia(action.payload));
-    }
-};
-
-export const mediaMdl = [getMediaFlow, processMediaCollection];
+}  

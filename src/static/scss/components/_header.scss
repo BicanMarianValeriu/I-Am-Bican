@@ -10,21 +10,9 @@
 		background-color: transparent;
 
 		@include media-breakpoint-down(md) {
-			margin-top: 10px;
+			padding-top: 10px;
 		}
-	} 
-
-	&--home {
-		.header {  
-			&__cta {
-				&-btn {
-					@include media-breakpoint-down(md) {
-						margin-left: 2px;
-					}
-				}
-			}
-		}
-	}
+	}  
 	
 	&--white {
 		.header {
@@ -38,6 +26,19 @@
 						color: theme-color( 'primary' );
 					}
 				}
+			}
+
+			&-login {  
+				&__btn {
+					color: white;
+	
+					&:hover, 
+					&:focus,
+					&:active {
+						color: white;
+						opacity: .8;
+					} 
+				} 
 			}
 		}
 	}
@@ -61,46 +62,36 @@
 			}
 		}
 
-		.header-login {
+		.header-login {  
 			&--is-auth {
-				.header-login {
-					&__btn {
-						&[aria-expanded="true"] {
-							img {
-								box-shadow: 0 0 0 3px theme-color( 'primary' );
-							}
-						}
-					}
+				.header-login__btn {
+					color: theme-color( 'primary' );
 				}
 			}
-
+			
 			&__btn {
-				color: $gray-400;
+				color: $gray-500;
 
 				&:hover, 
 				&:focus,
 				&:active {
-					color: $gray-400!important;
-				}
-
-				img {
-					box-shadow: 0 0 0 3px $black;
-				}
-			}
-			
-			&__icon-svg {
-				border-color: $gray-400;
-			}
+					color: theme-color( 'primary' )!important;
+				} 
+			} 
 		}
 	}
 
-	&__cta {  
+	&__cta {    
+		@include media-breakpoint-up(lg) {
+			margin: 8px 0;
+		}
+
 		@include media-breakpoint-down(xs) {
 			flex-grow: 0;
 		}
 
 		&-btn {
-			border: 2px solid theme-color( 'primary' );
+			border: 3px solid theme-color( 'primary' );
 			border-radius: 50px;
 			box-shadow: none;
 			color: theme-color( 'primary' );

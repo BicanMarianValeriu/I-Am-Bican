@@ -3,11 +3,10 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import WPCF7 from "./../../utilities/wpcf7";
 import { validateEmail, validateFields } from "./../../utilities/helpers";
 
-const SwalContact = {
-	renderModal: function () {
-		const alert = Swal.fire({
-			title: "Have an idea? Let's see it!",
-			html: `<form name="swal-contact" id="wpcf7-6" data-wpcf7-id="6">
+const SwalContact = () => {
+	return Swal.fire({
+		title: "Have an idea? Let's see it!",
+		html: `<form name="swal-contact" id="wpcf7-6" data-wpcf7-id="6">
 			<div class="form-group">
 				<div class="row">
 					<div class="col-md-6">
@@ -30,61 +29,59 @@ const SwalContact = {
 				</div>
 			</div>
 			</form>`,
-			footer: `View your privacy policy &nbsp;<a href="/p/privacy-policy">here</a>.`,
-			focusConfirm: false,
-			customClass: "swal-contact",
-			buttonsStyling: false,
-			confirmButtonClass: 'btn btn-primary',
-			confirmButtonText: "Send Message",
-			showLoaderOnConfirm: true,
-			showCloseButton: true,
-			width: "40rem",
-			preConfirm: () => {
-				var fields = document.forms["swal-contact"].getElementsByClassName("required");
-				var email = fields["your-email"].value;
+		footer: `View your privacy policy &nbsp;<a href="/p/privacy-policy">here</a>.`, 
+		customClass: {
+			container: 'swal-contact',
+			confirmButton: 'btn btn-primary'
+		},
+		buttonsStyling: false, 
+		confirmButtonText: "Send Message",
+		showLoaderOnConfirm: true,
+		showCloseButton: true,
+		width: "40rem",
+		preConfirm: () => {
+			var fields = document.forms["swal-contact"].getElementsByClassName("required");
+			var email = fields["your-email"].value;
 
-				if (validateFields(fields) === false)
-					return Swal.showValidationMessage(`Please fill all fields.`);
+			if (validateFields(fields) === false)
+				return Swal.showValidationMessage(`Please fill all fields.`);
 
-				if (validateEmail(email) === false)
-					return Swal.showValidationMessage(`Email address is not valid.`);
+			if (validateEmail(email) === false)
+				return Swal.showValidationMessage(`Email address is not valid.`);
 
-				const WPCF = new WPCF7("#wpcf7-6", {
-					apiUrl: "//www.iambican.com/dashboard/wp-json/contact-form-7/v1" 
-				});
-				
-				WPCF.sendMail().then(result => { 
-					if (result.status === "mail_sent") {
-						Swal.fire({
-							title: 'Awesome',
-							text: result.message,
-							type: "success",
-							showConfirmButton: false,
-							timer: 2500
-						});
-					} else {
-						Swal.fire({
-							title: `Something is wrong`,
-							text: result.message,
-							type: "error"
-						});
-					}
-				});
-			},
-			allowOutsideClick: () => !Swal.isLoading()
-		}).then(result => {
-			if (result.dismiss) return;
-			Swal.fire({
-				title: `Sending message, please wait...`,
-				type: "info",
-				showConfirmButton: false,
-				allowEscapeKey: false,
-				allowOutsideClick: false
+			const WPCF = new WPCF7("#wpcf7-6", {
+				apiUrl: "//www.iambican.com/dashboard/wp-json/contact-form-7/v1"
 			});
-		});
 
-		return alert;
-	}
+			WPCF.sendMail().then(result => {
+				if (result.status === "mail_sent") {
+					Swal.fire({
+						title: 'Awesome',
+						text: result.message,
+						type: "success",
+						showConfirmButton: false,
+						timer: 2500
+					});
+				} else {
+					Swal.fire({
+						title: `Something is wrong`,
+						text: result.message,
+						type: "error"
+					});
+				}
+			});
+		},
+		allowOutsideClick: () => !Swal.isLoading()
+	}).then(result => {
+		if (result.dismiss) return;
+		Swal.fire({
+			title: `Sending message, please wait...`,
+			type: "info",
+			showConfirmButton: false,
+			allowEscapeKey: false,
+			allowOutsideClick: false
+		});
+	});
 };
 
 export default SwalContact;

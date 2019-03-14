@@ -1,7 +1,8 @@
-export const GET_MEDIA = '[media] GET';
-export const GET_MEDIA_SUCCESS = '[media] SUCCESS';
-export const GET_MEDIA_ERROR = '[media] ERROR';
-export const UPDATE_MEDIA = '[media] UPDATED';
+export const MEDIA = '[Media]'; // Namespace
+export const GET_MEDIA = `${MEDIA} GET`;
+export const GET_MEDIA_SUCCESS = `${MEDIA} SUCCESS`;
+export const GET_MEDIA_ERROR = `${MEDIA} ERROR`;
+export const UPDATE_MEDIA = `${MEDIA} UPDATED`;
 
-export const getMedia = data => ({ type: GET_MEDIA, payload: data });
+export const getMedia = query => ({ type: GET_MEDIA, payload: query });
 export const updateMedia = data => ({ type: UPDATE_MEDIA, payload: data });

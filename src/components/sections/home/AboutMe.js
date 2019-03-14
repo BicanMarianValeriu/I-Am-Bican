@@ -5,19 +5,19 @@ import scrollToElement from 'scroll-to-element';
 // Components
 import AboutMeInfo from "./AboutMeInfo";
 import GetInTouch from '../../GetInTouch';
-import { TweenMax, Power2, Elastic } from "gsap/TweenMax";
-import { randomize } from './../../../utilities/helpers';
+import { TweenMax, Power2, /* Elastic */ } from "gsap/TweenMax";
+//import { randomize } from './../../../utilities/helpers';
 
 // Assets 
 import Bican from "./../../../static/images/bican.jpg";
 import BicanOld from "./../../../static/images/bican-old.jpg";
 
-let Splitting;
+//let Splitting;
 
 export default class AboutMe extends Component {
 	componentDidMount() {
-		Splitting = require("splitting");
-		this.initAnimations();
+		//Splitting = require("splitting");
+		//this.initAnimations();
 		this.setupEventHandlers();
 		this.handlePictureChange();
 		this.initEvent();
@@ -76,12 +76,12 @@ export default class AboutMe extends Component {
 		image.addEventListener('mousemove', this._handleMouseMoveBound);
 		image.addEventListener('mouseleave', this._handleMouseLeaveBound);
 		document.querySelector('a[href="#footer"]').addEventListener('click', e => {
-			e.preventDefault();
+			e.preventDefault(); 
 			scrollToElement('#footer');
 		});
 	}
 
-	initAnimations() {
+	/* initAnimations() {
 		let targets = [...document.querySelectorAll('.about-me__subline'), document.querySelector('.about-me__headline')];
 		Splitting({ target: targets });
 
@@ -102,7 +102,7 @@ export default class AboutMe extends Component {
 			scale: .1,
 			delay: i * .02
 		});
-	}
+	} */
 
 	render() {
 		return (
@@ -110,8 +110,8 @@ export default class AboutMe extends Component {
 				<div className="about-me__background" />
 				<div className="about-me__intro">
 					<div className="container">
-						<div className="row">
-							<div className="col-lg-4 about-me__image">
+						<div className="row align-items-center align-items-lg-start">
+							<div className="col-md-4 col-lg-4 about-me__image">
 								<div className="about-me__image-wrap">
 									<div className="about-me__profile box-shadow box-shadow--profile">
 										<div className="shown" style={{ backgroundImage: `url('${Bican}')` }} />
@@ -122,7 +122,7 @@ export default class AboutMe extends Component {
 									</div>
 								</div>
 							</div>
-							<div className="col-lg-8 about-me__info">
+							<div className="col-md-8 col-lg-8 about-me__info">
 								<h1 className="about-me__headline mb-4">Bican Marian Valeriu</h1>
 								<p className="about-me__subline mb-2 mb-md-3">WordPress/React Developer at myZone/AM2Studio</p>
 								<p className="about-me__subline mb-1 mb-md-2">Targu Jiu, Gorj, Romania</p>

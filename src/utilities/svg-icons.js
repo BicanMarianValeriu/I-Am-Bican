@@ -5,6 +5,7 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
 import { faEnvelopeOpen } from '@fortawesome/free-regular-svg-icons/faEnvelopeOpen';
 import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
 import { faMoneyBillAlt } from '@fortawesome/free-regular-svg-icons/faMoneyBillAlt';
+import { faCircle } from '@fortawesome/free-regular-svg-icons/faCircle';
 
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
@@ -40,7 +41,7 @@ import { faLinkedin} from '@fortawesome/free-brands-svg-icons/faLinkedin';
 let icons = [
 	faEnvelope, faEnvelopeOpen, faDownload, faPuzzlePiece, faHeart, faCloudDownloadAlt,
 	faCheck, faBolt, faDesktop, faEye, faGlobe, faPlane, faSearch, faGrinHearts, faPaperPlane,
-	faFileCode, faSignOutAlt, faUser, faThLarge, faArrowLeft, faArrowRight, faMoneyBillAlt
+	faFileCode, faSignOutAlt, faUser, faCircle, faThLarge, faArrowLeft, faArrowRight, faMoneyBillAlt
 ];
 
 let brands = [

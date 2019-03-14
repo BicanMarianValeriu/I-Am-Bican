@@ -1,6 +1,9 @@
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { validateFields } from "../../utilities/helpers";
 
+/**
+ * Toast Mixin
+ */
 const SwalToast = Swal.mixin({
 	toast: true,
 	position: "top-end",
@@ -10,9 +13,11 @@ const SwalToast = Swal.mixin({
 
 /**
  * Render Invalid Credentials Modal
- * @param { object } props - Contains the functions passed from the login component
+ * @param 	{ object } 	props - Contains the functions passed from the login component
+ * @todo	Error Message From API
+ * @return 	SWAL
  */
-const SwalInvalidCredentials = (props) => {
+const SwalInvalidCredentials = props => {
 	return Swal.fire({
 		title: `Something went wrong.`,
 		html: `Invalid login credentials.`,
@@ -21,8 +26,11 @@ const SwalInvalidCredentials = (props) => {
 		showConfirmButton: false,
 		showCloseButton: true,
 		showCancelButton: true,
-		cancelButtonClass: 'btn btn-primary',
-		cancelButtonText: "Try Again" 
+		focusCancel: true,
+		customClass: {
+			cancelButton: 'btn btn-primary'
+		},
+		cancelButtonText: "Try Again"
 	}).then(result => {
 		// Passing Props Back to Login if Try Again is Clicked
 		if (result.dismiss === Swal.DismissReason.cancel) SwalAuth(props);
@@ -59,9 +67,11 @@ const SwalAuth = (props) => {
                 </div>
             </div></form>`,
 		footer: `View your privacy policy &nbsp;<a href="/p/privacy-policy">here</a>.`,
-		customClass: "swal-auth",
+		customClass: {
+			container: 'swal-auth',
+			confirmButton: 'btn btn-primary'
+		},
 		buttonsStyling: false,
-		confirmButtonClass: 'btn btn-primary',
 		confirmButtonText: "Login",
 		showLoaderOnConfirm: true,
 		backdrop: `rgba(0,0,0,0.2)`,
@@ -74,15 +84,21 @@ const SwalAuth = (props) => {
 
 			if (validateFields(fields) === false) return Swal.showValidationMessage(`Please fill all fields.`);
 
-			props.afterValidationSuccess({ username, password });
+			// Atempt to get token if validation is done
+			props.afterValidation({ username, password });
 
-			// On Success
+			// On Get Token Success
 			document.addEventListener('user/get_token_success', (e) => SwalToast.fire(
 				{ type: "success", title: `Welcome back ${e.detail.user_display_name}.` }
 			));
 
 			// On Error
-			document.addEventListener('user/get_token_error', () => SwalInvalidCredentials(props));
+			document.addEventListener('user/get_token_error', (e) => SwalInvalidCredentials(props));
+
+			// On Logout Success
+			document.addEventListener('user/logout_success', () => SwalToast.fire(
+				{ type: "info", title: `You are now logged out. See you soon :).` }
+			));
 		},
 		allowOutsideClick: () => !Swal.isLoading()
 	}).then(result => {

@@ -8,7 +8,36 @@
     &__title { 
         font-size: 1.8em; 
         line-height: 42px;
+
+        .char {
+			display: inline-block;
+			opacity: 0;
+			transform: translateY(calc(-.1em * var(--char-index)));
+			transition: transform .3s cubic-bezier(.3,0,.3,1), opacity .3s linear;
+			transition-delay: calc(20ms + (30ms * var(--char-index)));
+		}
+
+		&--animated {
+			.char {
+				opacity: 1;
+				transform: none;
+            }
+            
+            & + .lead {
+                opacity: 1!important;
+            }
+        } 
     } 
+
+    .lead {
+        opacity: 0;
+        transition: all .5s ease-in-out;
+        transition-delay: 300ms;
+
+        @include media-breakpoint-down(sm) { 
+            font-size: 14px;
+        }
+    }
 }
 
 .companies {

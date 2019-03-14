@@ -1,11 +1,11 @@
 // The basics
-import React, { Component }  from 'react';
+import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { Route, Switch } from 'react-router';
-import { dom } from '@fortawesome/fontawesome-svg-core'; 
+import { dom } from '@fortawesome/fontawesome-svg-core';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import icons, { brands } from './utilities/svg-icons';
-import routes from './redux/routes'; 
+import routes from './redux/routes';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
@@ -19,6 +19,8 @@ export default class App extends Component {
 		// Window sizes
 		var wecodeart = window.wecodeart = {};
 		wecodeart.winsize = {};
+		wecodeart.scrolling = false;
+
 		const calcWinsize = () => wecodeart.winsize = { width: window.innerWidth, height: window.innerHeight };
 		calcWinsize();
 		window.addEventListener('resize', calcWinsize); 

@@ -3,7 +3,11 @@ body.swal2-show:not(.swal2-toast-shown) {
 }
 
 body.swal2-toast-shown {
-  	padding-right: 0 !important;
+	padding-right: 0 !important;
+	  
+	.header--absolute {
+		right: 0;
+	}
 }
 
 .swal2-container {

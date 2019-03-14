@@ -18,7 +18,9 @@ class PortfolioSlide extends Component {
 
 		return (
 			<article className={this.getClasses()}>
-				<FeaturedMedia mediaId={featured_media} />
+				<Link to={`portfolio/${slug}`}> 
+					<FeaturedMedia mediaId={featured_media} />
+				</Link>
 				<div className="portfolio__description">
 					<Title {...this.props} />
 					<Content {...this.props} /> 

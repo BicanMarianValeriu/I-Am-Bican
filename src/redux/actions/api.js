@@ -1,11 +1,11 @@
-import axios from 'axios';
-import { routes as _routes } from './../rest-routes.json';
+import axios from 'axios'; 
 
 export const API_REQUEST 	= '[iambican] API:REQUEST';  
 export const API_REJECTED 	= '[iambican] API:REJECTED'; 
 
 // Axios Settings
-const APIUrl = _routes.REST; //working.on/iambican/wordpress/wp-json/';
+const APIUrl = '//www.iambican.com/dashboard/wp-json/';
+//const APIUrl = '//working.on/iambican/wordpress/wp-json/';
 axios.defaults.baseURL = APIUrl;
 const apiConfig = { baseURL: APIUrl };
 
@@ -19,8 +19,10 @@ export const requestApi = axios.create(apiConfig);
  * @param { object } 	events 		- Redux onSuccess/onError ACTIONS
  * @param { object } 	options		- Axios Config: { method: `get` } defaults
  */
-export const apiRequest = (endpoint, payload, events, options) => ({
+export const apiRequest = (endpoint, body, events, options) => ({
 	type: API_REQUEST,
-	payload: payload,
-	meta: { endpoint, events, options }
+	payload: {
+		data: body,
+		meta: { endpoint, events, options }
+	} 
 });

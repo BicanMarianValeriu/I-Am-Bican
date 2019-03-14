@@ -13,30 +13,30 @@ export default class GetInTouch extends Component {
 
     componentDidMount() {
         var hash = window.location.hash;
-		var blockId = hash.split("-").pop();
-		if (blockId === "#sendmsg") this._onButtonClick();
+        var blockId = hash.split("-").pop();
+        if (blockId === "#sendmsg") this._onButtonClick();
     }
-    
+
     _onMouseOver() {
         if (this.state.Modal !== null) return;
-        import(/* webpackChunkName: "swalcontact" */ "./Popups/swal-contact")
+        import(/* webpackChunkName: "swal-contact" */ "./Popups/swal-contact")
             .then(modal => this.setState({ Modal: modal.default }));
     }
 
     _onButtonClick() {
         if (this.state.Modal === null) {
-            import(/* webpackChunkName: "swalcontact" */ "./Popups/swal-contact")
+            import(/* webpackChunkName: "swal-contact" */ "./Popups/swal-contact")
                 .then(modal => this.setState({ Modal: modal.default }))
-                .then(() => this.state.Modal.renderModal());
+                .then(() => this.state.Modal());
         }
-        this.state.Modal.renderModal();
+        if (this.state.Modal) this.state.Modal();
     }
 
     render() {
-        let classes = [ 'btn' ];
-        if( this.props.className ) classes.push([this.props.className]);
-        let iconClasses = [ 'far fa-paper-plane' ];
-        if( this.props.iconClass ) iconClasses.push([this.props.iconClass]);
+        let classes = ['btn'];
+        if (this.props.className) classes.push([this.props.className]);
+        let iconClasses = ['far fa-paper-plane'];
+        if (this.props.iconClass) iconClasses.push([this.props.iconClass]);
         return (
             <button className={classes.join(' ')}
                 onClick={this._onButtonClick}

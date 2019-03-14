@@ -26,15 +26,23 @@ export default function userReducer(state = {
 
             return state;
         }
-        
+
         case USER_LOGIN_SUCCESS: {
             state.authentificated = true;
-            state.data = { ...action.payload };
+            state.data = { ...action.payload[0] };
+
+            document.dispatchEvent(new CustomEvent('user/login_success', {
+                detail: action.payload
+            }));
 
             return { ...state };
         }
         case USER_LOGOUT_SUCCESS: {
             removeAuthToken();
+
+            document.dispatchEvent(new CustomEvent('user/logout_success', {
+                detail: action.payload
+            }));
 
             state.authentificated = false;
             state.data = {};

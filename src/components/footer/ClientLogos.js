@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from "react"; 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { TweenMax } from "gsap/TweenMax";
@@ -7,7 +7,7 @@ import { getClients } from "../../redux/actions/clients";
 let ScrollMagic;
 let Splitting;
 
-class ClientLogos extends Component {
+class ClientLogos extends Component {  
 	componentDidMount() {
 		this.props.getClients();
 
@@ -21,7 +21,7 @@ class ClientLogos extends Component {
 
 		new ScrollMagic.Scene({
 			triggerElement: '.company-logos__title',
-			triggerHook: .75
+			triggerHook: .85 
 		}).setClassToggle('.company-logos__title', "company-logos__title--animated").addTo(controller);
 	}
 
@@ -34,10 +34,10 @@ class ClientLogos extends Component {
 	}
 
 	componentDidUpdate() {
-		var companies = document.querySelectorAll(".companies");
-		var counter = companies[0].querySelectorAll(".companies__logo").length;
-		var columns = companies.length;
-		var current = [...Array(columns).keys()]; // IE bug with keys -> polyfil should fix this but I dont care
+		const companies = document.querySelectorAll(".companies");
+		const counter = companies[0].querySelectorAll(".companies__logo").length;
+		const columns = companies.length;
+		const current = [...Array(columns).keys()]; // IE bug with keys -> polyfil should fix this but I dont care
 		var lastFrame = -1;
 
 		TweenMax.set(document.querySelectorAll(".companies__logo"), { autoAlpha: 0 });
@@ -123,10 +123,14 @@ class ClientLogos extends Component {
 			<div className="footer__logos company-logos">
 				<div className="container">
 					<div className="row">
-						<div className="col text-center mb-4">
+						<div className="col col-lg-8 text-center mx-auto mb-4">
 							<h3 className="text-font--cursive text-color--primary company-logos__title">
 								Just Few Of The Clients
               				</h3>
+							<p className="lead">
+								Over the years, I’ve had the pleasure to work with dozens of really great people and
+								companies on some really amazing projects. Below are a few clients who I`ve built sites for.
+							</p>
 						</div>
 					</div>
 					<div className="row">{this.renderColumns()}</div>
