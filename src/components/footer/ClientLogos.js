@@ -1,16 +1,32 @@
-import React, { Component } from "react"; 
+import React, { Component } from "react";
+import { withRouter } from 'react-router-dom'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { TweenMax } from "gsap/TweenMax";
+import { TweenMax } from "gsap/umd/TweenMax";
 import { getClients } from "../../redux/actions/clients";
 
 let ScrollMagic;
 let Splitting;
 
-class ClientLogos extends Component {  
-	componentDidMount() {
-		this.props.getClients();
+class ClientLogos extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			scene: null,
+			columns: 4 
+		}
 
+		this.props.getClients();
+	}
+
+	shouldComponentUpdate(nextProps) {
+		let { location: { pathname } } = this.props;
+		if (pathname !== nextProps.location.pathname) return true;
+		if (this.props.clients !== nextProps.clients) return true;
+		return false;
+	}
+
+	componentDidMount() {
 		ScrollMagic = require("scrollmagic");
 		Splitting = require("splitting");
 
@@ -19,24 +35,29 @@ class ClientLogos extends Component {
 		const target = document.querySelector('.company-logos__title');
 		Splitting({ target: target });
 
-		new ScrollMagic.Scene({
+		const scene = new ScrollMagic.Scene({
 			triggerElement: '.company-logos__title',
-			triggerHook: .85 
-		}).setClassToggle('.company-logos__title', "company-logos__title--animated").addTo(controller);
-	}
+			triggerHook: .85
+		}).setClassToggle('.company-logos__title', 'company-logos__title--animated').addTo(controller);
 
-	shouldComponentUpdate(nextProps) {
-		return (this.props.clients !== nextProps.clients);
+		this.setState({ scene });
 	}
 
 	componentWillUnmount() {
 		TweenMax.killAll(false, false, true);
 	}
 
-	componentDidUpdate() {
+	componentDidUpdate(prevProps) {
+		const { scene, columns } = this.state;
+		const { location: { pathname } } = this.props;
+
+		if (prevProps.location.pathname !== pathname) {
+			TweenMax.killAll(false, false, true);
+		}    
+
 		const companies = document.querySelectorAll(".companies");
 		const counter = companies[0].querySelectorAll(".companies__logo").length;
-		const columns = companies.length;
+		
 		const current = [...Array(columns).keys()]; // IE bug with keys -> polyfil should fix this but I dont care
 		var lastFrame = -1;
 
@@ -90,10 +111,15 @@ class ClientLogos extends Component {
 		};
 
 		TweenMax.delayedCall(1, _updateLogos);
+
+		// Dirty hack to reinit SM scene on router location change
+		setTimeout(() => scene.reverse(true), 200); // reset after 200ms, after scroll up
+		scene.on('progress', (e) => (e.progress === 1) ? scene.reverse(false) : null)
 	}
 
 	renderColumns() {
-		let cols = [...Array(4)];
+		const { columns } = this.state;
+		let cols = [...Array(columns)];
 
 		return cols.map((val, i) => {
 			return (
@@ -151,4 +177,4 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => bindActionCreators({ getClients }, dispatch);
 
 // Export container while connected to store
-export default connect(mapStateToProps, mapDispatchToProps)(ClientLogos);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ClientLogos));

@@ -98,6 +98,41 @@ const shuffleArray = arr => arr.sort(() => Math.random() - 0.5);
  * @param {*} min 
  * @param {*} max 
  */
-const randomize = (min, max) => (Math.random() * (max - min)) + min; 
+const randomize = (min, max) => (Math.random() * (max - min)) + min;
 
-export { getFormData, validateEmail, validateFields, serializeData, lerp, lineEq, getMousePos, shuffleArray, randomize };
+const humanDuration = ({ from, to }) => {
+	let dateFrom = new Date(from), dateTo = new Date(to);
+
+	let date1_UTC = new Date(Date.UTC(dateFrom.getUTCFullYear(), dateFrom.getUTCMonth(), dateFrom.getUTCDate()));
+	let date2_UTC = new Date(Date.UTC(dateTo.getUTCFullYear(), dateTo.getUTCMonth(), dateTo.getUTCDate()));
+
+	let yAppendix, mAppendix, dAppendix;
+
+	const getDaysInMonths = (date) => {
+		let monthStart = new Date(date.getFullYear(), date.getMonth(), 1);
+		let monthEnd = new Date(date.getFullYear(), date.getMonth() + 1, 1);
+		let monthLength = (monthEnd - monthStart) / (1000 * 60 * 60 * 24);
+		return monthLength;
+	}
+
+	let days = date2_UTC.getDate() - date1_UTC.getDate();
+	if (days < 0) {
+		date2_UTC.setMonth(date2_UTC.getMonth() - 1);
+		days += getDaysInMonths(date2_UTC);
+	}
+
+	let months = date2_UTC.getMonth() - date1_UTC.getMonth();
+	if (months < 0) {
+		date2_UTC.setFullYear(date2_UTC.getFullYear() - 1);
+		months += 12;
+	}
+
+	let years = date2_UTC.getFullYear() - date1_UTC.getFullYear();
+	yAppendix = years > 1 ? " years" : " year";
+	mAppendix = months > 1 ? " months" : " month";
+	dAppendix = days > 1 ? " days" : " day";
+
+	return (years + yAppendix + ", " + months + mAppendix + ", and " + days + dAppendix);
+};
+
+export { getFormData, validateEmail, validateFields, serializeData, lerp, lineEq, getMousePos, shuffleArray, randomize, humanDuration };

@@ -23,12 +23,16 @@ register(ignoreStyles.DEFAULT_EXTENSIONS, (mod, filename) => {
 });
 
 // Set up babel to do its thing... env for the latest toys, react-app for CRA 
-require('@babel/polyfill');
 require('@babel/register')({
     ignore: [/\/(build|node_modules)\//],
     presets: ['@babel/preset-env', '@babel/preset-react'],
-    plugins: ['@babel/plugin-syntax-dynamic-import', 'dynamic-import-node', 'react-loadable/babel']
+    plugins: [
+        '@babel/plugin-syntax-dynamic-import', 
+        'dynamic-import-node',
+        'react-loadable/babel'
+    ]
 });
+require('@babel/polyfill');
 
 // Now that the nonsense is over... load up the server entry point
 require('./server');

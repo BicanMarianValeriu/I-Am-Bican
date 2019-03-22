@@ -17,12 +17,10 @@ class CallToAction extends Component {
         return (pathname !== nextProps.location.pathname);
     }
 
-    componentDidUpdate() {
-        let { pathname } = this.props.location;
-        // Dirty hack to reinit SM scene on router location change
+    componentDidUpdate() { 
         this.state.scenes.forEach(scene => {
-            scene.reverse(true); // Set the reverse param to true then after playing it, reset it
-            if (pathname !== '/') scene.on('progress', (e) => (e.progress === 1) ? scene.reverse(false) : null)
+            setTimeout(() => scene.reverse(true), 200); // reset after 200ms, after scroll up
+            scene.on('progress', (e) => (e.progress === 1) ? scene.reverse(false) : null)
         });
     }
 
@@ -30,18 +28,17 @@ class CallToAction extends Component {
         ScrollMagic = require("scrollmagic");
 
         let controller = new ScrollMagic.Controller();
-        let { pathname } = this.props.location;
-        let reverse = pathname === '/' ? true : false;
+        
         let scene1 = new ScrollMagic.Scene({
             triggerElement: '.calltoaction',
             triggerHook: .8,
-            reverse: reverse
+            reverse: false
         }).setClassToggle('.calltoaction__text', "fadeInLeft").addTo(controller);
 
         let scene2 = new ScrollMagic.Scene({
             triggerElement: '.calltoaction',
             triggerHook: .8,
-            reverse: reverse
+            reverse: false
         }).setClassToggle('.calltoaction__buttons', "fadeInRight").addTo(controller);
 
         this.setState({ scenes: [scene1, scene2] })

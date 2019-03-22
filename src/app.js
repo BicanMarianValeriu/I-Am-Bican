@@ -23,17 +23,25 @@ export default class App extends Component {
 
 		const calcWinsize = () => wecodeart.winsize = { width: window.innerWidth, height: window.innerHeight };
 		calcWinsize();
-		window.addEventListener('resize', calcWinsize); 
+		window.addEventListener('resize', calcWinsize);
 	}
 
 	render() {
 		return (
 			<React.Fragment>
-				<Helmet titleTemplate="%s - IAmBican">
-					<title>FullStack Developer</title>
-					<meta name="description"
-						content="WordPress/React Developer at myZone/AM2Studio. You can now hire me for your website/projects." />
-				</Helmet>
+				<Helmet
+					titleTemplate="%s - IAmBican"
+					meta={[
+						{
+							name: 'theme-color',
+							content: '#2388ed'
+						},
+						{
+							name: 'description',
+							content: 'WordPress/React Developer at myZone/AM2Studio. You can now hire me for your website/projects.'
+						}
+					]}
+				/>
 				<Header />
 				<Switch>
 					{routes.map(({ path, exact, component: C, ...rest }, key) => (

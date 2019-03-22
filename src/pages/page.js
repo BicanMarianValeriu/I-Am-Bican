@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { frontloadConnect } from "react-frontload";
-import Helmet from "react-helmet";
-import scrollToElement from 'scroll-to-element';
+import Helmet from "react-helmet"; 
 import _find from 'lodash/find';
 
 // Deps
@@ -13,13 +12,14 @@ import { getPage } from "../redux/actions/pages";
 
 class Page extends Component {
 	componentDidMount() {
-		scrollToElement('.header');
+		window.scrollTo(0, 0);
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.location.pathname !== prevProps.location.pathname) {
-			scrollToElement('.header');
-			return this.props.getPage({ slug: this.props.match.params.slug });
+		if (prevProps.location.pathname !== this.props.location.pathname) {
+			let { match: { params: { slug } }, getPage } = this.props
+			window.scrollTo(0, 0);
+			return getPage({ slug });
 		}
 	}
 
@@ -33,6 +33,7 @@ class Page extends Component {
 
 		const meta = {
 			title,
+			description: selectedPage && selectedPage.yoast_meta.description,
 			canonical: "https://www.iambican.com" + pathname
 		};
 
@@ -42,10 +43,15 @@ class Page extends Component {
 
 		return (
 			<React.Fragment>
-				<Helmet>
-					<title>{meta.title}</title>
-					<link rel="canonical" href={meta.canonical} />
-				</Helmet>
+				<Helmet
+					title={meta.title}
+					meta={[
+						meta.description ? { name: 'description', content: meta.description } : {}
+					]}
+					link={[
+						meta.canonical ? { rel: 'canonical', href: meta.canonical } : {}
+					]}
+				/>
 				<div id="content" className="content content--page">
 					<PageIntro pageTitle={title} />
 					<Main posts={posts} isSingle={true} loading={!selectedPage} />

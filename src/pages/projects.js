@@ -4,19 +4,18 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
 
-import { getProjects } from "../redux/actions/projects";  
-import scrollToElement from 'scroll-to-element';
+import { getProjects } from "../redux/actions/projects"; 
 import Main from "../components/Main";
 import PageIntro from "../components/sections/page-intro";
 
 // SCSS 
-import "./../static/scss/pages/_portfolio-archive.scss"; 
+import "./../static/scss/pages/_portfolio-archive.scss";
 
 class Projects extends Component {
 
 	componentDidMount() {
-		scrollToElement('.header');
-	} 
+		window.scrollTo(0, 0);
+	}
 
 	renderNavigation() {
 		return (
@@ -37,7 +36,7 @@ class Projects extends Component {
 		const { projects, location: { pathname } } = this.props;
 		const meta = {
 			title: 'View My Portfolio',
-			description: 'View my best work and see what resources I`ve used to do it',
+			description: 'View my best work and see what resources I`ve used to create this amazing websites.',
 			canonical: "https://www.iambican.com" + pathname
 		};
 
@@ -48,11 +47,15 @@ class Projects extends Component {
 
 		return (
 			<React.Fragment>
-				<Helmet>
-					<title>{meta.title}</title>
-					<link rel="canonical" href={meta.canonical} />
-					{meta.description && <meta name="description" content={meta.description} />}
-				</Helmet>
+				<Helmet
+					title={meta.title}
+					meta={[
+						meta.description ? { name: 'description', content: meta.description } : {}
+					]}
+					link={[
+						meta.canonical ? { rel: 'canonical', href: meta.canonical } : {}
+					]}
+				/>
 				<div id="content" className="content content--projects">
 					<PageIntro pageTitle='Portfolio' />
 					<Main posts={projects} isSingle={false} options={{ loading: loading }} />

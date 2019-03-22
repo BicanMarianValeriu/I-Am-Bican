@@ -15,7 +15,7 @@ import Loadable from "react-loadable";
 import createStore from "./../src/redux/store";
 import App from "./../src/App";
 import manifest from "./../build/asset-manifest.json";
-import { setCurrentUser, LOGOUT_USER, FETCH_USER_FULFILLED } from "./../src/redux/actions/actions";
+import { authToken, userLogout } from './../src/redux/actions/user';
 
 // LOADER
 export default (req, res) => {
@@ -48,10 +48,8 @@ export default (req, res) => {
 
 			// If the user has a cookie (i.e. they're signed in) - set them as the current user
 			// Otherwise, we want to set the current state to be logged out, just in case this isn't the default
-			if ("authToken" in req.cookies) setCurrentUser(req.cookies.authToken).then(response =>
-				store.dispatch({ type: FETCH_USER_FULFILLED, payload: response })
-			);
-			else store.dispatch({ type: LOGOUT_USER });
+			if ('authToken' in req.cookies) authToken(req.cookies.authToken);
+			else userLogout();
 
 			const context = {};
 			const modules = [];
@@ -73,7 +71,7 @@ export default (req, res) => {
 					// If context has a url property, then we need to handle a redirection in Redux Router
 					res.writeHead(302, { Location: context.url });
 					res.end();
-				} else { 
+				} else {
 					// Let's give ourself a function to load all our page-specific JS assets for code splitting
 					const extractAssets = (assets, chunks) =>
 						Object.keys(assets)

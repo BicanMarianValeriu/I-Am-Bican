@@ -12,7 +12,7 @@ export const api = ({ dispatch }) => next => action => {
         const { method = 'get' } = options;
         delete options['method'];
 
-        requestApi[method](endpoint, { ...options })
+        return requestApi[method](endpoint, { ...options })
             .then(response => dispatch({ type: events.success, payload: response.data }))
             .catch(error => dispatch({ type: events.error ? events.error : API_REJECTED, payload: error }))
     }

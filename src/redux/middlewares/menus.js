@@ -11,7 +11,7 @@ export const menuMiddleware = ({ dispatch }) => next => action => {
         case GET_MENU:
             dispatch(
                 apiRequest(
-                    'wp/v2/menu/' + action.payload, null,
+                    'wp/v2/menus/' + action.payload, null,
                     { success: GET_MENU_SUCCESS, error: GET_MENU_ERROR }
                 )
             );

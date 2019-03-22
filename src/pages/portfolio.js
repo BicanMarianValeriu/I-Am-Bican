@@ -3,8 +3,7 @@ import Helmet from "react-helmet";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
-import _find from 'lodash/find';
-import scrollToElement from 'scroll-to-element';
+import _find from 'lodash/find'; 
 
 // Deps
 import PrevNext from "../components/Portfolio/PrevNext";
@@ -16,13 +15,14 @@ import "./../static/scss/pages/_portfolio-single.scss";
 
 class Portfolio extends Component {
 	componentDidMount() {
-		scrollToElement('.header');
+		window.scrollTo(0, 0);
 	}
 
 	componentDidUpdate(prevProps) {
 		if (this.props.location.pathname !== prevProps.location.pathname) {
-			scrollToElement('.header');
-			this.props.getProjects({ slug: this.props.match.params.slug });
+			let { match: { params: { slug } }, getProjects } = this.props
+			window.scrollTo(0, 0);
+			return getProjects({ slug });
 		}
 	}
 
@@ -46,16 +46,21 @@ class Portfolio extends Component {
 
 		return (
 			<React.Fragment>
-				<Helmet>
-					<title>{meta.title}</title>
-					<link rel="canonical" href={meta.canonical} />
-					{meta.description && <meta name="description" content={meta.description} />}
-				</Helmet>
+				<Helmet
+					title={meta.title}
+					meta={[
+						{ name: 'theme-color', content: '#fbfbfb' },
+						meta.description ? { name: 'description', content: meta.description } : {}
+					]}
+					link={[
+						meta.canonical ? { rel: 'canonical', href: meta.canonical } : {}
+					]}
+				/>
 				<div id="content" className="content">
 					<PrevNext current={selectedProject} />
 					<Main posts={posts} isSingle={true} />
 				</div>
-			</React.Fragment>
+			</React.Fragment >
 		);
 	}
 }

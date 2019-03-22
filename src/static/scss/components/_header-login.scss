@@ -1,4 +1,8 @@
 .header-login {
+    &--loading {
+        pointer-events: none;
+    }
+    
     &__btn {
         position: relative;
         padding: 0!important;
@@ -10,20 +14,22 @@
         font-size: 1.1rem!important;
         width: 41px;
         height: 41px;
+        --var-w: 41px;
+        --var-h: 41px;
         color: white;
         margin-left: 5px;
 
+        @include media-breakpoint-down(xs) {
+            width: 2.15rem;
+            height: 2.15rem;
+            font-size: 1rem!important;
+        } 
+        
         &:hover,
         &:active,
         &:focus {
             color: initial;
-        }
-
-        @include media-breakpoint-down(sm) {
-            width: 34px;
-            height: 34px;
-            font-size: 1rem!important;
-        }  
+        } 
 
         & + .dropdown-menu { 
             border: 0 !important;
@@ -36,6 +42,28 @@
                 transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
             }
         }
+    }
+
+    /* Mask */
+    &__mask {
+        position: absolute;
+        left: 50%;
+        top: 50%; 
+        width: calc(99% / 2);
+        height: 99%; 
+        margin-left: calc(-99% / 2); 
+        margin-top: calc(-100% / 2);
+        overflow: hidden; 
+        transform-origin: right center; 
+        mask-image: -webkit-linear-gradient(top,#000,rgba(0,0,0,0)); 
+        animation: fa-spin 1.2s infinite linear;
+
+        div { 
+            width: calc( var(--var-w) - 1px );
+            height: calc( var(--var-h) + 1px );
+            border-radius: 50%; 
+            box-shadow: inset 0 0 2px 3px rgba(255,255,255,.8);
+        } 
     }
 
     /* Icon */

@@ -5,27 +5,25 @@ import scrollToElement from 'scroll-to-element';
 // Components
 import AboutMeInfo from "./AboutMeInfo";
 import GetInTouch from '../../GetInTouch';
-import { TweenMax, Power2, /* Elastic */ } from "gsap/TweenMax";
-//import { randomize } from './../../../utilities/helpers';
+import { TweenMax, Power2 } from "gsap/umd/TweenMax";
 
 // Assets 
 import Bican from "./../../../static/images/bican.jpg";
 import BicanOld from "./../../../static/images/bican-old.jpg";
 
-//let Splitting;
-
 export default class AboutMe extends Component {
 	componentDidMount() {
-		//Splitting = require("splitting");
-		//this.initAnimations();
-		this.setupEventHandlers();
+		this._handleMouseMoveBound = this._onMouseMove.bind(this);
+		this._handleMouseLeaveBound = this._onMouseLeave.bind(this);
+
 		this.handlePictureChange();
-		this.initEvent();
+		this.setupEventHandlers();
 	}
 
-	initEvent() {
+	setupEventHandlers() {
 		let image = document.querySelector(".about-me__profile");
 		if (!image) return;
+
 		const maybeInit = () => {
 			if (window.innerWidth < 991) {
 				image.removeEventListener('mousemove', this._handleMouseMoveBound);
@@ -33,6 +31,10 @@ export default class AboutMe extends Component {
 				image.addEventListener('mousemove', this._handleMouseMoveBound);
 			};
 		}
+
+		image.addEventListener('mousemove', this._handleMouseMoveBound);
+		image.addEventListener('mouseleave', this._handleMouseLeaveBound);
+
 		window.addEventListener('load', maybeInit);
 		window.addEventListener('resize', maybeInit);
 	}
@@ -46,63 +48,34 @@ export default class AboutMe extends Component {
 		}, 5000);
 	}
 
-	setupEventHandlers() {
+	_onMouseMove(e) {
 		let image = document.querySelector(".about-me__profile"), mouseX, mouseY;
+		e = e || window.event;
 
-		const onMouseMove = (e) => {
-			e = e || window.event;
+		mouseX = e.pageX;
+		mouseY = e.pageY;
 
-			mouseX = e.pageX;
-			mouseY = e.pageY;
+		let xPos = (mouseX / image.offsetWidth) * 100 - 100,
+			yPos = (mouseY / image.offsetHeight) * 100 - 100;
 
-			let xPos = (mouseX / image.offsetWidth) * 100 - 100,
-				yPos = (mouseY / image.offsetHeight) * 100 - 100;
-
-			TweenMax.to(image, 0.5, {
-				rotationY: 0.15 * xPos,
-				rotationX: -0.15 * yPos,
-				scale: 1.07,
-				ease: Power2.easeOut,
-				transformPerspective: 500,
-				transformOrigin: "center"
-			});
-		};
-
-		const onMouseLeave = () => { TweenMax.to(image, 0.5, { rotationY: 0, rotationX: 0, scale: 1 }) };
-
-		this._handleMouseMoveBound = onMouseMove.bind(this);
-		this._handleMouseLeaveBound = onMouseLeave.bind(this);
-
-		image.addEventListener('mousemove', this._handleMouseMoveBound);
-		image.addEventListener('mouseleave', this._handleMouseLeaveBound);
-		document.querySelector('a[href="#footer"]').addEventListener('click', e => {
-			e.preventDefault(); 
-			scrollToElement('#footer');
+		TweenMax.to(image, 0.5, {
+			rotationY: 0.15 * xPos,
+			rotationX: -0.15 * yPos,
+			scale: 1.07,
+			ease: Power2.easeOut,
+			transformPerspective: 500,
+			transformOrigin: "center"
 		});
 	}
 
-	/* initAnimations() {
-		let targets = [...document.querySelectorAll('.about-me__subline'), document.querySelector('.about-me__headline')];
-		Splitting({ target: targets });
+	_onMouseLeave() {
+		let image = document.querySelector(".about-me__profile");
+		TweenMax.to(image, 0.5, { rotationY: 0, rotationX: 0, scale: 1 })
+	}
 
-		let nameChars = [...document.querySelectorAll('.about-me__headline .char')];
-		TweenMax.staggerFrom(nameChars, .8, {
-			opacity: 0,
-			y: 50,
-			z: 0,
-			ease: Elastic.easeOut.config(1, 0.8),
-		}, .10);
-
-		let sublinesChars = document.querySelectorAll('.about-me__subline .char');
-		for (let i = 0; i < sublinesChars.length; i++) TweenMax.from(sublinesChars[i], 1.5, {
-			opacity: 0,
-			x: randomize(-300, 300),
-			y: randomize(-300, 300),
-			z: randomize(-300, 300),
-			scale: .1,
-			delay: i * .02
-		});
-	} */
+	_onLinkClick() {
+		scrollToElement('#footer');
+	}
 
 	render() {
 		return (
@@ -111,7 +84,7 @@ export default class AboutMe extends Component {
 				<div className="about-me__intro">
 					<div className="container">
 						<div className="row align-items-center align-items-lg-start">
-							<div className="col-md-4 col-lg-4 about-me__image">
+							<div className="col-sm-5 col-lg-4 about-me__image">
 								<div className="about-me__image-wrap">
 									<div className="about-me__profile box-shadow box-shadow--profile">
 										<div className="shown" style={{ backgroundImage: `url('${Bican}')` }} />
@@ -122,7 +95,7 @@ export default class AboutMe extends Component {
 									</div>
 								</div>
 							</div>
-							<div className="col-md-8 col-lg-8 about-me__info">
+							<div className="col-sm-7 col-lg-8 about-me__info">
 								<h1 className="about-me__headline mb-4">Bican Marian Valeriu</h1>
 								<p className="about-me__subline mb-2 mb-md-3">WordPress/React Developer at myZone/AM2Studio</p>
 								<p className="about-me__subline mb-1 mb-md-2">Targu Jiu, Gorj, Romania</p>
@@ -134,7 +107,7 @@ export default class AboutMe extends Component {
 					<div className="container">
 						<div className="row justify-content-end">
 							<div className="col-4 col-lg-3 text-center">
-								<a href="#footer" className="about-me__link">
+								<a href="#footer" className="about-me__link" onClick={this._onLinkClick.bind(this)}>
 									<i className="far fa-envelope"></i>
 									<span>Contact Information</span>
 								</a>

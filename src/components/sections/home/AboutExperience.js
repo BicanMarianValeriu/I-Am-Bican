@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { humanDuration } from "../../../utilities/helpers";
+import _debounce from 'lodash/debounce';
+
 let ScrollMagic;
 
 // Components
@@ -6,7 +9,7 @@ export default class AboutExperience extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			scrollmagic: false,
+			scenes: [],
 			experience: [
 				{
 					jobTitle: "WordPress/Frontend Developer",
@@ -40,14 +43,13 @@ export default class AboutExperience extends Component {
 
 	componentDidMount() {
 		ScrollMagic = require("scrollmagic");
-		this.setState({ scrollmagic: true });
 
 		var timelineBar = document.querySelector(".timeline__bar");
 		var timelineBoxes = document.querySelectorAll(".timeline-box");
 		var firstBox = timelineBoxes[0];
 		var lastBox = timelineBoxes[timelineBoxes.length - 1];
 
-		var adjustHeight = function () {
+		const adjustHeight = function () { 
 			let a, b;
 			if (window.innerWidth < 768) {
 				a = firstBox.offsetHeight;
@@ -63,100 +65,40 @@ export default class AboutExperience extends Component {
 
 		adjustHeight();
 
-		setTimeout(() => {
-			window.onresize = () => adjustHeight();
-		}, 500);
+		window.addEventListener('resize', _debounce(adjustHeight, 150));
+
+		this.handleAnimations();
 	}
 
 	componentDidUpdate() {
-		this.handleAnimations();
+		this.state.scenes.forEach(scene => {
+			setTimeout(() => scene.reverse(true), 200); // reset after 200ms, after scroll up
+			scene.on('progress', (e) => (e.progress === 1) ? scene.reverse(false) : null)
+		});
 	}
 
 	handleAnimations() {
 		let boxes = document.querySelectorAll(".timeline-box");
 		let boxesA = document.querySelectorAll(".timeline-box__animation");
 
-		if (window.innerWidth < 576) {
-			for (let i = 0; i < boxes.length; i++)
-				boxesA[i].classList.add("timeline-box__animation--ended");
-			for (let i = 0; i < boxes.length; i++)
-				boxes[i].classList.add("timeline-box--animated");
-			return;
-		}
-
-		if (this.state.scrollmagic === false) return;
-
 		let controller = new ScrollMagic.Controller();
 
+		var scenes = [];
 		for (let i = 0; i < boxes.length; i++) {
-			new ScrollMagic.Scene({
+
+			scenes.push(new ScrollMagic.Scene({
 				triggerElement: boxesA[i],
 				triggerHook: 0.85
-			})
-				.setClassToggle(boxesA[i], "timeline-box__animation--ended")
-				.addTo(controller);
-			new ScrollMagic.Scene({
+			}).setClassToggle(boxesA[i], "timeline-box__animation--ended").addTo(controller));
+
+			scenes.push(new ScrollMagic.Scene({
 				triggerElement: boxes[i],
 				triggerHook: 0.8
-			})
-				.setClassToggle(boxes[i], "timeline-box--animated")
-				.addTo(controller);
-		}
-	}
+			}).setClassToggle(boxes[i], "timeline-box--animated").addTo(controller));
 
-	getDaysInMonths(date) {
-		let monthStart = new Date(date.getFullYear(), date.getMonth(), 1);
-		let monthEnd = new Date(date.getFullYear(), date.getMonth() + 1, 1);
-		let monthLength = (monthEnd - monthStart) / (1000 * 60 * 60 * 24);
-		return monthLength;
-	}
-
-	renderWorkDuration({ from, to }) {
-		let dateFrom = new Date(from),
-			dateTo = new Date(to);
-		let date2_UTC = new Date(
-			Date.UTC(
-				dateTo.getUTCFullYear(),
-				dateTo.getUTCMonth(),
-				dateTo.getUTCDate()
-			)
-		);
-		let date1_UTC = new Date(
-			Date.UTC(
-				dateFrom.getUTCFullYear(),
-				dateFrom.getUTCMonth(),
-				dateFrom.getUTCDate()
-			)
-		);
-		let yAppendix, mAppendix, dAppendix;
-		//--------------------------------------------------------------
-		let days = date2_UTC.getDate() - date1_UTC.getDate();
-		if (days < 0) {
-			date2_UTC.setMonth(date2_UTC.getMonth() - 1);
-			days += this.getDaysInMonths(date2_UTC);
 		}
-		//--------------------------------------------------------------
-		let months = date2_UTC.getMonth() - date1_UTC.getMonth();
-		if (months < 0) {
-			date2_UTC.setFullYear(date2_UTC.getFullYear() - 1);
-			months += 12;
-		}
-		//--------------------------------------------------------------
-		let years = date2_UTC.getFullYear() - date1_UTC.getFullYear();
-		yAppendix = years > 1 ? " years" : " year";
-		mAppendix = months > 1 ? " months" : " month";
-		dAppendix = days > 1 ? " days" : " day";
 
-		return (
-			years +
-			yAppendix +
-			", " +
-			months +
-			mAppendix +
-			", and " +
-			days +
-			dAppendix
-		);
+		this.setState({ scenes });
 	}
 
 	renderExperience() {
@@ -188,8 +130,8 @@ export default class AboutExperience extends Component {
 											</span>
 										</span>
 										<p className="timeline-box__meta-range__age">
-											({this.renderWorkDuration({ from, to })})
-                    </p>
+											({humanDuration({ from, to })})
+                    					</p>
 									</div>
 									<div className="timeline-box__meta-company">
 										<h5 className="timeline-box__meta-company__name">

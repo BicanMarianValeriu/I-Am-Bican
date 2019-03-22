@@ -32,12 +32,7 @@ const routes = [
 		path: "/",
 		exact: true,
 		component: Home
-	},
-	{
-		path: "/index.html",
-		exact: true,
-		component: Home
-	},
+	}, 
 	{
 		path: "/portfolio",
 		exact: true,

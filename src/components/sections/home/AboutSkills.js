@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom'
 import { isServer } from '../../../redux/store';
 
 let ScrollMagic;
 let Splitting;
 
-export default class AboutSkills extends Component {
+class AboutSkills extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            scenes: [],
             skills: [
                 {
                     title: "React JS",
@@ -66,18 +68,19 @@ export default class AboutSkills extends Component {
         let controller = new ScrollMagic.Controller();
         let boxes = document.querySelectorAll(".skill-box");
 
-        new ScrollMagic.Scene({
+        const scene1 = new ScrollMagic.Scene({
             triggerElement: '.about-skills__headline',
-            triggerHook: .75
+            triggerHook: .85
         }).setClassToggle('.about-skills__headline', "maskUp").addTo(controller);
 
-        new ScrollMagic.Scene({
+        const scene2 = new ScrollMagic.Scene({
             triggerElement: '.about-skills__headline',
-            triggerHook: .75
+            triggerHook: .85
         }).setClassToggle('.about-skills__description', "maskUp").addTo(controller);
 
+        var boxesScenes = [];
         for (let i = 0; i < boxes.length; i++) {
-            new ScrollMagic.Scene({
+            boxesScenes[i] = new ScrollMagic.Scene({
                 triggerElement: boxes[i],
                 triggerHook: .95
             }).setClassToggle(boxes[i], "skill-box--animated").addTo(controller);
@@ -86,11 +89,20 @@ export default class AboutSkills extends Component {
         const target = document.querySelector('.about-skills__pre');
         Splitting({ target: target });
 
-        new ScrollMagic.Scene({
+        const scenePre = new ScrollMagic.Scene({
             triggerElement: '.about-skills__headline',
             triggerHook: .75
         }).setClassToggle('.about-skills__pre', "about-skills__pre--animated").addTo(controller);
 
+        this.setState({ scenes: [scene1, scene2, ...boxesScenes, scenePre] })
+
+    }
+
+    componentDidUpdate() { 
+        this.state.scenes.forEach(scene => {
+            setTimeout(() => scene.reverse(true), 200); // reset after 200ms, after scroll up
+            scene.on('progress', (e) => (e.progress === 1) ? scene.reverse(false) : null)
+        });
     }
 
     renderSkills() {
@@ -148,3 +160,5 @@ export default class AboutSkills extends Component {
         )
     }
 }
+
+export default withRouter(AboutSkills);

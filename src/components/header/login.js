@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+import Classnames from 'classnames';
 import { layer, icon } from '@fortawesome/fontawesome-svg-core'
 import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
 import { faCircle } from '@fortawesome/free-regular-svg-icons/faCircle';
@@ -41,7 +42,7 @@ class Login extends Component {
 	}
 
 	_onLogoutClick() {
-		if (isAuthentificated()) {
+		if (isAuthentificated() && this.props.user.authentificated) {
 			this.props.userLogout();
 		}
 	}
@@ -59,25 +60,32 @@ class Login extends Component {
 	}
 
 	render() {
-		const { user } = this.props;
+		const { user, loading } = this.props;
 
 		const { data: { name = '' } } = user;
 
-		let classes = ["header__login", "col-auto", "pl-0", "header-login"];
-		if (isAuthentificated()) classes.push(["header-login--is-auth"]);
+		const classes = Classnames('header__login', 'col-auto', 'pl-0', 'header-login', {
+			'header-login--loading': loading,
+			'header-login--is-auth': isAuthentificated()
+		});
 
 		const UserLoginSVG = () => {
 			const layers = layer((push) => {
 				push(icon(faCircle, { transform: { size: 35 } }));
-				push(icon(faUser, { transform: { size: 20, y: -1 } }));
+				push(icon(faUser, { transform: { size: 16, y: -1 } }));
 			});
 
-			return (<div className="header-login__icon-svg" dangerouslySetInnerHTML={{ __html: layers.html[0] }}></div>);
+			return (
+				<React.Fragment>
+					{loading && <div className="header-login__mask"><div></div></div>}
+					<div className="header-login__icon-svg" dangerouslySetInnerHTML={{ __html: layers.html[0] }}></div>
+				</React.Fragment>
+			);
 		}
 
 		return (
-			<div className={classes.join(" ")} >
-				{isAuthentificated() ? (
+			<div className={classes} >
+				{isAuthentificated() && this.props.user.authentificated ? (
 					<Dropdown size="lg" direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
 						<DropdownToggle className="header-login__btn">
 							<UserLoginSVG />
@@ -110,8 +118,8 @@ class Login extends Component {
 
 // mapStateToProps
 const mapStateToProps = store => {
-	const { user } = store;
-	return { user };
+	const { user, ui: { pendingUser } } = store;
+	return { user, loading: pendingUser };
 };
 
 // mapDispatchToProps 

@@ -18,7 +18,7 @@ const SwalToast = Swal.mixin({
  * @return 	SWAL
  */
 const SwalInvalidCredentials = props => {
-	return Swal.fire({
+	Swal.fire({
 		title: `Something went wrong.`,
 		html: `Invalid login credentials.`,
 		type: "error",
@@ -38,9 +38,10 @@ const SwalInvalidCredentials = props => {
 }
 
 const SwalAuth = (props) => {
-	return Swal.fire({
+	Swal.fire({
 		title: `Login`,
-		html: `<form name="swal-login">
+		html: `
+		<form name="swal-login">
             <div class="row">
                 <div class="col-12">
                     <div class="input-group mb-3">
@@ -65,10 +66,11 @@ const SwalAuth = (props) => {
                         </div>
                     </div>
                 </div>
-            </div></form>`,
+			</div>
+		</form>`,
 		footer: `View your privacy policy &nbsp;<a href="/p/privacy-policy">here</a>.`,
 		customClass: {
-			container: 'swal-auth',
+			popup: 'swal-auth',
 			confirmButton: 'btn btn-primary'
 		},
 		buttonsStyling: false,
@@ -88,24 +90,24 @@ const SwalAuth = (props) => {
 			props.afterValidation({ username, password });
 
 			// On Get Token Success
-			document.addEventListener('user/get_token_success', (e) => SwalToast.fire(
-				{ type: "success", title: `Welcome back ${e.detail.user_display_name}.` }
+			document.addEventListener('user/login_success', (e) => SwalToast.fire(
+				{ type: 'success', title: `Welcome back ${e.detail.name}.` }
+			)); 
+			
+			// On Logout Success
+			document.addEventListener('user/logout_success', () => SwalToast.fire(
+				{ type: 'info', title: `Logged out. See you soon :).` }
 			));
 
 			// On Error
-			document.addEventListener('user/get_token_error', (e) => SwalInvalidCredentials(props));
-
-			// On Logout Success
-			document.addEventListener('user/logout_success', () => SwalToast.fire(
-				{ type: "info", title: `You are now logged out. See you soon :).` }
-			));
+			document.addEventListener('user/get_token_error', () => SwalInvalidCredentials(props));
 		},
 		allowOutsideClick: () => !Swal.isLoading()
 	}).then(result => {
 		if (result.dismiss) return;
 		Swal.fire({
 			title: `Checking details, please wait...`,
-			type: "question",
+			type: 'question',
 			showConfirmButton: false,
 			allowEscapeKey: false,
 			allowOutsideClick: false
@@ -114,4 +116,4 @@ const SwalAuth = (props) => {
 }
 
 export default SwalAuth;
-export { SwalToast, SwalInvalidCredentials };
+export { SwalToast };

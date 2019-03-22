@@ -1,11 +1,11 @@
 import { compose, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import { routerMiddleware } from 'connected-react-router';
-import thunk from 'redux-thunk';
-import promise from 'redux-promise-middleware';
+//import thunk from 'redux-thunk';
+//import promise from 'redux-promise-middleware';
 
 import { api } from "./api";
-import { userMdl } from "./user";
+import { userMiddleware } from "./user";
 import { menuMiddleware } from "./menus";
 import { pagesMiddleware } from "./pages";
 import { mediaMiddleware } from "./media";
@@ -21,9 +21,9 @@ export default function ({ history, enhancers }) {
         mediaMiddleware,
         pagesMiddleware,
         menuMiddleware,
-        ...userMdl,
-        promise(),
-        thunk,
+        userMiddleware,
+        //promise(),
+        //thunk,
         api // first, counting from bottom
     ];
 

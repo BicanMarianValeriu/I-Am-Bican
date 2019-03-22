@@ -2,26 +2,27 @@ import React, { Component } from "react";
 import Helmet from "react-helmet";
 import AboutMe from "../components/sections/home/AboutMe";
 import AboutExperience from "../components/sections/home/AboutExperience";
-import AboutSkills from '../components/sections/home/AboutSkills'; 
-import scrollToElement from 'scroll-to-element';
+import AboutSkills from '../components/sections/home/AboutSkills';  
 
 export default class Home extends Component {
 	componentDidMount() {
-		scrollToElement('.header');
+		window.scrollTo(0, 0);
 	}
 
 	render() {
 		const meta = {
-			title: "WordPress/React Developer",
+			title: "WordPress/React Developer", 
 			canonical: "https://www.iambican.com/"
 		};
 
 		return (
 			<React.Fragment>
-				<Helmet>
-					<title>{meta.title}</title>
-					<link rel="canonical" href={meta.canonical} />
-				</Helmet>
+				<Helmet
+					title={meta.title} 
+					link={[
+						meta.canonical ? { rel: 'canonical', href: meta.canonical } : {}
+					]}
+				/> 
 				<div id="content" className="content">
 					<AboutMe />
 					<AboutExperience />
