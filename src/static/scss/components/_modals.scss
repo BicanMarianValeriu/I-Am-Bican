@@ -10,15 +10,16 @@ body.swal2-toast-shown {
 	}
 } 
 
-.swal2-container {
+.swal2-popup {
 	padding: 20px;
+	border-radius: 0;
 
 	&.swal-contact {
 		.swal2-title {
 			margin-bottom: 1.5rem;
 
 			@include media-breakpoint-down(sm) {
-				font-size: 1.2rem;
+				font-size: 1.3rem;
 			} 
 		}
 
@@ -29,22 +30,14 @@ body.swal2-toast-shown {
 				} 
 			}
 		}
-	}
-
-	.swal2-popup {
-		border-radius: 0;
-	}
+	} 
 	
 	.swal2-styled.swal2 {
 		&-confirm { 
 			border-radius: 50px;
 			border-top-left-radius: 50px;
 			border-bottom-left-radius: 50px; 
-			padding: 10px 42px; 
-
-			&:focus {
-				box-shadow: none;
-			}
+			padding: 10px 42px;  
 
 			@media (max-width: 576px) {
 				font-size: 0.9rem;

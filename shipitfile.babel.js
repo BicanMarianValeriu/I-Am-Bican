@@ -1,18 +1,10 @@
-require('@babel/register')({
-	ignore: [/\/(build|node_modules)\//],
-	presets: ['@babel/preset-env'],
-	plugins: []
-});
-
-require('@babel/polyfill');
-
 module.exports = shipit => {
 	require('shipit-deploy')(shipit);
 
 	shipit.initConfig({
 		default: {
 			branch: 'master',
-			workspace: '/home/wecomndj/dev.wecodeart.com',
+			workspace: '/tmp/iambican',
 			deployTo: '/home/wecomndj/dev.wecodeart.com',
 			servers: 'wecomndj@68.65.122.253:21098',
 			repositoryUrl: 'https://github.com/BicanMarianValeriu/I-Am-Bican.git',
@@ -28,17 +20,31 @@ module.exports = shipit => {
 		}
 	});
 
-	shipit.blTask('copy', function () {
-		shipit.copyToRemote('/sad/', '/home/wecomndj/dev.wecodeart.com/').then(
-			shipit.log('Copy: Finished')
-		)
+	shipit.on('updated', () => shipit.start(['installDependencies']));
+
+	shipit.blTask('installDependencies', async () => {
+		await shipit.remote(`cd ${shipit.releasePath} && npm install --production`)
+		shipit.log('Installed npm dependecies');
 	});
 
-	shipit.task('clean', () => {
-		return new Promise(resolve => {
-			shipit.remote('rm -rf /home/wecomndj/dev.wecodeart.com/releases/*').then(resolve(shipit.log('Clean: Finished')));
-		});
-	});
+	shipit.task('deploy', () => {
+		/**
+		 * Logs message and returns a resolved Promise.
+		 * @param {string} msg - Message to be logged
+		 * @returns {Promise}
+		 */
+		const start = msg => {
+			shipit.log(msg);
+			return Promise.resolve(true);
+		};
 
-	shipit.start('clean');
+		/**
+		 * Cleans the remote directory
+		 */
+		const clean = () => shipit.remote('rm -rf /home/wecomndj/dev.wecodeart.com/releases/*').then(shipit.log('Clean: Done'))
+
+		const dest = 'DEV';
+
+		return start(`Deploy to ${dest}`).then(() => clean()).then(() => shipit.log(`Release deployed`));
+	});
 };

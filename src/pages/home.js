@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
-import AboutMe from "../components/sections/home/AboutMe";
-import AboutExperience from "../components/sections/home/AboutExperience";
-import AboutSkills from '../components/sections/home/AboutSkills';  
+import AboutMe from "../components/Sections/Home/AboutMe";
+import AboutExperience from "../components/Sections/Home/AboutExperience";
+import AboutSkills from '../components/Sections/Home/AboutSkills';  
 
 export default class Home extends Component {
 	componentDidMount() {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'; 
 import { getMedia } from '../../redux/actions/media';
 import _find from "lodash/find";
-import DownloadLoader from '../download-loader';
+import DownloadLoader from '../General/download-loader';
 import placeholder from '../../static/images/placeholder-bold.png';
 
 class FeaturedMedia extends Component {

@@ -7,7 +7,7 @@ import _find from 'lodash/find';
 
 // Deps
 import PrevNext from "../components/Portfolio/PrevNext";
-import Main from "../components/Main";
+import Main from "../components/General/Main";
 import { getProjects } from "../redux/actions/projects";
 
 // SCSS 

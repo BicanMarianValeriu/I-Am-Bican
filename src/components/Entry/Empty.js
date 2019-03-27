@@ -1,7 +1,7 @@
 import React from 'react';
-import DownloadLoader from '../download-loader';
+import DownloadLoader from '../General/download-loader';
 
-const Empty = (props) => {
+const Empty = props => {
 	let { options } = props;
 	let classes = {
 		...{

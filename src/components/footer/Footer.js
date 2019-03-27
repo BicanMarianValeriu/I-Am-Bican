@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import Copyright from './Copyright';
 import Social from './Social';
 import Newsletter from './Newsletter';
-import Navigation from '../Navigation';
+import Navigation from '../General/Navigation';
 import ClientLogos from './ClientLogos';
 import CallToAction from './CallToAction';
 

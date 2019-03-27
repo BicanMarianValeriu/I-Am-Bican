@@ -1,5 +1,5 @@
 import axios from "axios";
-import merge from "lodash/merge";
+import _merge from "lodash/merge";
 
 class WPCF7 {
 	/**
@@ -11,7 +11,7 @@ class WPCF7 {
 	constructor(el, options) {
 		this.el = document.querySelector(el);
 		this.el.WPCF7 = this;
-		this.options = merge({}, WPCF7.defaults, options);
+		this.options = _merge({}, WPCF7.defaults, options);
 	}
 
 	static get defaults() {
@@ -38,8 +38,8 @@ class WPCF7 {
 
 	async sendMail() {
 		let formData = new FormData(this.el);
-		let url = this.getRoute("/contact-forms/" + this.getFormId() + "/feedback"); 
-		return await axios({ method: 'post', url: url, data: formData }).then(result => result.data);
+		let url = this.getRoute("/contact-forms/" + this.getFormId() + "/feedback");
+		return await axios({ method: 'post', url, data: formData }).then(result => result.data);
 	}
 }
 

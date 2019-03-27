@@ -5,8 +5,8 @@ import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
 
 import { getProjects } from "../redux/actions/projects"; 
-import Main from "../components/Main";
-import PageIntro from "../components/sections/page-intro";
+import Main from "../components/General/Main";
+import PageIntro from "../components/Sections/page-intro";
 
 // SCSS 
 import "./../static/scss/pages/_portfolio-archive.scss";

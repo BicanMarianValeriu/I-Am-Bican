@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { frontloadConnect } from "react-frontload";
-import Helmet from "react-helmet"; 
+import Helmet from "react-helmet";
 import _find from 'lodash/find';
 
 // Deps
-import PageIntro from "../components/sections/page-intro";
-import Main from "../components/Main";
+import PageIntro from "../components/Sections/page-intro";
+import Main from "../components/General/Main";
 import { getPage } from "../redux/actions/pages";
 
 class Page extends Component {

@@ -2,14 +2,14 @@ import React from 'react';
 import Menu from './Menu';
 import Login from './Login';
 import { withRouter } from 'react-router-dom';
-import GetInTouch from '../GetInTouch';
+import GetInTouch from '../General/GetInTouch';
 
 export default withRouter(props => {
     let classes = ['header'];
     let { location: { pathname } } = props;
     let isPage = pathname.split('/')[1];
-    const routes = ['/', 'p', '/portfolio', '/index.html'];
-    
+    const routes = ['/', 'p', '/portfolio'];
+
     // On home/page/portfolio we need the header to overlap content 
     if (routes.includes(pathname) || isPage === 'p') {
         classes.push('header--absolute');
@@ -17,7 +17,7 @@ export default withRouter(props => {
     } else classes.push(['header--blue']);
 
     // Home (index.html due to https redirect)
-    if (pathname === '/' || pathname === '/index.html') classes.push(['header--home']);
+    if (pathname === '/') classes.push(['header--home']);
 
     const CTA = () => {
         return (

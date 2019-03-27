@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
-import PageIntro from "../components/sections/page-intro";
+import PageIntro from "../components/Sections/page-intro";
 
 // SCSS 
 import "./../static/scss/pages/_404.scss";

@@ -17,5 +17,5 @@ export const api = ({ dispatch }) => next => action => {
             .catch(error => dispatch({ type: events.error ? events.error : API_REJECTED, payload: error }))
     }
 
-    return next(action)
+    return next(action);
 };

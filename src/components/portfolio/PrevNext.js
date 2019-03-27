@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import DownloadLoader from './../download-loader';
+import DownloadLoader from './../General/download-loader';
 
 export default class PrevNext extends Component {
 

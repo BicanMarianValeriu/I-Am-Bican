@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { getTitle } from '../../utilities/functions';
+import { getTitle } from '../../utilities/wpPost';
 
 const Title = props => {
     const { type, slug } = props;

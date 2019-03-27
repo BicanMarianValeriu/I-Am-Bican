@@ -1,6 +1,6 @@
 // Deps 
 import Swal from "sweetalert2/dist/sweetalert2.js";
-import WPCF7 from "./../../utilities/wpcf7";
+import WPCF7 from "../../utilities/wpCF7";
 import { validateEmail, validateFields } from "./../../utilities/helpers";
 
 const SwalContact = () => {
@@ -31,7 +31,7 @@ const SwalContact = () => {
 			</form>`,
 		footer: `View your privacy policy &nbsp;<a href="/p/privacy-policy">here</a>.`, 
 		customClass: {
-			container: 'swal-contact',
+			popup: 'swal-contact',
 			confirmButton: 'btn btn-primary'
 		},
 		buttonsStyling: false, 

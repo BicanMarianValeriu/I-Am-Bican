@@ -76,7 +76,7 @@ const SwalAuth = (props) => {
 		buttonsStyling: false,
 		confirmButtonText: "Login",
 		showLoaderOnConfirm: true,
-		backdrop: `rgba(0,0,0,0.2)`,
+		backdrop: `rgba(0,0,0,0.5)`,
 		showCloseButton: true,
 		width: "35rem",
 		preConfirm: () => {

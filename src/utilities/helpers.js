@@ -100,6 +100,10 @@ const shuffleArray = arr => arr.sort(() => Math.random() - 0.5);
  */
 const randomize = (min, max) => (Math.random() * (max - min)) + min;
 
+/**
+ * Convert date to human readable string
+ * @param {object} param0 
+ */
 const humanDuration = ({ from, to }) => {
 	let dateFrom = new Date(from), dateTo = new Date(to);
 
@@ -135,4 +139,9 @@ const humanDuration = ({ from, to }) => {
 	return (years + yAppendix + ", " + months + mAppendix + ", and " + days + dAppendix);
 };
 
-export { getFormData, validateEmail, validateFields, serializeData, lerp, lineEq, getMousePos, shuffleArray, randomize, humanDuration };
+// Exports
+export { 
+	getFormData, validateEmail, validateFields, serializeData, 
+	lerp, lineEq, getMousePos, shuffleArray, randomize, 
+	humanDuration 
+};
