@@ -1,15 +1,13 @@
 // Deps
 import { createStore } from 'redux';
-import { createBrowserHistory, createMemoryHistory } from 'history';
+import { createBrowserHistory, createMemoryHistory } from 'history'; 
 
 // Reducers
 import createReducers from "./reducers";
 
 // Middlewares
-import createMiddlewares from "./middlewares";
-
-// A nice helper to tell us if we're on the server
-export const isServer = !(typeof window !== 'undefined' && window.document && window.document.createElement);
+import createEnhancers from "./middlewares"; 
+import { isServer } from '../utilities/helpers';
 
 // Default
 export default (url = '/') => {
@@ -24,14 +22,14 @@ export default (url = '/') => {
 	}
 
 	const reducers = createReducers({ history });
-	const middlewares = createMiddlewares({ history, enhancers });
+	const composedEnhancers  = createEnhancers({ history, enhancers });
 
 	// Do we have preloaded state available? Great, save it.
 	const initialState = !isServer ? window.__PRELOADED_STATE__ : {};
 	if (!isServer) delete window.__PRELOADED_STATE__;
 
 	// Create the store
-	const store = createStore(reducers, initialState, middlewares);
+	const store = createStore(reducers, initialState, composedEnhancers );
 
 	return { store, history };
 };

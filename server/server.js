@@ -1,4 +1,4 @@
-// Express requirements
+// Express requirements 
 import path from "path";
 import morgan from "morgan";
 import express from "express";
@@ -12,7 +12,7 @@ import loader from "./loader";
 
 // Create our express app using the port optionally specified
 const app = express();
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 9000; 
 
 // Compress, parse, log, and raid the cookie jar
 app.use(compression());

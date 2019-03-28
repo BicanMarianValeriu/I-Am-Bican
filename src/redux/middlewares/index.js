@@ -1,4 +1,4 @@
-//import thunk from 'redux-thunk';
+import thunk from 'redux-thunk';
 //import { createPromise } from 'redux-promise-middleware';
 import { compose, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
@@ -11,11 +11,13 @@ import { pagesMiddleware } from "./pages";
 import { mediaMiddleware } from "./media";
 import { clientsMiddleware } from "./clients";
 import { projectsMiddleware } from "./projects";
-import { isServer } from '../store';
+import { isServer } from '../../utilities/helpers';
 
 export default function ({ history, enhancers }) {
 
-    const arr = [ // In reverse order @see `compose`
+    const arr = [
+        api,
+        thunk,
         routerMiddleware(history),
         projectsMiddleware,
         clientsMiddleware,
@@ -23,11 +25,14 @@ export default function ({ history, enhancers }) {
         pagesMiddleware,
         menuMiddleware,
         userMiddleware,
-        //thunk,
-        api // first, counting from bottom
     ];
 
     if (process.env.NODE_ENV === 'development' && !isServer) arr.push(createLogger());
 
-    return compose(applyMiddleware(...arr), ...enhancers)
+    const composedEnhancers = compose(
+        applyMiddleware(...arr),
+        ...enhancers
+    );
+
+    return composedEnhancers;
 };

@@ -1,4 +1,9 @@
 /**
+ * Is Server
+ */
+const isServer = !(typeof window !== 'undefined' && window.document && window.document.createElement);
+
+/**
  * Gets form data - IE Support
  * @param {*} formEl
  */
@@ -141,6 +146,7 @@ const humanDuration = ({ from, to }) => {
 
 // Exports
 export { 
+	isServer,
 	getFormData, validateEmail, validateFields, serializeData, 
 	lerp, lineEq, getMousePos, shuffleArray, randomize, 
 	humanDuration 

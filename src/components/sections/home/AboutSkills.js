@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom'
-import { isServer } from '../../../redux/store';
+import { withRouter } from 'react-router-dom';  
+import { isServer } from '../../../utilities/helpers';
 
 let ScrollMagic;
 let Splitting;

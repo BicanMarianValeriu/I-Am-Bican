@@ -10,6 +10,9 @@ import PageIntro from "../components/Sections/page-intro";
 import Main from "../components/General/Main";
 import { getPage } from "../redux/actions/pages";
 
+// Server Side Stuff
+const frontload = async props => await props.getPage({ slug: props.match.params.slug });
+
 class Page extends Component {
 	componentDidMount() {
 		window.scrollTo(0, 0);
@@ -72,9 +75,6 @@ const mapStateToProps = (store, props) => {
 
 // mapDispatchToProps -> getPage
 const mapDispatchToProps = dispatch => bindActionCreators({ getPage }, dispatch);
-
-// Server Side Stuff
-const frontload = async props => await props.getPage({ slug: props.match.params.slug });
 
 // Export container while connected to store with frontload
 export default connect(mapStateToProps, mapDispatchToProps)(

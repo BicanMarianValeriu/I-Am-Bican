@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { withRouter } from 'react-router-dom'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { TweenMax } from "gsap/umd/TweenMax";
 import { getClients } from "../../redux/actions/clients";
+import anime from 'animejs';
 
 let ScrollMagic;
 let Splitting;
@@ -13,7 +13,7 @@ class ClientLogos extends Component {
 		super(props);
 		this.state = {
 			scene: null,
-			columns: 4 
+			columns: 4
 		}
 
 		this.props.getClients();
@@ -43,30 +43,22 @@ class ClientLogos extends Component {
 		this.setState({ scene });
 	}
 
-	componentWillUnmount() {
-		TweenMax.killAll(false, false, true);
-	}
-
-	componentDidUpdate(prevProps) {
+	componentDidUpdate() {
 		const { scene, columns } = this.state;
-		const { location: { pathname } } = this.props;
-
-		if (prevProps.location.pathname !== pathname) {
-			TweenMax.killAll(false, false, true);
-		}    
 
 		const companies = document.querySelectorAll(".companies");
 		const counter = companies[0].querySelectorAll(".companies__logo").length;
-		
+
 		const current = [...Array(columns).keys()]; // IE bug with keys -> polyfil should fix this but I dont care
 		var lastFrame = -1;
 
-		TweenMax.set(document.querySelectorAll(".companies__logo"), { autoAlpha: 0 });
+		anime({ targets: document.querySelectorAll(".companies__logo"), opacity: 0 });
+
 		for (var j = 0; j < columns; j++) {
 			for (var i = 0; i < 5; i++) {
 				if (j === i && i < columns) {
 					let nodeList = document.querySelectorAll(".companies")[j];
-					TweenMax.set(nodeList.children[i], { autoAlpha: 1 });
+					anime({ targets: nodeList.children[i], opacity: 1 });
 				}
 			}
 		}
@@ -88,10 +80,10 @@ class ClientLogos extends Component {
 						_updateLogo(num);
 						return;
 					}
-					TweenMax.to(logo, 0.75, { autoAlpha: 0 });
+					anime({ targets: logo, opacity: 0, duration: 350, easing: 'linear' });
 				} else {
 					if (nextImage === i) {
-						TweenMax.to(logo, 0.75, { autoAlpha: 1, delay: 0.25 });
+						anime({ targets: logo, opacity: 1, delay: 0.25, duration: 350, easing: 'linear' });
 						current[num] = i;
 					}
 				}
@@ -107,10 +99,10 @@ class ClientLogos extends Component {
 			_updateLogo(newLastFrame);
 			lastFrame = newLastFrame;
 
-			TweenMax.delayedCall(2.5, _updateLogos);
+			setTimeout(_updateLogos, 2500);
 		};
 
-		TweenMax.delayedCall(1, _updateLogos);
+		setTimeout(_updateLogos, 1000);
 
 		// Dirty hack to reinit SM scene on router location change
 		setTimeout(() => scene.reverse(true), 200); // reset after 200ms, after scroll up
@@ -149,7 +141,7 @@ class ClientLogos extends Component {
 			<div className="footer__logos company-logos">
 				<div className="container">
 					<div className="row">
-						<div className="col col-lg-8 text-center mx-auto mb-4">
+						<div className="col col-lg-9 text-center mx-auto mb-4">
 							<h3 className="text-font--cursive text-color--primary company-logos__title">
 								Just Few Of The Clients
               				</h3>

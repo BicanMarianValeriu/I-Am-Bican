@@ -29,7 +29,7 @@ require('@babel/register')({
         '@babel/preset-env', 
         '@babel/preset-react'
     ],
-    plugins: [
+    plugins: [ 
         '@babel/plugin-syntax-dynamic-import',  
         'dynamic-import-node',
         'react-loadable/babel'

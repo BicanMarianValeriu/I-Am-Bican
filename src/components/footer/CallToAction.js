@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom'
 import GetInTouch from '../General/GetInTouch';
-import Background from "./../../static/images/parallax-1.jpg";
+import Background from "./../../static/images/parallax-1.jpg"; 
 
 let ScrollMagic;
 
-const CallToAction = withRouter(({ location }) => { 
-
+const CallToAction = withRouter(({ location }) => {  
     const [animations, setAnimations] = useState([]);
     const [pathName, setNewPathName] = useState(true);
 
