@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getExcerpt, getContent } from '../../utilities/wpPost';
+import { getExcerpt, getContent } from '../../utilities/wordpress/wpPost';
 
 const Content = props => {
     const { type } = props;

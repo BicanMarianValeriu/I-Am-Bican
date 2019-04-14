@@ -40,6 +40,10 @@ const CallToAction = withRouter(({ location }) => {
             setTimeout(() => scene.reverse(true), 100); // reset after 200ms, after scroll up
             scene.on('progress', e => (e.progress === 1) ? scene.reverse(false) : null)
         });
+
+        // Clean
+        return () => animations.forEach(scene => scene.destroy());
+
     }, [location]);
 
     return (

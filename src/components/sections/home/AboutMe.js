@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import anime from 'animejs';
 import scrollToElement from 'scroll-to-element';
 import { getMousePos } from "../../../utilities/helpers";
-import { useWindowWidth } from "../../../hooks";
+import { useWindowSize } from "../../../utilities/hooks";
 
 // Components
 import AboutMeInfo from "./AboutMeInfo";
@@ -14,7 +14,7 @@ import Bican from "./../../../static/images/bican.jpg";
 import BicanOld from "./../../../static/images/bican-old.jpg";
 
 export default () => {
-	const { width: windowWidth } = useWindowWidth();
+	const { width: windowWidth } = useWindowSize();
 
 	const _onMouseMove = (e) => {
 		const image = document.querySelector(".about-me__profile");

@@ -4,6 +4,43 @@
 const isServer = !(typeof window !== 'undefined' && window.document && window.document.createElement);
 
 /**
+ * Get Window Size
+ */
+const getWinSize = () => ({
+	width: !isServer ? window.innerWidth : undefined,
+	height: !isServer ? window.innerHeight : undefined
+});
+
+/**
+ * Get Screen Type
+ */
+const getScreenType = () => {
+	let screenType = null;
+
+	if (!isServer) {
+		let style = getComputedStyle(document.body);
+
+		const toNumber = str => str && str.replace(/\D/g, '');
+
+		const breakpoints = {
+			xs: style.getPropertyValue('--breakpoint-sm'),
+			sm: style.getPropertyValue('--breakpoint-md'),
+			md: style.getPropertyValue('--breakpoint-md'),
+			lg: style.getPropertyValue('--breakpoint-lg'),
+			xl: style.getPropertyValue('--breakpoint-xl')
+		};
+
+		if (window.matchMedia(`(max-width: ${breakpoints.xs})`).matches) screenType = toNumber(breakpoints.xs);
+		else if (window.matchMedia(`(max-width: ${breakpoints.sm})`).matches) screenType = toNumber(breakpoints.sm);
+		else if (window.matchMedia(`(max-width: ${breakpoints.md})`).matches) screenType = toNumber(breakpoints.md);
+		else if (window.matchMedia(`(max-width: ${breakpoints.lg})`).matches) screenType = toNumber(breakpoints.lg);
+		else screenType = toNumber(breakpoints.xl);
+	}
+
+	return screenType;
+}
+
+/**
  * Gets form data - IE Support
  * @param {*} formEl
  */
@@ -99,6 +136,40 @@ const lineEq = (y2, y1, x2, x1, currentVal) => {
 const shuffleArray = arr => arr.sort(() => Math.random() - 0.5);
 
 /**
+ * ShuffleNumbers
+ * @param {array} array 
+ */
+const shuffleNumbers = (array) => {
+	var i = array.length,
+		j = 0,
+		temp;
+
+	while (i--) {
+		j = Math.floor(Math.random() * (i + 1));
+		temp = array[i];
+		array[i] = array[j];
+		array[j] = temp;
+	}
+
+	return array;
+}
+
+/**
+ * Get random number from array
+ */
+const getRandomNumber = (uniqueRandoms, numbers) => {
+	if (!uniqueRandoms.length) {
+		for (var i = 0; i < numbers; i++) {
+			uniqueRandoms.push(i);
+		}
+	}
+	var index = Math.floor(Math.random() * uniqueRandoms.length);
+	var val = uniqueRandoms[index];
+	uniqueRandoms.splice(index, 1);
+	return val;
+}
+
+/**
  * Randomize between
  * @param {*} min 
  * @param {*} max 
@@ -145,9 +216,9 @@ const humanDuration = ({ from, to }) => {
 };
 
 // Exports
-export { 
-	isServer,
-	getFormData, validateEmail, validateFields, serializeData, 
-	lerp, lineEq, getMousePos, shuffleArray, randomize, 
-	humanDuration 
+export {
+	isServer, getScreenType, getWinSize,
+	getFormData, validateEmail, validateFields, serializeData,
+	lerp, lineEq, getMousePos, shuffleArray, randomize,
+	humanDuration, shuffleNumbers, getRandomNumber
 };

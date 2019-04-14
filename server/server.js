@@ -12,7 +12,7 @@ import loader from "./loader";
 
 // Create our express app using the port optionally specified
 const app = express();
-const PORT = process.env.PORT || 9000; 
+const PORT = process.env.PORT || 8080; 
 
 // Compress, parse, log, and raid the cookie jar
 app.use(compression());

@@ -1,33 +1,32 @@
 import React, { useState, useEffect } from "react";
 import jsonp from "jsonp";
 import { InputGroup, InputGroupAddon, Button, Input } from "reactstrap";
-import { validateFields, validateEmail, getFormData, serializeData } from "../../utilities/helpers";
+import { getFormData, serializeData } from "../../utilities/helpers";
 import NewsletterElement from "./../../static/images/spam-free.png";
-import { useFormInput } from "../../hooks";
+import { useFormState } from 'react-use-form-state';
 
 const NewsLetter = () => {
-	// Handle Errors
-	const [errors, setErrors] = useState([]);
+	const [formState, { email }] = useFormState();
+
 	// Handle Submit State
 	const [pending, setPending] = useState(false);
+
 	// Handle Error Message Timeout
 	const [showTimeout, setShowTimeout] = useState(false);
-	// Handle Input Change
-	const emailInput = useFormInput('');
 
-	const validate = ({ fields }) => {
-		setErrors([]);
-		if (validateFields(fields) === false) {
-			setErrors([{ key: 'empty', message: "Please fill all required fields!" }]);
-		} else {
-			if (validateEmail(emailInput.value) === false) {
-				setErrors([{ key: 'invalid', message: "Email address appears to be invalid!" }]);
-			}
-		}
-	};
+	// Vars
+	const { errors } = formState; 
 
-	const renderErrors = ({ email, messages }) => {
-		if (errors.length === 0) return;
+	// Helper
+	const clearErrors = ({ email, messages }) => {
+		messages.innerHTML = "";
+		messages.classList.add("d-none");
+		email.classList.remove("is-invalid");
+	}
+
+	const renderErrors = ({ email, messages, errors }) => {
+
+		if (JSON.stringify(errors) === '{}') return;
 
 		messages.classList.add("d-none");
 		messages.innerHTML = "";
@@ -35,27 +34,18 @@ const NewsLetter = () => {
 		email.classList.remove("is-invalid");
 		email.classList.add("is-invalid");
 
-		errors.map(error => {
-			let errorEl = document.createElement("div");
-			errorEl.classList.add("error");
-			errorEl.classList.add("error--" + error.key);
-			errorEl.innerHTML = error.message.toString();
-			return messages.appendChild(errorEl);
-		});
+		let errorEl = document.createElement("div");
+		errorEl.classList.add("error");
+		errorEl.innerHTML = errors.EMAIL.toString();
+		messages.appendChild(errorEl);
 
 		messages.classList.remove("alert-success");
 		messages.classList.add("alert-danger");
 		messages.classList.remove("d-none");
 	}
 
-	const clearErrors = ({ email, messages }) => {
-		messages.innerHTML = "";
-		messages.classList.add("d-none");
-		email.classList.remove("is-invalid");
-	}
-
 	const onSubmit = () => {
-		if (pending) return;
+		if (pending === true) return;
 
 		setPending(true);
 
@@ -89,7 +79,7 @@ const NewsLetter = () => {
 			messages.classList.remove("d-none");
 			formEl.elements['EMAIL'].value = '';
 
-			setTimeout(() => clearErrors({ email: formEl.elements['email'], messages }), 5000);
+			setTimeout(() => clearErrors({ email: formEl.elements['EMAIL'], messages }), 5000);
 		});
 	}
 
@@ -100,10 +90,8 @@ const NewsLetter = () => {
 		const fields = formEl.elements, email = fields['EMAIL'];
 		const messages = document.querySelector('.newsletter__messages');
 
-		validate({ fields });
-
-		if (errors.length === 0) onSubmit();
-		else renderErrors({ email, messages });
+		if (JSON.stringify(errors) === '{}') onSubmit();
+		else renderErrors({ email, messages, errors });
 	};
 
 	// Handle cMD, cDU
@@ -112,29 +100,26 @@ const NewsLetter = () => {
 		const fields = formEl.elements, email = fields['EMAIL'];
 		const messages = document.querySelector('.newsletter__messages');
 
-		// Validate and create errors
-		validate({ fields });
-
 		// Render the errors created above
-		renderErrors({ email, messages });
+		renderErrors({ email, messages, errors });
 
 		// ...and show them for 5 seconds
 		setShowTimeout(setTimeout(() => clearErrors({ email, messages }), 5000));
-		
+
 		// ...then clear the errors timeout on input value change and clear validaton if no errors
 		return () => {
-			if (errors.length) clearErrors({ email, messages });
+			if (JSON.stringify(errors) === '{}') clearErrors({ email, messages });
 			clearTimeout(showTimeout);
 		};
 
-	}, [emailInput.value]);
+	}, [errors]);
 
 	return (
 		<div className="newsletter newsletter--footer">
 			<div className="newsletter__messages alert alert-danger d-none" />
 			<form className="newsletter__form" name="newsletter" noValidate onSubmit={handleSubmit}>
 				<InputGroup>
-					<Input placeholder="Email Address" name="EMAIL" type="email" required="required" {...emailInput} />
+					<Input placeholder="Email Address" name="EMAIL" type="email" {...email('EMAIL')} required />
 					<InputGroupAddon addonType="append">
 						<Button type="submit" className="newsletter__button btn btn--primary text-color-light">
 							{pending ? 'LOADING...' : 'SUBSCRIBE'}

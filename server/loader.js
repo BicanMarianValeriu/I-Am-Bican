@@ -16,7 +16,7 @@ import App from "./../src/App";
 import manifest from "./../build/asset-manifest.json";
 import configStore from "./../src/redux/store";
 import { injectHTML, formatScripts } from "./helpers";
-import { authToken, userLogout } from './../src/redux/actions/user';
+import { authToken, userLogout } from './../src/redux/actions/user'; 
 
 // LOADER
 export default (req, res) => {
@@ -28,23 +28,23 @@ export default (req, res) => {
 				return res.status(404).end();
 			}
 
-			const { store } = configStore(req.url);
+			const { store } = configStore(req.originalUrl);
 
 			// If the user has a cookie (i.e. they're signed in) - set them as the current user 
 			if ('authToken' in req.cookies) authToken(req.cookies.authToken);
 			else userLogout();
 
-			const location = req.url;
+			const location = req.originalUrl;
 			const context = {};
 			const modules = [];
-
-			const render = (dryRun) => {
+			
+			const render = dryRun => {
 				console.log(dryRun
 					? `[iambican] ${location} - loading data...`
 					: `[iambican] ${location} - all data loaded, rendering markup...`
 				);
 
-				const markupString = renderToString(() =>
+				const markupString = renderToString(
 					<Loadable.Capture report={m => modules.push(m)}>
 						<Provider store={store}>
 							<StaticRouter location={location} context={context}>
@@ -58,8 +58,8 @@ export default (req, res) => {
 
 				return markupString;
 			};
-
-			await frontloadServerRender(render).then(markupString => {
+			
+			await frontloadServerRender(render).then(markupString => { 
 				// Redirect
 				const redirect = context.url || false;
 

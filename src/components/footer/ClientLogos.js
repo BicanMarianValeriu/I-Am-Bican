@@ -4,6 +4,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getClients } from "../../redux/actions/clients";
 import anime from 'animejs';
+import _delayCall from 'lodash/delay';
+import _debounce from 'lodash/debounce';
+import _sample from 'lodash/sample';
+import _filter from 'lodash/filter';
 
 let ScrollMagic;
 let Splitting;
@@ -13,16 +17,20 @@ class ClientLogos extends Component {
 		super(props);
 		this.state = {
 			scene: null,
-			columns: 4
+			columns: 4,
+			current: [],
+			lastFrame: -1,
+			running: null
 		}
 
 		this.props.getClients();
+		this.updateLogos = this.updateLogos.bind(this);
 	}
 
 	shouldComponentUpdate(nextProps) {
-		let { location: { pathname } } = this.props;
+		let { location: { pathname }, clients } = this.props;
 		if (pathname !== nextProps.location.pathname) return true;
-		if (this.props.clients !== nextProps.clients) return true;
+		if (clients !== nextProps.clients) return true;
 		return false;
 	}
 
@@ -37,90 +45,82 @@ class ClientLogos extends Component {
 
 		const scene = new ScrollMagic.Scene({
 			triggerElement: '.company-logos__title',
-			triggerHook: .85
+			triggerHook: .85,
+			reverse: false,
 		}).setClassToggle('.company-logos__title', 'company-logos__title--animated').addTo(controller);
 
 		this.setState({ scene });
+
+		_delayCall(this.updateLogos, 1000);
 	}
 
 	componentDidUpdate() {
-		const { scene, columns } = this.state;
+		const { scene } = this.state;
 
-		const companies = document.querySelectorAll(".companies");
-		const counter = companies[0].querySelectorAll(".companies__logo").length;
+		this.showInitialLogos();
 
-		const current = [...Array(columns).keys()]; // IE bug with keys -> polyfil should fix this but I dont care
-		var lastFrame = -1;
+		setTimeout(() => scene.reverse(true), 200); // reset after 200ms, after scroll up
+		scene.on('progress', e => e.progress === 1 ? scene.reverse(false) : null)
+	}
 
-		anime({ targets: document.querySelectorAll(".companies__logo"), opacity: 0 });
+	showInitialLogos() {
+		const { columns, current } = this.state;
+		const { clients } = this.props;
+
+		anime({ targets: document.querySelectorAll('.companies__logo'), opacity: 0 });
 
 		for (var j = 0; j < columns; j++) {
-			for (var i = 0; i < 5; i++) {
+			for (var i = 0; i < clients.length; i++) {
 				if (j === i && i < columns) {
-					let nodeList = document.querySelectorAll(".companies")[j];
-					anime({ targets: nodeList.children[i], opacity: 1 });
+					let item = document.querySelectorAll('.companies')[j].children[i];
+					current[j] = i; // Set column and its logo index
+					this.setState({ current });
+					anime({ targets: item, opacity: 1 });
 				}
 			}
 		}
-
-		const _updateLogo = num => {
-			var nextImage = Math.floor(Math.random() * counter);
-			for (var i = 0; i < columns; i++) {
-				if (nextImage === current[i]) {
-					_updateLogo(num);
-					return;
-				}
-			}
-			for (let i = 0; i < counter; i++) {
-				let nodeList = document.querySelectorAll(".companies")[num];
-				var logo = nodeList.children[i];
-				let compStyles = window.getComputedStyle(logo);
-				if (compStyles.getPropertyValue("opacity") > 0.5) {
-					if (nextImage === i) {
-						_updateLogo(num);
-						return;
-					}
-					anime({ targets: logo, opacity: 0, duration: 350, easing: 'linear' });
-				} else {
-					if (nextImage === i) {
-						anime({ targets: logo, opacity: 1, delay: 0.25, duration: 350, easing: 'linear' });
-						current[num] = i;
-					}
-				}
-			}
-		};
-
-		const _updateLogos = () => {
-			var newLastFrame = Math.floor(Math.random() * columns);
-			if (newLastFrame === lastFrame) {
-				_updateLogos();
-				return;
-			}
-			_updateLogo(newLastFrame);
-			lastFrame = newLastFrame;
-
-			setTimeout(_updateLogos, 2500);
-		};
-
-		setTimeout(_updateLogos, 1000);
-
-		// Dirty hack to reinit SM scene on router location change
-		setTimeout(() => scene.reverse(true), 200); // reset after 200ms, after scroll up
-		scene.on('progress', (e) => (e.progress === 1) ? scene.reverse(false) : null)
 	}
 
-	renderColumns() {
-		const { columns } = this.state;
-		let cols = [...Array(columns)];
+	updateLogo(newFrame) {
+		let { current } = this.state;
+		let { clients } = this.props;
 
-		return cols.map((val, i) => {
-			return (
-				<div key={i} className="col-6 col-sm-3">
-					<div className="companies">{this.renderLogos()}</div>
-				</div>
-			);
-		});
+		const companies = document.querySelectorAll('.companies');
+
+		// Next Logos form next frame but not last
+		let logosListWithoutOld = _filter([...Array(clients.length).keys()], i => current.indexOf(i) === -1);
+		let nextLogo = _sample(logosListWithoutOld);
+
+		// Hide logos on new column
+		const newLogos = companies[newFrame].children;
+		for (let item of newLogos) {
+			if (parseFloat(item.style.opacity) > 0.5) {
+				anime({ targets: item, opacity: 0, duration: 350, easing: 'linear' });
+			}
+		}
+
+		// And then show the new logo
+		anime({ targets: newLogos[nextLogo], opacity: 1, delay: 0.25, duration: 350, easing: 'linear' });
+
+		// Set old frame logo so next time we avoid it above
+		current[newFrame] = nextLogo;
+		this.setState({ current });
 	}
+
+	updateLogos() {
+		const { columns, lastFrame } = this.state;
+
+		const frameListWithoutOld = _filter([...Array(columns).keys()], item => item !== lastFrame);
+
+		const newFrame = _sample(frameListWithoutOld);
+
+		this.updateLogo(newFrame);
+		this.setState({ lastFrame: newFrame });
+
+		// Self Invoke
+		const debounced = _debounce(this.updateLogos, 500);
+		_delayCall(debounced, 3000);
+	};
 
 	renderLogos() {
 		const { clients } = this.props;
@@ -134,6 +134,16 @@ class ClientLogos extends Component {
 				</div>
 			);
 		});
+	}
+
+	renderColumns() {
+		const { columns } = this.state;
+
+		return [...Array(columns)].map((val, i) =>
+			<div key={i} className="col-6 col-sm-3">
+				<div className="companies">{this.renderLogos()}</div>
+			</div>
+		);
 	}
 
 	render() {
