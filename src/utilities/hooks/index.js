@@ -51,6 +51,7 @@ function useEffectAfterMount(cb, deps) {
 
         ref.current = false;
 
+    // eslint-disable-next-line
     }, deps);
 
 }

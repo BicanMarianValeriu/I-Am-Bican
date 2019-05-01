@@ -1,4 +1,3 @@
-
 export const PAGES = '[Pages]';
 export const GET_PAGE = `${PAGES} GET`;
 export const GET_PAGE_SUCCESS = `${PAGES} SUCCESS`;

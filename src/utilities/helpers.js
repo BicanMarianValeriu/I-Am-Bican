@@ -181,17 +181,17 @@ const randomize = (min, max) => (Math.random() * (max - min)) + min;
  * @param {object} param0 
  */
 const humanDuration = ({ from, to }) => {
-	let dateFrom = new Date(from), dateTo = new Date(to);
+	const dateFrom = new Date(from), dateTo = new Date(to);
 
-	let date1_UTC = new Date(Date.UTC(dateFrom.getUTCFullYear(), dateFrom.getUTCMonth(), dateFrom.getUTCDate()));
-	let date2_UTC = new Date(Date.UTC(dateTo.getUTCFullYear(), dateTo.getUTCMonth(), dateTo.getUTCDate()));
+	const date1_UTC = new Date(Date.UTC(dateFrom.getUTCFullYear(), dateFrom.getUTCMonth(), dateFrom.getUTCDate()));
+	const date2_UTC = new Date(Date.UTC(dateTo.getUTCFullYear(), dateTo.getUTCMonth(), dateTo.getUTCDate()));
 
 	let yAppendix, mAppendix, dAppendix;
 
 	const getDaysInMonths = (date) => {
-		let monthStart = new Date(date.getFullYear(), date.getMonth(), 1);
-		let monthEnd = new Date(date.getFullYear(), date.getMonth() + 1, 1);
-		let monthLength = (monthEnd - monthStart) / (1000 * 60 * 60 * 24);
+		const monthStart = new Date(date.getFullYear(), date.getMonth(), 1);
+		const monthEnd = new Date(date.getFullYear(), date.getMonth() + 1, 1);
+		const monthLength = (monthEnd - monthStart) / (1000 * 60 * 60 * 24);
 		return monthLength;
 	}
 

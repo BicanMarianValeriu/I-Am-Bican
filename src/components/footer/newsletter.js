@@ -15,7 +15,7 @@ const NewsLetter = () => {
 	const [showTimeout, setShowTimeout] = useState(false);
 
 	// Vars
-	const { errors } = formState; 
+	const { errors = { none: 'none' }, values } = formState;
 
 	// Helper
 	const clearErrors = ({ email, messages }) => {
@@ -86,6 +86,8 @@ const NewsLetter = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
+		if (errors === false) return;
+
 		const formEl = document.forms.newsletter;
 		const fields = formEl.elements, email = fields['EMAIL'];
 		const messages = document.querySelector('.newsletter__messages');
@@ -111,8 +113,8 @@ const NewsLetter = () => {
 			if (JSON.stringify(errors) === '{}') clearErrors({ email, messages });
 			clearTimeout(showTimeout);
 		};
-
-	}, [errors]);
+		// eslint-disable-next-line
+	}, [values.EMAIL]);
 
 	return (
 		<div className="newsletter newsletter--footer">

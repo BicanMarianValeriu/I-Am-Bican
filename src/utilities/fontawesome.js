@@ -38,13 +38,13 @@ import { faFacebook } from '@fortawesome/free-brands-svg-icons/faFacebook';
 import { faLinkedin} from '@fortawesome/free-brands-svg-icons/faLinkedin';
 
 // Exports
-let icons = [
+const icons = [
 	faEnvelope, faEnvelopeOpen, faDownload, faPuzzlePiece, faHeart, faCloudDownloadAlt,
 	faCheck, faBolt, faDesktop, faEye, faGlobe, faPlane, faSearch, faGrinHearts, faPaperPlane,
 	faFileCode, faSignOutAlt, faUser, faCircle, faThLarge, faArrowLeft, faArrowRight, faMoneyBillAlt
 ];
 
-let brands = [
+const brands = [
 	faTwitter, faFacebook, faLinkedin, faHtml5, faReact, faSass, faPhp, faJs, faGit, faGulp,
 	faWordpressSimple, faYoutubeSquare, faShoppingCart
 ];
