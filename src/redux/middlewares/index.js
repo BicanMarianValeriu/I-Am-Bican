@@ -33,10 +33,7 @@ export default function ({ history, enhancers }) {
 
     if (process.env.NODE_ENV === 'development' && !isServer) arr.push(createLogger());
 
-    const composedEnhancers = compose(
-        applyMiddleware(...arr),
-        ...enhancers
-    );
+    const composedEnhancers = compose(applyMiddleware(...arr.concat(...enhancers)));
 
     return composedEnhancers;
 };

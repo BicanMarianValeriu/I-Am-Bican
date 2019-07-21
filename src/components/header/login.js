@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
-import Classnames from 'classnames';
+import classNames from 'classnames';
 import { layer, icon } from '@fortawesome/fontawesome-svg-core'
 import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
-import { faCircle } from '@fortawesome/free-regular-svg-icons/faCircle';
 
 import { getToken, verifyToken, authToken, userLogout } from "../../redux/actions/user";
 import { isAuthentificated, getAuthToken } from "../../utilities/auth";
@@ -25,6 +24,10 @@ class Login extends Component {
 		this.toggle = this.toggle.bind(this);
 	}
 
+	componentDidMount() {
+		if (isAuthentificated()) this.props.authToken(getAuthToken());
+	}
+	
 	_onMouseOver() {
 		if (this.state.Modal !== null) return;
 		import(/* webpackChunkName: "swal-auth" */ "../Popups/swal-auth")
@@ -55,22 +58,23 @@ class Login extends Component {
 		this.setState(prevState => ({ dropdownOpen: !prevState.dropdownOpen }));
 	}
 
-	componentDidMount() {
-		if (isAuthentificated()) this.props.authToken(getAuthToken());
-	}
-
 	render() {
-		const { user, loading } = this.props;
-
-		const { data: { name = '' } } = user;
-
-		const classes = Classnames('header__login', 'col-auto', 'pl-0', 'header-login', {
-			'header-login--loading': loading,
-			'header-login--is-auth': isAuthentificated()
-		});
+		const { user: { data: { name = '' }, authentificated }, loading } = this.props;
 
 		const UserLoginSVG = () => {
-			const layers = layer((push) => {
+			const faCircle = {
+				icon: [
+					512,
+					512,
+					[],
+					'f111',
+					'M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm216 248c0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216 0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216z'
+				],
+				iconName: 'circle',
+				prefix: 'far'
+			};
+
+			const layers = layer(push => {
 				push(icon(faCircle, { transform: { size: 35 } }));
 				push(icon(faUser, { transform: { size: 16, y: -1 } }));
 			});
@@ -83,9 +87,14 @@ class Login extends Component {
 			);
 		}
 
+		const classString = classNames('header__login', 'col-auto', 'pl-0', 'header-login', {
+			'header-login--loading': loading,
+			'header-login--is-auth': isAuthentificated()
+		});
+
 		return (
-			<div className={classes} >
-				{isAuthentificated() && this.props.user.authentificated ? (
+			<div className={classString} >
+				{isAuthentificated() && authentificated ? (
 					<Dropdown size="lg" direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
 						<DropdownToggle className="header-login__btn">
 							<UserLoginSVG />

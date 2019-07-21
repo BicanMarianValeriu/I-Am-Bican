@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 
 import Article from '../Entry';
-import PortfolioItem from '../Portfolio/PortfolioItem';
 import PortfolioSingle from '../Portfolio/PortfolioSingle';
+import PortfolioArchive from '../Portfolio/PortfolioArchive';
 import Empty from '../Entry/Empty';
 
 class Main extends Component {
@@ -24,11 +24,11 @@ class Main extends Component {
 	}
 
 	getClasses() {
-		const { classes: { inner }} = this.getOptions(); 
+		const { classes: { inner } } = this.getOptions();
 		const isSingle = this.isSingle();
 
-		const classes = ['col', 'main', isSingle ? 'main--single' : 'main--archive', { 
-			[inner]: !isSingle,  
+		const classes = ['col', 'main', isSingle ? 'main--single' : 'main--archive', {
+			[inner]: !isSingle,
 			'main--is-loading:': this.props.loading
 		}];
 
@@ -37,31 +37,31 @@ class Main extends Component {
 
 	renderPosts() {
 		const { posts, loading } = this.props;
+		
 		if (!loading && posts.length) {
 			return posts.map(post => {
-				var postType;
+				let postType;
 				switch (post.type) {
 					case 'portfolio': postType = this.isSingle() ?
-						<PortfolioSingle key={post.id} {...post} /> : <PortfolioItem key={post.id} {...post} />;
+						<PortfolioSingle key={post.id} {...post} /> : <PortfolioArchive key={post.id} {...post} />;
 						break;
 					default: postType = <Article key={post.id} {...post} isSingle={this.isSingle()} />;
 				}
 				return postType;
 			});
 		} else {
-			const options = this.getOptions();
+			const { loading = {} } = this.getOptions();
 
-			if (options.loading.enable === false) return;
+			if (loading.enable === false) return;
 
-			let items = this.isSingle() ? [...Array(1)] : [...Array(options.loading.elements)];
+			const items = this.isSingle() ? [...Array(1)] : [...Array(loading.elements)];
 
-			return items.map((val, i) => <Empty key={i} options={{ ...options.loading }} />);
+			return items.map((val, i) => <Empty key={i} options={{ ...loading }} />);
 		}
 	}
 
 	render() {
-		const options = this.getOptions();
-		const { classes: { outer, inner } } = options;
+		const { classes: { outer, inner } } = this.getOptions();
 		return (
 			<div className={outer.toString()}>
 				<div className={inner.toString()}>

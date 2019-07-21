@@ -2,18 +2,19 @@ import React from 'react';
 import DownloadLoader from '../General/download-loader';
 
 const Empty = props => {
-	let { options } = props;
-	let classes = {
+	const { options = {} } = props;
+	const { classes = {} } = options;
+	
+	const mergedClasses = {
 		...{
 			outer: 'placeholder',
 			inner: 'entry entry--empty'
 		},
-		...options.classes
+		...classes
 	}
-	options.classes = classes;
 
 	const getWrapperClass = context => {
-		return options.classes[context];
+		return mergedClasses[context];
 	}
 
 	return (

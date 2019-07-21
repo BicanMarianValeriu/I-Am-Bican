@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
 
-import { getProjects } from "../redux/actions/projects"; 
 import Main from "../components/General/Main";
 import PageIntro from "../components/Sections/page-intro";
+import { getProjects, updateProjects } from "../redux/actions/projects";
+import { requestApi } from "../redux/actions/api";
 
 // SCSS 
 import "./../static/scss/pages/_portfolio-archive.scss";
@@ -72,10 +73,14 @@ const mapStateToProps = store => {
 };
 
 // Dispatch to props.getProjects
-const mapDispatchToProps = dispatch => bindActionCreators({ getProjects }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getProjects, updateProjects }, dispatch);
 
 // Server Side Stuff
-const frontload = async props => await props.getProjects({ per_page: 10 });
+const frontload = async props => {
+	const { updateProjects } = props;
+	const data = await requestApi.get(`wp/v2/portfolios?per_page=10`).then(req => req.data);
+	return updateProjects(data);
+}
 
 // Export container while connected to store and SSR
 export default connect(mapStateToProps, mapDispatchToProps)(

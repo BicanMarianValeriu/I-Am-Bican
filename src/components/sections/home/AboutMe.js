@@ -6,7 +6,7 @@ import { getMousePos } from "../../../utilities/helpers";
 import { useWindowSize } from "../../../utilities/hooks";
 
 // Components
-import AboutMeInfo from "./AboutMeInfo";
+import AboutMeInfo from "./AboutMe/Info";
 import GetInTouch from '../../General/GetInTouch';
 
 // Assets 

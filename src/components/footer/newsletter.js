@@ -92,7 +92,7 @@ const NewsLetter = () => {
 		const fields = formEl.elements, email = fields['EMAIL'];
 		const messages = document.querySelector('.newsletter__messages');
 
-		if (JSON.stringify(errors) === '{}') onSubmit();
+		if (email.value !== '' && JSON.stringify(errors) === '{}') onSubmit();
 		else renderErrors({ email, messages, errors });
 	};
 

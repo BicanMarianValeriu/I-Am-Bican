@@ -115,15 +115,9 @@
     }
 
     &__description {
-        text-align: center;
         transition: all .3s ease-in-out;
         border: 1px solid transparent;
         border-top: none;
-        padding: 15px 15px 10px;
-    }
-
-    &__content {
-        text-align: center;
     }
 
     &__more {

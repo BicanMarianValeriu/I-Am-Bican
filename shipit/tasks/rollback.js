@@ -1,12 +1,12 @@
-const path                                     = require('path');
-const {takeLatest, countDirs, rm, symlink}     = require('../lib/commands');
-const {merge, getReleasesPath, getCurrentPath} = require('../lib/config');
+const path = require('path');
+const { takeLatest, countDirs, rm, symlink } = require('../lib/commands');
+const { merge, getReleasesPath, getCurrentPath } = require('../lib/config');
 
 module.exports = shipit => {
   shipit.task('rollback', () => {
-    const config   = merge(shipit.config);
+    const config = merge(shipit.config);
     const releases = getReleasesPath(config);
-    const current  = getCurrentPath(config);
+    const current = getCurrentPath(config);
 
     /**
      * Logs message and returns a resolved Promise.
@@ -71,8 +71,8 @@ module.exports = shipit => {
       );
 
     return start('Rollbacking to previous release')
-            .then(() => removeLatest(releases))
-            .then(() => updateCurrent(releases, current))
-            .then(() => logFinalMsg(releases));
+      .then(() => removeLatest(releases))
+      .then(() => updateCurrent(releases, current))
+      .then(() => logFinalMsg(releases));
   });
 };

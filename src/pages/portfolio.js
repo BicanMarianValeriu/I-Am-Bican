@@ -3,12 +3,13 @@ import Helmet from "react-helmet";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
-import _find from 'lodash/find'; 
+import _find from 'lodash/find';
 
 // Deps
 import PrevNext from "../components/Portfolio/PrevNext";
 import Main from "../components/General/Main";
-import { getProjects } from "../redux/actions/projects";
+import { getProjects, updateProjects } from "../redux/actions/projects";
+import { requestApi } from "../redux/actions/api";
 
 // SCSS 
 import "./../static/scss/pages/_portfolio-single.scss";
@@ -20,7 +21,7 @@ class Portfolio extends Component {
 
 	componentDidUpdate(prevProps) {
 		if (this.props.location.pathname !== prevProps.location.pathname) {
-			let { match: { params: { slug } }, getProjects } = this.props
+			const { match: { params: { slug } }, getProjects } = this.props
 			window.scrollTo(0, 0);
 			return getProjects({ slug });
 		}
@@ -68,17 +69,21 @@ class Portfolio extends Component {
 // Binds Query / Query Result
 const mapStateToProps = (store, props) => {
 	const { projects } = store;
-	const { slug } = props.match.params;
-	let selectedProject = _find(projects, { slug });
+	const { match: { params: { slug } } } = props;
+	const selectedProject = _find(projects, { slug });
 
 	return { selectedProject };
 };
 
 // Connect fetchDispatch function to props.fetchDispatch
-const mapDispatchToProps = dispatch => bindActionCreators({ getProjects }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getProjects, updateProjects }, dispatch);
 
 // Server Side Stuff
-const frontload = async props => await props.getProjects({ slug: props.match.params.slug });
+const frontload = async props => {
+	const { match: { params: { slug } }, updateProjects } = props;
+	const data = await requestApi.get(`wp/v2/portfolios?slug=${slug}`).then(req => req.data);
+	return updateProjects(data);
+}
 
 // Export container while connected to store and SSR
 export default connect(mapStateToProps, mapDispatchToProps)(

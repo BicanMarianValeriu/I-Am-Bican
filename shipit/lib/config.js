@@ -24,10 +24,10 @@ const VALIDATION_OPTS = {
 };
 
 const DEFAULTS = { // keepReleases is 5 by default from shipit initConfig
-	from: path.join('.', 'dist'),
+	from: path.join('.', 'build'),
 	releasesDir: 'releases',
 	currentDir: 'current',
-	keepReleases: 5
+	keepReleases: 2
 };
 
 /**
