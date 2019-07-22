@@ -9,11 +9,13 @@ import pagesReducer from "./pages";
 import mediaReducer from "./media";
 import clientsReducer from "./clients";
 import projectsReducer from "./projects";
+import qaReducer from "./questions";
 
 export default function ({ history }) { 
     return combineReducers({
         router: connectRouter(history),
         ui: uiReducer,
+        qa: qaReducer,
         api: apiReducer,
         user: userReducer,
         menus: menusReducer,

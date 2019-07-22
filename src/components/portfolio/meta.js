@@ -13,20 +13,23 @@ class Meta extends Component {
 	}
 
 	render() {
-		const { date_gmt, date_human, acf } = this.props;
+		const { date_gmt, acf } = this.props;
 		const { meta } = acf;
-		var count = meta ? parseInt(meta.cost) : 0;
-		var money = [...Array(count).keys()];
+		const dateOpts = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
+		const date = new Date( date_gmt ).toLocaleDateString( 'en-US', dateOpts );
+		const count = meta ? parseInt(meta.cost) : 0;
+
+		const website = `<a target="_blank" href="${meta ? meta.website : "#"}">View Live Site</a>`;
+
+		const itemClass = 'portfolio-meta__item col-6 col-sm-6 col-lg-3 mb-3 mb-lg-0';
+
+		let money = [...Array(count).keys()];
 		money = money.map((val, index) => (
 			<div key={index} className="portfolio-meta__item-value__svg">
 				<i className="far fa-money-bill-alt svg-icon--cost"></i>
 			</div>
 		));
-
-		let website = `<a target="_blank" href="${meta ? meta.website : "#"}">View Live Site</a>`;
-
-		let itemClass = 'portfolio-meta__item col-6 col-sm-6 col-lg-3 mb-3 mb-lg-0';
-
+		
 		return (
 			<div className="portfolio__meta portfolio-meta">
 				<div className="row">
@@ -43,7 +46,7 @@ class Meta extends Component {
 					<div className={itemClass}>
 						<span className="portfolio-meta__item-label" title="Went Live">Date</span>
 						<hr className="my-2" />
-						<time className="portfolio-meta__item-value" dateTime={date_gmt}>{date_human}</time>
+						<time className="portfolio-meta__item-value" dateTime={date_gmt}>{date}</time>
 					</div> 
 					<div className={itemClass}>
 						<span className="portfolio-meta__item-label" title="Live URL">Link</span>

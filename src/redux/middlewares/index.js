@@ -9,6 +9,7 @@ import { userMiddleware } from "./user";
 import { menuMiddleware } from "./menus";
 import { pagesMiddleware } from "./pages";
 import { mediaMiddleware } from "./media";
+import { qaMiddleware } from "./questions";
 import { clientsMiddleware } from "./clients";
 import { projectsMiddleware } from "./projects";
 import { isServer } from '../../utilities/helpers';
@@ -23,6 +24,7 @@ export default function ({ history, enhancers }) {
         }),
         routerMiddleware(history),
         projectsMiddleware,
+        qaMiddleware,
         clientsMiddleware,
         mediaMiddleware,
         pagesMiddleware,

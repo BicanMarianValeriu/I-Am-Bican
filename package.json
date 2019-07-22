@@ -48,6 +48,7 @@
 		"react-router-dom": "^5.0.1",
 		"react-scripts": "^3.0.1",
 		"react-use-form-state": "^0.10.4",
+		"react-visibility-sensor": "^5.1.0",
 		"reactstrap": "^8.0.1",
 		"redux": "^4.0.4",
 		"redux-logger": "^3.0.6",
