@@ -3,7 +3,7 @@ import path from "path";
 import morgan from "morgan";
 import express from "express";
 import bodyParser from "body-parser";
-import compression from "compression"; 
+import compression from "compression";
 import Loadable from "react-loadable";
 import cookieParser from "cookie-parser";
 
@@ -12,24 +12,22 @@ import loader from "./loader";
 
 // Create our express app using the port optionally specified
 const app = express();
-const PORT = process.env.PORT || 8080; 
+const PORT = process.env.PORT || 4000;
 
 // Compress, parse, log, and raid the cookie jar
 app.use(compression());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 app.use(cookieParser());
 
 // Set up homepage, static assets, and capture everything else
 app.use(express.Router().get("/", loader));
-app.use(express.static(path.resolve(__dirname, "./../build")));
+app.use(express.static(path.join(__dirname, "./../build")));
 app.use(loader);
 
 // We tell React Loadable to load all required assets and start listening - ROCK AND ROLL!
-Loadable.preloadAll().then(() =>
-	app.listen(PORT, console.log(`App started on http://localhost:${PORT} !`))
-);
+Loadable.preloadAll().then(() => app.listen(PORT, console.log(`App started on http://localhost:${PORT} !`)));
 
 // Handle the bugs somehow
 app.on('error', error => {
