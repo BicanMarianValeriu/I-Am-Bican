@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import jsonp from "jsonp";
 import { InputGroup, InputGroupAddon, Button, Input } from "reactstrap";
 import { getFormData, serializeData } from "../../utilities/helpers";
-import NewsletterElement from "./../../static/images/spam-free.png";
 import { useFormState } from 'react-use-form-state';
 
 const NewsLetter = () => {
@@ -129,9 +128,6 @@ const NewsLetter = () => {
 					</InputGroupAddon>
 				</InputGroup>
 			</form>
-			<div className="newsletter__element">
-				<img className="newsletter__element-img" src={NewsletterElement} alt="Spam Free" />
-			</div>
 		</div>
 	);
 };

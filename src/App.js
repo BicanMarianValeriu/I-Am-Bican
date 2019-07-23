@@ -1,5 +1,5 @@
 // The basics
-import React from 'react';
+import React, { useEffect } from 'react';
 import Helmet from 'react-helmet';
 import { Route, Switch } from 'react-router';
 import { dom } from '@fortawesome/fontawesome-svg-core';
@@ -7,12 +7,15 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import icons, { brands } from './utilities/fontawesome';
 import routes from './routes';
 import Header from './components/Header';
-import Footer from './components/Footer';  
+import Footer from './components/Footer';
 
 export default function App() {
 	library.add(icons);
 	library.add(brands);
-	dom.watch();  
+
+	useEffect(() => {
+		dom.watch();
+	}, []);
 
 	return (
 		<React.Fragment>

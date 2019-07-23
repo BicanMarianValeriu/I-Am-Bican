@@ -34,7 +34,7 @@ import { faPhp } from '@fortawesome/free-brands-svg-icons/faPhp';
 import { faGit } from '@fortawesome/free-brands-svg-icons/faGit';
 import { faJs } from '@fortawesome/free-brands-svg-icons/faJs';
 import { faGulp } from '@fortawesome/free-brands-svg-icons/faGulp';
-import { faFacebook } from '@fortawesome/free-brands-svg-icons/faFacebook';
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
 import { faLinkedin} from '@fortawesome/free-brands-svg-icons/faLinkedin';
 
 // Exports
@@ -45,7 +45,7 @@ const icons = [
 ];
 
 const brands = [
-	faTwitter, faFacebook, faLinkedin, faHtml5, faReact, faSass, faPhp, faJs, faGit, faGulp,
+	faTwitter, faFacebookSquare, faLinkedin, faHtml5, faReact, faSass, faPhp, faJs, faGit, faGulp,
 	faWordpressSimple, faYoutubeSquare, faShoppingCart
 ];
 

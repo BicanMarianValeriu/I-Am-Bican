@@ -14,7 +14,7 @@ class FeaturedMedia extends Component {
 
     getMediaImage(media) {
         const { large } = media.media_details.sizes;
-        let imageUrl = large ? large.source_url : placeholder;
+        const imageUrl = large ? large.source_url : placeholder;
         return imageUrl;
     }
 
@@ -22,7 +22,7 @@ class FeaturedMedia extends Component {
         let classes = ['entry__media'];
         const { mediaObj } = this.props;
         const { large } = mediaObj ? mediaObj.media_details.sizes : {};
-        let imageUrl = large ? large.source_url : placeholder;
+        const imageUrl = large ? large.source_url : placeholder;
         if (imageUrl === placeholder) classes.push(['entry__media--placeholder']);
         if (this.props.isMain) classes.push(['entry__media--main']);
         return classes.join(' ');
@@ -51,7 +51,7 @@ class FeaturedMedia extends Component {
 // Binds Query / Query Result
 const mapStateToProps = (store, props) => {
     const { media } = store;
-    let mediaObj = _find(media, { id: props.mediaId }); 
+    const mediaObj = _find(media, { id: props.mediaId }); 
 
     return ({ mediaObj });
 };

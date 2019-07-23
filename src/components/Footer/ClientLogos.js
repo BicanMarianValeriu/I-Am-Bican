@@ -28,7 +28,7 @@ class ClientLogos extends Component {
 	}
 
 	shouldComponentUpdate(nextProps) {
-		let { location: { pathname }, clients } = this.props;
+		const { location: { pathname }, clients } = this.props;
 		if (pathname !== nextProps.location.pathname) return true;
 		if (clients !== nextProps.clients) return true;
 		return false;
@@ -38,7 +38,7 @@ class ClientLogos extends Component {
 		ScrollMagic = require("scrollmagic");
 		Splitting = require("splitting");
 
-		let controller = new ScrollMagic.Controller();
+		const controller = new ScrollMagic.Controller();
 
 		const target = document.querySelector('.company-logos__title');
 		Splitting({ target: target });
@@ -69,8 +69,8 @@ class ClientLogos extends Component {
 
 		anime({ targets: document.querySelectorAll('.companies__logo'), opacity: 0 });
 
-		for (var j = 0; j < columns; j++) {
-			for (var i = 0; i < clients.length; i++) {
+		for (let j = 0; j < columns; j++) {
+			for (let i = 0; i < clients.length; i++) {
 				if (j === i && i < columns) {
 					let item = document.querySelectorAll('.companies')[j].children[i];
 					current[j] = i; // Set column and its logo index
@@ -82,14 +82,14 @@ class ClientLogos extends Component {
 	}
 
 	updateLogo(newFrame) {
-		let { current } = this.state;
-		let { clients } = this.props;
+		const { current } = this.state;
+		const { clients } = this.props;
 
 		const companies = document.querySelectorAll('.companies');
 
 		// Next Logos form next frame but not last
-		let logosListWithoutOld = _filter([...Array(clients.length).keys()], i => current.indexOf(i) === -1);
-		let nextLogo = _sample(logosListWithoutOld);
+		const logosListWithoutOld = _filter([...Array(clients.length).keys()], i => current.indexOf(i) === -1);
+		const nextLogo = _sample(logosListWithoutOld);
 
 		// Hide logos on new column
 		const newLogos = companies[newFrame].children;

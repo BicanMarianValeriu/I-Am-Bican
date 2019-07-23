@@ -5,7 +5,7 @@ const Social = () =>
         <li className="social__item">
             <a href="https://www.facebook.com/bican.marian.valeriu" rel="noopener noreferrer" target="_blank">
                 <div className="social__icon social__icon--facebook">
-                    <i className="fab fa-facebook fa-fw"></i>
+                    <i className="fab fa-facebook-square fa-fw"></i>
                 </div>
             </a>
         </li>
