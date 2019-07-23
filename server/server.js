@@ -16,14 +16,14 @@ const PORT = process.env.PORT || 4000;
 
 // Compress, parse, log, and raid the cookie jar
 app.use(compression());
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(morgan("dev"));
 app.use(cookieParser());
 
 // Set up homepage, static assets, and capture everything else
 app.use(express.Router().get("/", loader));
-app.use(express.static(path.join(__dirname, "./../build")));
+app.use(express.static(path.resolve(__dirname, "./../build")));
 app.use(loader);
 
 // We tell React Loadable to load all required assets and start listening - ROCK AND ROLL!
