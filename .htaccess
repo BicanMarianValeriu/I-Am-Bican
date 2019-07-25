@@ -17,11 +17,13 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 # Comment out the RewriteCond above, and uncomment the RewriteCond below if you're using a load balancer (e.g. CloudFlare) for SSL
 # RewriteCond %{HTTP:X-Forwarded-Proto} !https
+###############################################
 RewriteRule ^(.*) https://%{HTTP_HOST}/$1 [R,L]
 RewriteCond %{REQUEST_FILENAME} !-f 
 RewriteCond %{REQUEST_FILENAME} !-d 
 RewriteCond %{REQUEST_FILENAME} !\/$ 
-RewriteRule ^(.*) / 
+RewriteRule ^(.*) /
+###############################################
 
 ############ SECURITY ###########
 <FilesMatch "\.(md|exe|sh|bak|inc|pot|po|mo|log|sql)$">

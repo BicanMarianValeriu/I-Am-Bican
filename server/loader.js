@@ -33,13 +33,13 @@ export default (req, res) => {
 			return res.status(404).end();
 		}
 
-		const { store } = configStore(req.originalUrl);
+		const { store } = configStore(req.url);
 
 		// If the user has a cookie (i.e. they're signed in) - set them as the current user 
 		if ('authToken' in req.cookies) authToken(req.cookies.authToken);
 		else userLogout();
 
-		const location = req.originalUrl;
+		const location = req.url;
 		const context = {};
 		const modules = [];
 
