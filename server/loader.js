@@ -8,24 +8,44 @@ import Helmet from "react-helmet";
 import Loadable from "react-loadable";
 import { renderToString } from "react-dom/server";
 import { Provider } from "react-redux";
-import { StaticRouter } from "react-router";
+import { StaticRouter, matchPath } from "react-router";
 import { Frontload, frontloadServerRender } from "react-frontload";
 
 // Our store, entrypoint, and manifest
 import App from "./../src/App";
-import manifest from "./../build/asset-manifest.json";
+import routes from './../src/routes';
 import configStore from "./../src/redux/store";
-import { injectHTML, formatScripts } from "./helpers";
 import { authToken, userLogout } from './../src/redux/actions/user';
+import manifest from "./../build/asset-manifest.json";
+import { injectHTML, formatScripts } from "./helpers";
 
-// LOADER
-export default (req, res) => {
+/**
+ * React / Expres Routing function
+ * @description {
+ * - matches a frontend request to a route
+ * - parses index template and injects server data
+ * - sends html string to frontend request
+ * }
+ */
+export default (req, res, next) => {
+	const match = routes.find(route => matchPath(req.path, {
+		path: route.path,
+		exact: true,
+	}));
+	
+	if (!match) {
+		next();
+		return;
+	}
+
 	/**
 	 * Get Index File
 	 */
 	const indexFile = path.resolve(__dirname, './../build/index.html');
 
-	// Read File and send
+	/**
+	 * Parse Template and inject data
+	 */
 	fs.readFile(indexFile, 'utf8', async (err, dataHTML) => {
 		// If there's an error... serve up something nasty
 		if (err) {

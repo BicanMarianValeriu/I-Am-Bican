@@ -21,7 +21,7 @@ register(ignoreStyles.DEFAULT_EXTENSIONS, (mod, filename) => {
         /**
          * If you are on dev, content is served as root with proxy
          * but when the app is deployed this is served from /build/ directory
-         * @info For Heroku, the app is working out of the box.
+         * @info For Heroku and development, the app is working out of the box.
          * @see add `homepage` to package.json if deploying on Apache {
          * - Apache homepage: `https://www.iambican.com/build/`
          * }
