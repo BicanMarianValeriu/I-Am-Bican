@@ -2,6 +2,7 @@
 	"name": "iambican-v2",
 	"version": "0.5.0",
 	"private": true,
+	"homepage": "https://dev.wecodeart.com/build/",
 	"dependencies": {
 		"@babel/core": "^7.5.5",
 		"@babel/plugin-proposal-class-properties": "^7.5.5",
@@ -63,10 +64,7 @@
 		"@loadable/babel-plugin": "^5.10.0",
 		"@loadable/component": "^5.10.2",
 		"@loadable/server": "^5.10.2",
-		"@loadable/webpack-plugin": "^5.7.1",
-		"joi": "^14.3.1",
-		"shipit-cli": "^5.0.0",
-		"shipit-deploy": "^5.0.0"
+		"@loadable/webpack-plugin": "^5.7.1"
 	},
 	"scripts": {
 		"start": "cross-env NODE_ENV=production node ./server/index.js",
