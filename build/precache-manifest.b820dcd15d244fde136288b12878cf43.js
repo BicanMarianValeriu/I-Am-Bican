@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8957ea484b83fd5b58e212e85ba65a87",
+    "revision": "139f8840db7f265aee518e0f6090c891",
     "url": "/index.html"
   },
   {
-    "revision": "bc18f7da052ab32e8add",
+    "revision": "186ea597fc263de693b0",
     "url": "/static/css/10.3e3091f7.chunk.css"
   },
   {
@@ -12,60 +12,60 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/404.e7eb194e.chunk.css"
   },
   {
-    "revision": "18509e2ca8585ad40407",
-    "url": "/static/css/main.9b1efd3a.chunk.css"
+    "revision": "112e6c2cd8c601fbd2cc",
+    "url": "/static/css/main.c810ecb1.chunk.css"
   },
   {
-    "revision": "fc27f4e023dca633cb71",
+    "revision": "7d17dd30c8bf41739916",
     "url": "/static/css/portfolio.55b16f97.chunk.css"
   },
   {
-    "revision": "2b3ffc81a9feccc59891",
-    "url": "/static/css/projects.524b59f1.chunk.css"
+    "revision": "2a6e835a06d73f0e5103",
+    "url": "/static/css/projects.3fb30556.chunk.css"
   },
   {
-    "revision": "c8708e584cabc9a6b6bd",
-    "url": "/static/js/0.cca840bc.chunk.js"
+    "revision": "ddf5faa13ca989b13079",
+    "url": "/static/js/0.bd900c4a.chunk.js"
   },
   {
     "revision": "860d61ccf2a53264e24d",
     "url": "/static/js/1.090d19d1.chunk.js"
   },
   {
-    "revision": "bc18f7da052ab32e8add",
-    "url": "/static/js/10.994273a3.chunk.js"
+    "revision": "186ea597fc263de693b0",
+    "url": "/static/js/10.227a532a.chunk.js"
   },
   {
     "revision": "7d8e62d54ab946a70bcf",
     "url": "/static/js/404.b3aa8a30.chunk.js"
   },
   {
-    "revision": "18509e2ca8585ad40407",
-    "url": "/static/js/main.6f646668.chunk.js"
+    "revision": "112e6c2cd8c601fbd2cc",
+    "url": "/static/js/main.a537d333.chunk.js"
   },
   {
-    "revision": "aa80012c61685012c005",
-    "url": "/static/js/page.cd329474.chunk.js"
+    "revision": "5a35aece98bc2dc708e2",
+    "url": "/static/js/page.5e35fc86.chunk.js"
   },
   {
-    "revision": "fc27f4e023dca633cb71",
-    "url": "/static/js/portfolio.cfe73b0b.chunk.js"
+    "revision": "7d17dd30c8bf41739916",
+    "url": "/static/js/portfolio.fa07a76f.chunk.js"
   },
   {
-    "revision": "2b3ffc81a9feccc59891",
-    "url": "/static/js/projects.96fcf041.chunk.js"
+    "revision": "2a6e835a06d73f0e5103",
+    "url": "/static/js/projects.17890b5b.chunk.js"
   },
   {
-    "revision": "580035d9d6a9476cdf36",
-    "url": "/static/js/runtime~main.db3b9a04.js"
+    "revision": "9e54704deedcf0c7d627",
+    "url": "/static/js/runtime~main.6a1bf4d6.js"
   },
   {
     "revision": "ce6b9d268b217181ece1",
     "url": "/static/js/swal-auth.136bea75.chunk.js"
   },
   {
-    "revision": "896626cbf9e9e2d6b4c5",
-    "url": "/static/js/swal-contact.3855d863.chunk.js"
+    "revision": "79b3f4915949dd95703a",
+    "url": "/static/js/swal-contact.270d1dd5.chunk.js"
   },
   {
     "revision": "33adae677fab86b44462b81620210061",

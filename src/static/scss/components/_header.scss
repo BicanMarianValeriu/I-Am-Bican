@@ -8,36 +8,30 @@
 		width: 100%;
 		z-index: 500;
 		background-color: transparent;
-
-		@include media-breakpoint-down(md) {
-			padding-top: 10px;
-		}
 	}  
 	
 	&--white {
 		.header {
-			&__cta {
-				&-btn {
-					border-color: white;
-					color: white;
+			&-cta {
+				border-color: white;
+				color: white;
 
-					&:hover {
-						background-color: white;
-						color: theme-color( 'primary' );
-					}
+				&:hover, 
+				&:focus,
+				&:hover {
+					background-color: white;
+					color: theme-color( 'primary' );
 				}
 			}
 
 			&-login {  
-				&__btn {
-					color: white;
+				color: white;
 	
-					&:hover, 
-					&:focus,
-					&:active {
-						color: white;
-						opacity: .8;
-					} 
+				&:hover, 
+				&:focus,
+				&:active {
+					color: white;
+					opacity: .8;
 				} 
 			}
 		}
@@ -46,7 +40,7 @@
 	&--blue {
 		background-color: #fbfbfb;
 		border-bottom: 1px solid $gray-100;
-		z-index: 500;
+		z-index: 100;
 
 		.nav-pills {
 			.nav-link {
@@ -62,81 +56,76 @@
 			}
 		}
 
-		.header-login {  
-			&--is-auth {
-				.header-login {
-					&__btn {
-						color: theme-color( 'primary' );
-					}
+		.header-login {
+			color: $gray-500;
 
+			&:hover, 
+			&:focus,
+			&:active {
+				color: theme-color( 'primary' )!important;
+			} 
+			
+			&--is-auth {
+				color: theme-color( 'primary' );
+				
+				.header-login {
 					&__mask {
 						div {
-							box-shadow: inset 0 0 2px 3px theme-color( 'primary' );
+							box-shadow: inset 0 0 3px 3px theme-color( 'primary' );
 						}
 					}
 				}
 			}
-			
-			&__btn {
-				color: $gray-500;
-
-				&:hover, 
-				&:focus,
-				&:active {
-					color: theme-color( 'primary' )!important;
-				} 
-			} 
 
 			&__mask {
 				div {
-					box-shadow: inset 0 0 2px 3px $gray-500;
+					box-shadow: inset 0 0 3px 3px $gray-500;
 				}
 			}
 		}
 	}
 
-	&__cta {    
+	&__cta, 
+	&__login {
+		margin: 6px 0;
+
 		@include media-breakpoint-up(lg) {
 			margin: 8px 0;
 		}
+	}
+}
+
+.header-cta { 
+	border: 2px solid theme-color( 'primary' );
+	border-radius: 50px;
+	box-shadow: none;
+	color: theme-color( 'primary' );
+
+	@include media-breakpoint-down(xs) {
+		padding: 0;
+		width: 2.15rem;
+		height: 2.15rem;
+		line-height: 1;
+	}
+
+	&:hover { 
+		background-color: theme-color( 'primary' );
+		color: white;
+	}
+
+	span {
+		@include media-breakpoint-down(xs) {
+			display: none;
+		}
+	}  
+
+	.svg-inline--fa {
+		margin-right: 10px;
 
 		@include media-breakpoint-down(xs) {
-			flex-grow: 0;
-		}
-
-		&-btn {
-			border: 2px solid theme-color( 'primary' );
-			border-radius: 50px;
-			box-shadow: none;
-			color: theme-color( 'primary' );
-
-			@include media-breakpoint-down(xs) {
-				padding: 0;
-				width: 2.15rem;
-				height: 2.15rem;
-    			line-height: 1;
-			}
-
-			&:hover { 
-				background-color: theme-color( 'primary' );
-				color: white;
-			}
-
-			span {
-				@include media-breakpoint-down(xs) {
-					display: none;
-				}
-			} 
-		}
-
-		.svg-inline--fa {
-			margin-right: 10px;
-
-			@include media-breakpoint-down(xs) {
-				font-size: 1.2rem;
-				margin-left: -2px;
-				margin-right: 0;
-			}
+			font-size: 1.2rem;
+			margin-left: -2px;
+			margin-right: 0;
 		}
 	}
 }

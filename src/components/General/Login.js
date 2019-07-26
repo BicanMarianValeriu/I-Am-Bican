@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
@@ -27,7 +27,7 @@ class Login extends Component {
 	componentDidMount() {
 		if (isAuthentificated()) this.props.authToken(getAuthToken());
 	}
-	
+
 	_onMouseOver() {
 		if (this.state.Modal !== null) return;
 		import(/* webpackChunkName: "swal-auth" */ "../Popups/swal-auth")
@@ -80,47 +80,46 @@ class Login extends Component {
 			});
 
 			return (
-				<React.Fragment>
+				<Fragment>
 					{loading && <div className="header-login__mask"><div></div></div>}
-					<div className="header-login__icon-svg" dangerouslySetInnerHTML={{ __html: layers.html[0] }}></div>
-				</React.Fragment>
+					<div className="header-login__svg" dangerouslySetInnerHTML={{ __html: layers.html[0] }}></div>
+				</Fragment>
 			);
 		}
 
-		const classString = classNames('header__login', 'col-auto', 'pl-0', 'header-login', {
+		const btnClasses = classNames('btn', 'header-login', {
 			'header-login--loading': loading,
 			'header-login--is-auth': isAuthentificated()
 		});
 
 		return (
-			<div className={classString} >
-				{isAuthentificated() && authentificated ? (
-					<Dropdown size="lg" direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-						<DropdownToggle className="header-login__btn">
-							<UserLoginSVG />
-						</DropdownToggle>
-						<DropdownMenu right>
-							<DropdownItem header>Howdy {name}</DropdownItem>
-							<DropdownItem divider />
-							<DropdownItem>Another Action</DropdownItem>
-							<DropdownItem divider />
-							<DropdownItem className="text-muted" onClick={this._onLogoutClick} >
-								<div className="header-logout__svg">
-									<i className="fas fa-sign-out-alt"></i>
-								</div>
-								<span className="header-logout__label">LogOut</span>
-							</DropdownItem>
-						</DropdownMenu>
-					</Dropdown>
-				) : (
-						<button id="header-login" className="header-login__btn float-right btn"
-							onClick={this._onButtonClick}
-							onMouseOver={this._onMouseOver}
-							onTouchStart={this._onMouseOver}>
-							<UserLoginSVG />
-						</button>
-					)}
-			</div >
+			<Fragment>{isAuthentificated() && authentificated ? (
+				<Dropdown size="lg" direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+					<DropdownToggle className={btnClasses}>
+						<UserLoginSVG />
+					</DropdownToggle>
+					<DropdownMenu right>
+						<DropdownItem header>Howdy {name}</DropdownItem>
+						<DropdownItem divider />
+						<DropdownItem>Another Action</DropdownItem>
+						<DropdownItem divider />
+						<DropdownItem className="text-muted" onClick={this._onLogoutClick} >
+							<div className="header-logout__svg">
+								<i className="fas fa-sign-out-alt"></i>
+							</div>
+							<span className="header-logout__label">LogOut</span>
+						</DropdownItem>
+					</DropdownMenu>
+				</Dropdown>
+			) : (
+					<button id="header-login" className={btnClasses}
+						onClick={this._onButtonClick}
+						onMouseOver={this._onMouseOver}
+						onTouchStart={this._onMouseOver}>
+						<UserLoginSVG />
+					</button>
+				)}
+			</Fragment>
 		);
 	}
 }

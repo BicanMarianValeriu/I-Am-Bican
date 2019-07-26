@@ -4,56 +4,57 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { frontloadConnect } from 'react-frontload';
 import _find from 'lodash/find';
+import classNames from 'classnames';
 import { getMenu } from '../../redux/actions/menus';
 
 class Navigation extends Component {
-    renderMenuItems(menu) {
-        let { pathname } = this.props.location;
+    renderItems() {
+        const { location: { pathname }, menu: { items = [], ID = false } = {} } = this.props;
 
-        if (this.props.wpMenuId === menu.ID) {
-            return menu.items.map((item, index) => {
+        if (this.props.wpMenuId === ID) {
+            return items.map((item, index) => {
+                const { children = [], classes, url = '' } = item;
 
-                let classes = ['nav-link'];
-                let _classes = (item.classes.length) ? item.classes.split(' ') : '';
-                if (_classes) for (let i = 0; i < _classes.length; i++) classes.push(_classes[i]);
-                if (item.url !== '/' && pathname.includes(item.url)) classes.push('active');
-                let liClasses = ['nav-item'];
-                if (item.children) liClasses.push('nav-item--has-dropdown');
+                const classString = classNames('nav-link', ...[classes ? classes.split(' ') : []], {
+                    'active': url !== '/' && pathname.includes(url)
+                });
+
+                const liClasses = classNames('nav-item', {
+                    'nav-item--has-dropdown': children.length > 0
+                });
 
                 return (
-                    <li key={index} className={liClasses.join(' ')}
-                        aria-haspopup={item.children && item.children.length > 0}>
-                        <NavLink exact className={classes.join(' ')} to={item.url}>{item.title}</NavLink>
-                        {item.children &&
-                            <ul className="nav-item__dropdown">
-                                {this.renderDropdown(item.children)}
-                            </ul>}
+                    <li key={index} className={liClasses} aria-haspopup={item.children && item.children.length}>
+                        <NavLink exact className={classString} to={item.url}>{item.title}</NavLink>
+                        {children.length > 0 && this.renderDropdownItems(children)}
                     </li>
                 );
             });
         }
     }
 
-    renderDropdown(items) {
-        return items.map((item) => {
-            let classes = ['nav-link', 'nav-link--dropdown'];
-            let _classes = (item.classes.length) ? item.classes.split(' ') : '';
-            if (_classes) for (let i = 0; i < _classes.length; i++) classes.push(_classes[i]);
-            return (
-                <li key={item.id} className="nav-item">
-                    <NavLink exact className={classes.join(' ')} to={item.url}>{item.title}</NavLink>
-                </li>
-            );
-        });
+    renderDropdownItems(items) {
+        return (
+            <ul className="nav-item__dropdown">
+                {items.map(item => {
+                    const classes = classNames('nav-link', 'nav-link--dropdown', ...[item.classes ? item.classes.split(' ') : []]);
+                    return (
+                        <li key={item.id} className="nav-item">
+                            <NavLink exact className={classes} to={item.url}>{item.title}</NavLink>
+                        </li>
+                    );
+                })}
+            </ul>
+        )
     }
 
     render() {
-        let classes = [];
-        classes.push(this.props.className ? this.props.className : 'navigation');
+        const { className, menuClass } = this.props;
+        const navClasses = classNames(...[className ? className.split(' ') : 'navigation']);
         return (
-            <nav className={classes.join(' ')}>
-                <ul className={this.props.menuClass ? this.props.menuClass : 'nav nav-pills justify-content-end'}>
-                    {this.props.menu && this.renderMenuItems(this.props.menu)}
+            <nav className={navClasses}>
+                <ul className={menuClass ? menuClass : 'nav nav-pills justify-content-end'}>
+                    {this.renderItems()}
                 </ul>
             </nav>
         );
@@ -64,7 +65,7 @@ class Navigation extends Component {
 const mapStateToProps = (store, props) => {
     const { menus } = store;
     const { wpMenuId } = props;
-    let menu = _find(menus, { ID: wpMenuId });
+    const menu = _find(menus, { ID: wpMenuId });
 
     return ({ menu });
 };

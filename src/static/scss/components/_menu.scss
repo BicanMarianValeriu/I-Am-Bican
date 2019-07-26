@@ -1,5 +1,4 @@
 .nav {
-
     ul {
         list-style: none;
         margin: 0;
@@ -11,18 +10,18 @@
             &-link {
                 position: relative;
                 @extend .text-font--cursive;
-                font-size: 25px;
-                line-height: 40px;
                 color: white; 
                 transition: cubic-bezier(0.95, 0.05, 0.795, 0.035);
-                padding: .65rem .55rem .45rem .55rem;
                 margin: 0 3px; 
                 border-radius: 0;
-
-                @include media-breakpoint-down(md) {
-                    font-size: 20px;
-                    line-height: 30px;
-                    padding: .55rem .5rem .45rem .5rem; 
+                font-size: 20px;
+                line-height: 30px;
+                padding: .55rem .5rem .45rem .5rem; 
+                
+                @include media-breakpoint-up(md) {
+                    padding: .65rem .55rem .45rem .55rem;
+                    font-size: 25px;
+                    line-height: 40px;
                 }
 
                 &:after {
@@ -79,11 +78,5 @@
                 }
             }
         }
-    } 
-}
-
-.menu__header {
-    &.loading {
-        opacity: .5;
     } 
 }

@@ -6,15 +6,12 @@ export default function GetInTouch({ className, iconClass, label }) {
 
     const _onMouseOver = () => {
         if (modal !== null) return;
-        import(/* webpackChunkName: "swal-contact" */ "../Popups/swal-contact")
-            .then(modalChunk => setModal(modalChunk));
+        import(/* webpackChunkName: "swal-contact" */ "../Popups/swal-contact").then(m => setModal(m));
     }
 
     const _onButtonClick = () => {
         if (modal === null) {
-            import(/* webpackChunkName: "swal-contact" */ "../Popups/swal-contact")
-                .then(modalChunk => setModal(modalChunk))
-                .then(() => modal.default());
+            import(/* webpackChunkName: "swal-contact" */ "../Popups/swal-contact").then(m => setModal(m)).then(() => modal.default());
         } else modal.default();
     }
 

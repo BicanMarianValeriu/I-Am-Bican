@@ -1,12 +1,12 @@
 import React from 'react';
-import Menu from './Menu';
-import Login from './Login';
 import { withRouter } from 'react-router-dom';
+import LoginButton from '../General/Login';
 import GetInTouch from '../General/GetInTouch';
+import Navigation from '../General/Navigation';
 
 export default withRouter(props => {
     let classes = ['header'];
-    let { location: { pathname } } = props;
+    const { location: { pathname } } = props;
     let isPage = pathname.split('/')[1];
     const routes = ['/', 'p', '/portfolio'];
 
@@ -21,8 +21,22 @@ export default withRouter(props => {
 
     const CTA = () => {
         return (
-            <div className="header__cta col">
-                <GetInTouch className="header__cta-btn" label="Get In Touch" />
+            <div className="header__cta col col-auto">
+                <GetInTouch className="header-cta" label="Get In Touch" />
+            </div>
+        );
+    };
+
+    const Menu = () => (
+        <div className="header__menu col">
+            <Navigation wpMenuId={2} />
+        </div>
+    );
+
+    const Login = () => {
+        return (
+            <div className="header__login col col-auto">
+                <LoginButton />
             </div>
         );
     };
@@ -31,7 +45,7 @@ export default withRouter(props => {
         <header id="header" className={classes.join(' ')} itemScope="" itemType="http://schema.org/WPHeader">
             <div className="header__bar">
                 <div className="container-fluid">
-                    <div className="row align-items-center">
+                    <div className="row align-items-center no-gutters">
                         <CTA />
                         <Menu />
                         <Login />

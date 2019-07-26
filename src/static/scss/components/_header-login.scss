@@ -1,47 +1,47 @@
 .header-login {
-    &--loading {
-        pointer-events: none;
+    position: relative;
+    padding: 0!important;
+    border: none;
+    border-radius: 0;
+    background-color: transparent!important;
+    border-color: transparent!important;
+    box-shadow: none!important;
+    font-size: 1.1rem!important;
+    width: 41px;
+    height: 41px;
+    --var-w: 41px;
+    --var-h: 41px;
+    color: white;
+    margin-left: 5px;
+
+    @include media-breakpoint-down(xs) {
+        width: 2.15rem;
+        height: 2.15rem;
+        --var-w: 2.15rem;
+        --var-h: 2.15rem;
+        font-size: 1rem!important;
+    } 
+    
+    &:hover,
+    &:active,
+    &:focus {
+        color: initial;
+    } 
+
+    & + .dropdown-menu { 
+        border: 0 !important;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+        transition: opacity 0.5s, transform 0.2s;
+        transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        min-width: 175px;
+
+        &.show {
+            transform: scale3d(1, 1, 1) translate3d(0, 10px, 0);
+        }
     }
     
-    &__btn {
-        position: relative;
-        padding: 0!important;
-        border: none;
-        border-radius: 0;
-        background-color: transparent!important;
-        border-color: transparent!important;
-        box-shadow: none!important;
-        font-size: 1.1rem!important;
-        width: 41px;
-        height: 41px;
-        --var-w: 41px;
-        --var-h: 41px;
-        color: white;
-        margin-left: 5px;
-
-        @include media-breakpoint-down(xs) {
-            width: 2.15rem;
-            height: 2.15rem;
-            font-size: 1rem!important;
-        } 
-        
-        &:hover,
-        &:active,
-        &:focus {
-            color: initial;
-        } 
-
-        & + .dropdown-menu { 
-            border: 0 !important;
-            box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
-            transition: opacity 0.5s, transform 0.2s;
-            transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-            min-width: 175px;
-
-            &.show {
-                transform: scale3d(1, 1, 1) translate3d(0, 5px, 0);
-            }
-        }
+    &--loading {
+        pointer-events: none;
     }
 
     /* Mask */
@@ -49,75 +49,73 @@
         position: absolute;
         left: 50%;
         top: 50%; 
-        width: calc(99% / 2);
-        height: 99%; 
-        margin-left: calc(-99% / 2); 
-        margin-top: calc(-100% / 2);
+        width: 46%;
+        height: 96%; 
+        margin-left: -46%; 
+        margin-top: -48%;
         overflow: hidden; 
         transform-origin: right center; 
         mask-image: -webkit-linear-gradient(top,#000,rgba(0,0,0,0)); 
         animation: fa-spin 1.2s infinite linear;
 
         div { 
-            width: calc( var(--var-w) - 1px );
-            height: calc( var(--var-h) + 1px );
+            width: var(--var-w);
+            height: var(--var-h);
             border-radius: 50%; 
-            box-shadow: inset 0 0 2px 3px rgba(255,255,255,.8);
+            box-shadow: inset 0 0 3px 3px rgba(255,255,255,.8);
         } 
     }
 
     /* Icon */
-    &__icon {
-        &-svg {  
+    &__svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        
+        span.fa-layers {
             display: block;
-            width: 100%;
-            height: 100%;
-            
-            span.fa-layers {
-                display: block;
-                width: inherit;
-                height: inherit;
-            }
+            width: inherit;
+            height: inherit;
         }
     }
 
     /* Dropdowns */
     .dropdown {
-    &-divider {
-        margin: 0;
-        border-top: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    &-item {
-        color: #222;
-        padding: 0.8rem 1.5rem;
-        font-weight: bold;
-        font-size: 0.8125rem;
-        font-weight: 600;
-        line-height: 1.1538;
-        text-transform: uppercase;
-        cursor: pointer;
-
-        span {
-            color: inherit;
-            font-weight: bold;
-            font-size: inherit;
-            font-weight: inherit;
-            line-height: inherit;
-            text-transform: inherit;
+        &-divider {
+            margin: 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        &:active {
-            color: white!important;
-            outline: none;
+        &-item {
+            color: #222;
+            padding: 0.8rem 1.5rem;
+            font-weight: bold;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            line-height: 1.1538;
+            text-transform: uppercase;
+            cursor: pointer;
 
             span {
-                color: white;
-            } 
-        }
-    }
+                color: inherit;
+                font-weight: bold;
+                font-size: inherit;
+                font-weight: inherit;
+                line-height: inherit;
+                text-transform: inherit;
+            }
 
-    &-header {
+            &:active {
+                color: white!important;
+                outline: none;
+
+                span {
+                    color: white;
+                } 
+            }
+        }
+
+        &-header {
             font-size: 1rem;
             font-weight: 600;
             color: #222;

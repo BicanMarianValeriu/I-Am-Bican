@@ -18,29 +18,25 @@
 
 		.header {
             &-login {
-                &--is-auth {
-                    .header-login {
-                        &__btn {
-                            &[aria-expanded="true"] {
-                                img {
-                                    box-shadow: 0 0 0 3px white;
-                                }
-                            }
-                        }
-                    }
+                color: white;
+    
+                &:hover, 
+                &:focus,
+                &:active {
+                    color: white!important;
                 }
-    
-                &__btn {
-                    color: white;
-    
-                    &:hover, 
-                    &:focus,
-                    &:active {
-                        color: white!important;
-                    }
-    
-                    img {
-                        box-shadow: 0 0 0 3px $white;
+
+                img {
+                    box-shadow: 0 0 0 3px $white;
+                }
+                
+                &--is-auth {
+                    .header-login { 
+                        &[aria-expanded="true"] {
+                            img {
+                                box-shadow: 0 0 0 3px white;
+                            }
+                        } 
                     }
                 }
                 
