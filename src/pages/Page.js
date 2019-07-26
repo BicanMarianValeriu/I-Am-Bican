@@ -8,7 +8,8 @@ import _find from 'lodash/find';
 // Deps
 import PageIntro from "../components/Sections/page-intro";
 import Main from "../components/General/Main";
-import { getPage } from "../redux/actions/pages";
+import { requestApi } from "../redux/actions/api";
+import { getPage, updatePages } from "../redux/actions/pages";
 
 class Page extends Component {
 	componentDidMount() {
@@ -23,9 +24,9 @@ class Page extends Component {
 		}
 	}
 
-	/* shouldComponentUpdate(nextProps) {
+	shouldComponentUpdate(nextProps) {
 		return (this.props.selectedPage !== nextProps.selectedPage);
-	} */
+	}
 
 	render() {
 		const { selectedPage, location: { pathname } } = this.props;
@@ -71,12 +72,13 @@ const mapStateToProps = (store, props) => {
 };
 
 // mapDispatchToProps -> getPage
-const mapDispatchToProps = dispatch => bindActionCreators({ getPage }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getPage, updatePages }, dispatch);
 
 // Server Side Stuff
 const frontload = async props => {
-	const { match: { params: { slug } }, getPage } = props;
-	return await getPage({ slug });
+	const { match: { params: { slug } }, updatePages } = props;
+	const data = await requestApi.get(`wp/v2/pages?slug=${slug}`).then(req => req.data[0]);
+	return updatePages(data);
 };
 
 // Export container while connected to store with frontload

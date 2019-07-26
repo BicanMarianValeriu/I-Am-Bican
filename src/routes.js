@@ -15,16 +15,16 @@ const Page = Loadable({
 	modules: ["page"]
 });
 
-const Portfolio = Loadable({
-	loader: () => import(/* webpackChunkName: "portfolio" */ "./pages/Portfolio"),
+const PortfolioSingle = Loadable({
+	loader: () => import(/* webpackChunkName: "portfolio-single" */ "./pages/PortfolioSingle"),
 	loading: DownloadLoader,
-	modules: ["portfolio"]
+	modules: ["portfolio-single"]
 });
 
-const Projects = Loadable({
-	loader: () => import(/* webpackChunkName: "projects" */ "./pages/Projects"),
+const PortfolioArchive = Loadable({
+	loader: () => import(/* webpackChunkName: "portfolio-archive" */ "./pages/PortfolioArchive"),
 	loading: DownloadLoader,
-	modules: ["projects"]
+	modules: ["portfolio-archive"]
 });
 
 const routes = [
@@ -36,12 +36,12 @@ const routes = [
 	{
 		path: "/portfolio",
 		exact: true,
-		component: Projects 
+		component: PortfolioArchive
 	},
 	{
 		path: "/portfolio/:slug",
 		exact: true,
-		component: Portfolio
+		component: PortfolioSingle
 	},
 	{
 		path: "/p/:slug",
