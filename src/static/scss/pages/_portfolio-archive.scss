@@ -62,8 +62,7 @@
 
 .content--projects {
     .main--archive {
-        max-width: initial;
-        padding-bottom: 50px;
+        @include make-row();
     }
 }
 

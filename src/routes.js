@@ -1,7 +1,7 @@
 import Loadable from "react-loadable";
 
-import Home from "./pages/Home";  
-import DownloadLoader from "./components/General/download-loader";  
+import Home from "./pages/Home";
+import DownloadLoader from "./components/General/download-loader";
 
 const FourOFour = Loadable({
 	loader: () => import(/* webpackChunkName: "404" */ "./pages/404"),
@@ -32,7 +32,7 @@ const routes = [
 		path: "/",
 		exact: true,
 		component: Home
-	}, 
+	},
 	{
 		path: "/portfolio",
 		exact: true,

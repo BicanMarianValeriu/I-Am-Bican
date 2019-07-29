@@ -1,21 +1,36 @@
 // The basics
 import React, { useEffect } from 'react';
 import Helmet from 'react-helmet';
+import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router';
 import { dom } from '@fortawesome/fontawesome-svg-core';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import icons, { brands } from './utilities/fontawesome';
+import { browserName, isMobile } from 'react-device-detect';
+
 import routes from './routes';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-export default function App() {
+const App = (props) => {
+	const { ui: { pending } } = props;
+
 	library.add(icons);
 	library.add(brands);
+	dom.watch();
 
 	useEffect(() => {
-		dom.watch();
-	}, []);
+		const documentHTML = document.documentElement;
+		documentHTML.classList.add(browserName);
+
+		if (isMobile) documentHTML.classList.add('is-mobile');
+
+		if (pending === false) {
+			documentHTML.classList.remove('overflow-hidden');
+		} else {
+			documentHTML.classList.add('overflow-hidden');
+		}
+	}, [pending]);
 
 	return (
 		<React.Fragment>
@@ -48,4 +63,11 @@ export default function App() {
 			<Footer />
 		</React.Fragment>
 	);
-} 
+}
+
+const mapStateToProps = store => {
+	const { ui } = store;
+	return ({ ui });
+};
+
+export default connect(mapStateToProps)(App);

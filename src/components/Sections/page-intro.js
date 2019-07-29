@@ -4,7 +4,6 @@ const PageIntro = ({ ...props }) => {
 	const { pageTitle } = props;
 	return (
 		<section className="page-intro">
-			<div className="page-intro__background" />
 			<div className="container">
 				<div className="row">
 					<div className="col">

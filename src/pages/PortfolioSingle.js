@@ -57,7 +57,7 @@ class Portfolio extends Component {
 						meta.canonical ? { rel: 'canonical', href: meta.canonical } : {}
 					]}
 				/>
-				<div id="content" className="content">
+				<div id="content" className="content content--portfolio content--single">
 					<PrevNext current={selectedProject} />
 					<Main posts={posts} isSingle={true} />
 				</div>

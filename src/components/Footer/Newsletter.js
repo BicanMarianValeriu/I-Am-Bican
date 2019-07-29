@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import jsonp from "jsonp";
 import { InputGroup, InputGroupAddon, Button, Input } from "reactstrap";
 import { getFormData, serializeData } from "../../utilities/helpers";
@@ -13,119 +13,109 @@ const NewsLetter = () => {
 	// Handle Error Message Timeout
 	const [showTimeout, setShowTimeout] = useState(false);
 
+	// Handle cMD, cDU
+	const ref = useRef(false);
+
 	// Vars
-	const { errors = { none: 'none' }, values } = formState;
+	const { values: { EMAIL }, errors } = formState;
 
 	// Helper
-	const clearErrors = ({ email, messages }) => {
-		messages.innerHTML = "";
-		messages.classList.add("d-none");
-		email.classList.remove("is-invalid");
+	const clearErrors = ({ formEl, messageEl }) => {
+		formEl.classList.remove('was-validated');
+		formEl.classList.remove('was-received');
+		messageEl.innerHTML = '';
+		const elems = formEl.querySelectorAll('div[class*="-feedback"');
+		for (let el of elems) el.innerHTML = '';
 	}
 
-	const renderErrors = ({ email, messages, errors }) => {
+	const validate = ({ formEl, messageEl }) => {
 
-		if (JSON.stringify(errors) === '{}') return;
+		const { EMAIL: emailError = '' } = errors;
 
-		messages.classList.add("d-none");
-		messages.innerHTML = "";
+		if (emailError !== '') messageEl.innerHTML = '';
 
-		email.classList.remove("is-invalid");
-		email.classList.add("is-invalid");
+		formEl.classList.add('was-validated');
+		const errorEl = document.createElement('span');
+		errorEl.innerText = emailError.toString();
+		messageEl.appendChild(errorEl);
 
-		let errorEl = document.createElement("div");
-		errorEl.classList.add("error");
-		errorEl.innerHTML = errors.EMAIL.toString();
-		messages.appendChild(errorEl);
-
-		messages.classList.remove("alert-success");
-		messages.classList.add("alert-danger");
-		messages.classList.remove("d-none");
+		return emailError !== '' ? false : null;
 	}
 
-	const onSubmit = () => {
+	const onSubmit = ({ formEl, messageEl }) => {
 		if (pending === true) return;
+
+		clearTimeout(showTimeout);
+
+		if (EMAIL === '' && validate({ formEl, messageEl }) === null) {
+			validate({ formEl, messageEl });
+			setShowTimeout(setTimeout(() => clearErrors({ formEl, messageEl }), 5000));
+			return;
+		}
 
 		setPending(true);
 
-		const formEl = document.forms.newsletter;
-		const messages = document.querySelector(".newsletter__messages");
-
-		let path = "//wecodeart.us2.list-manage.com/subscribe/post?u=ab68e00b82ffb88387f008ce7&amp;id=abee3454c2";
-		let url = `${path}&${serializeData(getFormData(formEl))}`;
-		url = url.replace("/post?", "/post-json?");
+		const path = "//wecodeart.us2.list-manage.com/subscribe/post-json?u=ab68e00b82ffb88387f008ce7&amp;id=abee3454c2";
+		const url = `${path}&${serializeData(getFormData(formEl))}`;
 
 		jsonp(url, { param: "c" }, (err, data) => {
-
+			const { result, msg: message } = data;
 			setPending(false);
 
-			let msgClass;
-			if (data.result === "success") {
-				msgClass = "alert-success";
-				messages.classList.remove("alert-danger");
-			}
+			const msg = document.createElement('span');
+			msg.innerHTML = message;
 
-			if (data.result === "error") {
-				msgClass = "alert-danger";
-				messages.classList.remove("alert-success");
-			}
+			let container = result === 'success' ? '.valid-feedback' : '.invalid-feedback';
+			container = formEl.querySelector(container);
+			container.appendChild(msg);
 
-			let msg = document.createElement("div");
-			msg.innerHTML = data.msg;
-
-			messages.appendChild(msg);
-			messages.classList.add(msgClass);
-			messages.classList.remove("d-none");
-			formEl.elements['EMAIL'].value = '';
-
-			setTimeout(() => clearErrors({ email: formEl.elements['EMAIL'], messages }), 5000);
+			formEl.classList.add('was-received');
+			setShowTimeout(setTimeout(() => clearErrors({ formEl, messageEl }), 5000));
 		});
 	}
 
-	const handleSubmit = (e) => {
+	const handleSubmit = e => {
 		e.preventDefault();
-
-		if (errors === false) return;
-
 		const formEl = document.forms.newsletter;
-		const fields = formEl.elements, email = fields['EMAIL'];
-		const messages = document.querySelector('.newsletter__messages');
-
-		if (email.value !== '' && JSON.stringify(errors) === '{}') onSubmit();
-		else renderErrors({ email, messages, errors });
+		const messageEl = formEl.querySelector('.invalid-tooltip');
+		if (JSON.stringify(errors) === '{}') onSubmit({ formEl, messageEl });
+		else validate({ formEl, messageEl });
 	};
 
-	// Handle cMD, cDU
 	useEffect(() => {
 		const formEl = document.forms.newsletter;
-		const fields = formEl.elements, email = fields['EMAIL'];
-		const messages = document.querySelector('.newsletter__messages');
+		const messageEl = formEl.querySelector('.invalid-tooltip');
+
+		clearTimeout(showTimeout);
 
 		// Render the errors created above
-		renderErrors({ email, messages, errors });
+		if (ref.current) {
+			validate({ formEl, messageEl });
+		}
 
-		// ...and show them for 5 seconds
-		setShowTimeout(setTimeout(() => clearErrors({ email, messages }), 5000));
+		ref.current = true;
 
 		// ...then clear the errors timeout on input value change and clear validaton if no errors
 		return () => {
-			if (JSON.stringify(errors) === '{}') clearErrors({ email, messages });
-			clearTimeout(showTimeout);
+			setShowTimeout(setTimeout(() => clearErrors({ formEl, messageEl }), 5000));
 		};
 		// eslint-disable-next-line
-	}, [values.EMAIL]);
+	}, [EMAIL]);
 
 	return (
 		<div className="newsletter newsletter--footer">
-			<div className="newsletter__messages alert alert-danger d-none" />
 			<form className="newsletter__form" name="newsletter" noValidate onSubmit={handleSubmit}>
 				<InputGroup>
 					<Input placeholder="Email Address" name="EMAIL" type="email" {...email('EMAIL')} required />
+					<div className="invalid-tooltip">Please fill out this field.</div>
+					<div className="valid-tooltip">Everything looks fine!</div>
 					<InputGroupAddon addonType="append">
 						<Button type="submit" className="newsletter__button btn btn--primary text-color-light">
 							{pending ? 'LOADING...' : 'SUBSCRIBE'}
 						</Button>
 					</InputGroupAddon>
+					<div className="valid-feedback"></div>
+					<div className="invalid-feedback"></div>
 				</InputGroup>
 			</form>
 		</div>

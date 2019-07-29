@@ -38,10 +38,6 @@ class Page extends Component {
 			canonical: "https://www.iambican.com" + pathname
 		};
 
-		let posts = [];
-		posts = [...posts, selectedPage];
-		posts = posts.filter(el => el != null); // Dirty
-
 		return (
 			<React.Fragment>
 				<Helmet
@@ -53,9 +49,11 @@ class Page extends Component {
 						meta.canonical ? { rel: 'canonical', href: meta.canonical } : {}
 					]}
 				/>
-				<div id="content" className="content content--page">
+				<div id="content" className="content content--page content--single">
 					<PageIntro pageTitle={title} />
-					<Main posts={posts} isSingle={true} loading={!selectedPage} />
+					<div className="container">
+						<Main posts={[selectedPage]} className="py-3 py-md-5" isSingle={true} loading={!selectedPage} />
+					</div>
 				</div>
 			</React.Fragment>
 		);
@@ -64,11 +62,11 @@ class Page extends Component {
 
 // Binds menu items to navigation container
 const mapStateToProps = (store, props) => {
-	const { pages } = store;
+	const { pages, ui: { pending } } = store;
 	const { match: { params: { slug } } } = props;
 	const selectedPage = _find(pages, { slug });
 
-	return ({ selectedPage });
+	return ({ selectedPage, pending });
 };
 
 // mapDispatchToProps -> getPage

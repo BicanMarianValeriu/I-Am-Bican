@@ -15,29 +15,26 @@ class Main extends Component {
 
 	getOptions() {
 		const { options = {} } = this.props;
+		const defaultLoading = { enable: true, classes: { outer: 'placeholder' }, elements: this.isSingle() ? 1 : 6 };
 		return {
-			...{
-				classes: { outer: 'container', inner: 'row' },
-				loading: { enable: true, classes: { outer: 'placeholder' }, elements: this.isSingle() ? 1 : 6 }
-			}, ...options
+			loading: { ...defaultLoading, ...options.loading }
 		};
 	}
 
 	getClasses() {
-		const { classes: { inner } } = this.getOptions();
-		const isSingle = this.isSingle();
+		const { loading, className } = this.props;
 
-		const classes = ['col', 'main', isSingle ? 'main--single' : 'main--archive', {
-			[inner]: !isSingle,
-			'main--is-loading:': this.props.loading
+		const classes = ['main', this.isSingle() ? 'main--single' : 'main--archive', {
+			'main--is-loading': loading,
+			[className]: className !== undefined
 		}];
 
 		return classNames(classes);
 	}
 
 	renderPosts() {
-		const { posts, loading } = this.props;
-		
+		const { posts = [], loading } = this.props;
+
 		if (!loading && posts.length) {
 			return posts.map(post => {
 				let postType;
@@ -61,15 +58,8 @@ class Main extends Component {
 	}
 
 	render() {
-		const { classes: { outer, inner } } = this.getOptions();
 		return (
-			<div className={outer.toString()}>
-				<div className={inner.toString()}>
-					<main id="postsContainer" className={this.getClasses()}>
-						{this.renderPosts()}
-					</main>
-				</div>
-			</div>
+			<main id="postsContainer" className={this.getClasses()}>{this.renderPosts()}</main>
 		);
 	}
 }

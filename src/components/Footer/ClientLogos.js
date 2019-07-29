@@ -72,7 +72,7 @@ class ClientLogos extends Component {
 		for (let j = 0; j < columns; j++) {
 			for (let i = 0; i < clients.length; i++) {
 				if (j === i && i < columns) {
-					let item = document.querySelectorAll('.companies')[j].children[i];
+					const item = document.querySelectorAll('.companies')[j].children[i];
 					current[j] = i; // Set column and its logo index
 					this.setState({ current });
 					anime({ targets: item, opacity: 1 });
@@ -126,8 +126,7 @@ class ClientLogos extends Component {
 		const { clients } = this.props;
 
 		return clients.map((item, i) => {
-			const { acf } = item;
-			const { client_logo } = acf;
+			const { acf: { client_logo } } = item;
 			return (
 				<div key={i} className="companies__logo">
 					<img width="200" src={client_logo.url} alt={item.name} />

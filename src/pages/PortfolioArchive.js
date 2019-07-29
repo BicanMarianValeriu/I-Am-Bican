@@ -57,9 +57,11 @@ class Projects extends Component {
 						meta.canonical ? { rel: 'canonical', href: meta.canonical } : {}
 					]}
 				/>
-				<div id="content" className="content content--projects">
+				<div id="content" className="content content--projects content--archive">
 					<PageIntro pageTitle='Portfolio' />
-					<Main posts={projects} isSingle={false} options={{ loading: loading }} />
+					<div className="container">
+						<Main posts={projects} className="my-3 my-md-5" isSingle={false} options={{ loading: loading }} />
+					</div>
 				</div>
 			</React.Fragment>
 		);

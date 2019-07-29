@@ -1,23 +1,21 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import className from 'classnames';
 import LoginButton from '../General/Login';
 import GetInTouch from '../General/GetInTouch';
 import Navigation from '../General/Navigation';
 
 export default withRouter(props => {
-    let classes = ['header'];
     const { location: { pathname } } = props;
-    let isPage = pathname.split('/')[1];
-    const routes = ['/', 'p', '/portfolio'];
 
-    // On home/page/portfolio we need the header to overlap content 
-    if (routes.includes(pathname) || isPage === 'p') {
-        classes.push('header--absolute');
-        classes.push('header--white');
-    } else classes.push(['header--blue']);
+    const isPage = pathname.split('/')[1];
+    const routes = ['/', '/p', '/portfolio'];
 
-    // Home (index.html due to https redirect)
-    if (pathname === '/') classes.push(['header--home']);
+    const classNames = className(
+        'header',
+        { 'header--absolute': routes.includes(pathname) || isPage === 'p' },
+        [routes.includes(pathname) || isPage === 'p' ? 'header--white' : 'header--blue'],
+    );
 
     const CTA = () => {
         return (
@@ -42,7 +40,7 @@ export default withRouter(props => {
     };
 
     return (
-        <header id="header" className={classes.join(' ')} itemScope="" itemType="http://schema.org/WPHeader">
+        <header id="header" className={classNames} itemScope="" itemType="http://schema.org/WPHeader">
             <div className="header__bar">
                 <div className="container-fluid">
                     <div className="row align-items-center no-gutters">
