@@ -16,11 +16,45 @@ class PortfolioQuestions extends Component {
         super(props);
         this.state = {
             activeSensor: false,
-            animation: null,
-            getData: false,
+            animation: false
         }
-        this.props.getQA();
         this.addIcons();
+        this.props.getQA();
+    }
+
+    componentDidUpdate() {
+        if (isServer) return;
+
+        const cards = document.querySelectorAll('.accordion .card');
+
+        if (!cards.length) return;
+
+        const createOpacityAnimationConfig = animatingIn => ({
+            value: animatingIn ? [0, 1] : 0,
+            easing: 'linear',
+            duration: 800
+        });
+
+        const openFirst = () => {
+            const button = cards[0].querySelector('button');
+            if (button.classList.contains('is-active')) return;
+            button.click();
+        };
+
+        if (this.state.animation === false) {
+            this.setState({
+                animation: anime({
+                    targets: cards,
+                    opacity: createOpacityAnimationConfig(true),
+                    translateY: [50, 0],
+                    delay: anime.stagger(300, { start: 500 }),
+                    easing: 'spring(1, 80, 10)',
+                    complete: openFirst,
+                    autoplay: false
+                }),
+                activeSensor: true
+            })
+        }
     }
 
     addIcons() {
@@ -47,42 +81,7 @@ class PortfolioQuestions extends Component {
             prefix: 'fal'
         };
 
-        library.add([faQuestionCircle,faChevronDown]);
-    }
-
-    componentDidUpdate() {
-        if (isServer) return;
-
-        const cards = document.querySelectorAll('.accordion .card');
-
-        if (cards.length === 0) return;
-
-        const createOpacityAnimationConfig = animatingIn => ({
-            value: animatingIn ? [0, 1] : 0,
-            easing: 'linear',
-            duration: 800
-        });
-
-        const openFirst = () => {
-            const button = cards[0].querySelector('button');
-            if (button.classList.contains('is-active')) return;
-            button.click();
-        };
-
-        if (this.state.animation === null) {
-            this.setState({
-                animation: anime({
-                    targets: cards,
-                    opacity: createOpacityAnimationConfig(true),
-                    translateY: [50, 0],
-                    delay: anime.stagger(300, { start: 500 }),
-                    easing: 'spring(1, 80, 10)',
-                    complete: openFirst,
-                    autoplay: false
-                }),
-                activeSensor: true
-            })
-        }
+        library.add([faQuestionCircle, faChevronDown]);
     }
 
     renderLoader() {
@@ -124,16 +123,18 @@ class PortfolioQuestions extends Component {
         );
     }
 
+    onChange(isVisible) {
+        const { animation, activeSensor } = this.state;
+        if (isVisible && animation) {
+            animation.play();
+            this.setState({ activeSensor: !activeSensor })
+            return;
+        }
+    }
+
     render() {
         const { isLoading } = this.props;
-        const { animation, activeSensor } = this.state;
-        const playAnimation = isVisible => {
-            if (isVisible) {
-                animation.play();
-                this.setState({ activeSensor: !activeSensor })
-                return;
-            }
-        }
+        const { activeSensor } = this.state;
         return (
             <div className="portfolio-questions">
                 <h3 className="lead mt-2">
@@ -141,7 +142,7 @@ class PortfolioQuestions extends Component {
                     <span> Frequently Asked Questions</span>
                 </h3>
                 <hr />
-                <VisibilitySensor onChange={playAnimation} active={activeSensor}>
+                <VisibilitySensor onChange={this.onChange.bind(this)} active={activeSensor}>
                     {!isServer && isLoading ? this.renderLoader() : this.renderQA()}
                 </VisibilitySensor>
             </div>

@@ -15,11 +15,11 @@ export default withRouter( props => {
             <div className="footer__newsletter footer-newsletter">
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-6">
+                        <div className="col col-md-6 col-lg-7">
                             <h4 className="footer-newsletter__title mb-0 text-center text-lg-left">Subscribe to my <strong>Newsletter</strong></h4>
                             <p className="footer-newsletter__subtitle mb-0 mb-lg-4 text-center text-lg-left">Get awesome news about my work.</p>
                         </div>
-                        <div className="col-lg-6">
+                        <div className="col col-md-6 col-lg-5">
                             <Newsletter />
                         </div>
                     </div>

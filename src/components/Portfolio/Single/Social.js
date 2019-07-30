@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Like, Comments } from 'react-facebook';
 import { withRouter } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { isServer } from './../../../utilities/helpers';
 
 export default withRouter((props) => {
     const createUrl = () => {
@@ -35,8 +36,10 @@ export default withRouter((props) => {
                     <span> Be Social :)</span>
                 </h3>
                 <hr />
-                <Like href={socialUrl} showFaces share />
-                <Comments href={socialUrl} width="100%" />
+                {!isServer && <Fragment>
+                    <Like href={socialUrl} showFaces share />
+                    <Comments href={socialUrl} width="100%" />
+                </Fragment>}
             </div>
         </div>
     );

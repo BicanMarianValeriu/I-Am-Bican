@@ -42,7 +42,7 @@ class Portfolio extends Component {
 		};
 
 		let posts = [];
-		posts.push(selectedProject);
+		posts = [...posts, selectedProject];
 		posts = posts.filter(el => el != null); // Dirty
 
 		return (
