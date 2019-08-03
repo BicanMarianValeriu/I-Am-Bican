@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import filter from 'lodash/filter';
 
 /**
  * Get Post Title
@@ -32,7 +33,7 @@ const getContent = (data) => {
 const getExcerpt = (data) => {
 	if (!data) return;
 	if (!data.excerpt) {
-		var content = this.getContent(data).__html.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 250);
+		const content = this.getContent(data).__html.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 250);
 		return { __html: '<p>' + content + '</p>' };
 	} else {
 		if (!data.excerpt.protected) {
@@ -55,7 +56,7 @@ const getExcerpt = (data) => {
 const getTime = (data, format) => {
 	if (!data) return;
 	if (!format) format = 'h:mm a';
-	let date = new Date(data.date);
+	const date = new Date(data.date);
 	return date(format);
 };
 
@@ -69,7 +70,7 @@ const getDate = (data, format) => {
 	if (!data) return;
 	if (data.date_human) return data.date_human;
 	if (!format) format = 'MMMM Do, YYYY';
-	let date = new Date(data.date_gmt);
+	const date = new Date(data.date_gmt);
 	return date(format);
 };
 
@@ -81,8 +82,33 @@ const getDate = (data, format) => {
 const getFeaturedMedia = (data) => {
 	if (!data._embedded) return false;
 	if ('undefined' === typeof data._embedded['wp:featuredmedia']) return false;
-	let media = find(data._embedded['wp:featuredmedia'], item => ('undefined' !== typeof item.source_url));
+	const media = find(data._embedded['wp:featuredmedia'], item => ('undefined' !== typeof item.source_url));
 	return media;
 };
 
-export { getTitle, getExcerpt, getContent, getTime, getDate, getFeaturedMedia };
+const getMetaTags = data => {
+	if (!data) return;
+	const { yoast_meta = [] } = data;
+	console.log( yoast_meta )
+	let { title, description, keywords, robots = [], canonical } = yoast_meta;
+	robots = filter(robots, i => i === true);
+
+	let template = `<title>${title}</title>`;
+
+	if (description) {
+		template += `<meta name="description" content="${description}"/>`;
+	}
+	if (keywords) {
+		template += `<meta name="keywords" content="${keywords}"/>`;
+	}
+	if (robots.length) {
+		template += `<meta name="robots" content="${robots.join(', ')}"/>`;
+	}
+	if (canonical) {
+		template += `<link rel="canonical" ref="${canonical}"/>`;
+	}
+
+	console.log(template);
+}
+
+export { getTitle, getExcerpt, getContent, getTime, getDate, getFeaturedMedia, getMetaTags };

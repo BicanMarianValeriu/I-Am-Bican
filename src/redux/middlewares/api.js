@@ -5,16 +5,16 @@ import { serializeData } from "../../utilities/helpers";
 export const api = ({ dispatch }) => next => action => {
 
     if (action.type === API_REQUEST) {
-        let { endpoint, events, options = {} } = action.payload.meta;
-        let serialized = serializeData(action.payload.data);
+        let { payload: { meta: { endpoint, events: { success, error }, options = {} }, data } } = action;
+        const serialized = serializeData(data);
         if (serialized) endpoint = endpoint.concat('?', serialized);
 
         const { method = 'get' } = options;
         delete options['method'];
 
         return requestApi[method](endpoint, { ...options })
-            .then(response => dispatch({ type: events.success, payload: response.data }))
-            .catch(error => dispatch({ type: events.error ? events.error : API_REJECTED, payload: error }));
+            .then(response => dispatch({ type: success, payload: response.data }))
+            .catch(err => dispatch({ type: error ? error : API_REJECTED, payload: err }));
     }
 
     return next(action);

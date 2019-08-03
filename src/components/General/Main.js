@@ -16,9 +16,7 @@ class Main extends Component {
 	getOptions() {
 		const { options = {} } = this.props;
 		const defaultLoading = { enable: true, classes: { outer: 'placeholder' }, elements: this.isSingle() ? 1 : 6 };
-		return {
-			loading: { ...defaultLoading, ...options.loading }
-		};
+		return { loading: { ...defaultLoading, ...options.loading } };
 	}
 
 	getClasses() {
@@ -35,7 +33,7 @@ class Main extends Component {
 	renderPosts() {
 		const { posts = [], loading } = this.props;
 
-		if (!loading && posts.length) {
+		if (loading !== true && posts.length > 0) {
 			return posts.map(post => {
 				let postType;
 				switch (post.type) {

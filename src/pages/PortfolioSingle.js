@@ -28,7 +28,7 @@ class Portfolio extends Component {
 	}
 
 	shouldComponentUpdate(nextProps) {
-		return (this.props.selectedProject !== nextProps.selectedProject)
+		return (this.props.selectedProject !== nextProps.selectedProject);
 	}
 
 	render() {
@@ -40,10 +40,6 @@ class Portfolio extends Component {
 			description: selectedProject && selectedProject.yoast_meta.description,
 			canonical: "https://www.iambican.com" + pathname
 		};
-
-		let posts = [];
-		posts = [...posts, selectedProject];
-		posts = posts.filter(el => el != null); // Dirty
 
 		return (
 			<React.Fragment>
@@ -59,7 +55,7 @@ class Portfolio extends Component {
 				/>
 				<div id="content" className="content content--portfolio content--single">
 					<PrevNext current={selectedProject} />
-					<Main posts={posts} isSingle={true} />
+					<Main posts={[selectedProject]} isSingle={true} loading={!selectedProject} />
 				</div>
 			</React.Fragment >
 		);
@@ -68,11 +64,11 @@ class Portfolio extends Component {
 
 // Binds Query / Query Result
 const mapStateToProps = (store, props) => {
-	const { projects } = store;
+	const { projects, ui: { pending } } = store;
 	const { match: { params: { slug } } } = props;
 	const selectedProject = _find(projects, { slug });
 
-	return { selectedProject };
+	return { selectedProject, pending };
 };
 
 // Connect fetchDispatch function to props.fetchDispatch
