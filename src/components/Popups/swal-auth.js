@@ -17,8 +17,8 @@ const SwalToast = Swal.mixin({
  * @todo	Error Message From API
  * @return 	SWAL
  */
-const SwalInvalidCredentials = props => {
-	Swal.fire({
+const SwalInvalidCredentials = ({ afterValidation }) => {
+	return Swal.fire({
 		title: `Something went wrong.`,
 		html: `Invalid login credentials.`,
 		type: "error",
@@ -33,11 +33,13 @@ const SwalInvalidCredentials = props => {
 		cancelButtonText: "Try Again"
 	}).then(result => {
 		// Passing Props Back to Login if Try Again is Clicked
-		if (result.dismiss === Swal.DismissReason.cancel) SwalAuth(props);
+		if (result.dismiss === Swal.DismissReason.cancel) {
+			return SwalAuth({ afterValidation });
+		}
 	});
 }
 
-const SwalAuth = (props) => {
+const SwalAuth = ({ afterValidation }) => {
 	Swal.fire({
 		title: `Login`,
 		html: `
@@ -80,27 +82,15 @@ const SwalAuth = (props) => {
 		showCloseButton: true,
 		width: "35rem",
 		preConfirm: () => {
-			var fields = document.forms["swal-login"].getElementsByClassName("required");
-			var username = fields["username"].value;
-			var password = fields["password"].value;
+			const fields = document.forms["swal-login"].getElementsByClassName("required");
+			const { username: { value: username }, password: { value: password } } = fields;
 
-			if (validateFields(fields) === false) return Swal.showValidationMessage(`Please fill all fields.`);
+			if (validateFields(fields) === false) {
+				return Swal.showValidationMessage(`Please fill all fields.`);
+			}
 
 			// Atempt to get token if validation is done
-			props.afterValidation({ username, password });
-
-			// On Get Token Success
-			document.addEventListener('user/login_success', (e) => SwalToast.fire(
-				{ type: 'success', title: `Welcome back ${e.detail.name}.` }
-			)); 
-			
-			// On Logout Success
-			document.addEventListener('user/logout_success', () => SwalToast.fire(
-				{ type: 'info', title: `Logged out. See you soon :).` }
-			));
-
-			// On Error
-			document.addEventListener('user/get_token_error', () => SwalInvalidCredentials(props));
+			return afterValidation({ username, password });
 		},
 		allowOutsideClick: () => !Swal.isLoading()
 	}).then(result => {
@@ -110,10 +100,10 @@ const SwalAuth = (props) => {
 			type: 'question',
 			showConfirmButton: false,
 			allowEscapeKey: false,
-			allowOutsideClick: false
-		});
+			allowOutsideClick: false,
+		})
 	});
 }
 
 export default SwalAuth;
-export { SwalToast };
+export { SwalToast, SwalAuth, SwalInvalidCredentials };

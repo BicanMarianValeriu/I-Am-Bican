@@ -1,6 +1,6 @@
 import JWTDecode from "jwt-decode";
 import { apiRequest } from "../actions/api";
-import { setAuthToken, removeAuthToken } from "../../utilities/auth";
+import { setAuthToken, removeAuthToken, getAuthHeader } from "../../utilities/auth";
 import {
     USER_GET_TOKEN,
     USER_GET_TOKEN_SUCCESS,
@@ -38,20 +38,18 @@ export const userMiddleware = ({ dispatch }) => next => action => {
             break;
 
         case USER_GET_TOKEN_SUCCESS:
-            setAuthToken(payload.token);
+            const { token } = payload;
+
+            setAuthToken(token);
+
+            dispatch({ type: USER_LOGIN, payload: token });
 
             dispatch(setPendingUser(false));
-
-            dispatch({ type: USER_LOGIN, payload: payload.token });
-            
-            document.dispatchEvent(new CustomEvent('user/get_token_success', { detail: payload })); 
 
             break;
 
         case USER_GET_TOKEN_ERROR:
             dispatch(setPendingUser(false));
-
-            document.dispatchEvent(new CustomEvent('user/get_token_error'));
 
             break; 
 
@@ -59,12 +57,12 @@ export const userMiddleware = ({ dispatch }) => next => action => {
             const { data: { user: { id } } } = JWTDecode(payload);
 
             dispatch(
-                apiRequest('wp/v2/users', { id: id },
+                apiRequest('wp/v2/users/', { id: id },
                     { success: USER_LOGIN_SUCCESS, error: USER_LOGIN_ERROR },
-                    { headers: { "Authorization": "Bearer " + payload } }
+                    { headers: getAuthHeader() }
                 )
-            ); 
-
+            );
+            
             dispatch(setPendingUser(true));
 
             break;
@@ -81,14 +79,10 @@ export const userMiddleware = ({ dispatch }) => next => action => {
 
             dispatch(setPendingUser(false));
 
-            document.dispatchEvent(new CustomEvent('user/login_success', { detail: payload[0] }));
-
             break;
 
         case USER_LOGOUT_SUCCESS:
             dispatch(updateUser({ authentificated: false, data: {} }));
-
-            document.dispatchEvent(new CustomEvent('user/logout_success'));
 
             break;
 

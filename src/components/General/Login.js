@@ -13,7 +13,7 @@ class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			Modal: null,
+			chunk: null,
 			dropdownOpen: false
 		};
 		// Preload the component on mouseover
@@ -21,37 +21,63 @@ class Login extends Component {
 		this._onButtonClick = this._onButtonClick.bind(this);
 		this._onLogoutClick = this._onLogoutClick.bind(this);
 		this._afterValidation = this._afterValidation.bind(this);
+
 		this.toggle = this.toggle.bind(this);
 	}
 
-	componentDidMount() {
-		if (isAuthentificated()) this.props.authToken(getAuthToken());
+	componentDidUpdate(prevProps) {
+		const { user: { authentificated }, authToken } = this.props;
+		const { user: { authentificated: _authentificated } } = prevProps;
+
+		if (isAuthentificated()) {
+			authToken(getAuthToken());
+		};
+
+		if (authentificated !== _authentificated) {
+			console.log(this.state)
+		}
+	}
+
+	shouldComponentUpdate(prevProps) {
+		const { user: { authentificated } } = this.props;
+		const { user: { authentificated: _authentificated } } = prevProps;
+
+		if (authentificated !== _authentificated) return true;
+		return false;
 	}
 
 	_onMouseOver() {
-		if (this.state.Modal !== null) return;
-		import(/* webpackChunkName: "swal-auth" */ "../Popups/swal-auth")
-			.then(modal => this.setState({ Modal: modal.default }));
+		if (this.state.chunk !== null) return;
+		import(/* webpackChunkName: "swal-auth" */ "../Popups/swal-auth").then(chunk => this.setState({ chunk }));
 	}
 
 	_onButtonClick() {
-		if (this.state.Modal === null) {
+		const { chunk } = this.state;
+		if (chunk === null) {
 			import(/* webpackChunkName: "swal-auth" */ "../Popups/swal-auth")
-				.then(modal => this.setState({ Modal: modal.default }))
-				.then(() => this.state.Modal({ afterValidation: this._afterValidation }));
+				.then(chunk => this.setState({ chunk }))
+				.then(chunk => chunk && chunk.SwalAuth({ afterValidation: this._afterValidation }));
+			return;
 		}
 
-		if (this.state.Modal) this.state.Modal({ afterValidation: this._afterValidation });
+		return chunk.SwalAuth({ afterValidation: this._afterValidation });
 	}
 
 	_onLogoutClick() {
-		if (isAuthentificated() && this.props.user.authentificated) {
-			this.props.userLogout();
+		const { userLogout } = this.props;
+		if (isAuthentificated()) {
+			userLogout();
 		}
 	}
 
 	_afterValidation({ username, password }) {
-		return this.props.getToken({ username, password });
+		const { getToken } = this.props;
+		return getToken({ username, password });
+	}
+
+	_authToken() {
+		const { authToken } = this.props;
+		return authToken(getAuthToken());
 	}
 
 	toggle() {
@@ -59,7 +85,7 @@ class Login extends Component {
 	}
 
 	render() {
-		const { user: { data: { name = '' }, authentificated }, loading } = this.props;
+		const { user: { data: { name = '' } }, loading } = this.props;
 
 		const UserLoginSVG = () => {
 			const faCircle = {
@@ -93,7 +119,7 @@ class Login extends Component {
 		});
 
 		return (
-			<Fragment>{isAuthentificated() && authentificated ? (
+			<Fragment>{isAuthentificated() ? (
 				<Dropdown size="lg" direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
 					<DropdownToggle className={btnClasses}>
 						<UserLoginSVG />

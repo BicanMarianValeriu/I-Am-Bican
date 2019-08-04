@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
 
-export default function GetInTouch({ className, iconClass, label }) {
+export default function GetInTouch({ className = '', iconClass, label }) {
     const [modal, setModal] = useState(null);
 
     const _onMouseOver = () => {
@@ -11,8 +11,13 @@ export default function GetInTouch({ className, iconClass, label }) {
 
     const _onButtonClick = () => {
         if (modal === null) {
-            import(/* webpackChunkName: "swal-contact" */ "../Popups/swal-contact").then(m => setModal(m)).then(() => modal.default());
-        } else modal.default();
+            import(/* webpackChunkName: "swal-contact" */ "../Popups/swal-contact")
+                .then(modal => setModal(modal))
+                .then(modal => modal && modal.default());
+            return;
+        }
+
+        return modal.default();
     }
 
     const classNames = classnames('btn', className);

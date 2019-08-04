@@ -10,49 +10,25 @@
             background-color: #f5f5f5;
         }
     }
-
-    &--archive {
-        margin-bottom: 50px;
-        
-        &.card {
-            position: relative;
-            background: transparent;
-            transition: all .3s ease-in-out;
-
-            &:hover {
-                box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.10);
-            }
-
-            .card-body {
-                background: #fefefe;
-            }
-        }
-    }
-
-    &__media { 
-        > img, 
-        > div { 
-            height: 100%;
-            min-height: 230px;
-
-            &.download-loader {
-                position: relative;
-            }
-
-            div {
-                height: 100%;
-            }
-        } 
-    }
 }
 
 .main {
+    &--is-loading {
+        min-height: 600px;
+    }
+
     &--single {
         .entry {
             &--empty {
                 min-height: 500px;
                 margin-bottom: 0;
             }
+        }
+    }
+
+    &--archive {
+        .entry:not(.entry--empty) {
+            margin-bottom: 20px;
         }
     }
 }

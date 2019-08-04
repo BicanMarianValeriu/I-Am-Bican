@@ -1,49 +1,53 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'; 
+import Img from 'react-image';
+import classNames from 'classnames';
+import { bindActionCreators } from 'redux';
 import { getMedia } from '../../redux/actions/media';
 import _find from "lodash/find";
 import DownloadLoader from '../General/download-loader';
 import placeholder from '../../static/images/placeholder-bold.png';
 
 class FeaturedMedia extends Component {
-
     componentDidMount() {
-        this.props.getMedia({ include: this.props.mediaId });
+        const { getMedia, mediaId } = this.props;
+        getMedia({ include: mediaId });
     }
 
-    getMediaImage(media) {
-        const { large } = media.media_details.sizes;
-        const imageUrl = large ? large.source_url : placeholder;
-        return imageUrl;
+    getMediaImages() {
+        const { mediaObj = {} } = this.props;
+
+        const { media_details: {
+            sizes: {
+                thumbnail: { source_url: lowRes = '' } = {},
+                medium_large: { source_url: highRes = '' } = {}
+            } = {}
+        } = {} } = mediaObj;
+
+        return [highRes, lowRes];
     }
 
     getClasses() {
-        let classes = ['entry__media'];
-        const { mediaObj } = this.props;
-        const { large } = mediaObj ? mediaObj.media_details.sizes : {};
-        const imageUrl = large ? large.source_url : placeholder;
-        if (imageUrl === placeholder) classes.push(['entry__media--placeholder']);
-        if (this.props.isMain) classes.push(['entry__media--main']);
-        return classes.join(' ');
+        const { mediaObj = {} } = this.props;
+        return classNames('entry__media', {
+            'entry__media--loading': mediaObj === false
+        });
     }
 
-    renderImage(mediaObj) {
-        const imageUrl = this.getMediaImage(mediaObj);
-
-        const style = {
-            backgroundImage: `url('${imageUrl}')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-        };
-
-        return (<div className="entry__media-figure__src" style={style} />);
+    renderImage() {
+        return (
+            <Img src={this.getMediaImages()}
+                className="entry__media-src"
+                container={children => <div className="entry__media-wrapper">{children}</div>}
+                unloader={<img className="entry__media-src" alt="IAMBican Placeholder" src={placeholder} />}
+                loader={<DownloadLoader />}
+            />
+        );
     }
 
     render() {
-        const { mediaObj } = this.props;
         return (
-            <div className={this.getClasses()}>{mediaObj ? this.renderImage(mediaObj) : <DownloadLoader />}</div>
+            <div className={this.getClasses()}>{this.renderImage()}</div>
         );
     }
 }
@@ -51,13 +55,13 @@ class FeaturedMedia extends Component {
 // Binds Query / Query Result
 const mapStateToProps = (store, props) => {
     const { media } = store;
-    const mediaObj = _find(media, { id: props.mediaId }); 
+    const mediaObj = _find(media, { id: props.mediaId }) || false;
 
     return ({ mediaObj });
 };
 
 // Connect fetchDispatch function to props.fetchDispatch
-const mapDispatchToProps = dispatch => bindActionCreators({ getMedia }, dispatch); 
+const mapDispatchToProps = dispatch => bindActionCreators({ getMedia }, dispatch);
 
 // Export container while connected to store and SSR
 export default connect(mapStateToProps, mapDispatchToProps)(FeaturedMedia);

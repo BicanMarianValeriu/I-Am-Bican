@@ -70,7 +70,7 @@
     position: relative;
     
     &:hover {
-        @include media-breakpoint-up(lg) {
+        @include media-breakpoint-up('lg') {
             .portfolio { 
                 &__description {
                         border-color: $gray-100;
@@ -80,10 +80,12 @@
                 
             .entry {
                 &__media {
-                    &-figure {
-                        &__src {
-                            transform: scale(1.1) rotate(-4deg);
-                        }
+                    &::after {
+                        opacity: 0;
+                    }
+
+                    &-wrapper {
+                        transform: scale(1.1) rotate(-4deg);
                     }
                 }
             }
@@ -92,7 +94,7 @@
 
     &.entry--archive {
         &:last-child {
-            @include media-breakpoint-down(md) { 
+            @include media-breakpoint-down('md') { 
                 margin-bottom: 0;
             }
         }
@@ -129,7 +131,14 @@
     .entry {  
         &__media {
             position: relative;
-            overflow: hidden; 
+            overflow: hidden;
+            transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            
+            &--loading {
+                .entry__media-wrapper {
+                    filter: blur(1px);
+                }
+            }
 
             &::before,
             &::after {
@@ -151,15 +160,31 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background-color: rgba(theme-color('primary'), .10);
+                background-color: rgba( theme-color( 'primary' ), .20 );
+                transition: inherit;
                 z-index: 2;
             }
 
-            &-figure {
-                &__src {
-                    transform: scale3d(1.05,1.05,1.05);
-                    transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                    transition-delay: 50ms;
+            &-wrapper {
+                position: relative;
+                transform: scale3d(1.05,1.05,1.05);
+                transition: inherit;
+
+                &::before {
+                    content: '';
+                    display: block;
+                    width: 100%;
+                    padding-bottom: 65%;
+                }
+
+                img {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate3d(-50%,-50%,0);
+                    min-width: 100%;
+                    min-height: 100%;
+                    max-width: 100%;
                 }
             }
         }
