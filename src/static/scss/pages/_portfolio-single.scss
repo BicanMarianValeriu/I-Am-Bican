@@ -17,7 +17,6 @@
 
             &__title {
                 font-size: 1.8rem;
-                text-align: center; 
             }
 
             &__content {
@@ -44,20 +43,10 @@
     &__header {
         position: relative;
         padding: 4.5rem 0;
+        background-color: $gray-100;
     
         @include media-breakpoint-down(md) { 
             padding: 2.5rem 0 1.5rem;
-        }
-
-        &::before {
-            content: '';
-            position: absolute;
-            background-color: $gray-100;
-            top: 0;
-            bottom: 0;
-            left: calc(-100vw / 2 + 100% / 2 );
-            right: calc(-100vw / 2 + 100% / 2 );
-            z-index: -1;
         }
     }  
 } 
@@ -191,6 +180,11 @@
                         width: 17px; 
                     }
                 }
+            }
+
+            img {
+                max-width: 100%;
+                max-height: 55px;
             }
         } 
     }

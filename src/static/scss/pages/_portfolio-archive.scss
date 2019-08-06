@@ -130,8 +130,6 @@
 
     .entry {  
         &__media {
-            position: relative;
-            overflow: hidden;
             transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             
             &--loading {
@@ -163,29 +161,6 @@
                 background-color: rgba( theme-color( 'primary' ), .20 );
                 transition: inherit;
                 z-index: 2;
-            }
-
-            &-wrapper {
-                position: relative;
-                transform: scale3d(1.05,1.05,1.05);
-                transition: inherit;
-
-                &::before {
-                    content: '';
-                    display: block;
-                    width: 100%;
-                    padding-bottom: 65%;
-                }
-
-                img {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate3d(-50%,-50%,0);
-                    min-width: 100%;
-                    min-height: 100%;
-                    max-width: 100%;
-                }
             }
         }
     }

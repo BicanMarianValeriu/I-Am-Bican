@@ -1,6 +1,7 @@
 // Express requirements
 import fs from "fs";
 import path from "path";
+import LRUCache from 'lru-cache';
 
 // React requirements
 import React from "react";
@@ -17,7 +18,14 @@ import routes from './../src/routes';
 import configStore from "./../src/redux/store";
 import { authToken, userLogout } from './../src/redux/actions/user';
 import manifest from "./../build/asset-manifest.json";
-import { injectHTML, formatScripts } from "./helpers";
+import { injectHTML, formatScripts, getCacheKey } from "./helpers";
+
+// This is where we cache our rendered HTML pages
+const ssrCache = new LRUCache({
+	max: 100 * 1024 * 1024,
+	length: n => n.length,
+	maxAge: 1000 * 60 * 60 * 24 * 30
+});
 
 /**
  * React / Expres Routing function
@@ -32,7 +40,7 @@ export default (req, res, next) => {
 		path: route.path,
 		exact: true,
 	}));
-	
+
 	if (!match) {
 		next();
 		return;
@@ -51,6 +59,14 @@ export default (req, res, next) => {
 		if (err) {
 			console.error('Read Error', err);
 			return res.status(404).end();
+		}
+
+		// If we have a page in the cache, let's serve it
+		const cacheKey = getCacheKey(req);
+		if (ssrCache.has(cacheKey)) {
+			res.setHeader('X-Cache', 'HIT');
+			res.send(ssrCache.get(cacheKey));
+			return;
 		}
 
 		const { store } = configStore(req.url);
@@ -106,7 +122,9 @@ export default (req, res, next) => {
 					state: JSON.stringify(store.getState()).replace(/</g, '\\u003c')
 				});
 
-				// Done
+				// Done, but also let's cache this page
+				ssrCache.set(cacheKey, html);
+				res.setHeader('X-Cache', 'MISS');
 				res.send(html);
 			}
 		});

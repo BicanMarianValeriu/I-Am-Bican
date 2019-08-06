@@ -94,9 +94,9 @@ class ClientLogos extends Component {
 		// Hide logos on new column
 		const newLogos = companies[newFrame].children;
 		for (let item of newLogos) {
-			if (parseFloat(item.style.opacity) > 0.5) {
+			//if (parseFloat(item.style.opacity) > 0.5) {
 				anime({ targets: item, opacity: 0, duration: 350, easing: 'linear' });
-			}
+			//}
 		}
 
 		// And then show the new logo

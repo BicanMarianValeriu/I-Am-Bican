@@ -10,6 +10,35 @@
             background-color: #f5f5f5;
         }
     }
+
+    &__media {
+        position: relative;
+        overflow: hidden;
+
+        &-wrapper {
+            position: relative;
+            transform: scale3d(1.05,1.05,1.05);
+            transition: inherit;
+
+            &::before {
+                content: '';
+                display: block;
+                width: 100%;
+                padding-bottom: 65%;
+            }
+
+            img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate3d(-50%,-50%,0);
+                object-fit: cover;
+                min-width: 100%;
+                min-height: 100%;
+                max-width: 100%;
+            } 
+        }
+    }
 }
 
 .main {

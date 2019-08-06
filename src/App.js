@@ -12,7 +12,7 @@ import routes from './routes';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-const App = (props) => {
+const App = props => {
 	const { ui: { pending } } = props;
 
 	library.add(icons);

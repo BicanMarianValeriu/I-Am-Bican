@@ -1,18 +1,21 @@
 import React from 'react';
+import classNames from 'classnames';
 import { Link, withRouter } from 'react-router-dom';
 import { getTitle } from '../../utilities/wordpress/wpPost';
 
 const Title = props => {
-    const { type, slug } = props;
+    const { type, slug, className } = props;
 
     // Title
-    let title = getTitle(props);
+    const title = getTitle(props);
 
     // Class   
-    let headingClass = [`${type}__title`];
+    const headingClass = classNames(`${type}__title`, {
+        [className]: className !== undefined
+    });
 
     return (
-        <h1 className={headingClass.join(' ')}>{
+        <h1 className={headingClass}>{
             props.isSingle ?
                 <span dangerouslySetInnerHTML={title}></span> :
                 <Link to={`${type}/${slug}`} dangerouslySetInnerHTML={title}></Link>

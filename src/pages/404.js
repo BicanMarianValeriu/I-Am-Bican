@@ -7,7 +7,7 @@ import "./../static/scss/pages/_404.scss";
 
 class FourOFour extends Component {
 	componentDidMount() {
-		const header = document.querySelector('header.header'); 
+		const header = document.querySelector('header.header');
 		header.classList.remove('header--blue');
 		header.classList.add('header--absolute');
 		header.classList.add('header--white');
@@ -15,7 +15,7 @@ class FourOFour extends Component {
 
 	render() {
 		const meta = {
-			title: "Pshht - not found | I Am Bican"
+			title: "Page Not Found"
 		};
 		return (
 			<React.Fragment>
@@ -25,11 +25,7 @@ class FourOFour extends Component {
 				<div id="content" className="content content--404 text-center">
 					<PageIntro pageTitle="404 - Not Found" />
 					<div className="container">
-						<div className="row">
-							<div className="col text-center py-5">
-								<p>The page you requested is not found.</p>
-							</div>
-						</div>
+						<p className="lead text-center py-5 mb-0">The page you requested is not found.</p>
 					</div>
 				</div>
 			</React.Fragment>

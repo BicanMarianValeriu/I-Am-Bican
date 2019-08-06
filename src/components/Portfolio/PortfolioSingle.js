@@ -15,9 +15,9 @@ class PortfolioSingle extends Component {
 
 		return (
 			<article className={this.getClasses()}>
-				<div className="container">
-					<Header {...this.props} />
-					<div className="portfolio-content">
+				<Header {...this.props} />
+				<div className="portfolio-content">
+					<div className="container">
 						<div className="row py-4 py-md-5 my-2">
 							<div className="col-12 col-lg">
 								<Content {...this.props} isSingle={true} />

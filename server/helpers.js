@@ -33,4 +33,10 @@ const injectHTML = (data, { html, title, meta, body, scripts, state }) => {
     return data;
 };
 
-export { filterScripts, formatScripts, injectHTML };
+/**
+ * Get Cache Key
+ * @param {object} req Express Req
+ */
+const getCacheKey = req => `${req.path}`;
+
+export { filterScripts, formatScripts, injectHTML, getCacheKey };
