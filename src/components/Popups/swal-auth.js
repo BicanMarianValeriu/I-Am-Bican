@@ -1,6 +1,8 @@
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { validateFields } from "../../utilities/helpers";
 
+window.Swal = Swal;
+
 /**
  * Toast Mixin
  */
@@ -10,6 +12,19 @@ const SwalToast = Swal.mixin({
 	showConfirmButton: false,
 	timer: 3000
 });
+
+/**
+ * Checking Credentials
+ */
+const SwalCheckCredentials = () => {
+	return Swal.fire({
+		title: `Checking details, please wait...`,
+		type: 'question',
+		showConfirmButton: false,
+		allowEscapeKey: false,
+		allowOutsideClick: false,
+	})
+}
 
 /**
  * Render Invalid Credentials Modal
@@ -41,14 +56,14 @@ const SwalInvalidCredentials = ({ afterValidation }) => {
 
 const SwalAuth = ({ afterValidation }) => {
 	Swal.fire({
-		title: `Login`,
+		titleText: 'Login',
 		html: `
 		<form name="swal-login">
             <div class="row">
                 <div class="col-12">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">User</span>
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                         </div>
                         <input class="form-control required" aria-label="Username" aria-describedby="basic-addon1" name="username" type="text" placeholder="Your Username" required/>
                     </div>
@@ -56,7 +71,7 @@ const SwalAuth = ({ afterValidation }) => {
                 <div class="col-12">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon2">Pass</span>
+                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-key"></i></span>
                         </div> 
                         <input class="form-control required" aria-label="Password" aria-describedby="basic-addon2" name="password" type="password" placeholder="Your Password" required/>      
                     </div>
@@ -64,7 +79,7 @@ const SwalAuth = ({ afterValidation }) => {
                 <div class="col-12">
                     <div class="row"> 
                         <div class="col-12 text-right">
-                            <p><a href="javascript:void(0)" class="swal-login__forgot-pwd">Forgot Password?</a></p>
+                            <p><a href="javascript:void(0);" class="swal-login__forgot-pwd"><small>Forgot Password?</small></a></p>
                         </div>
                     </div>
                 </div>
@@ -72,7 +87,7 @@ const SwalAuth = ({ afterValidation }) => {
 		</form>`,
 		footer: `View your privacy policy &nbsp;<a href="/p/privacy-policy">here</a>.`,
 		customClass: {
-			popup: 'swal-auth',
+			popup: 'swal2-popup--auth',
 			confirmButton: 'btn btn-primary'
 		},
 		buttonsStyling: false,
@@ -94,16 +109,10 @@ const SwalAuth = ({ afterValidation }) => {
 		},
 		allowOutsideClick: () => !Swal.isLoading()
 	}).then(result => {
-		if (result.dismiss) return;
-		Swal.fire({
-			title: `Checking details, please wait...`,
-			type: 'question',
-			showConfirmButton: false,
-			allowEscapeKey: false,
-			allowOutsideClick: false,
-		})
+		if (!result.dismiss) {
+			return SwalCheckCredentials();
+		}
 	});
 }
 
-export default SwalAuth;
-export { SwalToast, SwalAuth, SwalInvalidCredentials };
+export { SwalToast, SwalAuth, SwalCheckCredentials, SwalInvalidCredentials };

@@ -10,6 +10,7 @@ import PageIntro from "../components/Sections/page-intro";
 import Main from "../components/General/Main";
 import { requestApi } from "../redux/actions/api";
 import { getPage, updatePages } from "../redux/actions/pages";
+import { getMetaTags } from "../utilities/wordpress/wpPost";
 
 class Page extends Component {
 	componentDidMount() {
@@ -30,25 +31,12 @@ class Page extends Component {
 
 	render() {
 		const { selectedPage, location: { pathname } } = this.props;
-		const title = selectedPage && selectedPage.title.rendered;
-
-		const meta = {
-			title,
-			description: selectedPage && selectedPage.yoast_meta.description,
-			canonical: "https://www.iambican.com" + pathname
-		};
+		const entry = selectedPage || {};
+		const { title: { rendered: title = '' } = {} } = entry;
 
 		return (
 			<React.Fragment>
-				<Helmet
-					title={meta.title}
-					meta={[
-						meta.description ? { name: 'description', content: meta.description } : {}
-					]}
-					link={[
-						meta.canonical ? { rel: 'canonical', href: meta.canonical } : {}
-					]}
-				/>
+				<Helmet {...getMetaTags(entry, pathname)} />
 				<div id="content" className="content content--page content--single">
 					<PageIntro pageTitle={title} />
 					<div className="container">

@@ -35,7 +35,7 @@ const App = props => {
 	return (
 		<React.Fragment>
 			<Helmet
-				titleTemplate="%s - IAmBican"
+				titleTemplate="%s - I Am Bican"
 				meta={[
 					{
 						name: 'theme-color',

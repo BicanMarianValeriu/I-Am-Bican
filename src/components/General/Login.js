@@ -6,44 +6,46 @@ import classNames from 'classnames';
 import { layer, icon } from '@fortawesome/fontawesome-svg-core'
 import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
 
-import { getToken, verifyToken, authToken, userLogout } from "../../redux/actions/user";
-import { isAuthentificated, getAuthToken } from "../../utilities/auth";
+import { getToken, userLogout, updateUser } from "../../redux/actions/user";
+import { isAuthentificated, getCurrentUser } from "../../utilities/auth";
+import { isServer } from "../../utilities/helpers";
 
 class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			chunk: null,
-			dropdownOpen: false
+			dropdownOpen: false,
+			messageShown: false
 		};
 		// Preload the component on mouseover
 		this._onMouseOver = this._onMouseOver.bind(this);
 		this._onButtonClick = this._onButtonClick.bind(this);
 		this._onLogoutClick = this._onLogoutClick.bind(this);
+		this._onUserUpdated = this._onUserUpdated.bind(this);
 		this._afterValidation = this._afterValidation.bind(this);
 
-		this.toggle = this.toggle.bind(this);
+		this._toggle = this._toggle.bind(this);
 	}
 
-	componentDidUpdate(prevProps) {
-		const { user: { authentificated }, authToken } = this.props;
-		const { user: { authentificated: _authentificated } } = prevProps;
+	componentDidMount() {
+		const { user: { authentificated }, updateUser } = this.props;
 
-		if (isAuthentificated()) {
-			authToken(getAuthToken());
+		// If token exists but not in state, retrieve from Local and update state
+		if (isAuthentificated() && authentificated !== true) {
+			updateUser({ authentificated: true, data: getCurrentUser() });
 		};
 
-		if (authentificated !== _authentificated) {
-			console.log(this.state)
+		if (!isServer) {
+			document.addEventListener('iambican/userUpdated', this._onUserUpdated);
 		}
 	}
 
-	shouldComponentUpdate(prevProps) {
-		const { user: { authentificated } } = this.props;
-		const { user: { authentificated: _authentificated } } = prevProps;
-
-		if (authentificated !== _authentificated) return true;
-		return false;
+	_onUserUpdated() {
+		const { chunk } = this.state;
+		if (chunk === null) return;
+		const titleText = isAuthentificated() ? `Welcome back ${getCurrentUser().name}.` : 'You have been logged out.';
+		chunk.SwalToast.fire({ type: 'success', titleText });
 	}
 
 	_onMouseOver() {
@@ -75,17 +77,16 @@ class Login extends Component {
 		return getToken({ username, password });
 	}
 
-	_authToken() {
-		const { authToken } = this.props;
-		return authToken(getAuthToken());
-	}
-
-	toggle() {
+	_toggle() {
 		this.setState(prevState => ({ dropdownOpen: !prevState.dropdownOpen }));
 	}
 
 	render() {
-		const { user: { data: { name = '' } }, loading } = this.props;
+		const { loading } = this.props;
+		const { name: userName = '', avatar_urls = {
+			48: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==',
+			96: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
+		} } = getCurrentUser();
 
 		const UserLoginSVG = () => {
 			const faCircle = {
@@ -102,12 +103,19 @@ class Login extends Component {
 
 			const layers = layer(push => {
 				push(icon(faCircle, { transform: { size: 35 } }));
-				push(icon(faUser, { transform: { size: 16, y: -1 } }));
+				!isAuthentificated() && push(icon(faUser, { transform: { size: 16, y: -1 } }));
 			});
+
+			const avatarProps = {
+				className: 'header-login__avatar',
+				src: avatar_urls[48],
+				alt: `${userName}'s Avatar`
+			};
 
 			return (
 				<Fragment>
 					{loading && <div className="header-login__mask"><div></div></div>}
+					{isAuthentificated() && <img alt="" {...avatarProps} />}
 					<div className="header-login__svg" dangerouslySetInnerHTML={{ __html: layers.html[0] }}></div>
 				</Fragment>
 			);
@@ -120,14 +128,15 @@ class Login extends Component {
 
 		return (
 			<Fragment>{isAuthentificated() ? (
-				<Dropdown size="lg" direction="left" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-					<DropdownToggle className={btnClasses}>
+				<Dropdown size="lg" direction="left" isOpen={this.state.dropdownOpen} toggle={this._toggle}>
+					<DropdownToggle className={btnClasses} onMouseOver={this._onMouseOver} onTouchStart={this._onMouseOver}>
 						<UserLoginSVG />
 					</DropdownToggle>
 					<DropdownMenu right>
-						<DropdownItem header>Howdy {name}</DropdownItem>
+						<DropdownItem header>Howdy {userName}</DropdownItem>
 						<DropdownItem divider />
-						<DropdownItem>Another Action</DropdownItem>
+						<DropdownItem>Dashboard</DropdownItem>
+						<DropdownItem>Courses</DropdownItem>
 						<DropdownItem divider />
 						<DropdownItem className="text-muted" onClick={this._onLogoutClick} >
 							<div className="header-logout__svg">
@@ -157,6 +166,6 @@ const mapStateToProps = store => {
 };
 
 // mapDispatchToProps 
-const mapDispatchToProps = dispatch => bindActionCreators({ getToken, verifyToken, authToken, userLogout }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getToken, updateUser, userLogout }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

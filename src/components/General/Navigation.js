@@ -78,5 +78,8 @@ const frontload = async props => await props.getMenu(props.wpMenuId);
 
 // Export container while connected to store and SSR
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(
-    frontloadConnect(frontload, { onMount: true, onUpdate: false })(Navigation)
+    frontloadConnect(frontload, { 
+        onMount: true, 
+        onUpdate: false
+    })(Navigation)
 ));

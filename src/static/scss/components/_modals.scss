@@ -1,7 +1,4 @@
-body.swal2-show:not(.swal2-toast-shown) {
-  	padding-right: 20px !important;
-}
-
+body:not(.swal2-shown),
 body.swal2-toast-shown {
 	padding-right: 0 !important;
 	  
@@ -13,6 +10,12 @@ body.swal2-toast-shown {
 .swal2-popup {
 	padding: 20px;
 	border-radius: 0;
+
+	&--auth {
+		.input-group-text {
+			min-width: 41px;
+		}
+	}
 
 	&.swal-contact {
 		.swal2-title {
@@ -30,18 +33,5 @@ body.swal2-toast-shown {
 				} 
 			}
 		}
-	} 
-	
-	.swal2-styled.swal2 {
-		&-confirm { 
-			border-radius: 50px;
-			border-top-left-radius: 50px;
-			border-bottom-left-radius: 50px; 
-			padding: 10px 42px;  
-
-			@media (max-width: 576px) {
-				font-size: 0.9rem;
-			}
-		}
-	} 
+	}
 }

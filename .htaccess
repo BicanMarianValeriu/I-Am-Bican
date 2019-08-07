@@ -23,6 +23,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d 
 RewriteCond %{REQUEST_FILENAME} !\/$ 
 RewriteRule ^(.*) /
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
 ###############################################
 
 ############ SECURITY ###########

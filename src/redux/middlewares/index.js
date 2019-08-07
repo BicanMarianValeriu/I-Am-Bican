@@ -18,10 +18,7 @@ export default function ({ history, enhancers }) {
 
     const arr = [
         api,
-        createPromise({
-            // Custom configuration
-            typeDelimiter: '/',
-        }),
+        createPromise(),
         routerMiddleware(history),
         projectsMiddleware,
         qaMiddleware,

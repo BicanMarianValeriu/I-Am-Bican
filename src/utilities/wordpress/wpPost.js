@@ -1,5 +1,4 @@
 import find from 'lodash/find';
-import filter from 'lodash/filter';
 
 /**
  * Get Post Title
@@ -86,29 +85,34 @@ const getFeaturedMedia = (data) => {
 	return media;
 };
 
-const getMetaTags = data => {
-	if (!data) return;
-	const { yoast_meta = [] } = data;
-	console.log( yoast_meta )
-	let { title, description, keywords, robots = [], canonical } = yoast_meta;
-	robots = filter(robots, i => i === true);
+/**
+ * Return formated tags object ready for Helmet
+ * @param {object} data WP Object
+ */
+const getMetaTags = (data, pathname) => {
+	let tags = {}
 
-	let template = `<title>${title}</title>`;
+	const { meta: {
+		title = '',
+		description = '',
+		robots = '',
+		canonical = '',
+		opengraph = {},
+		twitter = {},
+	} = {} } = data;
 
-	if (description) {
-		template += `<meta name="description" content="${description}"/>`;
-	}
-	if (keywords) {
-		template += `<meta name="keywords" content="${keywords}"/>`;
-	}
-	if (robots.length) {
-		template += `<meta name="robots" content="${robots.join(', ')}"/>`;
-	}
-	if (canonical) {
-		template += `<link rel="canonical" ref="${canonical}"/>`;
+	tags = {
+		title,
+		meta: [
+			{ name: 'description', content: description },
+			robots ? { name: 'robots', content: robots } : {},
+			...Object.entries(opengraph).map(item => ({ name: item[0], content: item[1] })),
+			...Object.entries(twitter).map(item => ({ name: item[0], content: item[1] })),
+		],
+		link: [{ rel: 'canonical', href: canonical !== '' ? canonical : "https://www.iambican.com" + pathname }]
 	}
 
-	console.log(template);
+	return tags;
 }
 
 export { getTitle, getExcerpt, getContent, getTime, getDate, getFeaturedMedia, getMetaTags };

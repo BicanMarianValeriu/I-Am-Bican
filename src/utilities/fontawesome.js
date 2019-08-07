@@ -1,7 +1,7 @@
 import { faGrinHearts } from '@fortawesome/free-regular-svg-icons/faGrinHearts';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons/faPaperPlane';
 import { faFileCode } from '@fortawesome/free-regular-svg-icons/faFileCode';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope'; 
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
 import { faEnvelopeOpen } from '@fortawesome/free-regular-svg-icons/faEnvelopeOpen';
 import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
 import { faMoneyBillAlt } from '@fortawesome/free-regular-svg-icons/faMoneyBillAlt';
@@ -19,6 +19,8 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faDesktop } from '@fortawesome/free-solid-svg-icons/faDesktop';
 import { faEye } from '@fortawesome/free-solid-svg-icons/faEye';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons/faGlobe';
+import { faKey } from '@fortawesome/free-solid-svg-icons/faKey';
+import { faUser as faUserSolid } from '@fortawesome/free-solid-svg-icons/faUser';
 import { faPlane } from '@fortawesome/free-solid-svg-icons/faPlane';
 import { faBolt } from '@fortawesome/free-solid-svg-icons/faBolt';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
@@ -35,12 +37,12 @@ import { faGit } from '@fortawesome/free-brands-svg-icons/faGit';
 import { faJs } from '@fortawesome/free-brands-svg-icons/faJs';
 import { faGulp } from '@fortawesome/free-brands-svg-icons/faGulp';
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
-import { faLinkedin} from '@fortawesome/free-brands-svg-icons/faLinkedin';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 
 // Exports
 const icons = [
-	faEnvelope, faEnvelopeOpen, faDownload, faPuzzlePiece, faHeart, faCloudDownloadAlt,
-	faCheck, faBolt, faDesktop, faEye, faGlobe, faPlane, faSearch, faGrinHearts, faPaperPlane,
+	faEnvelope, faEnvelopeOpen, faDownload, faPuzzlePiece, faHeart, faCloudDownloadAlt, faKey,
+	faCheck, faBolt, faDesktop, faEye, faGlobe, faPlane, faSearch, faGrinHearts, faPaperPlane, faUserSolid,
 	faFileCode, faSignOutAlt, faUser, faCircle, faThLarge, faArrowLeft, faArrowRight, faMoneyBillAlt
 ];
 

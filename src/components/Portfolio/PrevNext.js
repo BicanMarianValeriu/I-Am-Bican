@@ -7,9 +7,9 @@ export default class PrevNext extends Component {
     renderLink(context) {
         const { current = {} } = this.props;
 
-        const { prev_next = {} } = current;
+        const { navigation = {} } = current;
 
-        let obj = prev_next && prev_next[context];
+        let obj = navigation && navigation[context];
 
         let classes = ['portfolio-prev-next__item', 'portfolio-prev-next__item--' + context];
 

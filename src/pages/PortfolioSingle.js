@@ -13,6 +13,7 @@ import { requestApi } from "../redux/actions/api";
 
 // SCSS 
 import "./../static/scss/pages/_portfolio-single.scss";
+import { getMetaTags } from "../utilities/wordpress/wpPost";
 
 class Portfolio extends Component {
 	componentDidMount() {
@@ -33,26 +34,11 @@ class Portfolio extends Component {
 
 	render() {
 		const { selectedProject, location: { pathname } } = this.props;
-		const seoTitle = selectedProject && selectedProject.yoast_meta.title;
-
-		const meta = {
-			title: seoTitle || (selectedProject && selectedProject.title.rendered),
-			description: selectedProject && selectedProject.yoast_meta.description,
-			canonical: "https://www.iambican.com" + pathname
-		};
+		const entry = selectedProject || {};
 
 		return (
 			<React.Fragment>
-				<Helmet
-					title={meta.title}
-					meta={[
-						{ name: 'theme-color', content: '#fbfbfb' },
-						meta.description ? { name: 'description', content: meta.description } : {}
-					]}
-					link={[
-						meta.canonical ? { rel: 'canonical', href: meta.canonical } : {}
-					]}
-				/>
+				<Helmet {...getMetaTags(entry, pathname)} />
 				<div id="content" className="content content--portfolio content--single">
 					<PrevNext current={selectedProject} />
 					<Main posts={[selectedProject]} isSingle={true} loading={!selectedProject} />

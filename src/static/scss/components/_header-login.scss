@@ -1,3 +1,49 @@
+.header__login {
+    /* Dropdowns */
+    .dropdown {
+        &-divider {
+            margin: 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        &-item {
+            color: #222;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.8125rem;
+            line-height: 1.1538;
+            cursor: pointer;
+
+            span {
+                color: inherit;
+                font-size: inherit;
+                font-weight: inherit;
+                line-height: inherit;
+                text-transform: inherit;
+            }
+
+            &:active {
+                color: white!important;
+                outline: none;
+
+                span {
+                    color: white;
+                } 
+            }
+
+            &.text-muted {
+                font-weight: 600;
+                text-transform: uppercase;
+            }
+        }
+
+        &-header {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #222;
+        }
+    }
+}
+
 .header-login {
     position: relative;
     padding: 0!important;
@@ -30,18 +76,23 @@
 
     & + .dropdown-menu { 
         border: 0 !important;
+        padding-bottom: 0;
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
         transition: opacity 0.5s, transform 0.2s;
         transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
         min-width: 175px;
 
         &.show {
-            transform: scale3d(1, 1, 1) translate3d(0, 10px, 0);
+            transform: scale3d(1, 1, 1) translate3d(-175px, 3px, 0)!important;
         }
     }
     
     &--loading {
         pointer-events: none;
+
+        .header-login__avatar {
+            filter: blur(10px);
+        }
     }
 
     /* Mask */
@@ -79,47 +130,15 @@
         }
     }
 
-    /* Dropdowns */
-    .dropdown {
-        &-divider {
-            margin: 0;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        &-item {
-            color: #222;
-            padding: 0.8rem 1.5rem;
-            font-weight: bold;
-            font-size: 0.8125rem;
-            font-weight: 600;
-            line-height: 1.1538;
-            text-transform: uppercase;
-            cursor: pointer;
-
-            span {
-                color: inherit;
-                font-weight: bold;
-                font-size: inherit;
-                font-weight: inherit;
-                line-height: inherit;
-                text-transform: inherit;
-            }
-
-            &:active {
-                color: white!important;
-                outline: none;
-
-                span {
-                    color: white;
-                } 
-            }
-        }
-
-        &-header {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #222;
-        }
+    &__avatar {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 90%;
+        height: 90%;
+        transform: translate3d(-50%,-50%,0);
+        border-radius: 100%;
+        background-color: #ccc;
     }
 }
 
