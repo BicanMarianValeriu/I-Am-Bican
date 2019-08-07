@@ -43,13 +43,15 @@ class ClientLogos extends Component {
 		const target = document.querySelector('.company-logos__title');
 		Splitting({ target: target });
 
-		const scene = new ScrollMagic.Scene({
-			triggerElement: '.company-logos__title',
-			triggerHook: .85,
-			reverse: false,
-		}).setClassToggle('.company-logos__title', 'company-logos__title--animated').addTo(controller);
-
-		this.setState({ scene });
+		const { scene } = this.state;
+		if (scene === null) {
+			const newScene = new ScrollMagic.Scene({
+				triggerElement: '.company-logos__title',
+				triggerHook: .85,
+				reverse: false,
+			}).setClassToggle('.company-logos__title', 'company-logos__title--animated').addTo(controller);
+			this.setState({ scene: newScene });
+		}
 
 		_delayCall(this.updateLogos, 1000);
 	}
@@ -75,7 +77,7 @@ class ClientLogos extends Component {
 					const item = document.querySelectorAll('.companies')[j].children[i];
 					current[j] = i; // Set column and its logo index
 					this.setState({ current });
-					anime({ targets: item, opacity: 1 });
+					anime({ targets: item, opacity: 1, complete: () => item.classList.add('active') });
 				}
 			}
 		}
@@ -94,13 +96,26 @@ class ClientLogos extends Component {
 		// Hide logos on new column
 		const newLogos = companies[newFrame].children;
 		for (let item of newLogos) {
-			//if (parseFloat(item.style.opacity) > 0.5) {
-				anime({ targets: item, opacity: 0, duration: 350, easing: 'linear' });
-			//}
+			if (item.classList.contains('active')) {
+				anime({
+					targets: item,
+					opacity: 0,
+					duration: 350,
+					easing: 'linear',
+					complete: () => item.classList.remove('active')
+				});
+			}
 		}
 
 		// And then show the new logo
-		anime({ targets: newLogos[nextLogo], opacity: 1, delay: 0.25, duration: 350, easing: 'linear' });
+		anime({
+			targets: newLogos[nextLogo],
+			opacity: 1,
+			delay: 0.25,
+			duration: 350,
+			easing: 'linear',
+			complete: () => newLogos[nextLogo] && newLogos[nextLogo].classList.add('active')
+		});
 
 		// Set old frame logo so next time we avoid it above
 		current[newFrame] = nextLogo;

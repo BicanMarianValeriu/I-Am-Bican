@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import DownloadLoader from '../../General/download-loader';
 
 export default class PrevNext extends Component {
 
@@ -22,6 +23,8 @@ export default class PrevNext extends Component {
         const link = obj ? `/portfolio/${obj.slug}/` : '/';
         const title = obj ? obj.title : 'Lorem ipsum dolor';
 
+        const showLoader = JSON.stringify(navigation) === '{}';
+
         return (
             <Link className={classes.join(' ')} to={link}>
                 <div className="d-flex align-items-center">
@@ -31,6 +34,7 @@ export default class PrevNext extends Component {
                         <h4 className="portfolio-prev-next__title font-weight-bold mb-0">{title}</h4>
                     </div>
                     {context === 'next' && <i className={arrow.join(' ')}></i>}
+                    {showLoader && <DownloadLoader />}
                 </div>
             </Link>
         );

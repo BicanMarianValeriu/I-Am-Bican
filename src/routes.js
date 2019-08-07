@@ -22,9 +22,9 @@ const PortfolioSingle = Loadable({
 });
 
 const PortfolioArchive = Loadable({
-	loader: () => import(/* webpackChunkName: "portfolio-archive" */ "./pages/PortfolioArchive"),
+	loader: () => import(/* webpackChunkName: "portfolio-archives" */ "./pages/PortfolioArchive"),
 	loading: DownloadLoader,
-	modules: ["portfolio-archive"]
+	modules: ["portfolio-archives"]
 });
 
 const routes = [

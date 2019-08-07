@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 import Title from '../Entry/Title';
 import Content from '../Entry/Content';
 import FeaturedMedia from '../Entry/FeaturedMedia';
 
-class PortfolioSlide extends Component {
+class PortfolioItem extends Component {
 	getClasses() {
 		const { acf: { meta: { layout } } } = this.props;
 		let wrapperClass = ['col-md-6', 'col-lg-4', 'entry', 'entry--portfolio', 'portfolio',`portfolio--layout-${layout}` ];
@@ -35,4 +35,4 @@ class PortfolioSlide extends Component {
 	}
 }
 
-export default withRouter(PortfolioSlide);
+export default PortfolioItem;

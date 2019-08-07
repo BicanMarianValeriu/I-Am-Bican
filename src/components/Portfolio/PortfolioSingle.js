@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import Header from './Single/Header';
-import PrevNext from './Single/PrevNext';
 import Content from '../Entry/Content';
 import Social from './Single/Social';
 import Questions from './Single/Questions';
@@ -16,7 +15,6 @@ class PortfolioSingle extends Component {
 
 		return (
 			<article className={this.getClasses()}>
-				<PrevNext {...this.props} />
 				<Header {...this.props} />
 				<div className="portfolio-content">
 					<div className="container">

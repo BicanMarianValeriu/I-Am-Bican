@@ -4,6 +4,7 @@ import 'react-app-polyfill/ie11';
 import React from 'react';
 import Loadable from 'react-loadable';
 import { render, hydrate } from 'react-dom';
+import { FacebookProvider } from 'react-facebook';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { Frontload } from 'react-frontload';
@@ -19,7 +20,9 @@ const Application = (
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
 			<Frontload noServerRender={true}>
-				<App />
+				<FacebookProvider appId="918168974866485">
+					<App />
+				</FacebookProvider>
 			</Frontload>
 		</ConnectedRouter>
 	</Provider>
