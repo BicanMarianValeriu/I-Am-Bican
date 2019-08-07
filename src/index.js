@@ -6,7 +6,6 @@ import Loadable from 'react-loadable';
 import { render, hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
-import { FacebookProvider } from 'react-facebook';
 import { Frontload } from 'react-frontload';
 import createStore from './redux/store';
 
@@ -20,9 +19,7 @@ const Application = (
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
 			<Frontload noServerRender={true}>
-				<FacebookProvider appId="918168974866485">
-					<App />
-				</FacebookProvider>
+				<App />
 			</Frontload>
 		</ConnectedRouter>
 	</Provider>

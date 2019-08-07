@@ -106,7 +106,7 @@ const getMetaTags = (data, pathname) => {
 		meta: [
 			{ name: 'description', content: description },
 			robots ? { name: 'robots', content: robots } : {},
-			...Object.entries(opengraph).map(item => ({ name: item[0], content: item[1] })),
+			...Object.entries(opengraph).map(item => ({ property: item[0], content: item[1] })),
 			...Object.entries(twitter).map(item => ({ name: item[0], content: item[1] })),
 		],
 		link: [{ rel: 'canonical', href: canonical !== '' ? canonical : "https://www.iambican.com" + pathname }]

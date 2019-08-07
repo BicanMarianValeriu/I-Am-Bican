@@ -1,31 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import DownloadLoader from './../General/download-loader';
 
 export default class PrevNext extends Component {
 
     renderLink(context) {
-        const { current = {} } = this.props;
+        const { navigation = {} } = this.props;
 
-        const { navigation = {} } = current;
-
-        let obj = navigation && navigation[context];
+        const obj = navigation && navigation[context];
 
         let classes = ['portfolio-prev-next__item', 'portfolio-prev-next__item--' + context];
 
-        if (obj) classes.push(['portfolio-prev-next__item--has-obj']);
-        else classes.push(['portfolio-prev-next__item--disabled']);
+        if (obj) classes = [...classes, 'portfolio-prev-next__item--has-obj'];
+        else classes = [...classes, 'portfolio-prev-next__item--disabled'];
 
         let arrow = ['fas'];
-        if (context === 'next') arrow.push(['fa-arrow-right']);
-        if (context === 'prev') arrow.push(['fa-arrow-left']);
+        if (context === 'next') arrow = [...arrow, 'fa-arrow-right'];
+        if (context === 'prev') arrow = [...arrow, 'fa-arrow-left'];
 
-        let label = (context === 'prev') ? 'PREVIOUS PROJECT' : 'NEXT PROJECT';
+        const label = (context === 'prev') ? 'PREVIOUS PROJECT' : 'NEXT PROJECT';
 
-        let link = obj ? `/portfolio/${obj.slug}` : '/';
-        let title = obj ? obj.title : 'Lorem ipsum dolor';
-
-        let showLoader = JSON.stringify(current) === '{}' ? true : false;
+        const link = obj ? `/portfolio/${obj.slug}/` : '/';
+        const title = obj ? obj.title : 'Lorem ipsum dolor';
 
         return (
             <Link className={classes.join(' ')} to={link}>
@@ -36,13 +31,12 @@ export default class PrevNext extends Component {
                         <h4 className="portfolio-prev-next__title font-weight-bold mb-0">{title}</h4>
                     </div>
                     {context === 'next' && <i className={arrow.join(' ')}></i>}
-                    {showLoader && <DownloadLoader />}
                 </div>
             </Link>
         );
     }
 
-    render() { 
+    render() {
         return (
             <div className="portfolio-prev-next">
                 <div className="container-fluid">
@@ -53,7 +47,7 @@ export default class PrevNext extends Component {
                                 <li className="list-inline-item"><Link to="/">Home</Link></li>
                                 <li className="list-inline-item text-muted active">Portfolio</li>
                             </ul>
-                            <Link to="/portfolio" className="portfolio-prev-next__all font-weight-bold">
+                            <Link to="/portfolio/" className="portfolio-prev-next__all font-weight-bold">
                                 <i className="fas fa-th-large mr-2" aria-label="view all"></i>
                                 <span>VIEW ALL</span>
                             </Link>

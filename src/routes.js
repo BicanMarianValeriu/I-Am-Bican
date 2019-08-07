@@ -34,17 +34,17 @@ const routes = [
 		component: Home
 	},
 	{
-		path: "/portfolio",
+		path: "/portfolio/",
 		exact: true,
 		component: PortfolioArchive
 	},
 	{
-		path: "/portfolio/:slug",
+		path: "/portfolio/:slug/",
 		exact: true,
 		component: PortfolioSingle
 	},
 	{
-		path: "/p/:slug",
+		path: "/p/:slug/",
 		component: Page
 	},
 	{

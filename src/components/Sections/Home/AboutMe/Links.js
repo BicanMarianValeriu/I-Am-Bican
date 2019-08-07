@@ -18,7 +18,7 @@ export default () => {
                         <GetInTouch className="about-me__link btn-link" label="Send Message" />
                     </div>
                     <div className="col-4 col-lg-3 text-center">
-                        <Link to="/portfolio" className="about-me__link">
+                        <Link to="/portfolio/" className="about-me__link">
                             <i className="fas fa-puzzle-piece"></i>
                             <span>View Portfolio</span>
                         </Link>

@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import Helmet from "react-helmet";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { FacebookProvider } from 'react-facebook';
 import { frontloadConnect } from "react-frontload";
 import _find from 'lodash/find';
 
 // Deps
-import PrevNext from "../components/Portfolio/PrevNext";
 import Main from "../components/General/Main";
 import { getProjects, updateProjects } from "../redux/actions/projects";
 import { requestApi } from "../redux/actions/api";
@@ -38,11 +38,12 @@ class Portfolio extends Component {
 
 		return (
 			<React.Fragment>
-				<Helmet {...getMetaTags(entry, pathname)} />
-				<div id="content" className="content content--portfolio content--single">
-					<PrevNext current={selectedProject} />
-					<Main posts={[selectedProject]} isSingle={true} loading={!selectedProject} />
-				</div>
+				<FacebookProvider appId="918168974866485">
+					<Helmet {...getMetaTags(entry, pathname)} />
+					<div id="content" className="content content--portfolio content--single">
+						<Main posts={[selectedProject]} isSingle={true} loading={!selectedProject} />
+					</div>
+				</FacebookProvider>
 			</React.Fragment >
 		);
 	}

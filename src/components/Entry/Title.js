@@ -15,10 +15,9 @@ const Title = props => {
     });
 
     return (
-        <h1 className={headingClass}>{
-            props.isSingle ?
-                <span dangerouslySetInnerHTML={title}></span> :
-                <Link to={`${type}/${slug}`} dangerouslySetInnerHTML={title}></Link>
+        <h1 className={headingClass}>{props.isSingle ?
+            <span dangerouslySetInnerHTML={title}></span> :
+            <Link to={`/${type}/${slug}/`} dangerouslySetInnerHTML={title}></Link>
         }</h1>
     );
 };

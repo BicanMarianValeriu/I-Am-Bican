@@ -7,9 +7,10 @@ import { isServer } from './../../../utilities/helpers';
 export default withRouter((props) => {
     const createUrl = () => {
         let url = `https://www.iambican.com`;
-        const { location: { pathname = '/' } } = props;
+        const { link = '', location: { pathname = '/' } } = props;
         url = url + pathname;
-        return url;
+        // Fallback to hardcoded just in case
+        return link !== '' ? link : url;
     }
 
     const faComments = {
