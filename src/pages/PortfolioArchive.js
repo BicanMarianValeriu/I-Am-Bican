@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
 
-import Main from "../components/General/Main";
-import PageIntro from "../components/Sections/page-intro";
+import { Main, PageIntro } from "../components/General";
 import { getProjects, updateProjects } from "../redux/actions/projects";
 import { requestApi } from "../redux/actions/api";
 

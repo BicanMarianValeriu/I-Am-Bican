@@ -20,7 +20,7 @@ export default withRouter(props => {
     const CTA = () => {
         return (
             <div className="header__cta col col-auto">
-                <GetInTouch className="header-cta" label="Get In Touch" />
+                <GetInTouch className="header-cta" iconClass="far fa-paper-plane" label="Get In Touch" />
             </div>
         );
     };

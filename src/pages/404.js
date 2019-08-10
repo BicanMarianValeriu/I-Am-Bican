@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
-import PageIntro from "../components/Sections/page-intro";
+import { PageIntro } from "../components/General";
 
 // SCSS 
 import "./../static/scss/pages/_404.scss";
@@ -19,9 +19,7 @@ class FourOFour extends Component {
 		};
 		return (
 			<React.Fragment>
-				<Helmet>
-					<title>{meta.title}</title>
-				</Helmet>
+				<Helmet title={meta.title} />
 				<div id="content" className="content content--404 text-center">
 					<PageIntro pageTitle="404 - Not Found" />
 					<div className="container">

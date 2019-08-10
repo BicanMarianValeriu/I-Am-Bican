@@ -27,24 +27,24 @@ class AboutSkills extends Component {
                     description: `One of the must-have skills of every full-stack developer. Average with it, I've learned it following WP coding standards.`,
                 },
                 {
-                    title: "GULP/WEBPACK",
-                    icon: 'fab fa-gulp fa-fw',
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc.`,
-                },
-                {
-                    title: "CSS3/SCSS",
+                    title: "CSS3/SCSS/BEM",
                     icon: 'fab fa-sass fa-fw',
-                    description: `You are not a good web developer without CSS3. I use SASS/SCSS to pimp it and have awesome/readable code.`,
+                    description: `You are not a good web developer without CSS3. I use SASS/SCSS to pimp it and BEM for awesome/readable code.`,
                 },
                 {
                     title: "GIT/Bitbucket",
                     icon: 'fab fa-git fa-fw',
-                    description: `Two of my favorite tools for version control. I use them with Bitbucket Desktop APP to manage my repositories.`,
+                    description: `Two of my favorite services for version control. I use them with Bitbucket Desktop APP to manage my repositories.`,
                 },
                 {
                     title: "WooCommerce",
-                    icon: 'fas fa-shopping-cart fa-fw',
+                    icon: 'fal fa-shopping-cart fa-fw',
                     description: `That's my favorite WP plugin for building amazing shops. I love it since is highly customizable.`,
+                },
+                {
+                    title: "GULP/WEBPACK",
+                    icon: 'fab fa-gulp fa-fw',
+                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc.`,
                 },
                 {
                     title: "Javascript (ES6+)",
@@ -55,7 +55,7 @@ class AboutSkills extends Component {
                     title: "HTML5",
                     icon: 'fab fa-html5 fa-fw',
                     description: `The must-have skill of every developer. This is what I've learned firstly when I started web development.`,
-                }
+                },
             ]
         };
     }
@@ -78,7 +78,7 @@ class AboutSkills extends Component {
             triggerHook: .85
         }).setClassToggle('.about-skills__description', "maskUp").addTo(controller);
 
-        var boxesScenes = [];
+        let boxesScenes = [];
         for (let i = 0; i < boxes.length; i++) {
             boxesScenes[i] = new ScrollMagic.Scene({
                 triggerElement: boxes[i],
@@ -98,8 +98,9 @@ class AboutSkills extends Component {
 
     }
 
-    componentDidUpdate() { 
-        this.state.scenes.forEach(scene => {
+    componentDidUpdate() {
+        const { scenes } = this.state;
+        scenes.forEach(scene => {
             setTimeout(() => scene.reverse(true), 200); // reset after 200ms, after scroll up
             scene.on('progress', (e) => (e.progress === 1) ? scene.reverse(false) : null)
         });
@@ -117,7 +118,7 @@ class AboutSkills extends Component {
                 if (!isServer) delay = window.innerWidth > 992 ? 150 * count : 0;
                 else delay = 0;
 
-                let style = {
+                const style = {
                     '--animation-delay': delay + 'ms'
                 };
                 return (

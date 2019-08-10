@@ -7,13 +7,13 @@ import PrevNext from './../components/Portfolio/Single/PrevNext';
 import _find from 'lodash/find';
 
 // Deps
-import Main from "../components/General/Main";
+import { Main } from "../components/General";
 import { getProjects, updateProjects } from "../redux/actions/projects";
 import { requestApi } from "../redux/actions/api";
+import { getMetaTags } from "../utilities/wordpress/wpPost";
 
 // SCSS 
 import "./../static/scss/pages/_portfolio-single.scss";
-import { getMetaTags } from "../utilities/wordpress/wpPost";
 
 class Portfolio extends Component {
 	componentDidMount() {

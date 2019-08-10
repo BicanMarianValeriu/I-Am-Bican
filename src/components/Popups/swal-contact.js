@@ -29,25 +29,27 @@ const SwalContact = () => {
 				</div>
 			</div>
 			</form>`,
-		footer: `View your privacy policy &nbsp;<a href="/p/privacy-policy">here</a>.`, 
+		footer: `<small><em>View your privacy policy &nbsp;<a href="/p/privacy-policy">here</a>.</em></small>`, 
 		customClass: {
 			popup: 'swal-contact',
-			confirmButton: 'btn btn-primary'
+			confirmButton: 'btn btn-primary d-flex align-items-center'
 		},
 		buttonsStyling: false, 
-		confirmButtonText: "Send Message",
+		confirmButtonText: '<i class="far fa-paper-plane mr-2"></i>Send Message',
 		showLoaderOnConfirm: true,
 		showCloseButton: true,
 		width: "40rem",
 		preConfirm: () => {
-			var fields = document.forms["swal-contact"].getElementsByClassName("required");
-			var email = fields["your-email"].value;
+			let fields = document.forms["swal-contact"].getElementsByClassName("required");
+			let email = fields["your-email"].value;
 
-			if (validateFields(fields) === false)
+			if (validateFields(fields) === false) {
 				return Swal.showValidationMessage(`Please fill all fields.`);
+			}
 
-			if (validateEmail(email) === false)
+			if (validateEmail(email) === false) {
 				return Swal.showValidationMessage(`Email address is not valid.`);
+			}
 
 			const WPCF = new WPCF7("#wpcf7-6", {
 				apiUrl: "//www.iambican.com/dashboard/wp-json/contact-form-7/v1"
@@ -56,7 +58,7 @@ const SwalContact = () => {
 			WPCF.sendMail().then(result => {
 				if (result.status === "mail_sent") {
 					Swal.fire({
-						title: 'Awesome',
+						titleText: 'Awesome',
 						text: result.message,
 						type: "success",
 						showConfirmButton: false,
@@ -64,11 +66,23 @@ const SwalContact = () => {
 					});
 				} else {
 					Swal.fire({
-						title: `Something is wrong`,
+						titleText: `Something went wrong`,
 						text: result.message,
-						type: "error"
+						type: "error",
+						showConfirmButton: false,
+						timer: 2500
 					});
 				}
+			}).catch(err => {
+				Swal.fire({
+					titleText: `Something went wrong`,
+					text: err,
+					type: "error",
+					buttonsStyling: false,
+					customClass: {
+						confirmButton: 'btn btn-primary'
+					},
+				});
 			});
 		},
 		allowOutsideClick: () => !Swal.isLoading()

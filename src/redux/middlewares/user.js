@@ -1,6 +1,13 @@
 import JWTDecode from "jwt-decode";
 import { apiRequest } from "../actions/api";
-import { setAuthToken, removeAuthToken, getAuthHeader, setCurrentUser, removeCurrentUser } from "../../utilities/auth";
+import { 
+    setAuthToken, 
+    removeAuthToken, 
+    getAuthHeader, 
+    setCurrentUser, 
+    removeCurrentUser, 
+    getCurrentUser, 
+} from "../../utilities/auth";
 import {
     USER_GET_TOKEN,
     USER_GET_TOKEN_SUCCESS,
@@ -13,6 +20,7 @@ import {
     USER_LOGIN_ERROR,
     USER_LOGOUT,
     USER_LOGOUT_SUCCESS,
+    USER_LOGOUT_ERROR,
     updateUser
 } from "../actions/user";
 import { setPendingUser } from "../actions/ui";
@@ -38,11 +46,16 @@ export const userMiddleware = ({ dispatch }) => next => action => {
             break;
 
         case USER_GET_TOKEN_SUCCESS:
-            const { token } = payload;
+            const { token, ...rest } = payload;
 
             setAuthToken(token);
+            setCurrentUser(rest)
 
-            dispatch({ type: USER_LOGIN, payload: token });
+            dispatch(updateUser({ authentificated: true, data: getCurrentUser() }));
+
+            dispatch(setPendingUser(false));
+
+            document.dispatchEvent(new CustomEvent('iambican/userUpdated'));
 
             break;
 
@@ -58,28 +71,25 @@ export const userMiddleware = ({ dispatch }) => next => action => {
 
             break;
 
+        case USER_LOGIN_SUCCESS:
+            dispatch(updateUser({ authentificated: true, data: payload[0] }));
+
+            dispatch(setPendingUser(false));
+
+            break;
+
         case USER_LOGOUT:
 
             dispatch({ type: USER_LOGOUT_SUCCESS });
 
             break;
 
-        case USER_LOGIN_SUCCESS:
-            dispatch(updateUser({ authentificated: true, data: payload[0] }));
-
-            setCurrentUser(payload[0]);
-
-            dispatch(setPendingUser(false));
-
-            document.dispatchEvent(new CustomEvent('iambican/userUpdated'));
-
-            break;
-
         case USER_LOGOUT_SUCCESS:
             dispatch(updateUser({ authentificated: false, data: {} }));
 
-            removeAuthToken();
+            dispatch(setPendingUser(false));
 
+            removeAuthToken();
             removeCurrentUser();
 
             document.dispatchEvent(new CustomEvent('iambican/userUpdated'));
@@ -88,6 +98,7 @@ export const userMiddleware = ({ dispatch }) => next => action => {
 
         case USER_GET_TOKEN_ERROR:
         case USER_LOGIN_ERROR:
+        case USER_LOGOUT_ERROR:
 
             dispatch(setPendingUser(false));
 

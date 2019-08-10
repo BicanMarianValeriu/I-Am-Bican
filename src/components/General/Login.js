@@ -44,12 +44,14 @@ class Login extends Component {
 	_onUserUpdated() {
 		const { chunk } = this.state;
 		if (chunk === null) return;
-		const titleText = isAuthentificated() ? `Welcome back ${getCurrentUser().name}.` : 'You have been logged out.';
+		const { name } = getCurrentUser();
+		const titleText = isAuthentificated() ? `Welcome back ${name}.` : 'You have been logged out.';
 		chunk.SwalToast.fire({ type: 'success', titleText });
 	}
 
 	_onMouseOver() {
-		if (this.state.chunk !== null) return;
+		const { chunk } = this.state;
+		if (chunk !== null) return;
 		import(/* webpackChunkName: "swal-auth" */ "../Popups/swal-auth").then(chunk => this.setState({ chunk }));
 	}
 
@@ -66,8 +68,9 @@ class Login extends Component {
 	}
 
 	_onLogoutClick() {
-		const { userLogout } = this.props;
-		if (isAuthentificated()) {
+		const { user: { authentificated }, userLogout } = this.props;
+		// If token exists but not in state, retrieve from Local and update state
+		if (isAuthentificated() && authentificated === true) {
 			userLogout();
 		}
 	}
@@ -83,10 +86,10 @@ class Login extends Component {
 
 	render() {
 		const { loading } = this.props;
-		const { name: userName = '', avatar_urls = {
-			48: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==',
-			96: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
-		} } = getCurrentUser();
+		const {
+			name = '',
+			avatar = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
+		} = getCurrentUser();
 
 		const UserLoginSVG = () => {
 			const faCircle = {
@@ -108,8 +111,8 @@ class Login extends Component {
 
 			const avatarProps = {
 				className: 'header-login__avatar',
-				src: avatar_urls[48],
-				alt: `${userName}'s Avatar`
+				src: avatar,
+				alt: `${name}'s Avatar`
 			};
 
 			return (
@@ -133,7 +136,7 @@ class Login extends Component {
 						<UserLoginSVG />
 					</DropdownToggle>
 					<DropdownMenu right>
-						<DropdownItem header>Howdy {userName}</DropdownItem>
+						<DropdownItem header>Howdy {name}</DropdownItem>
 						<DropdownItem divider />
 						<DropdownItem>Dashboard</DropdownItem>
 						<DropdownItem>Courses</DropdownItem>

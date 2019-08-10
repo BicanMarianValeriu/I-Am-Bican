@@ -21,7 +21,7 @@ export default function GetInTouch({ className = '', iconClass, label }) {
     }
 
     const classNames = classnames('btn', className);
-    const iconClasses = classnames('far', 'fa-paper-plane', iconClass);
+    const iconClasses = classnames(iconClass ? iconClass : ['fal', 'fa-paper-plane']);
 
     return (
         <button className={classNames} onClick={_onButtonClick} onMouseOver={_onMouseOver} onTouchStart={_onMouseOver}>

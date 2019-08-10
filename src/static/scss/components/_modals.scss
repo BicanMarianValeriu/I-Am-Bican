@@ -11,12 +11,6 @@ body.swal2-toast-shown {
 	padding: 20px;
 	border-radius: 0;
 
-	&--auth {
-		.input-group-text {
-			min-width: 41px;
-		}
-	}
-
 	&.swal-contact {
 		.swal2-title {
 			margin-bottom: 1.5rem;

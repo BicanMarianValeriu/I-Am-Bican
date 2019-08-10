@@ -1,1 +1,0 @@
-{"version":3,"sources":["C:\\xampp\\htdocs\\iambican/src\\static\\scss\\pages\\_404.scss"],"names":[],"mappings":"AAEA,cACI,aAAc","file":"404.e7eb194e.chunk.css","sourcesContent":["@import \"./../abstracts/bootstrap-required\";\r\n\r\n.content--404 {\r\n    color: #383838;\r\n}"]}

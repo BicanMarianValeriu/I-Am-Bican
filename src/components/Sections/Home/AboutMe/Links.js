@@ -10,7 +10,7 @@ export default () => {
                 <div className="row justify-content-end">
                     <div className="col-4 col-lg-3 text-center">
                         <a href="#footer" className="about-me__link" onClick={() => scrollToElement('#footer')}>
-                            <i className="far fa-envelope"></i>
+                            <i className="fal fa-envelope"></i>
                             <span>Contact Information</span>
                         </a>
                     </div>
@@ -19,7 +19,7 @@ export default () => {
                     </div>
                     <div className="col-4 col-lg-3 text-center">
                         <Link to="/portfolio/" className="about-me__link">
-                            <i className="fas fa-puzzle-piece"></i>
+                            <i className="fal fa-briefcase"></i>
                             <span>View Portfolio</span>
                         </Link>
                     </div>

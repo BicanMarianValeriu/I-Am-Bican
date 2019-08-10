@@ -1,63 +1,24 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { library } from '@fortawesome/fontawesome-svg-core';
+
 import _filter from 'lodash/filter';
 import _includes from 'lodash/includes';
+import _delayCall from 'lodash/delay';
+
 import anime from 'animejs';
 import ContentLoader from 'react-content-loader';
-import VisibilitySensor from 'react-visibility-sensor'
-import { getQA, updateQA } from "../../../redux/actions/questions";
+import VisibilitySensor from 'react-visibility-sensor';
+
+import { getQA } from "../../../redux/actions/questions";
 import { Accordion } from './../../../utilities/accordion';
 import { isServer } from './../../../utilities/helpers';
 
-class PortfolioQuestions extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeSensor: false,
-            animation: false
-        }
-        this.addIcons();
-        this.props.getQA();
-    }
+const Questions = ({ pending, isLoading, getQA, questions }) => {
+    const [{ activeSensor }, setState] = useState({ activeSensor: true });
 
-    componentDidUpdate() {
-        if (isServer) return;
-
-        const cards = document.querySelectorAll('.accordion .card');
-
-        if (!cards.length) return;
-
-        const createOpacityAnimationConfig = animatingIn => ({
-            value: animatingIn ? [0, 1] : 0,
-            easing: 'linear',
-            duration: 800
-        });
-
-        const openFirst = () => {
-            const button = cards[0].querySelector('button');
-            if (button.classList.contains('is-active')) return;
-            button.click();
-        };
-
-        if (this.state.animation === false) {
-            this.setState({
-                animation: anime({
-                    targets: cards,
-                    opacity: createOpacityAnimationConfig(true),
-                    translateY: [50, 0],
-                    delay: anime.stagger(300, { start: 500 }),
-                    easing: 'spring(1, 80, 10)',
-                    complete: openFirst,
-                    autoplay: false
-                }),
-                activeSensor: true
-            })
-        }
-    }
-
-    addIcons() {
+    const addIcons = () => {
         const faChevronDown = {
             icon: [
                 512,
@@ -84,83 +45,111 @@ class PortfolioQuestions extends Component {
         library.add([faQuestionCircle, faChevronDown]);
     }
 
-    renderLoader() {
-        return (
-            <ContentLoader
-                height={160}
-                width={445}
-                speed={5}
-                primaryColor="#f1f1f1"
-                primaryOpacity="0.5"
-                secondaryColor="#ecebeb"
-            >
-                <circle cx="10" cy="20" r="8" />
-                <rect x="25" y="15" rx="5" ry="5" width="405" height="10" />
-                <circle cx="10" cy="50" r="8" />
-                <rect x="25" y="45" rx="5" ry="5" width="405" height="10" />
-                <circle cx="10" cy="80" r="8" />
-                <rect x="25" y="75" rx="5" ry="5" width="405" height="10" />
-                <circle cx="10" cy="110" r="8" />
-                <rect x="25" y="105" rx="5" ry="5" width="405" height="10" />
-            </ContentLoader>
-        );
-    }
+    const createOpacityAnimationConfig = animatingIn => ({
+        value: animatingIn ? [0, 1] : 0,
+        easing: 'linear',
+        duration: 800
+    });
 
-    renderQA() {
-        const { questions = [] } = this.props;
+    const animationComplete = cards => {
+        const button = cards[0].querySelector('button');
+        const container = document.querySelector('.portfolio-questions');
+        container.classList.add('portfolio-questions--animated');
+        if (button.classList.contains('is-active')) return;
+        button.click();
+    };
 
-        return (
-            <Accordion>{questions.map((item, i) => {
-                return (
-                    <Accordion.Item key={i}>
-                        <Accordion.Header><i className="fal fa-chevron-down"></i> {item.title.rendered}</Accordion.Header>
-                        <Accordion.Body>
-                            <span dangerouslySetInnerHTML={{ __html: item.content.rendered }}></span>
-                        </Accordion.Body>
-                    </Accordion.Item>
-                );
-            })}</Accordion>
-        );
-    }
-
-    onChange(isVisible) {
-        const { animation, activeSensor } = this.state;
-        if (isVisible && animation) {
-            animation.play();
-            this.setState({ activeSensor: !activeSensor })
+    const onChange = isVisible => {
+        if (!pending && isVisible) {
+            getQA();
+            setState({ activeSensor: false });
             return;
         }
-    }
+    };
 
-    render() {
-        const { isLoading } = this.props;
-        const { activeSensor } = this.state;
-        return (
-            <div className="portfolio-questions">
-                <h3 className="lead mt-2">
-                    <i className="fal fa-question-circle"></i>
-                    <span> Frequently Asked Questions</span>
-                </h3>
-                <hr />
-                <VisibilitySensor onChange={this.onChange.bind(this)} active={activeSensor}>
-                    {!isServer && isLoading ? this.renderLoader() : this.renderQA()}
+    const animeRef = useRef();
+    const hasQuestions = questions.length !== 0;
+
+    useEffect(() => {
+        addIcons();
+
+        if (!hasQuestions) return;
+
+        const animate = _delayCall(() => {
+            const cards = document.querySelectorAll('.accordion .card');
+            return anime({
+                targets: cards,
+                opacity: createOpacityAnimationConfig(true),
+                translateY: [50, 0],
+                delay: anime.stagger(300),
+                easing: 'spring(1, 80, 10)',
+                complete: () => animationComplete(cards)
+            });
+        }, 500);
+
+        return () => {
+            clearTimeout(animate);
+        }
+    }, [hasQuestions]);
+
+    return (
+        <div className="portfolio-questions">
+            <h3 className="lead mt-2">
+                <i className="fal fa-question-circle"></i>
+                <span> Frequently Asked Questions</span>
+            </h3>
+            <hr />
+            <div className="portfolio-questions__wrapper">
+                <VisibilitySensor onChange={onChange} active={activeSensor}>
+                    {!isServer && (isLoading || pending) ? () => {
+                        const loaderProps = {
+                            height: 160,
+                            width: 445,
+                            speed: 5,
+                            primaryColor: "#f1f1f1",
+                            primaryOpacity: "0.5",
+                            secondaryColor: "#ecebeb"
+                        }
+                        return (
+                            <ContentLoader {...loaderProps}>
+                                <circle cx="10" cy="20" r="8" />
+                                <rect x="25" y="15" rx="5" ry="5" width="405" height="10" />
+                                <circle cx="10" cy="50" r="8" />
+                                <rect x="25" y="45" rx="5" ry="5" width="405" height="10" />
+                                <circle cx="10" cy="80" r="8" />
+                                <rect x="25" y="75" rx="5" ry="5" width="405" height="10" />
+                                <circle cx="10" cy="110" r="8" />
+                                <rect x="25" y="105" rx="5" ry="5" width="405" height="10" />
+                            </ContentLoader>
+                        )
+                    }
+                        : <Accordion ref={animeRef}>{questions.map((item, i) => {
+                            const { title, content } = item;
+                            return (
+                                <Accordion.Item key={i}>
+                                    <Accordion.Header><i className="fal fa-chevron-down"></i> {title.rendered}</Accordion.Header>
+                                    <Accordion.Body>
+                                        <span dangerouslySetInnerHTML={{ __html: content.rendered }}></span>
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            );
+                        })}</Accordion>}
                 </VisibilitySensor>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 // Binds menu items to navigation container
 const mapStateToProps = (store, props) => {
     const { include = [99, 98, 109, 111] } = props;
-    const { qa, ui: { pending: isLoading } } = store;
+    const { qa, ui: { pending, pendingQA: isLoading } } = store;
     const questions = _filter(qa, i => _includes(include, i.id));
 
-    return ({ questions, isLoading });
+    return ({ questions, pending, isLoading });
 };
 
-// mapDispatchToProps -> getPage
-const mapDispatchToProps = dispatch => bindActionCreators({ getQA, updateQA }, dispatch);
+// mapDispatchToProps -> getQA
+const mapDispatchToProps = dispatch => bindActionCreators({ getQA }, dispatch);
 
-// Export container while connected to store with frontload
-export default connect(mapStateToProps, mapDispatchToProps)(PortfolioQuestions);
+export default connect(mapStateToProps, mapDispatchToProps)(Questions);

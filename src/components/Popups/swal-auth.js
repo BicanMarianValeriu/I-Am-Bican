@@ -1,8 +1,6 @@
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { validateFields } from "../../utilities/helpers";
 
-window.Swal = Swal;
-
 /**
  * Toast Mixin
  */
@@ -63,7 +61,7 @@ const SwalAuth = ({ afterValidation }) => {
                 <div class="col-12">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user fa-fw"></i></span>
                         </div>
                         <input class="form-control required" aria-label="Username" aria-describedby="basic-addon1" name="username" type="text" placeholder="Your Username" required/>
                     </div>
@@ -71,7 +69,7 @@ const SwalAuth = ({ afterValidation }) => {
                 <div class="col-12">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-key"></i></span>
+                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-key fa-fw"></i></span>
                         </div> 
                         <input class="form-control required" aria-label="Password" aria-describedby="basic-addon2" name="password" type="password" placeholder="Your Password" required/>      
                     </div>
@@ -79,19 +77,19 @@ const SwalAuth = ({ afterValidation }) => {
                 <div class="col-12">
                     <div class="row"> 
                         <div class="col-12 text-right">
-                            <p><a href="javascript:void(0);" class="swal-login__forgot-pwd"><small>Forgot Password?</small></a></p>
+                            <span><a href="javascript:void(0);" class="swal-login__forgot-pwd"><small>Forgot Password?</small></a></span>
                         </div>
                     </div>
                 </div>
 			</div>
 		</form>`,
-		footer: `View your privacy policy &nbsp;<a href="/p/privacy-policy">here</a>.`,
+		footer: `<small><em>View your privacy policy &nbsp;<a href="/p/privacy-policy">here</a>.</em></small>`,
 		customClass: {
 			popup: 'swal2-popup--auth',
-			confirmButton: 'btn btn-primary'
+			confirmButton: 'btn btn-primary d-flex align-items-center'
 		},
 		buttonsStyling: false,
-		confirmButtonText: "Login",
+		confirmButtonText: '<i class="fas fa-sign-in-alt mr-2"></i><span>Login</span>',
 		showLoaderOnConfirm: true,
 		backdrop: `rgba(0,0,0,0.5)`,
 		showCloseButton: true,

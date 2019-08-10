@@ -5,7 +5,7 @@ import Background from "./../../static/images/parallax-1.jpg";
 
 let ScrollMagic;
 
-const CallToAction = withRouter(({ location }) => {
+const CallToAction = withRouter(({ location: { pathname } }) => {
     const [animations, setAnimations] = useState([]);
     const [pathName, setNewPathName] = useState(true);
 
@@ -15,15 +15,15 @@ const CallToAction = withRouter(({ location }) => {
         const controller = new ScrollMagic.Controller();
 
         // Return early if location is the same
-        if (pathName === location.pathname) return;
+        if (pathName === pathname) return;
 
-        let scene1 = new ScrollMagic.Scene({
+        const scene1 = new ScrollMagic.Scene({
             triggerElement: '.calltoaction',
             triggerHook: .8,
             reverse: false
         }).setClassToggle('.calltoaction__text', "fadeInLeft").addTo(controller);
 
-        let scene2 = new ScrollMagic.Scene({
+        const scene2 = new ScrollMagic.Scene({
             triggerElement: '.calltoaction',
             triggerHook: .8,
             reverse: false
@@ -33,7 +33,7 @@ const CallToAction = withRouter(({ location }) => {
         setAnimations([scene1, scene2]);
 
         // Set new location
-        setNewPathName(location.pathname);
+        setNewPathName(pathname);
 
         // Reset Scene
         animations.forEach(scene => {
@@ -45,7 +45,7 @@ const CallToAction = withRouter(({ location }) => {
         return () => animations.forEach(scene => scene.destroy());
 
         // eslint-disable-next-line
-    }, [location]);
+    }, [pathname]);
 
     return (
         <div className="footer__calltoaction calltoaction" style={{ backgroundImage: `url('${Background}')` }}>
@@ -58,7 +58,7 @@ const CallToAction = withRouter(({ location }) => {
                         <p className="lead">Is simple, drop me a message and let's setup a meeting.</p>
                     </div>
                     <div className="col-12 col-lg-auto text-center text-lg-right calltoaction__buttons">
-                        <GetInTouch className="calltoaction__button btn-lg" label="Let's Connect" />
+                        <GetInTouch className="calltoaction__button btn-lg" iconClass="far fa-paper-plane" label="Let's Connect" />
                     </div>
                 </div>
             </div>

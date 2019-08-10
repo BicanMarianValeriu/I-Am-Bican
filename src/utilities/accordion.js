@@ -33,8 +33,8 @@ Accordion.propTypes = {
     open: PropTypes.number,
 }
 
-const AccordionItem = ({ children, isOpen, onClick }) => (
-    <Card>
+const AccordionItem = ({ children, isOpen, onClick, ...rest }) => (
+    <Card {...rest}>
         {Children.map(children, child => {
             if (child.type === AccordionHeader) {
                 return cloneElement(child, { onClick, isOpen })

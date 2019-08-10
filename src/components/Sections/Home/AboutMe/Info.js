@@ -51,8 +51,8 @@ class AboutContent extends React.Component {
                                 and have become pretty good at it. From a technical standpoint, I spend most of my time working with JavaScript, CSS3,
                                 HTML5 and PHP (WordPress).</p>
                                 <p>New and open source web technologies make me super excited and I can’t wait to see what is
-                                to come of the web in the next few years. I’ve graduated of Targu Jiu UCB University’s Law program and <mark>soon</mark> Foreign Language:
-                                English. Why not computer or informatics? Well, this is a hard answer, but this is my passion and I LOVE what I do :).
+                                to come of the web in the next few years. I’ve graduated of Targu Jiu UCB University’s Law program and <mark>soon</mark> English Philology. 
+                                Why not computer or informatics? Well, this is a hard answer, but this is my passion and I LOVE what I do :).
                                 </p>
                             </div>
                             <button className="about-me__content-more btn btn-outline-dark btn-sm"

@@ -1,13 +1,12 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { Navigation } from '../General';
 import Copyright from './Copyright';
 import Social from './Social';
 import Newsletter from './Newsletter';
-import Navigation from '../General/Navigation';
 import ClientLogos from './ClientLogos';
 import CallToAction from './CallToAction';
 
-export default withRouter(props => {
+export default () => {
     return (
         <footer id="footer" className="footer" itemScope="" itemType="http://schema.org/WPFooter">
             <CallToAction />
@@ -40,4 +39,4 @@ export default withRouter(props => {
             </div>
         </footer>
     )
-});
+};

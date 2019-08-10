@@ -43,9 +43,9 @@ export function isAuthentificated() {
 	try {
 		const token = getAuthToken();
 		if (token && token.length) {
-			const decoded = JWTDecode(token);
-			const current_time = new Date().getTime() / 1000;
-			if (decoded.exp < current_time) return false;
+			const { exp } = JWTDecode(token);
+			const currentTime = new Date().getTime() / 1000;
+			if (exp < currentTime) return false;
 			return true;
 		} else {
 			return false;
@@ -60,13 +60,12 @@ export function isAuthentificated() {
  * @param {mixed} param0 
  */
 export const setCurrentUser = ({
-	id,
-	name,
-	avatar_urls,
-	description
+	user_email: email,
+	user_display_name: name,
+	user_avatar: avatar,
 }) => {
 	try {
-		const userData = JSON.stringify({ id, name, avatar_urls, description });
+		const userData = JSON.stringify({ name, email, avatar });
 		Cookies.set('currentUser', userData);
 	} catch (error) {
 		// Logging error on client side

@@ -72,8 +72,13 @@ export default class AboutExperience extends Component {
 			autoplay: false
 		});
 
-		const scene = new ScrollMagic.Scene({ triggerElement: firstBox, duration: timelineBar.clientHeight, triggerHook: .75 })
-			.addTo(controller).on('progress', e => animeObj.seek(animeObj.duration * e.progress));
+		const scene = new ScrollMagic.Scene({ 
+			triggerElement: firstBox, 
+			duration: timelineBar.clientHeight, 
+			triggerHook: .75 
+		}).addTo(controller).on('progress', e => {
+			animeObj.seek(animeObj.duration * e.progress);
+		});
 
 		const updateScene = () => scene.duration(timelineBar.clientHeight);
 
@@ -84,7 +89,8 @@ export default class AboutExperience extends Component {
 	}
 
 	componentDidUpdate() {
-		this.state.scenes.forEach(scene => {
+		const { scenes } = this.state;
+		scenes.forEach(scene => {
 			setTimeout(() => scene.reverse(true), 200); // reset after 200ms, after scroll up
 			scene.on('progress', (e) => (e.progress === 1) ? scene.reverse(false) : null)
 		});
@@ -98,10 +104,10 @@ export default class AboutExperience extends Component {
 
 		for (let i = 0; i < boxes.length; i++) {
 
-			scenes.push(new ScrollMagic.Scene({
+			scenes = [...scenes, new ScrollMagic.Scene({
 				triggerElement: boxesA[i],
 				triggerHook: .85
-			}).setClassToggle(boxesA[i], "timeline-box__animation--ended").addTo(controller));
+			}).setClassToggle(boxesA[i], "timeline-box__animation--ended").addTo(controller)];
 
 			new ScrollMagic.Scene({
 				triggerElement: boxes[i],

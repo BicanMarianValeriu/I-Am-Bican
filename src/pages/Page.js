@@ -6,8 +6,7 @@ import Helmet from "react-helmet";
 import _find from 'lodash/find';
 
 // Deps
-import PageIntro from "../components/Sections/page-intro";
-import Main from "../components/General/Main";
+import { PageIntro, Main } from "../components/General";
 import { requestApi } from "../redux/actions/api";
 import { getPage, updatePages } from "../redux/actions/pages";
 import { getMetaTags } from "../utilities/wordpress/wpPost";
