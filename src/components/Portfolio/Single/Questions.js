@@ -54,7 +54,9 @@ const Questions = ({ pending, isLoading, getQA, questions }) => {
     const animationComplete = cards => {
         const button = cards[0].querySelector('button');
         const container = document.querySelector('.portfolio-questions');
-        container.classList.add('portfolio-questions--animated');
+        if (container) {
+            container.classList.add('portfolio-questions--animated');
+        }
         if (button.classList.contains('is-active')) return;
         button.click();
     };
@@ -80,17 +82,19 @@ const Questions = ({ pending, isLoading, getQA, questions }) => {
             return anime({
                 targets: cards,
                 opacity: createOpacityAnimationConfig(true),
-                translateY: [50, 0],
+                translateY: [30, 0],
                 delay: anime.stagger(300),
                 easing: 'spring(1, 80, 10)',
                 complete: () => animationComplete(cards)
             });
-        }, 500);
+        }, 700);
 
         return () => {
             clearTimeout(animate);
+            const container = document.querySelector('.portfolio-questions');
+            container.classList.remove('portfolio-questions--animated');
         }
-    }, [hasQuestions]);
+    });
 
     return (
         <div className="portfolio-questions">

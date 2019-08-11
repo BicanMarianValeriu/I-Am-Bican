@@ -165,3 +165,58 @@
         }
     }
 }
+
+.portfolio-stats {
+    box-shadow: 0 5px 15px 20px rgba(0,0,0,.05);
+
+    &__heading {
+        position: relative;
+        font-size: 3.3rem;
+        line-height: 1;
+        letter-spacing: -5px;
+
+        @include media-breakpoint-up('sm') { 
+            font-size: 4.3rem;
+        }
+
+        @include media-breakpoint-up('md') { 
+            font-size: 5.3rem;
+        }
+
+        span {
+            position: absolute;
+            margin-left: -7%;
+            margin-top: -2%;
+            color: theme-color( 'primary' );
+            font-weight: 800;
+            font-size: 130%;
+            z-index: -1;
+        }
+    }
+
+    &__view {
+        font-size: 1.2rem;
+        border-bottom: 1px solid #1c1f21;
+    }
+
+    &__nav {
+        .nav-link {
+            text-transform: uppercase;
+            
+            &:not(.active) {
+                color: $gray-500;
+            }
+        }
+    }
+
+    .d-block {
+        font-size: 1.4rem;
+        font-weight: 100;
+        color: $dark;
+        line-height: 1;
+
+        @include media-breakpoint-up('sm') { 
+            font-size: 2rem;
+        }
+    }
+}

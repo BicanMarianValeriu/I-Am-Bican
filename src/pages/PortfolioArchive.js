@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
 
-import { Main, PageIntro } from "../components/General";
+import { Main } from "../components/General";
+import Intro from "../components/Portfolio/Archive/Intro";
 import { getProjects, updateProjects } from "../redux/actions/projects";
 import { requestApi } from "../redux/actions/api";
 
@@ -57,9 +58,9 @@ class Projects extends Component {
 					]}
 				/>
 				<div id="content" className="content content--projects content--archive">
-					<PageIntro pageTitle='Portfolio' />
+					<Intro />
 					<div className="container">
-						<Main posts={projects} className="my-3 my-md-5" isSingle={false} options={{ loading: loading }} />
+						<Main posts={projects} className="my-3 my-md-5 pt-3 pt-lg-4" isSingle={false} options={{ loading: loading }} />
 					</div>
 				</div>
 			</React.Fragment>

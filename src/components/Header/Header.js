@@ -9,7 +9,7 @@ export default withRouter(props => {
     const { location: { pathname } } = props;
 
     const isPage = pathname.split('/')[1];
-    const routes = ['/', '/p', '/portfolio/', '/portfolio'];
+    const routes = ['/', '/p'];
 
     const classNames = className(
         'header',
