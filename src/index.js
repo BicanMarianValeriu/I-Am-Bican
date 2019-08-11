@@ -4,6 +4,7 @@ import 'react-app-polyfill/ie11';
 import React from 'react';
 import Loadable from 'react-loadable';
 import { render, hydrate } from 'react-dom';
+import ReactGA from 'react-ga';
 import { FacebookProvider } from 'react-facebook';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
@@ -15,6 +16,13 @@ import './static/scss/style.scss';
 
 // Create a store and get back itself and its history object
 const { store, history } = createStore();
+
+history.listen(location => {
+	const { pathname } = location;
+	ReactGA.initialize('UA-80159913-6');
+	ReactGA.set({ page: pathname });
+	ReactGA.pageview(pathname);
+});
 
 const Application = (
 	<Provider store={store}>

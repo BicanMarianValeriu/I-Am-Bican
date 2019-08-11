@@ -5,7 +5,6 @@ export const API_REJECTED 	= '[iambican] API:REJECTED';
 
 // Axios Settings
 const APIUrl = 'https://dev.wecodeart.com/iambican/wp-json/';
-//const APIUrl = 'https://www.iambican.com/dashboard/wp-json/';
 //const APIUrl = 'http://working.on/iambican/wordpress/wp-json/';
 axios.defaults.baseURL = APIUrl;
 const apiConfig = { baseURL: APIUrl };

@@ -1,8 +1,9 @@
-import React, { useEffect,/*  useState  */} from 'react';
+import React, { useEffect,/*  useState  */ } from 'react';
 //import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Like } from 'react-facebook';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { isServer } from './../../../utilities/helpers';
 
 //import _filter from 'lodash/filter';
 //import _includes from 'lodash/includes';
@@ -38,11 +39,11 @@ const PortfolioStats = ({ pending, isLoading, stats, categories }) => {
         <div className="portfolio-stats">
             <div className="container mb-3">
                 <div className="row justify-content-center mb-5 pb-md-5 py-5">
-                    <div className="col-lg-6 mb-2 mb-lg-0 text-center text-lg-right">
+                    <div className="col-lg-5 mb-2 mb-lg-0 text-center text-lg-right">
                         <span className="d-block text-uppercase font-weight-thin">Portfolio</span>
                         <h1 className="portfolio-stats__heading font-weight-bold mb-2">
                             SHOW
-                            <span class="text-color-primary font-weight-extra-bold">/</span>
+                            <span className="text-color-primary font-weight-extra-bold">/</span>
                             CASE
                         </h1>
                         <p className="mt-3 mb-0 offset-lg-3">
@@ -56,7 +57,9 @@ const PortfolioStats = ({ pending, isLoading, stats, categories }) => {
                             <li className="nav-item"><a className="nav-link active pl-0" href="#all">VIEW ALL</a></li>
                             <li className="nav-item"><a className="nav-link" href="#websites">Websites</a></li>
                         </ul>
-                        <div className="mb-1"><Like href="https://www.iambican.com/portfolio/" showFaces share /></div>
+                        {!isServer && <div className="mb-1">
+                            <Like href="https://www.iambican.com/portfolio/" showFaces share />
+                        </div>}
                     </div>
                 </div>
             </div>
@@ -66,12 +69,11 @@ const PortfolioStats = ({ pending, isLoading, stats, categories }) => {
 
 // Binds menu items to navigation container
 const mapStateToProps = store => {
-    const { stats, categories, ui: { 
-        pending, 
-        pendingStats: isLoading 
+    const { ui: {
+        pending,
     } } = store;
 
-    return ({ stats, categories, pending, isLoading });
+    return ({ pending });
 };
 
 export default connect(mapStateToProps)(PortfolioStats);
