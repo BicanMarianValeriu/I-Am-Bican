@@ -1,26 +1,26 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d933127706c6fe1ea5c23e57a3e91371",
+    "revision": "b6b57c7d470d86f53f5e281a344a2d7d",
     "url": "/build/index.html"
   },
   {
-    "revision": "be810db3cf105b43675e",
+    "revision": "4bb84c306361534521dd",
     "url": "/build/static/css/404.1f0e8fda.chunk.css"
   },
   {
-    "revision": "c2f55984645f30c699a7",
+    "revision": "08e7015b4e1e27502b24",
     "url": "/build/static/css/9.9b8ad7a7.chunk.css"
   },
   {
-    "revision": "dc36eda4dd03329cf38b",
-    "url": "/build/static/css/main.b9a2a8af.chunk.css"
+    "revision": "b2e2b5ed2c5bb75502ca",
+    "url": "/build/static/css/main.03bb0334.chunk.css"
   },
   {
-    "revision": "448013453c1895672e5f",
-    "url": "/build/static/css/portfolio-archives.8a4a2898.chunk.css"
+    "revision": "84a5011ac225041caa27",
+    "url": "/build/static/css/portfolio-archives.82a13dce.chunk.css"
   },
   {
-    "revision": "da8eb2403d3b8e531c8c",
+    "revision": "90beb3a90af974669243",
     "url": "/build/static/css/portfolio-single.31c252af.chunk.css"
   },
   {
@@ -28,40 +28,40 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/build/static/js/0.b0786c34.chunk.js"
   },
   {
-    "revision": "be810db3cf105b43675e",
-    "url": "/build/static/js/404.4638e4a3.chunk.js"
+    "revision": "4bb84c306361534521dd",
+    "url": "/build/static/js/404.052ee030.chunk.js"
   },
   {
-    "revision": "c2f55984645f30c699a7",
-    "url": "/build/static/js/9.bd0dd7e0.chunk.js"
+    "revision": "08e7015b4e1e27502b24",
+    "url": "/build/static/js/9.1c51371b.chunk.js"
   },
   {
-    "revision": "dc36eda4dd03329cf38b",
-    "url": "/build/static/js/main.2e8b2409.chunk.js"
+    "revision": "b2e2b5ed2c5bb75502ca",
+    "url": "/build/static/js/main.878945cc.chunk.js"
   },
   {
-    "revision": "a98b3eb7fbfd1da16e93",
-    "url": "/build/static/js/page.0b02d2a1.chunk.js"
+    "revision": "c35ecb2d92d3ca785018",
+    "url": "/build/static/js/page.2170413a.chunk.js"
   },
   {
-    "revision": "448013453c1895672e5f",
-    "url": "/build/static/js/portfolio-archives.95acbef0.chunk.js"
+    "revision": "84a5011ac225041caa27",
+    "url": "/build/static/js/portfolio-archives.70c43eb8.chunk.js"
   },
   {
-    "revision": "da8eb2403d3b8e531c8c",
-    "url": "/build/static/js/portfolio-single.4b1b77b5.chunk.js"
+    "revision": "90beb3a90af974669243",
+    "url": "/build/static/js/portfolio-single.bd21ff9f.chunk.js"
   },
   {
-    "revision": "d08421f8e45b89609560",
-    "url": "/build/static/js/runtime~main.e36c82ee.js"
+    "revision": "525cdd1333ade4dcbf0d",
+    "url": "/build/static/js/runtime~main.ef4f329f.js"
   },
   {
-    "revision": "790f9829ef7bdbed04e2",
-    "url": "/build/static/js/swal-auth.23d7ecd1.chunk.js"
+    "revision": "e1a64f498d4516ade86a",
+    "url": "/build/static/js/swal-auth.97282e9d.chunk.js"
   },
   {
-    "revision": "1501eb6e145177fc811c",
-    "url": "/build/static/js/swal-contact.dddc428f.chunk.js"
+    "revision": "7388da1ae474161512e5",
+    "url": "/build/static/js/swal-contact.c240d8aa.chunk.js"
   },
   {
     "revision": "33adae677fab86b44462b81620210061",
@@ -178,5 +178,25 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "f6c57152f6515e2407ec51ee0b89e6f9",
     "url": "/build/static/media/raleway-v12-latin-regular.f6c57152.svg"
+  },
+  {
+    "revision": "0f29c9adc8d36df0913a9c559beaf741",
+    "url": "/build/static/media/raleway-v14-latin-100.0f29c9ad.eot"
+  },
+  {
+    "revision": "161ab2ad00fa982f54cb8f16f26a0af3",
+    "url": "/build/static/media/raleway-v14-latin-100.161ab2ad.woff"
+  },
+  {
+    "revision": "2d7a1238fea2c2307507a59e0855ff42",
+    "url": "/build/static/media/raleway-v14-latin-100.2d7a1238.woff2"
+  },
+  {
+    "revision": "4ea484e334de2c280b9879b312deab16",
+    "url": "/build/static/media/raleway-v14-latin-100.4ea484e3.ttf"
+  },
+  {
+    "revision": "c97d389f39be1de03adf55a45ca0b597",
+    "url": "/build/static/media/raleway-v14-latin-100.c97d389f.svg"
   }
 ]);

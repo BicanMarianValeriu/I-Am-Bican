@@ -10,7 +10,6 @@ import { isServer } from './../../../utilities/helpers';
 
 //import anime from 'animejs';
 //import ContentLoader from 'react-content-loader';
-//import { isServer } from './../../../utilities/helpers';
 
 const PortfolioStats = ({ pending, isLoading, stats, categories }) => {
     //const [{ activeSensor }, setState] = useState({ activeSensor: true });
@@ -37,29 +36,29 @@ const PortfolioStats = ({ pending, isLoading, stats, categories }) => {
 
     return (
         <div className="portfolio-stats">
-            <div className="container mb-3">
-                <div className="row justify-content-center mb-5 pb-md-5 py-5">
-                    <div className="col-lg-5 mb-2 mb-lg-0 text-center text-lg-right">
+            <div className="container">
+                <div className="row justify-content-center mb-4 pt-5 pb-3 pb-md-4">
+                    <div className="col-lg-5 mb-3 mb-lg-0 text-center text-lg-right">
                         <span className="d-block text-uppercase font-weight-thin">Portfolio</span>
                         <h1 className="portfolio-stats__heading font-weight-bold mb-2">
                             SHOW
                             <span className="text-color-primary font-weight-extra-bold">/</span>
                             CASE
                         </h1>
-                        <p className="mt-3 mb-0 offset-lg-3">
+                        <p className="mt-3 mb-2 offset-lg-3">
                             This projects are just a fraction of my work.
                             Feel free to browse them and take a closer look.
                         </p>
                     </div>
                     <div className="col-lg-5 offset-lg-1 text-center text-lg-left align-self-end">
+                        {!isServer && <div className="mb-4">
+                            <Like href="https://www.iambican.com/portfolio/" showFaces share />
+                        </div>}
                         <h2 className="portfolio-stats__view font-weight-semibold d-inline-block pb-3">View My Work</h2>
-                        <ul className="portfolio-stats__nav nav justify-content-center justify-content-lg-start mb-4 mb-md-2">
+                        <ul className="portfolio-stats__nav nav justify-content-center justify-content-lg-start mb-0">
                             <li className="nav-item"><a className="nav-link active pl-0" href="#all">VIEW ALL</a></li>
                             <li className="nav-item"><a className="nav-link" href="#websites">Websites</a></li>
                         </ul>
-                        {!isServer && <div className="mb-1">
-                            <Like href="https://www.iambican.com/portfolio/" showFaces share />
-                        </div>}
                     </div>
                 </div>
             </div>

@@ -1,9 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { Like } from 'react-facebook';
+import { isMobile } from 'react-device-detect';
 import className from 'classnames';
 import LoginButton from '../General/Login';
 import GetInTouch from '../General/GetInTouch';
 import Navigation from '../General/Navigation';
+import { isServer } from '../../utilities/helpers';
 
 export default withRouter(props => {
     const { location: { pathname } } = props;
@@ -26,7 +29,7 @@ export default withRouter(props => {
     };
 
     const Menu = () => (
-        <div className="header__menu col">
+        <div className="header__menu col col=auto">
             <Navigation wpMenuId={2} />
         </div>
     );
@@ -39,12 +42,22 @@ export default withRouter(props => {
         );
     };
 
+    const FBPage = () => {
+        if (isMobile || isServer) return null;
+        return (
+            <div className="header__social col col-auto ml-auto mr-0 pr-2">
+                <Like href="https://www.facebook.com/wecodeart/" showFaces share action="recommend" />
+            </div>
+        )
+    }
+
     return (
         <header id="header" className={classNames} itemScope="" itemType="http://schema.org/WPHeader">
             <div className="header__bar">
                 <div className="container-fluid">
                     <div className="row align-items-center no-gutters">
                         <CTA />
+                        <FBPage />
                         <Menu />
                         <Login />
                     </div>
