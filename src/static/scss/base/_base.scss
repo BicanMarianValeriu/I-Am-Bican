@@ -35,3 +35,18 @@ input:-webkit-autofill:hover {
         width: 100%;
     }
 }
+
+.facebook-wide-wrapper {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 50px;
+        background-image: linear-gradient(to right, rgba( 255, 255, 255, .1 ) 30%, white 100% );
+        pointer-events: none;
+    }
+}

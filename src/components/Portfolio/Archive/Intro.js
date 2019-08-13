@@ -51,7 +51,7 @@ const PortfolioStats = ({ pending, isLoading, stats, categories }) => {
                         </p>
                     </div>
                     <div className="col-lg-5 offset-lg-1 text-center text-lg-left align-self-end">
-                        {!isServer && <div className="mb-4">
+                        {!isServer && <div className="mb-4 facebook-wide-wrapper">
                             <Like href="https://www.iambican.com/portfolio/" showFaces share />
                         </div>}
                         <h2 className="portfolio-stats__view font-weight-semibold d-inline-block pb-3">View My Work</h2>

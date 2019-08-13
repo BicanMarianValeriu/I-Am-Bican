@@ -29,7 +29,7 @@ export default withRouter(props => {
     };
 
     const Menu = () => (
-        <div className="header__menu col col=auto">
+        <div className="header__menu col col-auto">
             <Navigation wpMenuId={2} />
         </div>
     );
@@ -43,10 +43,10 @@ export default withRouter(props => {
     };
 
     const FBPage = () => {
-        if (isMobile || isServer) return null;
+        if (isMobile || isServer) return <div className="header__social col col-auto ml-auto mr-0 pr-2"></div>;
         return (
             <div className="header__social col col-auto ml-auto mr-0 pr-2">
-                <Like href="https://www.facebook.com/wecodeart/" showFaces share action="recommend" />
+                {<Like href="https://www.facebook.com/wecodeart/" showFaces share action="recommend" />}
             </div>
         )
     }

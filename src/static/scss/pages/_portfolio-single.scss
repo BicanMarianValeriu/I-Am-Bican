@@ -201,11 +201,16 @@
     }
 
     .fb-comments {
+        display: flex;
         margin-left: -8px!important;
         margin-right: -8px!important;
         width: calc(100% + 16px)!important;
         min-width: calc(100% + 16px)!important;
         max-width: initial!important;
+
+        span {
+            display: block;
+        }
     }
 }
 

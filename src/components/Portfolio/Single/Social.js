@@ -38,7 +38,7 @@ export default withRouter((props) => {
                 </h3>
                 <hr />
                 {!isServer && <Fragment>
-                    <Like href={socialUrl} showFaces share />
+                    <div className="facebook-wide-wrapper"><Like href={socialUrl} showFaces share /></div>
                     <Comments href={socialUrl} width="100%" />
                 </Fragment>}
             </div>
