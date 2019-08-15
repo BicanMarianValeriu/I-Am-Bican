@@ -326,8 +326,9 @@
     min-width: calc(100% + 15px);
     max-width: initial;
 
-    &.fb_iframe_widget_fluid {
-        display: block;
+    &.fb_iframe_widget_fluid,
+    &.fb_iframe_widget_fluid_desktop {
+        display: block!important;
     }
 
     span {
@@ -335,6 +336,6 @@
     }
 
     iframe {
-        min-width: 100%;
+        min-width: 100%!important;
     }
 }
