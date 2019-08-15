@@ -3,14 +3,11 @@ import DownloadLoader from '../General/download-loader';
 import ContentLoader from "react-content-loader"
 
 const Empty = props => {
-	const { options = {} } = props;
-	const { classes = {} } = options;
+	const { options: { classes = {} } = {} } = props;
 
 	const mergedClasses = {
-		...{
-			outer: 'placeholder',
-			inner: 'entry entry--empty'
-		},
+		outer: 'placeholder',
+		inner: 'entry entry--empty',
 		...classes
 	}
 

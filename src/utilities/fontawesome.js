@@ -39,6 +39,7 @@ import { faJs } from '@fortawesome/free-brands-svg-icons/faJs';
 import { faGulp } from '@fortawesome/free-brands-svg-icons/faGulp';
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons/faWhatsapp';
 
 const faEnvelopeL = {
 	icon: [
@@ -104,12 +105,13 @@ const faSignInL = {
 const icons = [
 	faEnvelope, faEnvelopeL, faEnvelopeOpen, faDownload, faPuzzlePiece, faHeart, faCloudDownloadAlt, faKey, faSignInL, SignInAltSolid,
 	faCheck, faBolt, faDesktop, faEye, faGlobe, faPlane, faPaperPlaneL, faSearch, faGrinHearts, faPaperPlane, faUserSolid,
-	faFileCode, faSignOutAlt, faUser, faCircle, faThLarge, faArrowLeft, faArrowRight, faMoneyBillAlt, faBriefcase, faShoppingCartL
+	faFileCode, faSignOutAlt, faUser, faCircle, faThLarge, faArrowLeft, faArrowRight, faMoneyBillAlt, faBriefcase, 
+	faShoppingCartL, faShoppingCart
 ];
 
 const brands = [
 	faTwitter, faFacebookSquare, faLinkedin, faHtml5, faReact, faSass, faPhp, faJs, faGit, faGulp,
-	faWordpressSimple, faYoutubeSquare, faShoppingCart
+	faWordpressSimple, faYoutubeSquare, faWhatsapp
 ];
 
 export default icons;

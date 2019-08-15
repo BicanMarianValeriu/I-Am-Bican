@@ -63,3 +63,19 @@ hr {
 .maskDown { 
 	animation-name: maskDown;
 }
+
+.facebook-wide-wrapper {
+    position: relative;
+	overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 60px;
+        background-image: linear-gradient(to right, rgba( 255, 255, 255, .1 ) 40%, white 100% );
+        pointer-events: none;
+    }
+}

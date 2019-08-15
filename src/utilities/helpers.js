@@ -215,9 +215,28 @@ const humanDuration = ({ from, to }) => {
 	return (years + yAppendix + ", " + months + mAppendix + ", and " + days + dAppendix);
 };
 
+/**
+ * Parse data attrs
+ * @param   {object/string} opts
+ * @return  {object/string}
+ */
+const parseData = (opts) => {
+	if (typeof (opts) == 'object') {
+		return opts;
+	} else if (typeof (opts) == 'string') {
+		try {
+			return JSON.parse(opts.replace(/'/g, '"').replace(';', ''));
+		} catch (e) {
+			return {};
+		}
+	} else {
+		return {};
+	}
+};
+
 // Exports
 export {
-	isServer, getScreenType, getWinSize,
+	isServer, getScreenType, getWinSize, parseData,
 	getFormData, validateEmail, validateFields, serializeData,
 	lerp, lineEq, getMousePos, shuffleArray, randomize,
 	humanDuration, shuffleNumbers, getRandomNumber

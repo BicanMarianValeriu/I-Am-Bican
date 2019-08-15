@@ -89,19 +89,15 @@ const getFeaturedMedia = (data) => {
  * Return formated tags object ready for Helmet
  * @param {object} data WP Object
  */
-const getMetaTags = (data, pathname) => {
-	let tags = {}
-
-	const { meta: {
-		title = '',
-		description = '',
-		robots = '',
-		canonical = '',
-		opengraph = {},
-		twitter = {},
-	} = {} } = data;
-
-	tags = {
+const getMetaTags = ({ meta: {
+	title = '',
+	description = '',
+	robots = '',
+	canonical = '',
+	opengraph = {},
+	twitter = {},
+} = {} }) => {
+	const tags = {
 		title,
 		meta: [
 			{ name: 'description', content: description },
@@ -109,7 +105,9 @@ const getMetaTags = (data, pathname) => {
 			...Object.entries(opengraph).map(item => ({ property: item[0], content: item[1] })),
 			...Object.entries(twitter).map(item => ({ name: item[0], content: item[1] })),
 		],
-		link: [{ rel: 'canonical', href: canonical !== '' ? canonical : "https://www.iambican.com" + pathname }]
+		link: [
+			canonical ? { rel: 'canonical', href: canonical } : {}
+		]
 	}
 
 	return tags;

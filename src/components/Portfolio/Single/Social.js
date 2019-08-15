@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { Like, Comments } from 'react-facebook';
 import { withRouter } from 'react-router-dom';
+import { StickyContainer, Sticky } from 'react-sticky';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { isServer } from './../../../utilities/helpers';
 
@@ -30,18 +31,20 @@ export default withRouter((props) => {
     const socialUrl = createUrl();
 
     return (
-        <div className="portfolio-social flex-grow-1 position-relative" id="trigger-pin-social">
-            <div className="social social--facebook" id="pin-social">
-                <h3 className="lead mt-5">
-                    <i className="fal fa-comment-dots"></i>
-                    <span> Be Social :)</span>
-                </h3>
-                <hr />
-                {!isServer && <Fragment>
-                    <div className="facebook-wide-wrapper"><Like href={socialUrl} showFaces share /></div>
-                    <Comments href={socialUrl} width="100%" />
-                </Fragment>}
-            </div>
-        </div>
+        <StickyContainer className="portfolio-social flex-grow-1 position-relative">
+            <Sticky>{({ style }) => (
+                <div className="social social--facebook" style={style}>
+                    <h3 className="lead mt-5">
+                        <i className="fal fa-comment-dots"></i>
+                        <span> Be Social :)</span>
+                    </h3>
+                    <hr />
+                    {!isServer && <Fragment>
+                        <div className="facebook-wide-wrapper"><Like href={socialUrl} showFaces share /></div>
+                        <Comments href={socialUrl} width="100%" />
+                    </Fragment>}
+                </div>)}
+            </Sticky>
+        </StickyContainer>
     );
 });

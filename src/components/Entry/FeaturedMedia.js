@@ -39,7 +39,7 @@ class FeaturedMedia extends Component {
             <Img src={this.getMediaImages()}
                 className="entry__media-src"
                 container={children => <div className="entry__media-wrapper">{children}</div>}
-                unloader={<img className="entry__media-src" alt="IAMBican Placeholder" src={placeholder} />}
+                unloader={<img className="entry__media-src" alt="IAmBican Placeholder" src={placeholder} />}
                 loader={<DownloadLoader />}
             />
         );

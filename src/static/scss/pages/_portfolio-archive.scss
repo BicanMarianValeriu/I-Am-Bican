@@ -138,8 +138,7 @@
                 }
             }
 
-            &::before,
-            &::after {
+            &::before {
                 content: ' ';
                 position: absolute; 
                 z-index: 3;
@@ -151,16 +150,6 @@
                 bottom: -15px;
                 left: 13px;
                 border: 5px solid #FFF;
-            }
-
-            &::after {
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: rgba( theme-color( 'primary' ), .20 );
-                transition: inherit;
-                z-index: 2;
             }
         }
     }

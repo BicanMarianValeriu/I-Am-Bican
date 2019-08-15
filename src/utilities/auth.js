@@ -66,7 +66,7 @@ export const setCurrentUser = ({
 }) => {
 	try {
 		const userData = JSON.stringify({ name, email, avatar });
-		Cookies.set('currentUser', userData);
+		Cookies.set('currentUser', userData, { expires: 7 });
 	} catch (error) {
 		// Logging error on client side
 	}
