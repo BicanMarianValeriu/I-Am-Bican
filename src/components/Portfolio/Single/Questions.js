@@ -12,8 +12,7 @@ import ContentLoader from 'react-content-loader';
 import VisibilitySensor from 'react-visibility-sensor';
 
 import { getQA } from "../../../redux/actions/questions";
-import { Accordion } from './../../../utilities/accordion';
-import { isServer } from './../../../utilities/helpers';
+import { isServer, Accordion } from './../../../utilities/helpers';
 
 const Questions = ({ pending, isLoading, getQA, questions }) => {
     const [{ activeSensor }, setState] = useState({ activeSensor: true });

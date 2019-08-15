@@ -1,6 +1,5 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom';
-import { StickyContainer, Sticky } from 'react-sticky';
 import {
     FacebookShareButton,
     LinkedinShareButton,
@@ -20,15 +19,13 @@ export default withRouter((props) => {
     const socialUrl = createUrl();
 
     return (
-        <StickyContainer className="portfolio__sharing">
-            <Sticky>{({ style }) => (
-                <div className="portfolio-sharing" style={style}>
-                    <FacebookShareButton url={socialUrl} ><i className="fab fa-facebook-square fa-fw" /></FacebookShareButton>
-                    <LinkedinShareButton url={socialUrl} ><i className="fab fa-linkedin fa-fw" /></LinkedinShareButton>
-                    <TwitterShareButton url={socialUrl} ><i className="fab fa-twitter fa-fw" /></TwitterShareButton>
-                    <WhatsappShareButton url={socialUrl} ><i className="fab fa-whatsapp fa-fw" /></WhatsappShareButton>
-                </div>)}
-            </Sticky>
-        </StickyContainer>
+        <div className="portfolio__sharing">
+            <div className="portfolio-sharing" >
+                <FacebookShareButton url={socialUrl} ><i className="fab fa-facebook-square fa-fw" /></FacebookShareButton>
+                <LinkedinShareButton url={socialUrl} ><i className="fab fa-linkedin fa-fw" /></LinkedinShareButton>
+                <TwitterShareButton url={socialUrl} ><i className="fab fa-twitter fa-fw" /></TwitterShareButton>
+                <WhatsappShareButton url={socialUrl} ><i className="fab fa-whatsapp fa-fw" /></WhatsappShareButton>
+            </div>
+        </div>
     );
 });

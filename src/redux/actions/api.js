@@ -1,11 +1,11 @@
-import axios from 'axios'; 
+import axios from 'axios';
+import { isLocalhost } from '../../utilities/helpers';
 
-export const API_REQUEST 	= '[iambican] API:REQUEST';  
-export const API_REJECTED 	= '[iambican] API:REJECTED'; 
+export const API_REQUEST 	= '[iambican] API:REQUEST';
+export const API_REJECTED 	= '[iambican] API:REJECTED';
 
 // Axios Settings
-const APIUrl = 'https://dev.wecodeart.com/iambican/wp-json/';
-//const APIUrl = 'http://working.on/iambican/wordpress/wp-json/';
+const APIUrl = isLocalhost ? '//working.on/iambican/wordpress/wp-json/' : 'https://dev.wecodeart.com/iambican/wp-json/';
 axios.defaults.baseURL = APIUrl;
 const apiConfig = { baseURL: APIUrl };
 
@@ -24,5 +24,5 @@ export const apiRequest = (endpoint, body, events, options) => ({
 	payload: {
 		data: body,
 		meta: { endpoint, events, options }
-	} 
+	}
 });

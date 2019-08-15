@@ -3,11 +3,11 @@ import { apiRequest } from "../actions/api";
 import { 
     setAuthToken, 
     removeAuthToken, 
-    getAuthHeader, 
     setCurrentUser, 
-    removeCurrentUser, 
     getCurrentUser, 
-} from "../../utilities/auth";
+    removeCurrentUser, 
+    getAuthHeader, 
+} from "../../utilities/helpers";
 import {
     USER_GET_TOKEN,
     USER_GET_TOKEN_SUCCESS,

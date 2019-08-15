@@ -230,7 +230,8 @@
 }
 
 .portfolio-sharing {
-    padding-top: 15px;
+    position: sticky;
+    top: 25px;
 
     .SocialMediaShareButton {
         display: flex;
@@ -273,8 +274,15 @@
 }
 
 .portfolio-social {
+    position: relative;
+
     .social--facebook {
         display: block;
+
+        @include media-breakpoint-up('md') { 
+            position: sticky;
+            top: 25px;
+        }
     }
 }
 
@@ -311,12 +319,16 @@
 }
 
 .fb-comments {
-    display: flex;
+    display: block;
     margin-left: -8px;
     margin-right: -8px;
-    width: calc(100% + 16px)!important;
-    min-width: calc(100% + 16px);
+    width: calc(100% + 15px)!important;
+    min-width: calc(100% + 15px);
     max-width: initial;
+
+    &.fb_iframe_widget_fluid {
+        display: block;
+    }
 
     span {
         display: block;

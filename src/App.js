@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router';
 import { dom } from '@fortawesome/fontawesome-svg-core';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import icons, { brands } from './utilities/fontawesome';
+import { icons, brands } from './utilities/helpers';
 import { browserName, isMobile } from 'react-device-detect';
 
 import routes from './routes';

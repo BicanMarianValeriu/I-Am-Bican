@@ -1,7 +1,16 @@
 /**
- * Is Server
+ * isServer
  */
 const isServer = !(typeof window !== 'undefined' && window.document && window.document.createElement);
+
+/**
+ * isLocalhost
+ */
+const isLocalhost = Boolean(
+	window.location.hostname === 'localhost' || // [::1] is the IPv6 localhost address.
+	window.location.hostname === '[::1]' || // 127.0.0.1/8 is considered localhost for IPv4.
+	window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
+);
 
 /**
  * Get Window Size
@@ -14,14 +23,11 @@ const getWinSize = () => ({
 /**
  * Get Screen Type
  */
-const getScreenType = () => {
-	let screenType = null;
+const getScreenType = (value, type = 'min') => {
+	let width = null, name = null, condition = false;
 
 	if (!isServer) {
-		let style = getComputedStyle(document.body);
-
-		const toNumber = str => str && str.replace(/\D/g, '');
-
+		const style = getComputedStyle(document.body);
 		const breakpoints = {
 			xs: style.getPropertyValue('--breakpoint-sm'),
 			sm: style.getPropertyValue('--breakpoint-md'),
@@ -30,15 +36,40 @@ const getScreenType = () => {
 			xl: style.getPropertyValue('--breakpoint-xl')
 		};
 
-		if (window.matchMedia(`(max-width: ${breakpoints.xs})`).matches) screenType = toNumber(breakpoints.xs);
-		else if (window.matchMedia(`(max-width: ${breakpoints.sm})`).matches) screenType = toNumber(breakpoints.sm);
-		else if (window.matchMedia(`(max-width: ${breakpoints.md})`).matches) screenType = toNumber(breakpoints.md);
-		else if (window.matchMedia(`(max-width: ${breakpoints.lg})`).matches) screenType = toNumber(breakpoints.lg);
-		else screenType = toNumber(breakpoints.xl);
+
+		if (value !== undefined && Number.isInteger(value) && type !== undefined) {
+			if (
+				(['min', 'max'].includes(type) && window.matchMedia(`(${type}-width: ${value}px)`).matches) ||
+				(Number.isInteger(type) && window.matchMedia(`(min-width: ${value}px) and (max-width: ${type}px)`).matches)
+			) {
+				condition = true;
+			}
+		} else if (window.matchMedia(`(max-width: ${breakpoints.xs})`).matches) {
+			width = toNumber(breakpoints.xs);
+			name = 'xs';
+		} else if (window.matchMedia(`(max-width: ${breakpoints.sm})`).matches) {
+			width = toNumber(breakpoints.sm);
+			name = 'sm';
+		} else if (window.matchMedia(`(max-width: ${breakpoints.md})`).matches) {
+			width = toNumber(breakpoints.md);
+			width = 'md';
+		} else if (window.matchMedia(`(max-width: ${breakpoints.lg})`).matches) {
+			width = toNumber(breakpoints.lg);
+			name = 'lg';
+		} else {
+			width = toNumber(breakpoints.xl);
+			name = 'xl';
+		}
 	}
 
-	return screenType;
+	return { width, name, condition };
 }
+
+/**
+ * Convert to digit
+ * @param {string} str Number or String to be converted
+ */
+const toNumber = str => str && str.replace(/\D/g, '');
 
 /**
  * Gets form data - IE Support
@@ -236,8 +267,22 @@ const parseData = (opts) => {
 
 // Exports
 export {
-	isServer, getScreenType, getWinSize, parseData,
-	getFormData, validateEmail, validateFields, serializeData,
-	lerp, lineEq, getMousePos, shuffleArray, randomize,
-	humanDuration, shuffleNumbers, getRandomNumber
+	isServer,
+	isLocalhost,
+	getScreenType,
+	getWinSize,
+	parseData,
+	getFormData,
+	serializeData,
+	validateEmail,
+	validateFields,
+	lerp,
+	lineEq,
+	getMousePos,
+	humanDuration,
+	randomize,
+	toNumber,
+	getRandomNumber,
+	shuffleArray,
+	shuffleNumbers,
 };
