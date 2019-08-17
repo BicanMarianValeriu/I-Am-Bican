@@ -55,7 +55,7 @@ export default withRouter(props => {
         <header id="header" className={classNames} itemScope="" itemType="http://schema.org/WPHeader">
             <div className="header__bar">
                 <div className="container-fluid">
-                    <div className="row align-items-center no-gutters">
+                    <div className="row flex-nowrap align-items-center no-gutters">
                         <CTA />
                         <FBPage />
                         <Menu />

@@ -13,7 +13,7 @@ class PortfolioSingle extends Component {
 	}
 
 	render() {
-
+		const { acf: { meta: { questions } } } = this.props;
 		return (
 			<article className={this.getClasses()}>
 				<Header {...this.props} />
@@ -25,7 +25,7 @@ class PortfolioSingle extends Component {
 								<Content {...this.props} isSingle={true} />
 							</div>
 							<div className="col-12 col-lg-5 mt-3 mt-lg-0 d-flex flex-column">
-								<Questions />
+								<Questions include={questions} />
 								<Social {...this.props} />
 							</div>
 						</div>

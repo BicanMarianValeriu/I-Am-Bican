@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { frontloadConnect } from "react-frontload";
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 import _filter from 'lodash/filter';
@@ -14,7 +15,7 @@ import VisibilitySensor from 'react-visibility-sensor';
 import { getQA } from "../../../redux/actions/questions";
 import { isServer, Accordion } from './../../../utilities/helpers';
 
-const Questions = ({ pending, isLoading, getQA, questions }) => {
+const Questions = ({ include, pending, isLoading, getQA, questions }) => {
     const [{ activeSensor }, setState] = useState({ activeSensor: true });
 
     const addIcons = () => {
@@ -61,8 +62,8 @@ const Questions = ({ pending, isLoading, getQA, questions }) => {
     };
 
     const onChange = isVisible => {
-        if (!pending && isVisible) {
-            getQA();
+        if (!pending && include && isVisible) {
+            getQA({ include });
             setState({ activeSensor: false });
             return;
         }
@@ -70,6 +71,20 @@ const Questions = ({ pending, isLoading, getQA, questions }) => {
 
     const animeRef = useRef();
     const hasQuestions = questions.length !== 0;
+
+    const renderQuestions = (
+        <Accordion ref={animeRef}>{questions.map((item, i) => {
+            const { title, content } = item;
+            return (
+                <Accordion.Item key={i}>
+                    <Accordion.Header><i className="fal fa-chevron-down"></i> {title.rendered}</Accordion.Header>
+                    <Accordion.Body>
+                        <span dangerouslySetInnerHTML={{ __html: content.rendered }}></span>
+                    </Accordion.Body>
+                </Accordion.Item>
+            );
+        })}</Accordion>
+    );
 
     useEffect(() => {
         addIcons();
@@ -104,7 +119,7 @@ const Questions = ({ pending, isLoading, getQA, questions }) => {
             <hr />
             <div className="portfolio-questions__wrapper">
                 <VisibilitySensor onChange={onChange} active={activeSensor}>
-                    {!isServer && (isLoading || pending) ? () => {
+                    {!isServer && isLoading ? () => {
                         const loaderProps = {
                             height: 160,
                             width: 445,
@@ -125,18 +140,9 @@ const Questions = ({ pending, isLoading, getQA, questions }) => {
                                 <rect x="25" y="105" rx="5" ry="5" width="405" height="10" />
                             </ContentLoader>
                         )
-                    }
-                        : <Accordion ref={animeRef}>{questions.map((item, i) => {
-                            const { title, content } = item;
-                            return (
-                                <Accordion.Item key={i}>
-                                    <Accordion.Header><i className="fal fa-chevron-down"></i> {title.rendered}</Accordion.Header>
-                                    <Accordion.Body>
-                                        <span dangerouslySetInnerHTML={{ __html: content.rendered }}></span>
-                                    </Accordion.Body>
-                                </Accordion.Item>
-                            );
-                        })}</Accordion>}
+                    } : hasQuestions ? renderQuestions : <div>
+                        No Questions asked. Feel free to ask them in the comments bellow.
+                    </div>}
                 </VisibilitySensor>
             </div>
         </div>
@@ -145,7 +151,7 @@ const Questions = ({ pending, isLoading, getQA, questions }) => {
 
 // Binds menu items to navigation container
 const mapStateToProps = (store, props) => {
-    const { include = [99, 98, 109, 111] } = props;
+    const { include = [] } = props;
     const { qa, ui: { pending, pendingQA: isLoading } } = store;
     const questions = _filter(qa, i => _includes(include, i.id));
 
@@ -155,4 +161,12 @@ const mapStateToProps = (store, props) => {
 // mapDispatchToProps -> getQA
 const mapDispatchToProps = dispatch => bindActionCreators({ getQA }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Questions);
+const frontload = async props => {
+    const { include } = props;
+    if (include) return await getQA({ include });
+    return true;
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+    frontloadConnect(frontload, { onMount: true, onUpdate: false })(Questions)
+);

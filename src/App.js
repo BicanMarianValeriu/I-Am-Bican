@@ -25,11 +25,9 @@ const App = props => {
 
 		if (isMobile) documentHTML.classList.add('is-mobile');
 
-		if (pending === false) {
-			documentHTML.classList.remove('overflow-hidden');
-		} else {
-			documentHTML.classList.add('overflow-hidden');
-		}
+		const onPending = setTimeout(() => documentHTML.classList[pending ? 'add' : 'remove']('overflow-hidden'), 1000);
+
+		return () => clearTimeout(onPending);
 	}, [pending]);
 
 	return (

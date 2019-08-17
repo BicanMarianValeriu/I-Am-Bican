@@ -1,6 +1,6 @@
 .header {
 	position: relative;
-	background-color: $gray-100; 
+	background-color: $gray-100;
 	
 	&--absolute {
 		position: absolute;
@@ -93,6 +93,11 @@
 		@include media-breakpoint-up(lg) {
 			margin: 8px 0;
 		}
+	}
+
+	&__social {
+		max-height: 55px;
+		overflow: hidden;
 	}
 }
 
