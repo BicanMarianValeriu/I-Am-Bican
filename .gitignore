@@ -13,7 +13,7 @@
 
 # wordpress install
 wordpress/*
-!wordpress/wp-content/mu-plugins/
+!wordpress/wp-content/plugins/iambican
 /dploy.js
 
 # misc
