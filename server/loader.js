@@ -16,9 +16,9 @@ import { Frontload, frontloadServerRender } from "react-frontload";
 import App from "./../src/App";
 import routes from './../src/routes';
 import configStore from "./../src/redux/store";
-import { authToken, userLogout } from './../src/redux/actions/user';
 import manifest from "./../build/asset-manifest.json";
 import { injectHTML, formatScripts, getCacheKey } from "./helpers";
+import { authToken, userLogout } from './../src/redux/actions/user';
 
 // This is where we cache our rendered HTML pages
 const ssrCache = new LRUCache({
