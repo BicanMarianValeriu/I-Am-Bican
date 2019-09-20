@@ -12,7 +12,8 @@
 # /build
 
 # wordpress install
-wordpress/*
+wordpress
+!wordpress/wp-content/plugins/iambican/
 !wordpress/wp-content/plugins/iambican
 /dploy.js
 

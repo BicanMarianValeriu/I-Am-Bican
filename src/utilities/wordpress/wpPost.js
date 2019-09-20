@@ -6,8 +6,13 @@ import find from 'lodash/find';
  * @returns {string} Rendered post tyle
  */
 const getTitle = (data) => {
-	if (!data) return;
-	return { __html: data.title.rendered };
+	if (!data) {
+		return;
+	}
+
+	return { 
+		__html: data.title.rendered 
+	};
 };
 
 /**
@@ -16,12 +21,17 @@ const getTitle = (data) => {
  * @returns {string} Rendered post content
  */
 const getContent = (data) => {
-	if (!data) return;
+	if (!data) {
+		return;
+	}
+
 	if (!data.content.protected) {
 		return { __html: data.content.rendered };
 	}
 
-	return { __html: '<p>This content is password-protected.</p>' };
+	return { 
+		__html: '<p>This content is password-protected.</p>'
+	};
 };
 
 /**
@@ -30,19 +40,33 @@ const getContent = (data) => {
  * @returns {string} Rendered post content
  */
 const getExcerpt = (data) => {
-	if (!data) return;
+	if (!data){
+		return;
+	}
+
 	if (!data.excerpt) {
 		const content = this.getContent(data).__html.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 250);
-		return { __html: '<p>' + content + '</p>' };
+		
+		return { 
+			__html: '<p>' + content + '</p>' 
+		};
 	} else {
 		if (!data.excerpt.protected) {
+
 			if ('image' === data.format && !data.excerpt.rendered) {
-				return { __html: data.content.rendered };
+				return { 
+					__html: data.content.rendered 
+				};
 			}
-			return { __html: data.excerpt.rendered };
+
+			return { 
+				__html: data.excerpt.rendered 
+			};
 		}
 
-		return { __html: '<p>This content is password-protected.</p>' };
+		return { 
+			__html: '<p>This content is password-protected.</p>' 
+		};
 	}
 };
 
@@ -53,8 +77,14 @@ const getExcerpt = (data) => {
  * @returns formated post time
  */
 const getTime = (data, format) => {
-	if (!data) return;
-	if (!format) format = 'h:mm a';
+	if (!data) {
+		return;
+	}
+
+	if (!format) {
+		format = 'h:mm a';
+	}
+
 	const date = new Date(data.date);
 	return date(format);
 };
@@ -66,9 +96,14 @@ const getTime = (data, format) => {
  * @returns formated post time
  */
 const getDate = (data, format) => {
-	if (!data) return;
-	if (data.date_human) return data.date_human;
-	if (!format) format = 'MMMM Do, YYYY';
+	if (!data) {
+		return;
+	}
+
+	if (!format) {
+		format = 'MMMM Do, YYYY';
+	}
+
 	const date = new Date(data.date_gmt);
 	return date(format);
 };
@@ -79,9 +114,16 @@ const getDate = (data, format) => {
  * @returns media
  */
 const getFeaturedMedia = (data) => {
-	if (!data._embedded) return false;
-	if ('undefined' === typeof data._embedded['wp:featuredmedia']) return false;
-	const media = find(data._embedded['wp:featuredmedia'], item => ('undefined' !== typeof item.source_url));
+	if (!data._links) {
+		return false;
+	}
+
+	if ('undefined' === typeof data._links['wp:featuredmedia']) {
+		return false;
+	}
+
+	const media = find(data._links['wp:featuredmedia'], item => ('undefined' !== typeof item.href));
+
 	return media;
 };
 
@@ -89,7 +131,7 @@ const getFeaturedMedia = (data) => {
  * Return formated tags object ready for Helmet
  * @param {object} data WP Object
  */
-const getMetaTags = ({ meta: {
+const getMetaTags = ({ _meta: {
 	title = '',
 	description = '',
 	robots = '',

@@ -18,7 +18,9 @@ export default function ({ history, enhancers }) {
 
     const arr = [
         api,
-        createPromise(),
+        createPromise({
+            typeDelimiter: '_'
+        }),
         routerMiddleware(history),
         projectsMiddleware,
         qaMiddleware,
@@ -30,9 +32,11 @@ export default function ({ history, enhancers }) {
         thunk,
     ];
 
-    if (process.env.NODE_ENV === 'development' && !isServer) arr.push(createLogger());
+    if (process.env.NODE_ENV === 'development' && !isServer) {
+        arr.push(createLogger());
+    }
 
-    const composedEnhancers = compose(applyMiddleware(...arr.concat(...enhancers)));
+    const composedEnhancers = compose(applyMiddleware(...[...arr, ...enhancers]));
 
     return composedEnhancers;
 };
