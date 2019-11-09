@@ -35,10 +35,10 @@ class Portfolio extends Component {
 	render() {
 		const { selectedProject, location: { pathname } } = this.props;
 		const entry = selectedProject || {};
-
+		const tags = selectedProject && getMetaTags(entry, pathname);
 		return (
 			<React.Fragment>
-				<Helmet {...getMetaTags(entry, pathname)} />
+				<Helmet {...tags} />
 				<div id="content" className="content content--portfolio content--single">
 					<PrevNext {...entry} />
 					<Main posts={[selectedProject]} isSingle={true} loading={!selectedProject} />

@@ -32,10 +32,10 @@ class Page extends Component {
 		const { selectedPage, location: { pathname } } = this.props;
 		const entry = selectedPage || {};
 		const { title: { rendered: title = '' } = {} } = entry;
-
+		const tags = selectedPage && getMetaTags(entry, pathname);
 		return (
 			<React.Fragment>
-				<Helmet {...getMetaTags(entry, pathname)} />
+				<Helmet {...tags} />
 				<div id="content" className="content content--page content--single">
 					<PageIntro pageTitle={title} />
 					<div className="container">
