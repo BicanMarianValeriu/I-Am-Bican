@@ -131,7 +131,7 @@ const getFeaturedMedia = (data) => {
  * Return formated tags object ready for Helmet
  * @param {object} data WP Object
  */
-const getMetaTags = ({ meta: {
+const getMetaTags = ({ _meta: {
 	title = '',
 	description = '',
 	robots = '',

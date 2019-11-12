@@ -17,7 +17,7 @@ const SwalToast = Swal.mixin({
 const SwalCheckCredentials = () => {
 	return Swal.fire({
 		title: `Checking details, please wait...`,
-		type: 'question',
+		icon: 'question',
 		showConfirmButton: false,
 		allowEscapeKey: false,
 		allowOutsideClick: false,
@@ -34,7 +34,7 @@ const SwalInvalidCredentials = ({ afterValidation }) => {
 	return Swal.fire({
 		title: `Something went wrong.`,
 		html: `Invalid login credentials.`,
-		type: "error",
+		icon: 'error',
 		buttonsStyling: false,
 		showConfirmButton: false,
 		showCloseButton: true,
@@ -93,7 +93,7 @@ const SwalAuth = ({ afterValidation }) => {
 		showLoaderOnConfirm: true,
 		backdrop: `rgba(0,0,0,0.5)`,
 		showCloseButton: true,
-		width: "35rem",
+		width: '35rem',
 		preConfirm: () => {
 			const fields = document.forms["swal-login"].getElementsByClassName("required");
 			const { username: { value: username }, password: { value: password } } = fields;

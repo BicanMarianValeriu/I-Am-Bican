@@ -45,7 +45,7 @@ class Login extends Component {
 		if (chunk === null) return;
 		const { name } = getCurrentUser();
 		const titleText = isAuthentificated() ? `Welcome back ${name}.` : 'You have been logged out.';
-		chunk.SwalToast.fire({ type: 'success', titleText });
+		chunk.SwalToast.fire({ icon: 'success', titleText });
 	}
 
 	_onMouseOver() {

@@ -38,7 +38,7 @@ const SwalContact = () => {
 		confirmButtonText: '<i class="far fa-paper-plane mr-2"></i>Send Message',
 		showLoaderOnConfirm: true,
 		showCloseButton: true,
-		width: "40rem",
+		width: '40rem',
 		preConfirm: () => {
 			let fields = document.forms["swal-contact"].getElementsByClassName("required");
 			let email = fields["your-email"].value;
@@ -56,11 +56,11 @@ const SwalContact = () => {
 			});
 
 			WPCF.sendMail().then(result => {
-				if (result.status === "mail_sent") {
+				if (result.status === 'mail_sent') {
 					Swal.fire({
 						titleText: 'Awesome',
 						text: result.message,
-						type: "success",
+						icon: 'success',
 						showConfirmButton: false,
 						timer: 2500
 					});
@@ -68,7 +68,7 @@ const SwalContact = () => {
 					Swal.fire({
 						titleText: `Something went wrong`,
 						text: result.message,
-						type: "error",
+						icon: 'error',
 						showConfirmButton: false,
 						timer: 2500
 					});
@@ -77,7 +77,7 @@ const SwalContact = () => {
 				Swal.fire({
 					titleText: `Something went wrong`,
 					text: err,
-					type: "error",
+					icon: 'error',
 					buttonsStyling: false,
 					customClass: {
 						confirmButton: 'btn btn-primary'
@@ -90,7 +90,7 @@ const SwalContact = () => {
 		if (result.dismiss) return;
 		Swal.fire({
 			title: `Sending message, please wait...`,
-			type: "info",
+			icon: 'info',
 			showConfirmButton: false,
 			allowEscapeKey: false,
 			allowOutsideClick: false

@@ -33,7 +33,13 @@
 		}
 	}
 
-	&__image {
+	&__intro {
+		@include media-breakpoint-down('sm') { 
+			overflow: hidden;
+		}  
+	}
+
+	&__image {		
 		&-wrap {
 			position: relative;  
 			perspective: 650px;

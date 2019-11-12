@@ -3,10 +3,10 @@ import { createStore } from 'redux';
 import { createBrowserHistory, createMemoryHistory } from 'history'; 
 
 // Reducers
-import createReducers from "./reducers";
+import createReducers from './reducers';
 
 // Middlewares
-import createEnhancers from "./middlewares"; 
+import createEnhancers from './middlewares'; 
 import { isServer } from '../utilities/helpers';
 
 // Default
