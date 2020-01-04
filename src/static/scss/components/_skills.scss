@@ -11,11 +11,11 @@
 		z-index: 0;
 		overflow: hidden;
 
-		@include media-breakpoint-up(lg) {
+		@include media-breakpoint-up( 'lg' ) {
 			max-width: 1110px;
 		}
 
-		@include media-breakpoint-down(sm) {
+		@include media-breakpoint-down( 'sm' ) {
 			margin-top: -7rem;
 			padding-left: 15px;
 			padding-right: 15px;
@@ -80,5 +80,9 @@
 		svg {
 			fill: theme-color( 'primary' );
 		}
+	}
+
+	&__description {
+		font-size: .85rem;
 	}
 }

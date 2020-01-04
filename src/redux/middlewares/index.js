@@ -1,5 +1,5 @@
 import thunk from 'redux-thunk';
-import { createPromise } from 'redux-promise-middleware';
+import promise from 'redux-promise-middleware';
 import { compose, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import { routerMiddleware } from 'connected-react-router';
@@ -18,9 +18,7 @@ export default function ({ history, enhancers }) {
 
     const arr = [
         api,
-        createPromise({
-            typeDelimiter: '_'
-        }),
+        promise,
         routerMiddleware(history),
         projectsMiddleware,
         qaMiddleware,

@@ -4,7 +4,7 @@ import Img from 'react-image';
 import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { getMedia } from '../../redux/actions/media';
-import _find from "lodash/find";
+import _find from 'lodash/find';
 import DownloadLoader from '../General/download-loader';
 import placeholder from '../../static/images/placeholder-bold.png';
 
@@ -40,7 +40,7 @@ class FeaturedMedia extends Component {
                 className="entry__media-src"
                 container={children => <div className="entry__media-wrapper">{children}</div>}
                 unloader={<img className="entry__media-src" alt="IAmBican Placeholder" src={placeholder} />}
-                loader={<DownloadLoader />}
+                loader={<DownloadLoader type="spokes" />}
             />
         );
     }

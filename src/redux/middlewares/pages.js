@@ -1,4 +1,5 @@
 import { apiRequest } from "../actions/api";
+import { setPendingEntry } from "../actions/ui";
 import { GET_PAGE, GET_PAGE_SUCCESS, GET_PAGE_ERROR, updatePages } from "../actions/pages";
 
 export const pagesMiddleware = ({ dispatch }) => next => action => {
@@ -11,9 +12,11 @@ export const pagesMiddleware = ({ dispatch }) => next => action => {
             dispatch(
                 apiRequest('wp/v2/pages', { slug: payload }, { success: GET_PAGE_SUCCESS, error: GET_PAGE_ERROR })
             );
+            dispatch(setPendingEntry(true));
             break;
 
         case GET_PAGE_SUCCESS:
+            dispatch(setPendingEntry(false));
             dispatch(updatePages(payload[0]));
             break;
 

@@ -138,7 +138,7 @@ const getMetaTags = ({ _meta: {
 	canonical = '',
 	opengraph = {},
 	twitter = {},
-} = {} }) => {
+} = {} } = {}) => {
 	const tags = {
 		title,
 		meta: [

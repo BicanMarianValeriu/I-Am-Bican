@@ -17,7 +17,9 @@ import "./../static/scss/pages/_portfolio-single.scss";
 
 class Portfolio extends Component {
 	componentDidMount() {
+		const { match: { params: { slug } }, getProjects } = this.props
 		window.scrollTo(0, 0);
+		getProjects({ slug });
 	}
 
 	componentDidUpdate(prevProps) {
@@ -35,7 +37,8 @@ class Portfolio extends Component {
 	render() {
 		const { selectedProject, location: { pathname } } = this.props;
 		const entry = selectedProject || {};
-		const tags = selectedProject && getMetaTags(entry, pathname);
+		const tags = selectedProject && getMetaTags(selectedProject, pathname);
+		
 		return (
 			<React.Fragment>
 				<Helmet {...tags} />
@@ -50,11 +53,11 @@ class Portfolio extends Component {
 
 // Binds Query / Query Result
 const mapStateToProps = (store, props) => {
-	const { projects, ui: { pending } } = store;
+	const { projects } = store;
 	const { match: { params: { slug } } } = props;
 	const selectedProject = _find(projects, { slug });
 
-	return { selectedProject, pending };
+	return { selectedProject };
 };
 
 // Connect fetchDispatch function to props.fetchDispatch
@@ -67,7 +70,8 @@ const frontload = async props => {
 	return updateProjects(data);
 }
 
+// Connect to Frontload SSR
+const PortfolioConnect = frontloadConnect(frontload, { onMount: true, onUpdate: false })(Portfolio);
+
 // Export container while connected to store and SSR
-export default connect(mapStateToProps, mapDispatchToProps)(
-	frontloadConnect(frontload, { onMount: true, onUpdate: false })(Portfolio)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(PortfolioConnect);
