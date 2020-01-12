@@ -1,7 +1,7 @@
 import Loadable from "react-loadable";
 
 import Home from "./pages/Home";
-import DownloadLoader from "./components/General/download-loader";
+import DownloadLoader from "./components/General/prealoader";
 
 const FourOFour = Loadable({
 	loader: () => import(/* webpackChunkName: "404" */ "./pages/404"),

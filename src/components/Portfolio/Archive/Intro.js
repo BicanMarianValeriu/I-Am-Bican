@@ -1,19 +1,10 @@
-import React, { useEffect,/*  useState  */ } from 'react';
-//import { bindActionCreators } from "redux";
+import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { Like } from 'react-facebook';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { isServer } from './../../../utilities/helpers';
 
-//import _filter from 'lodash/filter';
-//import _includes from 'lodash/includes';
-
-//import anime from 'animejs';
-//import ContentLoader from 'react-content-loader';
-
 const PortfolioStats = ({ pending, isLoading, stats, categories }) => {
-    //const [{ activeSensor }, setState] = useState({ activeSensor: true });
-
     const addIcons = () => {
         const faChevronDown = {
             icon: [
@@ -46,7 +37,7 @@ const PortfolioStats = ({ pending, isLoading, stats, categories }) => {
                             CASE
                         </h1>
                         <p className="mt-3 mb-2 offset-lg-3">
-                            This projects are just a fraction of my work.
+                            These projects are just a fraction of my work.
                             Feel free to browse them and take a closer look.
                         </p>
                     </div>

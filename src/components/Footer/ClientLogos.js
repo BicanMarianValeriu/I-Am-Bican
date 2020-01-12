@@ -47,7 +47,7 @@ class ClientLogos extends Component {
 		if (scene === null) {
 			const newScene = new ScrollMagic.Scene({
 				triggerElement: '.company-logos__title',
-				triggerHook: .85,
+				triggerHook: .65,
 				reverse: false,
 			}).setClassToggle('.company-logos__title', 'company-logos__title--animated').addTo(controller);
 			this.setState({ scene: newScene });
