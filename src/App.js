@@ -1,6 +1,6 @@
 // The basics
 import React, { useEffect } from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router';
 import { dom } from '@fortawesome/fontawesome-svg-core';

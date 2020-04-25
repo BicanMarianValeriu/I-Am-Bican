@@ -56,9 +56,7 @@ class Main extends Component {
 	}
 
 	render() {
-		return (
-			<main id="postsContainer" className={this.getClasses()}>{this.renderPosts()}</main>
-		);
+		return (<main id="postsContainer" className={this.getClasses()}>{this.renderPosts()}</main>);
 	}
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { frontloadConnect } from "react-frontload";
@@ -38,7 +38,7 @@ class Portfolio extends Component {
 		const { selectedProject, location: { pathname } } = this.props;
 		const entry = selectedProject || {};
 		const tags = selectedProject && getMetaTags(selectedProject, pathname);
-		
+
 		return (
 			<React.Fragment>
 				<Helmet {...tags} />

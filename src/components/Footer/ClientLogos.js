@@ -1,26 +1,21 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { getClients } from "../../redux/actions/clients";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getClients } from '../../redux/actions/clients';
 import anime from 'animejs';
 import _delayCall from 'lodash/delay';
 import _debounce from 'lodash/debounce';
 import _sample from 'lodash/sample';
 import _filter from 'lodash/filter';
 
-let ScrollMagic;
-let Splitting;
-
 class ClientLogos extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			scene: null,
 			columns: 4,
 			current: [],
 			lastFrame: -1,
-			running: null
 		}
 
 		this.props.getClients();
@@ -35,34 +30,11 @@ class ClientLogos extends Component {
 	}
 
 	componentDidMount() {
-		ScrollMagic = require("scrollmagic");
-		Splitting = require("splitting");
-
-		const controller = new ScrollMagic.Controller();
-
-		const target = document.querySelector('.company-logos__title');
-		Splitting({ target: target });
-
-		const { scene } = this.state;
-		if (scene === null) {
-			const newScene = new ScrollMagic.Scene({
-				triggerElement: '.company-logos__title',
-				triggerHook: .65,
-				reverse: false,
-			}).setClassToggle('.company-logos__title', 'company-logos__title--animated').addTo(controller);
-			this.setState({ scene: newScene });
-		}
-
 		_delayCall(this.updateLogos, 1000);
 	}
 
 	componentDidUpdate() {
-		const { scene } = this.state;
-
 		this.showInitialLogos();
-
-		setTimeout(() => scene.reverse(true), 200); // reset after 200ms, after scroll up
-		scene.on('progress', e => e.progress === 1 ? scene.reverse(false) : null)
 	}
 
 	showInitialLogos() {
@@ -86,26 +58,18 @@ class ClientLogos extends Component {
 	updateLogo(newFrame) {
 		const { current } = this.state;
 		const { clients } = this.props;
-
 		const companies = document.querySelectorAll('.companies');
-
-		// Next Logos form next frame but not last
 		const logosListWithoutOld = _filter([...Array(clients.length).keys()], i => current.indexOf(i) === -1);
 		const nextLogo = _sample(logosListWithoutOld);
-
-		// Hide logos on new column
 		const newLogos = companies[newFrame].children;
-		for (let item of newLogos) {
-			if (item.classList.contains('active')) {
-				anime({
-					targets: item,
-					opacity: 0,
-					duration: 350,
-					easing: 'linear',
-					complete: () => item.classList.remove('active')
-				});
-			}
-		}
+
+		anime({
+			targets: newLogos,
+			opacity: 0,
+			duration: 350,
+			easing: 'linear',
+			complete: () => [...newLogos].map(item => item.classList.remove('active'))
+		});
 
 		// And then show the new logo
 		anime({
@@ -124,9 +88,7 @@ class ClientLogos extends Component {
 
 	updateLogos() {
 		const { columns, lastFrame } = this.state;
-
 		const frameListWithoutOld = _filter([...Array(columns).keys()], item => item !== lastFrame);
-
 		const newFrame = _sample(frameListWithoutOld);
 
 		this.updateLogo(newFrame);
@@ -143,7 +105,7 @@ class ClientLogos extends Component {
 		return clients.map((item, i) => {
 			const { acf: { client_logo } } = item;
 			return (
-				<div key={i} className="companies__logo">
+				<div key={i} className="companies__logo d-flex flex-colum align-items-center justify-content-middle">
 					<img width="200" src={client_logo.url} alt={item.name} />
 				</div>
 			);

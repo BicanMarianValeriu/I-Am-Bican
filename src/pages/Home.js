@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import Helmet from "react-helmet";
+import React, { Component, Fragment } from "react";
+import { Helmet } from "react-helmet";
 import AboutMe from "../components/Sections/Home/AboutMe";
 import Experience from "../components/Sections/Home/Experience";
 import Skills from '../components/Sections/Home/Skills';
@@ -17,7 +17,7 @@ class Home extends Component {
 		};
 
 		return (
-			<React.Fragment>
+			<Fragment>
 				<Helmet
 					title={meta.title}
 					link={[
@@ -29,7 +29,7 @@ class Home extends Component {
 					<Experience />
 					<Skills />
 				</div>
-			</React.Fragment>
+			</Fragment>
 		);
 	}
 }

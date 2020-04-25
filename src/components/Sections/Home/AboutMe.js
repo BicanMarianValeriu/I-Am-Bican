@@ -9,7 +9,7 @@ import AboutMeLinks from './AboutMe/Links';
 
 // Assets 
 import Bican from "./../../../static/images/bican.jpg";
-import BicanOld from "./../../../static/images/bican-old.jpg";
+import BicanOld from "./../../../static/images/bican-cartoon.jpg";
 
 export default () => {
 	const { width: windowWidth } = useWindowSize();

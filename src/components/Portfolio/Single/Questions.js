@@ -12,11 +12,27 @@ import anime from 'animejs';
 import ContentLoader from 'react-content-loader';
 import VisibilitySensor from 'react-visibility-sensor';
 
-import { getQA } from "../../../redux/actions/questions";
+import { getQA, updateQA } from "../../../redux/actions/questions";
 import { isServer, Accordion } from './../../../utilities/helpers';
 
-const Questions = ({ include, pending, isLoading, getQA, questions }) => {
-    const [{ activeSensor }, setState] = useState({ activeSensor: true });
+const ContentLoaderRender = () => <ContentLoader {...{
+    height: 160,
+    width: 445,
+    speed: 5,
+    primaryopacity: "0.5",
+}}>
+    <circle cx="10" cy="20" r="8" />
+    <rect x="25" y="15" rx="5" ry="5" width="405" height="10" />
+    <circle cx="10" cy="50" r="8" />
+    <rect x="25" y="45" rx="5" ry="5" width="405" height="10" />
+    <circle cx="10" cy="80" r="8" />
+    <rect x="25" y="75" rx="5" ry="5" width="405" height="10" />
+    <circle cx="10" cy="110" r="8" />
+    <rect x="25" y="105" rx="5" ry="5" width="405" height="10" />
+</ContentLoader>
+
+const Questions = ({ pending, isLoading, getQA, questions }) => {
+    const [activeSensor, setActiveSensor] = useState(true);
 
     const addIcons = () => {
         const faChevronDown = {
@@ -45,12 +61,6 @@ const Questions = ({ include, pending, isLoading, getQA, questions }) => {
         library.add([faQuestionCircle, faChevronDown]);
     }
 
-    const createOpacityAnimationConfig = animatingIn => ({
-        value: animatingIn ? [0, 1] : 0,
-        easing: 'linear',
-        duration: 800
-    });
-
     const animationComplete = cards => {
         const button = cards[0].querySelector('button');
         const container = document.querySelector('.portfolio-questions');
@@ -62,40 +72,51 @@ const Questions = ({ include, pending, isLoading, getQA, questions }) => {
     };
 
     const onChange = isVisible => {
-        if (!pending && include && isVisible) {
-            getQA({ include });
-            setState({ activeSensor: false });
+        if (!pending && isVisible) {
+            getQA();
+            setActiveSensor(false);
             return;
         }
     };
 
     const animeRef = useRef();
-    const hasQuestions = questions.length !== 0;
 
-    const renderQuestions = (
-        <Accordion ref={animeRef}>{questions.map((item, i) => {
-            const { title, content } = item;
-            return (
-                <Accordion.Item key={i}>
-                    <Accordion.Header><i className="fal fa-chevron-down"></i> {title.rendered}</Accordion.Header>
-                    <Accordion.Body>
-                        <span dangerouslySetInnerHTML={{ __html: content.rendered }}></span>
-                    </Accordion.Body>
-                </Accordion.Item>
-            );
-        })}</Accordion>
-    );
+    const renderQuestions = (questions) => {
+        if (activeSensor) return <ContentLoaderRender />;
+
+        if (questions.length === 0) {
+            return (<div>No Questions asked. Feel free to ask them in the comments bellow.</div>);
+        }
+
+        return (
+            <Accordion ref={animeRef}>{questions.map((item, i) => {
+                const { title, content } = item;
+                return (
+                    <Accordion.Item key={i}>
+                        <Accordion.Header><i className="fal fa-chevron-down"></i> {title.rendered}</Accordion.Header>
+                        <Accordion.Body>
+                            <span dangerouslySetInnerHTML={{ __html: content.rendered }}></span>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                );
+            })}</Accordion>
+        )
+    };
 
     useEffect(() => {
         addIcons();
 
-        if (!hasQuestions) return;
+        if (questions.length === 0) return;
 
         const animate = _delayCall(() => {
             const cards = document.querySelectorAll('.accordion .card');
             return anime({
                 targets: cards,
-                opacity: createOpacityAnimationConfig(true),
+                opacity: {
+                    value: [0, 1],
+                    easing: 'linear',
+                    duration: 800
+                },
                 translateY: [30, 0],
                 delay: anime.stagger(300),
                 easing: 'spring(1, 80, 10)',
@@ -105,10 +126,9 @@ const Questions = ({ include, pending, isLoading, getQA, questions }) => {
 
         return () => {
             clearTimeout(animate);
-            const container = document.querySelector('.portfolio-questions');
-            container.classList.remove('portfolio-questions--animated');
+            document.querySelector('.portfolio-questions').classList.remove('portfolio-questions--animated');
         }
-    });
+    }, [questions]);
 
     return (
         <div className="portfolio-questions">
@@ -119,30 +139,7 @@ const Questions = ({ include, pending, isLoading, getQA, questions }) => {
             <hr />
             <div className="portfolio-questions__wrapper">
                 <VisibilitySensor onChange={onChange} active={activeSensor}>
-                    {!isServer && isLoading ? () => {
-                        const loaderProps = {
-                            height: 160,
-                            width: 445,
-                            speed: 5,
-                            primaryColor: "#f1f1f1",
-                            primaryOpacity: "0.5",
-                            secondaryColor: "#ecebeb"
-                        }
-                        return (
-                            <ContentLoader {...loaderProps}>
-                                <circle cx="10" cy="20" r="8" />
-                                <rect x="25" y="15" rx="5" ry="5" width="405" height="10" />
-                                <circle cx="10" cy="50" r="8" />
-                                <rect x="25" y="45" rx="5" ry="5" width="405" height="10" />
-                                <circle cx="10" cy="80" r="8" />
-                                <rect x="25" y="75" rx="5" ry="5" width="405" height="10" />
-                                <circle cx="10" cy="110" r="8" />
-                                <rect x="25" y="105" rx="5" ry="5" width="405" height="10" />
-                            </ContentLoader>
-                        )
-                    } : hasQuestions ? renderQuestions : <div>
-                        No Questions asked. Feel free to ask them in the comments bellow.
-                    </div>}
+                    {!isServer && isLoading ? <ContentLoaderRender /> : renderQuestions(questions)}
                 </VisibilitySensor>
             </div>
         </div>
@@ -151,7 +148,7 @@ const Questions = ({ include, pending, isLoading, getQA, questions }) => {
 
 // Binds menu items to navigation container
 const mapStateToProps = (store, props) => {
-    const { include = [] } = props;
+    const { acf: { meta: { questions: include } } } = props;
     const { qa, ui: { pending, pendingQA: isLoading } } = store;
     const questions = _filter(qa, i => _includes(include, i.id));
 
@@ -159,12 +156,12 @@ const mapStateToProps = (store, props) => {
 };
 
 // mapDispatchToProps -> getQA
-const mapDispatchToProps = dispatch => bindActionCreators({ getQA }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getQA, updateQA }, dispatch);
 
 const frontload = async props => {
-    const { include } = props;
-    if (include) return await getQA({ include });
-    return true;
+    const { acf: { meta: { questions: include } }, getQA, updateQA } = props;
+    const data = await getQA({ include });
+    return updateQA(data);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(

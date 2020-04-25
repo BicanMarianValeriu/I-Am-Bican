@@ -23,8 +23,6 @@ const Empty = props => {
 					height={100}
 					width={400}
 					speed={3}
-					primaryColor="#f3f3f3"
-					secondaryColor="#dddddd"
 				>
 					<rect x="130" y="5" rx="3" ry="3" width="140" height="12" />
 					<rect x="50" y="30" rx="3" ry="3" width="130" height="10" />

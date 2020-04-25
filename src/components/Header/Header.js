@@ -46,7 +46,7 @@ export default withRouter(props => {
         if (isMobile || isServer) return <div className="header__social col col-auto ml-auto mr-0 pr-2"></div>;
         return (
             <div className="header__social col col-auto ml-auto mr-0 pr-2">
-                {<Like href="https://www.facebook.com/wecodeart/" showFaces share action="recommend" />}
+                <Like href="https://www.facebook.com/wecodeart/" showFaces share action="recommend" />
             </div>
         )
     }

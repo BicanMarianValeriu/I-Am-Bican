@@ -1,15 +1,15 @@
-import React, { Component } from 'react';   
+import React, { Component } from 'react';
+import classNames from 'classnames';
 
 import Title from './Title';
 import Content from './Content';
 
-class Article extends Component { 
+class Article extends Component {
 	getClasses() {
-		let classes = ['entry'];
-		classes.push(this.props.isSingle ? 'entry--single' : 'entry--archive');
-		classes.push(this.props.type && 'entry--' + this.props.type); 
-		return classes.join(' ');
-	} 
+		const { type, isSingle } = this.props;
+		const wrapperClass = ['entry', `entry--${isSingle ? 'single' : 'archive'}`, `entry--${type}`, `${type}`];
+		return classNames(wrapperClass);
+	}
 
 	render() {
 		return (
@@ -19,6 +19,6 @@ class Article extends Component {
 			</article>
 		);
 	}
-} 
+}
 
 export default Article;

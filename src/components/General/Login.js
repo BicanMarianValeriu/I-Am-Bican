@@ -131,7 +131,7 @@ class Login extends Component {
 		return (
 			<Fragment>{isAuthentificated() ? (
 				<Dropdown size="lg" direction="left" isOpen={this.state.dropdownOpen} toggle={this._toggle}>
-					<DropdownToggle className={btnClasses} onMouseOver={this._onMouseOver} onTouchStart={this._onMouseOver}>
+					<DropdownToggle color="" className={btnClasses} onMouseOver={this._onMouseOver} onTouchStart={this._onMouseOver}>
 						<UserLoginSVG />
 					</DropdownToggle>
 					<DropdownMenu right>

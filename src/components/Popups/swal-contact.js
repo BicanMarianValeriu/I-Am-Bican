@@ -40,8 +40,8 @@ const SwalContact = () => {
 		showCloseButton: true,
 		width: '40rem',
 		preConfirm: () => {
-			let fields = document.forms["swal-contact"].getElementsByClassName("required");
-			let email = fields["your-email"].value;
+			const fields = document.forms["swal-contact"].getElementsByClassName("required");
+			const email = fields["your-email"].value;
 
 			if (validateFields(fields) === false) {
 				return Swal.showValidationMessage(`Please fill all fields.`);
@@ -62,7 +62,7 @@ const SwalContact = () => {
 						text: result.message,
 						icon: 'success',
 						showConfirmButton: false,
-						timer: 2500
+						timer: 3500
 					});
 				} else {
 					Swal.fire({
@@ -70,7 +70,7 @@ const SwalContact = () => {
 						text: result.message,
 						icon: 'error',
 						showConfirmButton: false,
-						timer: 2500
+						timer: 3500
 					});
 				}
 			}).catch(err => {

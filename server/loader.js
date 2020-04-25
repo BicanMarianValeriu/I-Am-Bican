@@ -5,8 +5,8 @@ import LRUCache from 'lru-cache';
 
 // React requirements
 import React from "react";
-import Helmet from "react-helmet";
 import Loadable from "react-loadable";
+import { Helmet } from "react-helmet";
 import { renderToString } from "react-dom/server";
 import { Provider } from "react-redux";
 import { StaticRouter, matchPath } from "react-router";

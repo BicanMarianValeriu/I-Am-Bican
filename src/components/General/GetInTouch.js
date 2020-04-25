@@ -11,9 +11,7 @@ export default function GetInTouch({ className = '', iconClass, label }) {
 
     const _onButtonClick = () => {
         if (modal === null) {
-            import(/* webpackChunkName: "swal-contact" */ "../Popups/swal-contact")
-                .then(modal => setModal(modal))
-                .then(modal => modal && modal.default());
+            import(/* webpackChunkName: "swal-contact" */ "../Popups/swal-contact").then(m => setModal(m)).then(m => m && m.default());
             return;
         }
 

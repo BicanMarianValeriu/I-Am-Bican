@@ -10,7 +10,7 @@ import { getMenu } from '../../redux/actions/menus';
 class Navigation extends Component {
     renderItems() {
         const { location: { pathname }, menu: { items = [], ID = false } = {} } = this.props;
-
+        
         if (this.props.wpMenuId === ID) {
             return items.map((item, index) => {
                 const { children = [], classes, url = '' } = item;
@@ -78,8 +78,5 @@ const frontload = async props => await props.getMenu(props.wpMenuId);
 
 // Export container while connected to store and SSR
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(
-    frontloadConnect(frontload, { 
-        onMount: true, 
-        onUpdate: false
-    })(Navigation)
+    frontloadConnect(frontload, { onMount: true, onUpdate: false })(Navigation)
 ));

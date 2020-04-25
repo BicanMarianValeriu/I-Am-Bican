@@ -28,26 +28,19 @@
 		}
 	}
 
-	.header__menu {
-		padding-left: 0!important;
-	}
-
 	nav ul {
-	
 		li.nav-item {
-			padding: 0 8px; 
-
-			@include media-breakpoint-down(md) {
-				padding: 0 5px;
+			padding: 0 5px;
+			
+			@include media-breakpoint-up('md') {
+				padding: 0 8px; 
 			}
 
 			&:last-child() {
-				@media (min-width: 769px) {
+				@include media-breakpoint-up('md') {
 					padding-right: 0;
-				}
 
-				.nav-link {
-					@media (min-width: 769px) {
+					.nav-link {
 						padding-right: 0;
 					}
 				}
@@ -55,21 +48,21 @@
 
 			a.nav-link {
 				background: transparent;
-				font-size: 12px;
+				font-size: 11px;
 				font-weight: bold;
 				color: #2e353e;
-				padding: .5rem 1rem;
+				padding: .3rem .6rem;
 				line-height: 1;
 				text-transform: uppercase;
-
-				@media (max-width: 768px) {
-					font-size: 11px;
-					padding: .3rem .6rem;
+				
+				@include media-breakpoint-up('md') {
+					font-size: 12px;
+					padding: .5rem 1rem;
 				}
 
 				&:hover,
 				&.active {
-					color: #0088cc;
+					color: theme-color( 'primary' );
 				}
 			}
 		}
@@ -118,7 +111,7 @@
 		font-weight: bold;
 		color: white;
 
-		@include media-breakpoint-down(xs) {
+		@include media-breakpoint-down('xs') {
 			padding: 11px 20px;
 		}
 
@@ -127,31 +120,6 @@
 		&:focus {
 			border-color: #66b7ff!important;
 			background: linear-gradient(to left, #39c1ff 0%, #0088cc 100%)!important;
-			/* box-shadow: none!important; */
-		}
-	}
-
-	&__element {
-		position: absolute;
-		top: -50px;
-		left: -40px;
-		width: 110px;
-		pointer-events: none;
-
-		@include media-breakpoint-down(sm) {
-			top: -70px;
-			left: -20px;
-		}
-
-		@include media-breakpoint-down(xs) {
-			width: 80px;
-			top: -95px;
-			left: -5px;
-			transform: rotate(10deg) translateX(10px);
-		}
-
-		&-img {
-			width: 100%;
 		}
 	}
 
@@ -162,25 +130,6 @@
 }
 
 .social {
-	display: inline-block;
-	vertical-align: middle;
-	margin: 0;
-	padding: 0;
-
-	&--footer {
-		.social {
-		
-		}
-	}
-
-	&__item {
-		display: inline-block;
-		
-		&:not(:last-child) {
-			margin-right: 10px;
-		}
-	}
-
 	&__icon {
 		&--facebook {
 			color: #3B5998;
@@ -193,6 +142,7 @@
 		}
 
 		.svg-inline--fa {
+			display: block;
 			width: 20px;
 			height: 20px;
 		}
