@@ -1,6 +1,6 @@
-import { apiRequest } from "../actions/api";
-import { setPendingEntry } from "../actions/ui";
-import { GET_PROJECTS, GET_PROJECTS_SUCCESS, GET_PROJECTS_ERROR, updateProjects } from "../actions/projects";
+import { apiRequest } from '../actions/api';
+import { setPendingEntry } from '../actions/ui';
+import { GET_PROJECTS, GET_PROJECTS_SUCCESS, GET_PROJECTS_ERROR, updateProjects } from '../actions/projects';
 
 export const projectsMiddleware = ({ dispatch }) => next => action => {
     next(action);

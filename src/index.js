@@ -3,8 +3,8 @@ import 'react-app-polyfill/ie11';
 // Main React
 import React from 'react';
 import Loadable from 'react-loadable';
-import { render, hydrate } from 'react-dom';
 import ReactGA from 'react-ga';
+import { render, hydrate } from 'react-dom';
 import { FacebookProvider } from 'react-facebook';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
@@ -36,6 +36,6 @@ const Application = (
 	</Provider>
 );
 
-const root = document.getElementById('wecodeartReact')
+const root = document.getElementById('wecodeartReact');
 if (root.hasChildNodes() === true) Loadable.preloadReady().then(() => hydrate(Application, root));
-else render(Application, root);   
+else render(Application, root);

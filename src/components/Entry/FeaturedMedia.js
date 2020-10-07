@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Img from 'react-image';
+import { Img } from 'react-image';
 import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 import { getMedia } from '../../redux/actions/media';
@@ -27,27 +27,20 @@ class FeaturedMedia extends Component {
         return [highRes, lowRes];
     }
 
-    getClasses() {
-        const { mediaObj = {} } = this.props;
-        return classNames('entry__media', {
-            'entry__media--loading': mediaObj === false
-        });
-    }
-
-    renderImage() {
-        return (
-            <Img src={this.getMediaImages()}
-                className="entry__media-src"
-                container={children => <div className="entry__media-wrapper">{children}</div>}
-                unloader={<img className="entry__media-src" alt="IAmBican Placeholder" src={placeholder} />}
-                loader={<DownloadLoader type="spokes" />}
-            />
-        );
-    }
-
     render() {
+        const { mediaObj = {} } = this.props;
+
         return (
-            <div className={this.getClasses()}>{this.renderImage()}</div>
+            <div className={classNames('entry__media', { 'entry__media--loading': mediaObj === false })}>
+                <div className="entry__media-wrapper">
+                    <Img {...{
+                        src: this.getMediaImages(),
+                        className: 'entry__media-src',
+                        unloader: <img className="entry__media-src" alt="IAmBican Placeholder" src={placeholder} />,
+                        loader: <DownloadLoader type="spinningBubbles" />
+                    }} />
+                </div>
+            </div>
         );
     }
 }

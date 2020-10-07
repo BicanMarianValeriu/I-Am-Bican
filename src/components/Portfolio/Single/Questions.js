@@ -62,6 +62,7 @@ const Questions = ({ pending, isLoading, getQA, questions }) => {
     }
 
     const animationComplete = cards => {
+        if(!cards.length) return;
         const button = cards[0].querySelector('button');
         const container = document.querySelector('.portfolio-questions');
         if (container) {

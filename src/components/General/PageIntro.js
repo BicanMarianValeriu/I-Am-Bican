@@ -1,19 +1,15 @@
 import React from "react";
 
-const PageIntro = ({ pageTitle }) => {
-	return (
-		<section className="page-intro">
-			<div className="container">
-				<div className="row">
-					<div className="col">
-						<h1 className="page-intro__headline">
-							{pageTitle ? pageTitle : "Lorem ipsum dolor sit"}
-						</h1>
-					</div>
+const PageIntro = ({ title = 'Lorem ipsum dolor sit' }) => (
+	<section className="page-intro">
+		<div className="container">
+			<div className="row">
+				<div className="col">
+					<h1 className="page-intro__headline">{title}</h1>
 				</div>
 			</div>
-		</section>
-	);
-};
+		</div>
+	</section>
+);
 
 export default PageIntro;

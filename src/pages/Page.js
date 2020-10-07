@@ -6,10 +6,10 @@ import { Helmet } from 'react-helmet';
 import _find from 'lodash/find';
 
 // Deps
-import { PageIntro, Main } from "../components/General";
-import { getPage, updatePages } from "../redux/actions/pages";
-import { requestApi } from "../redux/actions/api";
-import { getMetaTags } from "../utilities/wordpress/wpPost";
+import { PageIntro, Main } from '../components/General';
+import { getPage, updatePages } from '../redux/actions/pages';
+import { requestApi } from '../redux/actions/api';
+import { getMetaTags } from '../utilities/wordpress/wpPost';
 
 class Page extends Component {
 	componentDidMount() {
@@ -38,7 +38,7 @@ class Page extends Component {
 			<Fragment>
 				<Helmet {...tags} />
 				<div id="content" className="content content--page content--single">
-					<PageIntro pageTitle={pageTitle} />
+					<PageIntro title={pageTitle} />
 					<div className="container">
 						<Main posts={[selectedPage]} className="py-3 py-md-5" isSingle={true} loading={!selectedPage} />
 					</div>

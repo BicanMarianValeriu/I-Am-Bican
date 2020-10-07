@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Like } from 'react-facebook';
+import { Container, Row, Col } from 'reactstrap';
 import { isMobile } from 'react-device-detect';
 import className from 'classnames';
 import LoginButton from '../General/Login';
@@ -22,23 +23,23 @@ export default withRouter(props => {
 
     const CTA = () => {
         return (
-            <div className="header__cta col col-auto">
-                <GetInTouch className="header-cta" iconClass="far fa-paper-plane" label="Get In Touch" />
-            </div>
+            <Col className="header__cta col col-auto">
+                <GetInTouch color="link" className="header-cta" iconClass="far fa-paper-plane" label="Get In Touch" />
+            </Col>
         );
     };
 
     const Menu = () => (
-        <div className="header__menu col col-auto">
+        <Col className="header__menu col col-auto">
             <Navigation wpMenuId={2} />
-        </div>
+        </Col>
     );
 
     const Login = () => {
         return (
-            <div className="header__login col col-auto">
+            <Col className="header__login col col-auto">
                 <LoginButton />
-            </div>
+            </Col>
         );
     };
 
@@ -54,14 +55,14 @@ export default withRouter(props => {
     return (
         <header id="header" className={classNames} itemScope="" itemType="http://schema.org/WPHeader">
             <div className="header__bar">
-                <div className="container-fluid">
-                    <div className="row flex-nowrap align-items-center no-gutters">
+                <Container fluid={true}>
+                    <Row className="row flex-nowrap align-items-center no-gutters">
                         <CTA />
                         <FBPage />
                         <Menu />
                         <Login />
-                    </div>
-                </div>
+                    </Row>
+                </Container>
             </div>
         </header>
     )

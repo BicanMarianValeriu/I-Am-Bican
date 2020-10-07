@@ -1,4 +1,4 @@
-import Loadable from "react-loadable";
+import Loadable from 'react-loadable';
 
 import Home from "./pages/Home";
 import DownloadLoader from "./components/General/prealoader";

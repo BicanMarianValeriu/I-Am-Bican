@@ -104,9 +104,10 @@ class ClientLogos extends Component {
 
 		return clients.map((item, i) => {
 			const { acf: { client_logo } } = item;
+			const logoUrl = client_logo?.url || 'https://via.placeholder.com/200x50';
 			return (
 				<div key={i} className="companies__logo d-flex flex-colum align-items-center justify-content-middle">
-					<img width="200" src={client_logo.url} alt={item.name} />
+					<img width="200" src={logoUrl} alt={item.name} />
 				</div>
 			);
 		});

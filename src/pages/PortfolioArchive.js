@@ -18,21 +18,6 @@ class Projects extends Component {
 		window.scrollTo(0, 0);
 	}
 
-	renderNavigation() {
-		return (
-			<div className="projects-nav">
-				<div className="projects-nav__arrows">
-					<button className="projects-nav__arrow projects-nav__arrow--prev">
-						<i className="fas fa-arrow-left fa-2x"></i>
-					</button>
-					<button className="projects-nav__arrow projects-nav__arrow--next">
-						<i className="fas fa-arrow-right fa-2x"></i>
-					</button>
-				</div >
-			</div>
-		);
-	}
-
 	render() {
 		const { projects, location: { pathname } } = this.props;
 		const meta = {

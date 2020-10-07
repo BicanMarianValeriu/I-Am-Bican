@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Helmet } from "react-helmet";
-import { PageIntro } from "../components/General";
+import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
+import { PageIntro } from '../components/General';
 
 // SCSS 
-import "./../static/scss/pages/_404.scss";
+import './../static/scss/pages/_404.scss';
 
 class FourOFour extends Component {
 	componentDidMount() {
@@ -14,16 +14,15 @@ class FourOFour extends Component {
 	}
 
 	render() {
-		const meta = {
-			title: "Page Not Found"
-		};
 		return (
 			<React.Fragment>
-				<Helmet title={meta.title} />
+				<Helmet>
+					<title>Page Not Found</title>
+				</Helmet>
 				<div id="content" className="content content--404 text-center">
-					<PageIntro pageTitle="404 - Not Found" />
+					<PageIntro title="404 - Not Found" />
 					<div className="container">
-						<p className="lead text-center py-5 mb-0">The page you requested is not found.</p>
+						<p className="lead text-center py-5 my-5">The page you requested is not found.</p>
 					</div>
 				</div>
 			</React.Fragment>

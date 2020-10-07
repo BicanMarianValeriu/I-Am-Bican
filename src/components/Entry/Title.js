@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import { Link, withRouter } from 'react-router-dom';
 import { getTitle } from '../../utilities/wordpress/wpPost';
 
@@ -10,7 +10,7 @@ const Title = props => {
     const title = getTitle(props);
 
     // Class   
-    const headingClass = classNames(`${type}__title`, {
+    const headingClass = classnames(`${type}__title`, {
         [className]: className !== undefined
     });
 

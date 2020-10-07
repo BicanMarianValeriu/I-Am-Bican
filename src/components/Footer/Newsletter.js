@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import jsonp from "jsonp";
-import { InputGroup, InputGroupAddon, Button, Input } from "reactstrap";
+import { InputGroup, InputGroupAddon, Button, Input, Form } from "reactstrap";
 import { getFormData, serializeData } from "../../utilities/helpers";
 import { useFormState } from 'react-use-form-state';
 
@@ -104,7 +104,7 @@ const NewsLetter = () => {
 
 	return (
 		<div className="newsletter newsletter--footer">
-			<form className="newsletter__form" name="newsletter" noValidate onSubmit={handleSubmit}>
+			<Form className="newsletter__form" name="newsletter" noValidate onSubmit={handleSubmit}>
 				<InputGroup>
 					<Input placeholder="Email Address" name="EMAIL" type="email" {...email('EMAIL')} required />
 					<div className="invalid-tooltip">Please fill out this field.</div>
@@ -117,7 +117,7 @@ const NewsLetter = () => {
 					<div className="valid-feedback"></div>
 					<div className="invalid-feedback"></div>
 				</InputGroup>
-			</form>
+			</Form>
 		</div>
 	);
 };
