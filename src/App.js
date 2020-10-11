@@ -52,9 +52,7 @@ const App = props => {
 						key={key}
 						path={path}
 						exact={exact}
-						render={(props) => (
-							<C {...props} {...rest} />
-						)}
+						render={(props) => <C {...props} {...rest} />}
 					/>
 				))}
 			</Switch>

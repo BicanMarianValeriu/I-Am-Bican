@@ -18,8 +18,8 @@ import './static/scss/style.scss';
 const { store, history } = createStore();
 
 history.listen(location => {
-	const { pathname } = location;
 	ReactGA.initialize('UA-80159913-6');
+	const { pathname } = location;
 	ReactGA.set({ page: pathname });
 	ReactGA.pageview(pathname);
 });
