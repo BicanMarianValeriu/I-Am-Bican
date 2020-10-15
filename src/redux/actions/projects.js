@@ -4,5 +4,5 @@ export const GET_PROJECTS_SUCCESS = `${PROJECTS} SUCCESS`;
 export const GET_PROJECTS_ERROR = `${PROJECTS} ERROR`;
 export const UPDATE_PROJECTS = `${PROJECTS} UPDATED`;
 
-export const getProjects = query => ({ type: GET_PROJECTS, payload: query });
-export const updateProjects = data => ({ type: UPDATE_PROJECTS, payload: data });
+export const getProjects = payload => ({ type: GET_PROJECTS, payload });
+export const updateProjects = payload => ({ type: UPDATE_PROJECTS, payload });

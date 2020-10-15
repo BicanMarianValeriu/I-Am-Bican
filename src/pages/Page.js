@@ -7,22 +7,19 @@ import _find from 'lodash/find';
 
 // Deps
 import { PageIntro, Main } from '../components/General';
-import { getPage, updatePages } from '../redux/actions/pages';
-import { requestApi } from '../redux/actions/api';
+import { getPage } from '../redux/actions/pages';
 import { getMetaTags } from '../utilities/wordpress/wpPost';
 
 class Page extends Component {
 	componentDidMount() {
-		const { match: { params: { slug } }, getPage } = this.props;
 		window.scrollTo(0, 0);
-		return getPage({ slug });
 	}
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.location.pathname !== this.props.location.pathname) {
 			const { match: { params: { slug } }, getPage } = this.props;
 			window.scrollTo(0, 0);
-			return getPage({ slug });
+			return getPage(slug);
 		}
 	}
 
@@ -58,14 +55,10 @@ const mapStateToProps = (store, props) => {
 };
 
 // mapDispatchToProps -> getPage
-const mapDispatchToProps = dispatch => bindActionCreators({ getPage, updatePages }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getPage }, dispatch);
 
 // Server Side Stuff
-const frontload = async props => {
-	const { match: { params: { slug } }, updatePages } = props;
-	const data = await requestApi.get(`wp/v2/pages?slug=${slug}`).then(req => req.data[0]);
-	return updatePages(data);
-}
+const frontload = async ({ match: { params: { slug } }, getPage }) => await getPage(slug);
 
 // Connect to Frontload SSR
 const PageConnect = frontloadConnect(frontload, { onMount: true, onUpdate: false })(Page);
