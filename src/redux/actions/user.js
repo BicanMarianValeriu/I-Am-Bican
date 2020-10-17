@@ -14,7 +14,7 @@ export const USER_LOGOUT_ERROR = `${USER} LOGOUT:ERROR`;
 export const UPDATE_USER = `${USER} UPDATED`;
 
 export const getToken = ({ username, password }) => ({ type: USER_GET_TOKEN, payload: { username, password } });
-export const verifyToken = token => ({ type: USER_VERIFY_TOKEN, payload: token });
-export const authToken = token => ({ type: USER_LOGIN, payload: token });
-export const userLogout = message => ({ type: USER_LOGOUT, payload: message });
-export const updateUser = data => ({ type: UPDATE_USER, payload: data });
+export const authToken = payload => ({ type: USER_LOGIN, payload });
+export const verifyToken = payload => ({ type: USER_VERIFY_TOKEN, payload });
+export const userLogout = payload => ({ type: USER_LOGOUT, payload });
+export const updateUser = payload => ({ type: UPDATE_USER, payload });

@@ -11,7 +11,7 @@ import placeholder from '../../static/images/placeholder-bold.png';
 class FeaturedMedia extends Component {
     componentDidMount() {
         const { getMedia, mediaId } = this.props;
-        getMedia({ include: mediaId });
+        getMedia(mediaId);
     }
 
     getMediaImages() {

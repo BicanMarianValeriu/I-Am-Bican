@@ -5,4 +5,4 @@ export const GET_CLIENTS_ERROR = `${CLIENTS} ERROR`;
 export const UPDATE_CLIENTS = `${CLIENTS} UPDATED`;
 
 export const getClients = () => ({ type: GET_CLIENTS });
-export const updateClients = data => ({ type: UPDATE_CLIENTS, payload: data });
+export const updateClients = payload => ({ type: UPDATE_CLIENTS, payload });

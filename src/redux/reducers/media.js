@@ -1,12 +1,11 @@
 import { UPDATE_MEDIA } from "../actions/media";
-import _filter from 'lodash/filter';
 import _findIndex from 'lodash/findIndex';
 
 export default function mediaReducer(state = [], action) {
 	switch (action.type) {
 		case UPDATE_MEDIA: {
-			let elemsToAdd = _filter(action.payload, o => _findIndex(state, { id: o.id }) === -1);
-			return [...state, ...elemsToAdd];
+			if (_findIndex(state, { id: action.payload.id }) !== -1) return state;
+			return [...state, action.payload];
 		}
 		default: return state;
 	}

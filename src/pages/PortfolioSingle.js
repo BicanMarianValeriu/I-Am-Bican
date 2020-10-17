@@ -8,7 +8,7 @@ import _find from 'lodash/find';
 
 // Deps
 import { Main } from "../components/General";
-import { getProjects, updateProjects } from "../redux/actions/projects";
+import { getProjects } from "../redux/actions/projects";
 import { getMetaTags } from "../utilities/wordpress/wpPost";
 
 // SCSS 
@@ -16,13 +16,11 @@ import "./../static/scss/pages/_portfolio-single.scss";
 
 class Portfolio extends Component {
 	componentDidMount() {
-		const { match: { params: { slug } }, getProjects } = this.props
 		window.scrollTo(0, 0);
-		getProjects({ slug });
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.location.pathname !== prevProps.location.pathname) {
+		if (prevProps.location.pathname !== this.props.location.pathname) {
 			const { match: { params: { slug } }, getProjects } = this.props
 			window.scrollTo(0, 0);
 			return getProjects({ slug });
