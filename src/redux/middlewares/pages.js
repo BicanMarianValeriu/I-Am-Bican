@@ -17,7 +17,7 @@ export const pagesMiddleware = ({ dispatch }) => next => action => {
 
         case GET_PAGE_SUCCESS:
             dispatch(setPendingEntry(false));
-            dispatch(updatePages(Array.isArray(payload) ? payload.pop() : payload));
+            dispatch(updatePages(payload));
             break;
 
         // @todo handle error with notification or 404 redirect

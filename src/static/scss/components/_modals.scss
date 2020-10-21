@@ -1,16 +1,11 @@
 body:not(.swal2-shown),
-body.swal2-toast-shown {
-	padding-right: 0 !important;
-	  
+body.swal2-toast-shown {	  
 	.header--absolute {
 		right: 0;
 	}
 } 
 
 .swal2-popup {
-	padding: 20px;
-	border-radius: 0;
-
 	&.swal-contact {
 		.swal2-title {
 			margin-bottom: 1.5rem;

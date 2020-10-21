@@ -8,7 +8,8 @@ import _find from 'lodash/find';
 
 // Deps
 import { Main } from "../components/General";
-import { getProjects } from "../redux/actions/projects";
+import { requestApi } from "../redux/actions/api";
+import { getProjects, updateProjects } from "../redux/actions/projects";
 import { getMetaTags } from "../utilities/wordpress/wpPost";
 
 // SCSS 
@@ -58,10 +59,12 @@ const mapStateToProps = (store, props) => {
 };
 
 // Connect fetchDispatch function to props.fetchDispatch
-const mapDispatchToProps = dispatch => bindActionCreators({ getProjects }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getProjects, updateProjects }, dispatch);
 
 // Server Side Stuff
-const frontload = async ({ match: { params: { slug } }, getProjects }) => await getProjects({ slug });
+const frontload = async ({ match: { params: { slug } }, updateProjects }) => {
+	return await requestApi({ url: 'wp/v2/portfolios', params: { slug } }).then(r => updateProjects(r.data));
+};
 
 // Connect to Frontload SSR
 const PortfolioConnect = frontloadConnect(frontload, { onMount: true, onUpdate: false })(Portfolio);

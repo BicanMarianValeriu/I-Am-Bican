@@ -7,7 +7,8 @@ import _find from 'lodash/find';
 
 // Deps
 import { PageIntro, Main } from '../components/General';
-import { getPage } from '../redux/actions/pages';
+import { requestApi } from '../redux/actions/api';
+import { getPage, updatePages } from '../redux/actions/pages';
 import { getMetaTags } from '../utilities/wordpress/wpPost';
 
 class Page extends Component {
@@ -55,10 +56,12 @@ const mapStateToProps = (store, props) => {
 };
 
 // mapDispatchToProps -> getPage
-const mapDispatchToProps = dispatch => bindActionCreators({ getPage }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getPage, updatePages }, dispatch);
 
 // Server Side Stuff
-const frontload = async ({ match: { params: { slug } }, getPage }) => await getPage(slug);
+const frontload = async ({ match: { params: { slug } }, updatePages }) => {
+	return await requestApi({ url: `wp/v2/pages`, params: { slug } }).then(r => updatePages(r.data));
+};
 
 // Connect to Frontload SSR
 const PageConnect = frontloadConnect(frontload, { onMount: true, onUpdate: false })(Page);
