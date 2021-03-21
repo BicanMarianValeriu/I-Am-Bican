@@ -10,7 +10,7 @@ import createEnhancers from './middlewares';
 import { isServer } from '../utilities/helpers';
 
 // Default
-export default (url = '/') => {
+const store = (url = '/') => {
 	// Create a history depending on the environment
 	const history = isServer ? createMemoryHistory({ initialEntries: [url] }) : createBrowserHistory();
 	const enhancers = [];
@@ -33,3 +33,5 @@ export default (url = '/') => {
 
 	return { store, history };
 };
+
+export default store;

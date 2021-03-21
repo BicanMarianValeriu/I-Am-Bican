@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default () => (
+const Component = () => (
     <div id="wecodeartLoader" className="wecodeart-preloader">
         <div className="wecodeart-preloader__inner">
             <div className="wecodeart-preloader__line"></div>
@@ -10,3 +10,5 @@ export default () => (
         </div>
     </div>
 );
+
+export default Component;

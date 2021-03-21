@@ -11,7 +11,7 @@ import clientsReducer from "./clients";
 import projectsReducer from "./projects";
 import qaReducer from "./questions";
 
-export default function ({ history }) { 
+const reducers = ({ history }) => { 
     return combineReducers({
         router: connectRouter(history),
         ui: uiReducer,
@@ -24,4 +24,6 @@ export default function ({ history }) {
         clients: clientsReducer,
         projects: projectsReducer
     });
-}; 
+};
+
+export default reducers;

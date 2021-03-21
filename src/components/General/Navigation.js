@@ -24,7 +24,7 @@ class Navigation extends Component {
                 });
 
                 return (
-                    <li key={index} className={liClasses} aria-haspopup={item.children && item.children.length}>
+                    <li key={index} className={liClasses}>
                         <NavLink exact className={classString} to={item.url}>{item.title}</NavLink>
                         {children.length > 0 && this.renderDropdownItems(children)}
                     </li>
@@ -80,4 +80,6 @@ const frontload = async ({ getMenu, wpMenuId }) => await getMenu(wpMenuId);
 const MenuConnect = frontloadConnect(frontload, { onMount: true, onUpdate: false })(Navigation);
 
 // Export container while connected to store and SSR
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MenuConnect));
+const NavigationC = withRouter(connect(mapStateToProps, mapDispatchToProps)(MenuConnect));
+
+export default NavigationC;

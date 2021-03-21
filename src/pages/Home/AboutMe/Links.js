@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import scrollToElement from 'scroll-to-element';
 import GetInTouch from '../../../components/General/GetInTouch';
 
-export default () => (
+const Component = () => (
     <div className="about-me__links">
         <div className="container">
             <div className="row justify-content-end">
@@ -25,4 +25,6 @@ export default () => (
             </div>
         </div>
     </div>
-); 
+);
+
+export default Component;

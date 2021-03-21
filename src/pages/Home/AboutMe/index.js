@@ -11,7 +11,7 @@ import AboutMeLinks from './Links';
 import Bican from './../../../static/images/bican.jpg';
 import BicanCartoon from './../../../static/images/bican-cartoon.jpg';
 
-export default () => {
+const Component = () => {
 	const { width: windowWidth } = useWindowSize();
 
 	const _onMouseMove = (e) => {
@@ -102,4 +102,6 @@ export default () => {
 			<AboutMeInfo />
 		</section>
 	);
-} 
+}
+
+export default Component;

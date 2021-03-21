@@ -14,8 +14,7 @@ import { clientsMiddleware } from "./clients";
 import { projectsMiddleware } from "./projects";
 import { isServer } from '../../utilities/helpers';
 
-export default function ({ history, enhancers }) {
-
+const middlewares = ({ history, enhancers }) => {
     const arr = [
         api,
         promise,
@@ -38,3 +37,5 @@ export default function ({ history, enhancers }) {
 
     return composedEnhancers;
 };
+
+export default middlewares;

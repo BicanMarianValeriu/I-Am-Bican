@@ -6,7 +6,7 @@ import Newsletter from './Newsletter';
 import ClientLogos from './ClientLogos';
 import CallToAction from './CallToAction';
 
-export default () => {
+const Footer = () => {
     return (
         <footer id="footer" className="footer" itemScope="" itemType="http://schema.org/WPFooter">
             <CallToAction />
@@ -40,3 +40,5 @@ export default () => {
         </footer>
     )
 };
+
+export default Footer;
