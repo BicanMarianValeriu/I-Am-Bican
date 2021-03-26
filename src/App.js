@@ -1,5 +1,5 @@
 // The basics
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router';
@@ -31,7 +31,7 @@ const App = props => {
 	}, [pending]);
 
 	return (
-		<Fragment>
+		<>
 			<Helmet
 				titleTemplate="%s - I Am Bican"
 				meta={[
@@ -57,7 +57,7 @@ const App = props => {
 				))}
 			</Switch>
 			<Footer />
-		</Fragment>
+		</>
 	);
 }
 
