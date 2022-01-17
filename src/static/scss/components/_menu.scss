@@ -9,7 +9,7 @@
         .nav {
             &-link {
                 position: relative;
-                @extend .text-font--cursive;
+                font-family: "Shadows Into Light";
                 color: white; 
                 transition: cubic-bezier(0.95, 0.05, 0.795, 0.035);
                 margin: 0 3px; 

@@ -100,17 +100,6 @@
         }
     }
 
-    &__title {
-        font-weight: 700;
-        font-size: 1.1rem;
-        color: $dark;
-        text-align: center;
-
-        a {
-            color: inherit;
-        }
-    }
-
     &__description {
         transition: all .3s ease-in-out;
         border: 1px solid transparent;

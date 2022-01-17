@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
+import { Container, Row, Col } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { getClients } from '../../redux/actions/clients';
 import anime from 'animejs';
@@ -103,11 +103,10 @@ class ClientLogos extends Component {
 		const { clients } = this.props;
 
 		return clients.map((item, i) => {
-			const { acf: { client_logo } } = item;
-			const logoUrl = client_logo?.url || 'https://via.placeholder.com/200x50';
+			const { acf: { client_logo: { url = '//via.placeholder.com/200x50' } = {} } = {} } = item;
 			return (
 				<div key={i} className="companies__logo d-flex flex-colum align-items-center justify-content-middle">
-					<img width="200" src={logoUrl} alt={item.name} />
+					<img width="200" src={url} alt={item.name} />
 				</div>
 			);
 		});
@@ -117,30 +116,27 @@ class ClientLogos extends Component {
 		const { columns } = this.state;
 
 		return [...Array(columns)].map((val, i) =>
-			<div key={i} className="col-6 col-sm-3">
+			<Col xs={6} sm={3} key={i}>
 				<div className="companies">{this.renderLogos()}</div>
-			</div>
+			</Col>
 		);
 	}
 
 	render() {
 		return (
 			<div className="footer__logos company-logos">
-				<div className="container">
-					<div className="row">
-						<div className="col col-lg-9 text-center mx-auto mb-4">
-							<h3 className="text-font--cursive text-color--primary company-logos__title">
-								Just Few Of The Clients
-              				</h3>
+				<Container>
+					<Row className="py-3 py-lg-5">
+						<Col lg={9} className="text-center mx-auto">
+							<h3 className="display-6 font-cursive text-primary">Just Few Of The Clients</h3>
 							<p className="lead">
 								Over the years, I’ve had the pleasure to work with dozens of really great people and
 								companies on some really amazing projects. Below are a few clients who I`ve built sites for.
 							</p>
-						</div>
-					</div>
-					<div className="row">{this.renderColumns()}</div>
-					<hr className="tall" />
-				</div>
+						</Col>
+					</Row>
+					<Row className="pb-3 pb-lg-5">{this.renderColumns()}</Row>
+				</Container>
 			</div>
 		);
 	}
@@ -156,4 +152,4 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => bindActionCreators({ getClients }, dispatch);
 
 // Export container while connected to store
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ClientLogos));
+export default connect(mapStateToProps, mapDispatchToProps)(ClientLogos);

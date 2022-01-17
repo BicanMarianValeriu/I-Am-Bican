@@ -31,25 +31,25 @@ const routes = [
 	{
 		path: "/",
 		exact: true,
-		component: Home
+		element: Home
 	},
 	{
 		path: "/portfolio/",
 		exact: true,
-		component: PortfolioArchive
+		element: PortfolioArchive
 	},
 	{
 		path: "/portfolio/:slug/",
 		exact: true,
-		component: PortfolioSingle
+		element: PortfolioSingle
 	},
 	{
 		path: "/p/:slug/",
-		component: Page
+		element: Page
 	},
 	{
 		path: "*",
-		component: FourOFour
+		element: FourOFour
 	}
 ];
 

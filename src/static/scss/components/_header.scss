@@ -9,6 +9,11 @@
 		width: 100%;
 		z-index: 500;
 		background-color: transparent;
+
+		.swal2-shown[style*="padding-right: 16px"] & {
+			right: 16px;
+			width: auto;
+		}
 	}  
 	
 	&--white {
@@ -21,7 +26,7 @@
 				&:focus,
 				&:hover {
 					background-color: white;
-					color: theme-color( 'primary' );
+					color: #0088cc;
 				}
 			}
 
@@ -32,7 +37,6 @@
 				&:focus,
 				&:active {
 					color: white;
-					opacity: .8;
 				} 
 			}
 		}
@@ -45,13 +49,13 @@
 
 		.nav-pills {
 			.nav-link {
-				color: theme-color( 'primary' );
+				color: #0088cc;
 
 				&:hover,
 				&.active {
 					&::after {
 						width: 100%;
-						border-color: theme-color( 'primary' );
+						border-color: #0088cc;
 					}
 				}
 			}
@@ -63,16 +67,20 @@
 			&:hover, 
 			&:focus,
 			&:active {
-				color: theme-color( 'primary' )!important;
+				color: #0088cc;
 			} 
 			
 			&--is-auth {
-				color: theme-color( 'primary' );
+				color: #0088cc;
 				
 				.header-login {
+					&__svg {
+						color: #0088cc;
+					}
+
 					&__mask {
 						div {
-							box-shadow: inset 0 0 3px 3px theme-color( 'primary' );
+							box-shadow: inset 0 0 3px 3px #0088cc;
 						}
 					}
 				}
@@ -103,10 +111,11 @@
 
 .header-cta {
 	font-weight: bold;
-	border: 2px solid theme-color( 'primary' );
+	border: 2px solid #0088cc;
+	background-color: transparent;
 	border-radius: 50px;
 	box-shadow: none;
-	color: theme-color( 'primary' );
+	color: #0088cc;
 
 	@include media-breakpoint-down(xs) {
 		padding: 0;
@@ -116,7 +125,7 @@
 	}
 
 	&:hover { 
-		background-color: theme-color( 'primary' );
+		background-color: #0088cc;
 		color: white;
 	}
 

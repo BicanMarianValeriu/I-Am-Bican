@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import jsonp from "jsonp";
-import { InputGroup, InputGroupAddon, Button, Input, Form } from "reactstrap";
+import { InputGroup, FormControl, Form, Button } from "react-bootstrap";
 import { getFormData, serializeData } from "../../utilities/helpers";
 import { useFormState } from 'react-use-form-state';
 
@@ -106,14 +106,12 @@ const NewsLetter = () => {
 		<div className="newsletter newsletter--footer">
 			<Form className="newsletter__form" name="newsletter" noValidate onSubmit={handleSubmit}>
 				<InputGroup>
-					<Input placeholder="Email Address" name="EMAIL" type="email" {...email('EMAIL')} required />
+					<FormControl placeholder="Email Address" name="EMAIL" type="email" {...email('EMAIL')} required />
 					<div className="invalid-tooltip">Please fill out this field.</div>
 					<div className="valid-tooltip">Everything looks fine!</div>
-					<InputGroupAddon addonType="append">
-						<Button type="submit" className="newsletter__button btn btn--primary text-color-light">
-							{pending ? 'LOADING...' : 'SUBSCRIBE'}
-						</Button>
-					</InputGroupAddon>
+					<Button type="submit" className="newsletter__button btn btn--primary text-color-light">
+						{pending ? 'LOADING...' : 'SUBSCRIBE'}
+					</Button>
 					<div className="valid-feedback"></div>
 					<div className="invalid-feedback"></div>
 				</InputGroup>

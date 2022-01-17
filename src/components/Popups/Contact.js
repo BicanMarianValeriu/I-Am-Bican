@@ -9,12 +9,12 @@ const Contact = () => {
 		html: `<form name="swal-contact" id="wpcf7-6" data-wpcf7-id="6">
 			<div class="form-group">
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-6 mb-3">
 						<span class="wpcf7-form-control-wrap your-name">
 							<input class="form-control required" name="your-name" type="text" placeholder="Your Name" required/>
 						</span>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6 mb-3">
 						<span class="wpcf7-form-control-wrap your-email">
 							<input class="form-control required" name="your-email" type="email" placeholder="Your Email" required/>
 						</span>
@@ -35,7 +35,7 @@ const Contact = () => {
 			confirmButton: 'btn btn-primary d-flex align-items-center'
 		},
 		buttonsStyling: false,
-		confirmButtonText: '<i class="far fa-paper-plane mr-2"></i>Send Message',
+		confirmButtonText: '<i class="far fa-paper-plane me-2"></i>Send Message',
 		showLoaderOnConfirm: true,
 		showCloseButton: true,
 		width: '40rem',
@@ -52,7 +52,7 @@ const Contact = () => {
 			}
 
 			const WPCF = new WPCF7("#wpcf7-6", {
-				apiUrl: "//dev.wecodeart.com/iambican/wp-json/contact-form-7/v1"
+				apiUrl: "//wecodeart.com/dev/iambican/wp-json/contact-form-7/v1"
 			});
 
 			WPCF.sendMail().then(result => {

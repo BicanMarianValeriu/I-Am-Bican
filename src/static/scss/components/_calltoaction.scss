@@ -6,9 +6,10 @@
     font-family: $font-family-base;
     color: white; 
     padding: 2.5rem 0;  
-    background-color: theme-color( 'primary' ); 
+    background-color: #08c; 
     background-position: center;
     background-size: cover;
+    background-image: url('./../../images/parallax-1.jpg');
 
     &::before {
         content: '';
@@ -17,7 +18,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: theme-color( 'primary' );
+        background-color: #08c;
         opacity: .8;
         pointer-events: none; 
     } 

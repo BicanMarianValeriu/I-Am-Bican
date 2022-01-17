@@ -35,7 +35,7 @@ const ssrCache = new LRUCache({
  * - sends html string to frontend request
  * }
  */
-export default (req, res, next) => {
+const server = (req, res, next) => {
 	const match = routes.find(route => matchPath(req.path, {
 		path: route.path,
 		exact: true,
@@ -130,3 +130,5 @@ export default (req, res, next) => {
 		});
 	});
 };
+
+export default server;

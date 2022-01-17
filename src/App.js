@@ -47,7 +47,7 @@ const App = props => {
 			/>
 			<Header />
 			<Switch>
-				{routes.map(({ path, exact, component: C, ...rest }, key) => (
+				{routes.map(({ path, exact, element: C, ...rest }, key) => (
 					<Route
 						key={key}
 						path={path}

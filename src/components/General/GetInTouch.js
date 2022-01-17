@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from "reactstrap";
+import { Button } from "react-bootstrap";
 import classnames from 'classnames';
 
 export default function GetInTouch({ iconClass, label, ...props }) {

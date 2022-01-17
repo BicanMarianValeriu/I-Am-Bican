@@ -89,7 +89,7 @@ const SwalAuth = ({ afterValidation }) => {
 			confirmButton: 'btn btn-primary d-flex align-items-center'
 		},
 		buttonsStyling: false,
-		confirmButtonText: '<i class="fas fa-sign-in-alt mr-2"></i><span>Login</span>',
+		confirmButtonText: '<i class="fas fa-sign-in-alt me-2"></i><span>Login</span>',
 		showLoaderOnConfirm: true,
 		backdrop: `rgba(0,0,0,0.5)`,
 		showCloseButton: true,

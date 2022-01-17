@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import React from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { frontloadConnect } from 'react-frontload';
@@ -7,11 +7,14 @@ import _find from 'lodash/find';
 import classNames from 'classnames';
 import { getMenu } from '../../redux/actions/menus';
 
-class Navigation extends Component {
-    renderItems() {
-        const { location: { pathname }, menu: { items = [], ID = false } = {} } = this.props;
+const Navigation = ({ menu: { items = [], ID = false } = {}, className = '', menuClass, wpMenuId }) => {
+    const { pathname } = useLocation();
 
-        if (this.props.wpMenuId === ID) {
+    const navClasses = classNames(...[className ? className.split(' ') : 'navigation']);
+
+    const renderItems = () => {
+
+        if (wpMenuId === ID) {
             return items.map((item, index) => {
                 const { children = [], classes, url = '' } = item;
 
@@ -26,14 +29,14 @@ class Navigation extends Component {
                 return (
                     <li key={index} className={liClasses}>
                         <NavLink exact className={classString} to={item.url}>{item.title}</NavLink>
-                        {children.length > 0 && this.renderDropdownItems(children)}
+                        {children.length > 0 && renderDropdownItems(children)}
                     </li>
                 );
             });
         }
     }
 
-    renderDropdownItems(items) {
+    const renderDropdownItems = (items) => {
         return (
             <ul className="nav-item__dropdown">
                 {items.map(item => {
@@ -48,17 +51,13 @@ class Navigation extends Component {
         )
     }
 
-    render() {
-        const { className, menuClass } = this.props;
-        const navClasses = classNames(...[className ? className.split(' ') : 'navigation']);
-        return (
-            <nav className={navClasses}>
-                <ul className={menuClass ? menuClass : 'nav nav-pills justify-content-end'}>
-                    {this.renderItems()}
-                </ul>
-            </nav>
-        );
-    }
+    return (
+        <nav className={navClasses}>
+            <ul className={menuClass ? menuClass : 'nav nav-pills justify-content-end'}>
+                {renderItems()}
+            </ul>
+        </nav>
+    );
 }
 
 // Binds menu items to navigation container
@@ -80,6 +79,6 @@ const frontload = async ({ getMenu, wpMenuId }) => await getMenu(wpMenuId);
 const MenuConnect = frontloadConnect(frontload, { onMount: true, onUpdate: false })(Navigation);
 
 // Export container while connected to store and SSR
-const NavigationC = withRouter(connect(mapStateToProps, mapDispatchToProps)(MenuConnect));
+const NavigationC = connect(mapStateToProps, mapDispatchToProps)(MenuConnect);
 
 export default NavigationC;

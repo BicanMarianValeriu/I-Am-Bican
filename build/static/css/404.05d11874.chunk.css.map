@@ -1,1 +1,0 @@
-{"version":3,"sources":["_404.scss"],"names":[],"mappings":"AAEA,cACI,aAAc","file":"404.05d11874.chunk.css","sourcesContent":["@import \"./../abstracts/bootstrap-required\";\r\n\r\n.content--404 {\r\n    color: #383838;\r\n}"]}

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+import { Dropdown } from "react-bootstrap";
 import classNames from 'classnames';
 import { layer, icon } from '@fortawesome/fontawesome-svg-core'
 import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
@@ -23,8 +23,6 @@ class Login extends Component {
 		this._onLogoutClick = this._onLogoutClick.bind(this);
 		this._onUserUpdated = this._onUserUpdated.bind(this);
 		this._afterValidation = this._afterValidation.bind(this);
-
-		this._toggle = this._toggle.bind(this);
 	}
 
 	componentDidMount() {
@@ -79,10 +77,6 @@ class Login extends Component {
 		return getToken({ username, password });
 	}
 
-	_toggle() {
-		this.setState(prevState => ({ dropdownOpen: !prevState.dropdownOpen }));
-	}
-
 	render() {
 		const { loading } = this.props;
 		const {
@@ -123,39 +117,41 @@ class Login extends Component {
 			);
 		}
 
-		const btnClasses = classNames('btn', 'header-login', {
+		const wrapperClasses = classNames('header-login', {
 			'header-login--loading': loading,
 			'header-login--is-auth': isAuthentificated()
 		});
 
 		return (
 			<Fragment>{isAuthentificated() ? (
-				<Dropdown size="lg" direction="left" isOpen={this.state.dropdownOpen} toggle={this._toggle}>
-					<DropdownToggle color="" className={btnClasses} onMouseOver={this._onMouseOver} onTouchStart={this._onMouseOver}>
+				<Dropdown className={wrapperClasses}>
+					<Dropdown.Toggle onMouseOver={this._onMouseOver} onTouchStart={this._onMouseOver} >
 						<UserLoginSVG />
-					</DropdownToggle>
-					<DropdownMenu right>
-						<DropdownItem header>Howdy {name}</DropdownItem>
-						<DropdownItem divider />
-						<DropdownItem>Dashboard</DropdownItem>
-						<DropdownItem>Courses</DropdownItem>
-						<DropdownItem divider />
-						<DropdownItem className="text-muted" onClick={this._onLogoutClick} >
+					</Dropdown.Toggle>
+					<Dropdown.Menu>
+						<Dropdown.Header>Howdy {name}</Dropdown.Header>
+						<Dropdown.Divider />
+						<Dropdown.Item>Dashboard</Dropdown.Item>
+						<Dropdown.Item>Courses</Dropdown.Item>
+						<Dropdown.Divider />
+						<Dropdown.Item className="text-muted" onClick={this._onLogoutClick} >
 							<div className="header-logout__svg">
 								<i className="fas fa-sign-out-alt"></i>
 							</div>
 							<span className="header-logout__label">LogOut</span>
-						</DropdownItem>
-					</DropdownMenu>
+						</Dropdown.Item>
+					</Dropdown.Menu>
 				</Dropdown>
 			) : (
-					<button id="header-login" className={btnClasses}
+				<div className={wrapperClasses}>
+					<button id="header-login" className={wrapperClasses}
 						onClick={this._onButtonClick}
 						onMouseOver={this._onMouseOver}
 						onTouchStart={this._onMouseOver}>
 						<UserLoginSVG />
 					</button>
-				)}
+				</div>
+			)}
 			</Fragment>
 		);
 	}

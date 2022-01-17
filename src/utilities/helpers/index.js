@@ -1,5 +1,4 @@
 export { default as icons, brands } from './icons';
-export { Accordion } from './accordion';
 export {
     setAuthToken,
     getAuthToken,

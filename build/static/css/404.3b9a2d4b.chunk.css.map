@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/404.3b9a2d4b.chunk.css","mappings":"AAEA,cACI,aAAc","sources":["static/scss/pages/_404.scss"],"sourcesContent":["@import \"./../abstracts/bootstrap-required\";\r\n\r\n.content--404 {\r\n    color: #383838;\r\n}"],"names":[],"sourceRoot":""}

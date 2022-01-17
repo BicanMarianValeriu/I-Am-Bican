@@ -1,28 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
-import Article from '../Entry';
-import PortfolioSingle from '../Portfolio/PortfolioSingle';
-import PortfolioArchive from '../Portfolio/PortfolioArchive';
-import Empty from '../Entry/Empty';
+import Page from './../../pages/Page/Item';
+import PortfolioSingle from './../../pages/PortfolioSingle/Item';
+import PortfolioArchive from './../../pages/PortfolioArchive/Item';
+import Empty from './../../pages/Page/components/Empty';
 
-class Main extends Component {
+const Main = (props) => {
 
-	isSingle() {
-		const { posts, isSingle } = this.props;
+	const isSingle = () => {
+		const { posts, isSingle } = props;
 		return (isSingle || 1 === posts.length);
 	}
 
-	getOptions() {
-		const { options = {} } = this.props;
-		const defaultLoading = { enable: true, classes: { outer: 'placeholder' }, elements: this.isSingle() ? 1 : 6 };
+	const getOptions = () => {
+		const { options = {} } = props;
+		const defaultLoading = { enable: true, classes: { outer: 'placeholder' }, elements: isSingle() ? 1 : 6 };
 		return { loading: { ...defaultLoading, ...options.loading } };
 	}
 
-	getClasses() {
-		const { loading, className } = this.props;
+	const getClasses = () => {
+		const { loading, className } = props;
 
-		const classes = ['main', this.isSingle() ? 'main--single' : 'main--archive', {
+		const classes = ['main', isSingle() ? 'main--single' : 'main--archive', {
 			'main--is-loading': loading,
 			[className]: className !== undefined
 		}];
@@ -30,34 +30,32 @@ class Main extends Component {
 		return classNames(classes);
 	}
 
-	renderPosts() {
-		const { posts = [], loading } = this.props;
+	const renderPosts = () => {
+		const { posts = [], loading } = props;
 
 		if (loading !== true && posts.length > 0) {
 			return posts.map(post => {
 				let postType;
 				switch (post.type) {
-					case 'portfolio': postType = this.isSingle() ?
+					case 'portfolio': postType = isSingle() ?
 						<PortfolioSingle key={post.id} {...post} /> : <PortfolioArchive key={post.id} {...post} />;
 						break;
-					default: postType = <Article key={post.id} {...post} isSingle={this.isSingle()} />;
+					default: postType = <Page key={post.id} {...post} isSingle={isSingle()} />;
 				}
 				return postType;
 			});
 		} else {
-			const { loading = {} } = this.getOptions();
+			const { loading = {} } = getOptions();
 
 			if (loading.enable === false) return;
 
-			const items = this.isSingle() ? [...Array(1)] : [...Array(loading.elements)];
+			const items = isSingle() ? [...Array(1)] : [...Array(loading.elements)];
 
 			return items.map((val, i) => <Empty key={i} options={{ ...loading }} />);
 		}
 	}
 
-	render() {
-		return (<main id="postsContainer" className={this.getClasses()}>{this.renderPosts()}</main>);
-	}
+	return (<main id="postsContainer" className={getClasses()}>{renderPosts()}</main>);
 }
 
 export default Main;

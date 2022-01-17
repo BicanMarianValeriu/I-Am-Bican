@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom'
-import GetInTouch from '../General/GetInTouch';
-import Background from "./../../static/images/parallax-1.jpg";
+import { useLocation } from 'react-router-dom'
+import { GetInTouch } from './../General';
 
 let ScrollMagic;
 
-const CallToAction = withRouter(({ location: { pathname } }) => {
+const CallToAction = () => {
+    const { pathname } = useLocation();
     const [animations, setAnimations] = useState([]);
     const [pathName, setNewPathName] = useState(true);
 
@@ -48,22 +48,22 @@ const CallToAction = withRouter(({ location: { pathname } }) => {
     }, [pathname]);
 
     return (
-        <div className="footer__calltoaction calltoaction" style={{ backgroundImage: `url('${Background}')` }}>
+        <div className="footer__calltoaction calltoaction">
             <div className="container">
                 <div className="row align-items-center">
-                    <div className="col-12 col-lg text-center text-lg-left calltoaction__text">
-                        <h3 className="text text-weight--light">Do you have a design and you want to
-                            <strong className="text-font--cursive">bring it to life</strong>?
+                    <div className="col-12 col-lg text-center text-lg-start calltoaction__text">
+                        <h3 className="fw-light">Do you have a design and you want to
+                            <strong className="font-cursive">bring it to life</strong>?
                         </h3>
                         <p className="lead">Is simple, drop me a message and let's setup a meeting.</p>
                     </div>
-                    <div className="col-12 col-lg-auto text-center text-lg-right calltoaction__buttons">
+                    <div className="col-12 col-lg-auto text-center text-lg-end calltoaction__buttons">
                         <GetInTouch className="calltoaction__button btn-lg" iconClass="far fa-paper-plane" label="Let's Connect" />
                     </div>
                 </div>
             </div>
         </div>
     );
-});
+};
 
 export default CallToAction; 

@@ -1,0 +1,48 @@
+body { 
+	overflow-x: hidden;
+}
+
+hr {
+	background-image: -webkit-linear-gradient(left, transparent, #DBDBDB, transparent);
+    background-image: linear-gradient(to right, transparent, #DBDBDB, transparent);
+    border: 0;
+    height: 1px;
+    margin: 22px 0;
+} 
+
+.font-cursive {
+	font-family: "Shadows Into Light", cursive;
+}
+
+/* Mask Animation */
+.maskUp { 
+	animation-name: maskUp;
+}
+
+.maskRight { 
+	animation-name: maskRight;
+}
+
+.maskLeft { 
+	animation-name: maskLeft;
+}
+
+.maskDown { 
+	animation-name: maskDown;
+}
+
+.facebook-wide-wrapper {
+    position: relative;
+	overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 60px;
+        background-image: linear-gradient(to right, rgba( 255, 255, 255, .1 ) 40%, white 100% );
+        pointer-events: none;
+    }
+}
