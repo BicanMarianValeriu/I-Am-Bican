@@ -2,9 +2,9 @@ import React from 'react';
 import classNames from 'classnames';
 
 import Page from './../../pages/Page/Item';
+import Empty from './../../pages/Page/Empty';
 import PortfolioSingle from './../../pages/PortfolioSingle/Item';
 import PortfolioArchive from './../../pages/PortfolioArchive/Item';
-import Empty from './../../pages/Page/components/Empty';
 
 const Main = (props) => {
 
@@ -31,7 +31,7 @@ const Main = (props) => {
 	}
 
 	const renderPosts = () => {
-		const { posts = [], loading } = props;
+		const { posts = [], loading, loader: Loader = Empty} = props;
 
 		if (loading !== true && posts.length > 0) {
 			return posts.map(post => {
@@ -51,7 +51,7 @@ const Main = (props) => {
 
 			const items = isSingle() ? [...Array(1)] : [...Array(loading.elements)];
 
-			return items.map((val, i) => <Empty key={i} options={{ ...loading }} />);
+			return items.map((val, i) => <Loader key={i} options={{ ...loading }} />);
 		}
 	}
 

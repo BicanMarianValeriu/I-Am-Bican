@@ -6,6 +6,7 @@ import { frontloadConnect } from "react-frontload";
 
 import Main from './../../components/General/Main';
 import Intro from "./components/Intro";
+import Empty from "./Empty";
 import { getProjects } from "./../../redux/actions/projects";
 
 // SCSS 
@@ -27,11 +28,11 @@ class Projects extends Component {
 
 		const loading = {
 			elements: 6,
-			classes: { outer: 'col-md-6 col-lg-4' }
+			classes: ['col-md-6', 'col-lg-4']
 		};
 
 		return (
-			<React.Fragment>
+			<>
 				<Helmet
 					title={meta.title}
 					meta={[
@@ -44,10 +45,10 @@ class Projects extends Component {
 				<div id="content" className="content content--projects content--archive">
 					<Intro />
 					<div className="container">
-						<Main posts={projects} className="my-3 my-md-5 pt-3 pt-lg-4" isSingle={false} options={{ loading: loading }} />
+						<Main posts={projects} className="row my-3 my-md-5 pt-5" isSingle={false} options={{ loading: loading }} loader={Empty} />
 					</div>
 				</div>
-			</React.Fragment>
+			</>
 		);
 	}
 }

@@ -49,8 +49,13 @@
     &--single {
         .entry {
             &--empty {
-                min-height: 500px;
+                min-height: 300px;
                 margin-bottom: 0;
+
+                svg {
+                    min-height: inherit;
+                    height: inherit;
+                }
             }
         }
     }

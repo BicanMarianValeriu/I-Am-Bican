@@ -11,7 +11,6 @@ input:-webkit-autofill:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #fff;
     z-index: 100;
 
     & > div {
@@ -27,5 +26,15 @@ input:-webkit-autofill:hover {
 
     .icon-loading {
         width: 100%;
+    }
+}
+
+.placeholder {
+    background-color: transparent;
+    width: 100%;
+
+    svg {
+        height: inherit;
+        min-height: inherit;
     }
 }

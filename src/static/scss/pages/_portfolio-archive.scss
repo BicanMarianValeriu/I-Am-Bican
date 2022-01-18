@@ -58,12 +58,6 @@
             }
         }
 	}
-} 
-
-.content--projects {
-    .main--archive {
-        @include make-row();
-    }
 }
 
 .portfolio {
@@ -119,6 +113,7 @@
 
     .entry {  
         &__media {
+            background-color: #f1f1f1;
             transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             
             &--loading {

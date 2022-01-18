@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Navigation } from '../General';
+
+import { Navigation } from './../General';
 import Copyright from './Copyright';
 import Social from './Social';
 import Newsletter from './Newsletter';
