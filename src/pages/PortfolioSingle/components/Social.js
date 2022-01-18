@@ -35,8 +35,8 @@ const Social = (props) => {
         <div className="portfolio-social">
             <div className="social social--facebook py-5">
                 <h3 className="lead text-primary">
-                    <i className="fal fa-comment-dots"></i>
-                    <span> Be Social :)</span>
+                    <i className="fal fa-comment-dots me-2"></i>
+                    <span>Be Social :)</span>
                 </h3>
                 <div className="my-3 border-bottom border-light" />
                 {!isServer && <>

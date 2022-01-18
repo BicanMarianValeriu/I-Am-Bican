@@ -8,9 +8,7 @@ export const mediaMiddleware = ({ dispatch }) => next => action => {
 
     switch (type) {
         case GET_MEDIA:
-            dispatch(
-                apiRequest(`wp/v2/media/${payload}`, null, { success: GET_MEDIA_SUCCESS, error: GET_MEDIA_ERROR })
-            );
+            dispatch(apiRequest(`wp/v2/media/${payload}`, null, { success: GET_MEDIA_SUCCESS, error: GET_MEDIA_ERROR }));
             break;
 
         case GET_MEDIA_SUCCESS:

@@ -9,9 +9,7 @@ export const qaMiddleware = ({ dispatch }) => next => action => {
 
     switch (type) {
         case GET_QA:
-            dispatch(
-                apiRequest('wp/v2/q_and_a', payload, { success: GET_QA_SUCCESS, error: GET_QA_ERROR })
-            );
+            dispatch(apiRequest('wp/v2/q_and_a', payload, { success: GET_QA_SUCCESS, error: GET_QA_ERROR }));
             dispatch(setPendingQA(true));
             break;
 

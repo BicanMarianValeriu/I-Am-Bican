@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { frontloadConnect } from "react-frontload";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { frontloadConnect } from 'react-frontload';
 import { Accordion } from 'react-bootstrap';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
@@ -13,7 +13,7 @@ import anime from 'animejs';
 import ContentLoader from 'react-content-loader';
 import VisibilitySensor from 'react-visibility-sensor';
 
-import { getQA, updateQA } from "../../../redux/actions/questions";
+import { getQA, updateQA } from './../../../redux/actions/questions';
 import { isServer } from './../../../utilities/helpers';
 
 const ContentLoaderRender = () => <ContentLoader {...{
@@ -123,15 +123,13 @@ const Questions = ({ pending, isLoading, getQA, questions }) => {
     return (
         <div className="portfolio-questions">
             <h3 className="lead text-primary">
-                <i className="fal fa-question-circle"></i>
-                <span> Frequently Asked Questions</span>
+                <i className="fal fa-question-circle me-2"></i>
+                <span>Frequently Asked Questions</span>
             </h3>
             <div className="my-3 border-bottom border-light" />
-            <div className="portfolio-questions__wrapper">
-                <VisibilitySensor onChange={onChange} active={activeSensor}>
-                    {!isServer && isLoading ? <ContentLoaderRender /> : renderQuestions(questions)}
-                </VisibilitySensor>
-            </div>
+            <VisibilitySensor onChange={onChange} active={activeSensor}>
+                {!isServer && isLoading ? <ContentLoaderRender /> : renderQuestions(questions)}
+            </VisibilitySensor>
         </div>
     );
 };

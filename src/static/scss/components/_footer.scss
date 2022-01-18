@@ -122,24 +122,21 @@
 
         &:hover {
             background-color: transparent;
+			border-color: currentColor;
             color: white;
             box-shadow: rgba(0, 0, 0, 0.07) 0px 15px 20px;
             transform: translate3d(0,-5px,0);
         }
+
+		svg {
+			margin-right: 1rem;
+		}
     }
 
     h3 {
         font-family: $font-family-base;
         color: white; 
     }
-
-    p {  
-        margin-bottom: 0; 
-
-        @include media-breakpoint-down( 'md' ) { 
-            margin-bottom: 1.5rem; 
-        }
-    } 
 
     strong {
         display: inline-block;

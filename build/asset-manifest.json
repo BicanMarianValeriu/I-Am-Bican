@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.c6c3b05f.css",
-    "main.js": "/static/js/main.767eff28.js",
+    "main.css": "/static/css/main.ce02a0b0.css",
+    "main.js": "/static/js/main.a49c2bf0.js",
     "404.css": "/static/css/404.3b9a2d4b.chunk.css",
     "404.js": "/static/js/404.e7d02724.chunk.js",
     "page.js": "/static/js/page.5183a0b2.chunk.js",
-    "portfolio-single.css": "/static/css/portfolio-single.3c6fc080.chunk.css",
+    "portfolio-single.css": "/static/css/portfolio-single.cf4fb8c6.chunk.css",
     "portfolio-single.js": "/static/js/portfolio-single.d47c5817.chunk.js",
     "portfolio-archives.css": "/static/css/portfolio-archives.90e22924.chunk.css",
-    "portfolio-archives.js": "/static/js/portfolio-archives.324429b4.chunk.js",
+    "portfolio-archives.js": "/static/js/portfolio-archives.21732dae.chunk.js",
     "SwalContact.js": "/static/js/SwalContact.6eee0d3b.chunk.js",
     "swal-auth.js": "/static/js/swal-auth.0e8128bf.chunk.js",
     "static/js/772.682d3b7b.chunk.js": "/static/js/772.682d3b7b.chunk.js",
@@ -47,21 +47,21 @@
     "static/media/raleway-v14-latin-100.woff2": "/static/media/raleway-v14-latin-100.195163b089af6863749d.woff2",
     "static/media/placeholder-bold.png": "/static/media/placeholder-bold.20d35e1c5a5a08b79c36.png",
     "index.html": "/index.html",
-    "main.c6c3b05f.css.map": "/static/css/main.c6c3b05f.css.map",
-    "main.767eff28.js.map": "/static/js/main.767eff28.js.map",
+    "main.ce02a0b0.css.map": "/static/css/main.ce02a0b0.css.map",
+    "main.a49c2bf0.js.map": "/static/js/main.a49c2bf0.js.map",
     "404.3b9a2d4b.chunk.css.map": "/static/css/404.3b9a2d4b.chunk.css.map",
     "404.e7d02724.chunk.js.map": "/static/js/404.e7d02724.chunk.js.map",
     "page.5183a0b2.chunk.js.map": "/static/js/page.5183a0b2.chunk.js.map",
-    "portfolio-single.3c6fc080.chunk.css.map": "/static/css/portfolio-single.3c6fc080.chunk.css.map",
+    "portfolio-single.cf4fb8c6.chunk.css.map": "/static/css/portfolio-single.cf4fb8c6.chunk.css.map",
     "portfolio-single.d47c5817.chunk.js.map": "/static/js/portfolio-single.d47c5817.chunk.js.map",
     "portfolio-archives.90e22924.chunk.css.map": "/static/css/portfolio-archives.90e22924.chunk.css.map",
-    "portfolio-archives.324429b4.chunk.js.map": "/static/js/portfolio-archives.324429b4.chunk.js.map",
+    "portfolio-archives.21732dae.chunk.js.map": "/static/js/portfolio-archives.21732dae.chunk.js.map",
     "SwalContact.6eee0d3b.chunk.js.map": "/static/js/SwalContact.6eee0d3b.chunk.js.map",
     "swal-auth.0e8128bf.chunk.js.map": "/static/js/swal-auth.0e8128bf.chunk.js.map",
     "772.682d3b7b.chunk.js.map": "/static/js/772.682d3b7b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c6c3b05f.css",
-    "static/js/main.767eff28.js"
+    "static/css/main.ce02a0b0.css",
+    "static/js/main.a49c2bf0.js"
   ]
 }

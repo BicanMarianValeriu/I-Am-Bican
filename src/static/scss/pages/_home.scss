@@ -133,24 +133,24 @@
 			border-color: transparent;
 			box-shadow: none;
 			color: #2e353e;
-		} 
+		}
 
-		.svg-inline--fa {
+		svg {
+			vertical-align: middle;
+
 			@include media-breakpoint-up( 'sm' ) {
-				margin-right: 10px;
-				width: 25px;
-				height: 25px;
+				margin-right: 1rem;
 			}
 		}
 
 		span {
 			vertical-align: middle;
 
-			@include media-breakpoint-down(sm) {
+			@include media-breakpoint-down( 'xl' ) {
 				font-size: 0.8rem;
 			}
 
-			@media (max-width: 576px) {
+			@include media-breakpoint-down( 'sm' ) {
 				display: none;
 			}
 		}

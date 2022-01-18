@@ -55,7 +55,7 @@ const CallToAction = () => {
                         <h3 className="fw-light">Do you have a design and you want to
                             <strong className="font-cursive">bring it to life</strong>?
                         </h3>
-                        <p className="lead">Is simple, drop me a message and let's setup a meeting.</p>
+                        <p className="lead mb-3 mb-lg-0">Is simple, drop me a message and let's setup a meeting.</p>
                     </div>
                     <div className="col-12 col-lg-auto text-center text-lg-end calltoaction__buttons">
                         <GetInTouch className="calltoaction__button btn-lg" iconClass="far fa-paper-plane" label="Let's Connect" />
