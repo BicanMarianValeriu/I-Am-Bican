@@ -7,7 +7,8 @@ import { frontloadConnect } from "react-frontload";
 import Main from './../../components/General/Main';
 import Intro from "./components/Intro";
 import Empty from "./Empty";
-import { getProjects } from "./../../redux/actions/projects";
+import { requestApi } from "./../../redux/actions/api";
+import { getProjects, updateProjects } from "./../../redux/actions/projects";
 
 // SCSS 
 import "./../../static/scss/pages/_portfolio-archive.scss";
@@ -45,7 +46,7 @@ class Projects extends Component {
 				<div id="content" className="content content--projects content--archive">
 					<Intro />
 					<div className="container">
-						<Main posts={projects} className="row my-3 my-md-5 pt-5" isSingle={false} options={{ loading: loading }} loader={Empty} />
+						<Main posts={projects} className="row my-3 my-md-5 pt-5" isSingle={false} options={{ loading }} loader={Empty} />
 					</div>
 				</div>
 			</>
@@ -57,10 +58,12 @@ class Projects extends Component {
 const mapStateToProps = ({ projects }) => ({ projects });
 
 // Dispatch to props.getProjects
-const mapDispatchToProps = dispatch => bindActionCreators({ getProjects }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getProjects, updateProjects }, dispatch);
 
 // Server Side Stuff
-const frontload = async ({ getProjects }) => await getProjects({ per_page: 10 });
+const frontload = async ({ updateProjects }) => {
+	return await requestApi({ url: 'wp/v2/portfolios', params: { per_page: 10 } }).then(r => updateProjects(r.data));
+};
 
 // Connect to Frontload SSR
 const PortfolioConnect = frontloadConnect(frontload, { onMount: true, onUpdate: false })(Projects);

@@ -10,14 +10,14 @@ const Title = props => {
     const title = getTitle(props);
 
     // Class   
-    const headingClass = classnames(`${type}__title`, {
+    const headingClass = classnames('entry__title', {
         [className]: className !== undefined
     });
 
     return (
         <h1 className={headingClass}>{props.isSingle ?
             <span dangerouslySetInnerHTML={title}></span> :
-            <Link to={`/${type}/${slug}/`} dangerouslySetInnerHTML={title}></Link>
+            <Link to={`/${type}/${slug}/`} dangerouslySetInnerHTML={title} />
         }</h1>
     );
 };

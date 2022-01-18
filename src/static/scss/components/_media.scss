@@ -1,0 +1,25 @@
+.wp-media {
+    position: relative;
+    overflow: hidden;
+
+    &__ratio {
+        position: relative;
+        transition: inherit;
+
+        img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%,-50%,0);
+            object-fit: cover;
+            width: 100%;
+            min-height: 100%;
+        } 
+    }
+
+    &__src {
+        &--loading {
+            transition: inherit;
+        }
+    }
+}

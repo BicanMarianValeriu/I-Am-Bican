@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { useLocation } from 'react-router-dom';
 import { Like, Comments } from 'react-facebook';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { isServer } from '../../../utilities/helpers';
+import { isServer } from './../../../utilities/helpers';
 
 const Social = (props) => {
     const { pathname = '/' } = useLocation();
@@ -39,12 +39,12 @@ const Social = (props) => {
                     <span> Be Social :)</span>
                 </h3>
                 <div className="my-3 border-bottom border-light" />
-                {!isServer && <Fragment>
+                {!isServer && <>
                     <div className="facebook-wide-wrapper">
                         <Like href={socialUrl} showFaces share />
                     </div>
                     <Comments href={socialUrl} width="100%" />
-                </Fragment>}
+                </>}
             </div>
         </div>
     );

@@ -29,7 +29,7 @@ class AboutContent extends React.Component {
                         <div className="col-12">
                             <div className="col-12 col-lg-6 ms-5 mb-5 mb-lg-4 float-end">
                                 <div className="p-3 p-sm-5 shadow-lg">
-                                    <h6>Personal Details</h6>
+                                    <h6 className="fw-bold">Personal Details</h6>
                                     <div className="row">
                                         <div className="col-md-5">
                                             <ul className="list-unstyled text-uppercase text-muted small mb-0">

@@ -1,26 +1,23 @@
-body:not(.swal2-shown),
-body.swal2-toast-shown {	  
-	.header--absolute {
-		right: 0;
-	}
-} 
-
 .swal2-popup {
 	&.swal-contact {
 		.swal2-title {
 			margin-bottom: 1.5rem;
 
-			@include media-breakpoint-down(sm) {
+			@include media-breakpoint-down('sm') {
 				font-size: 1.3rem;
 			} 
 		}
 
 		.your-name {
 			.form-control {
-				@include media-breakpoint-down(sm) {
+				@include media-breakpoint-down('sm') {
 					margin-bottom: 1rem;
 				} 
 			}
 		}
+	}
+
+	.swal2-close {
+		outline: none!important;
 	}
 }

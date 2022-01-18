@@ -1,5 +1,5 @@
 import JWTDecode from "jwt-decode";
-import { apiRequest } from "../actions/api";
+import { apiRequest } from "./../actions/api";
 import { 
     setAuthToken, 
     removeAuthToken, 
@@ -7,7 +7,7 @@ import {
     getCurrentUser, 
     removeCurrentUser, 
     getAuthHeader, 
-} from "../../utilities/helpers";
+} from "./../../utilities/helpers";
 import {
     USER_GET_TOKEN,
     USER_GET_TOKEN_SUCCESS,
@@ -22,8 +22,8 @@ import {
     USER_LOGOUT_SUCCESS,
     USER_LOGOUT_ERROR,
     updateUser
-} from "../actions/user";
-import { setPendingUser } from "../actions/ui";
+} from "./../actions/user";
+import { setPendingUser } from "./../actions/ui";
 
 export const userMiddleware = ({ dispatch }) => next => action => {
     next(action);

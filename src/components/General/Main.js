@@ -15,7 +15,7 @@ const Main = (props) => {
 
 	const getOptions = () => {
 		const { options = {} } = props;
-		const defaultLoading = { enable: true, classes: { outer: 'placeholder' }, elements: isSingle() ? 1 : 6 };
+		const defaultLoading = { enable: true, classes: [ 'placeholder' ], elements: isSingle() ? 1 : 6 };
 		return { loading: { ...defaultLoading, ...options.loading } };
 	}
 

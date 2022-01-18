@@ -6,12 +6,12 @@ import Loadable from 'react-loadable';
 import ReactGA from 'react-ga';
 import { render, hydrate } from 'react-dom';
 import { FacebookProvider } from 'react-facebook';
-import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { Frontload } from 'react-frontload';
-import createStore from './redux/store';
+import { Provider } from 'react-redux';
 
 import App from './App';
+import createStore from './redux/store';
 import './static/scss/style.scss';
 
 // Create a store and get back itself and its history object

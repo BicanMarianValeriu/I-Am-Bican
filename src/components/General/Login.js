@@ -6,8 +6,8 @@ import classNames from 'classnames';
 import { layer, icon } from '@fortawesome/fontawesome-svg-core'
 import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
 
-import { getToken, userLogout, updateUser } from "../../redux/actions/user";
-import { isAuthentificated, getCurrentUser, isServer } from "../../utilities/helpers";
+import { getToken, userLogout, updateUser } from "./../../redux/actions/user";
+import { isAuthentificated, getCurrentUser, isServer } from "./../../utilities/helpers";
 
 class Login extends Component {
 	constructor(props) {

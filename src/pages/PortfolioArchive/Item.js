@@ -1,37 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import classNames from 'classnames';
 
 import Title from './../Page/components/Title';
 import Content from './../Page/components/Content';
-import FeaturedMedia from './../Page/components/FeaturedMedia';
+import Media from './../../components/General/Media';
 
-class PortfolioItem extends Component {
-	getClasses() {
-		const wrapperClass = ['col', 'col-md-6', 'col-lg-4', 'entry', 'entry--portfolio', 'portfolio'];
-		return classNames(wrapperClass);
-	}
+const Item = (props) => {
+	const { featured_media, slug } = props;
 
-	render() {
-
-		const { featured_media, slug } = this.props;
-
-		return (
-			<article className={this.getClasses()}>
-				<Link to={`/portfolio/${slug}/`}>
-					<FeaturedMedia mediaId={featured_media} />
+	return (
+		<article className="col-12 col-md-6 col-lg-4 entry entry--portfolio portfolio">
+			<Link to={`/portfolio/${slug}/`}>
+				<Media mediaId={featured_media} />
+			</Link>
+			<div className="portfolio__description p-3 p-lg-2 p-xl-3 text-center">
+				<Title className="h6 fw-bold" {...props} />
+				<Content {...props} />
+				<Link to={`/portfolio/${slug}/`} className="portfolio__more btn btn-link fw-bold text-uppercase">
+					<span class="me-2">View More</span>
+					<i className="fas fa-arrow-right"></i>
 				</Link>
-				<div className="portfolio__description p-3 p-lg-2 p-xl-3 text-center">
-					<Title className="h6 fw-bold" {...this.props} />
-					<Content {...this.props} />
-					<Link to={`/portfolio/${slug}/`} className="btn btn-link portfolio__more">
-						<span>View More</span>
-						<i className="fas fa-arrow-right"></i>
-					</Link>
-				</div>
-			</article>
-		);
-	}
+			</div>
+		</article>
+	);
 }
 
-export default PortfolioItem;
+export default Item;

@@ -62,76 +62,48 @@
 
 .portfolio {
     position: relative;
+    display: flex;
+    flex-direction: column;
     
     &:hover {
-        @include media-breakpoint-up('lg') {
+        @include media-breakpoint-up( 'lg' ) {
             .portfolio { 
                 &__description {
-                        border-color: $gray-100;
-                        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
-                    } 
-                }
-                
-            .entry {
-                &__media {
-                    &::after {
-                        opacity: 0;
-                    }
-
-                    &-wrapper {
-                        transform: scale(1.1) rotate(-4deg);
-                    }
-                }
+                    border-color: $gray-100;
+                    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+                } 
             }
-        }
-    } 
 
-    &.entry--archive {
-        &:last-child {
-            @include media-breakpoint-down('md') { 
-                margin-bottom: 0;
+            .wp-media {
+                &__ratio {
+                    transform: scale(1.1) rotate(-4deg);
+                }
             }
         }
     }
 
     &__description {
+        flex: 1 1 auto;
         transition: all .3s ease-in-out;
-        border: 1px solid transparent;
-        border-top: none;
     }
 
     &__more {
         font-size: .7rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        
-        span {
-            display: inline-block;
-            margin-right: 8px;
-        }
     }
 
-    .entry {  
-        &__media {
-            background-color: #f1f1f1;
-            transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            
-            &--loading {
-                .entry__media-src {
-                    filter: blur(1px);
-                }
-            }
+    .wp-media {
+        background-color: #f1f1f1;
+        transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-            &::before {
-                content: ' ';
-                position: absolute; 
-                z-index: 3;
-                top: 13px;
-                right: 13px;
-                bottom: -15px;
-                left: 13px;
-                border: 5px solid #FFF;
-            }
+        &::before {
+            content: ' ';
+            position: absolute; 
+            z-index: 3;
+            top: 13px;
+            right: 13px;
+            bottom: -15px;
+            left: 13px;
+            border: 5px solid #FFF;
         }
     }
 }

@@ -7,8 +7,8 @@ class Meta extends Component {
 	renderClientLogo() {
 		const { client } = this.props;
 		if (!client) return;
-		const { name, acf: { client_logo: { url } } } = client;
-		return (<img src={url} alt={name} height="40" />);
+		const { name } = client;
+		return (<span>{name}</span>);
 	}
 
 	renderDate(raw = false) {

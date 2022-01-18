@@ -9,16 +9,16 @@ const Component = () => (
         <Container>
             <Row className="justify-content-end gx-0">
                 <Col xs={4} lg={3} className="text-center">
-                    <a href="#footer" className="about-me__link" onClick={() => scrollToElement('#footer')}>
+                    <a href="#footer" className="about-me__link text-primary" onClick={() => scrollToElement('#footer')}>
                         <i className="fal fa-envelope"></i>
                         <span>Contact Information</span>
                     </a>
                 </Col>
                 <Col xs={4} lg={2} className="text-center">
-                    <GetInTouch className="about-me__link" color="link" label="Send Message" />
+                    <GetInTouch className="about-me__link text-primary" color="link" label="Send Message" />
                 </Col>
                 <Col xs={4} lg={3} className="text-center">
-                    <Link to="/portfolio/" className="about-me__link">
+                    <Link to="/portfolio/" className="about-me__link text-primary">
                         <i className="fal fa-briefcase"></i>
                         <span>View Portfolio</span>
                     </Link>

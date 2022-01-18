@@ -108,15 +108,12 @@ $container-max-widths: (
 @import "~splitting/dist/splitting-cells.css";
 
 /* Custom Common Code */
-@import "components/header.scss";
-@import "components/menu.scss"; 
-@import "components/entry.scss";
-@import "components/preloader.scss";
-@import "components/page-intro.scss";
-@import "components/about-me.scss";
-@import "components/experience.scss";
-@import "components/skills.scss"; 
-@import "components/calltoaction.scss";
-@import "components/modals.scss"; 
-@import "components/footer.scss"; 
-@import "components/svg-icons.scss";
+@import "./components/preloader";
+@import "./components/header";
+@import "./components/menu";
+@import "./components/media";
+@import "./components/footer";
+@import "./components/modals"; 
+
+/* Global Pages */
+@import "./pages/page";

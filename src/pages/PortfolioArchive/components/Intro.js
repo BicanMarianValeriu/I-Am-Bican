@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import { Like } from 'react-facebook';
 import { library } from '@fortawesome/fontawesome-svg-core';
+
 import { isServer } from './../../../utilities/helpers';
 
 const PortfolioStats = ({ pending, isLoading, stats, categories }) => {
@@ -21,9 +22,7 @@ const PortfolioStats = ({ pending, isLoading, stats, categories }) => {
         library.add([faChevronDown]);
     }
 
-    useEffect(() => {
-        addIcons();
-    });
+    useEffect(() => addIcons());
 
     return (
         <div className="portfolio-stats">

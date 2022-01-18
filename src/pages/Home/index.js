@@ -4,6 +4,9 @@ import AboutMe from './components/AboutMe';
 import Experience from './components/Experience';
 import Skills from './components/Skills';
 
+// SCSS 
+import "./../../static/scss/pages/_home.scss";
+
 const Home = () => {
 	const meta = {
 		title: "WordPress/React Developer",
