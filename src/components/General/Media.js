@@ -16,6 +16,8 @@ const Media = (props) => {
 
     const Image = ({ image }) => {
 
+        const { alt_text } = mediaObj;
+
         const getMediaUrls = () => {
             const { media_details: {
                 sizes: {
@@ -27,11 +29,22 @@ const Media = (props) => {
             return [highRes, lowRes, placeholder];
         }
 
-        const { src } = useImage({
+        const { src, isLoading } = useImage({
             srcList: getMediaUrls(),
+            useSuspense: false
         });
 
-        return <img className={classNames('wp-media__src', { 'wp-media__src--loading': ! mediaObj })} src={src} alt="" />
+        if (isLoading) {
+            return <Loader type="spinningBubbles" />
+        }
+
+        return (
+            <img
+                className={classNames('wp-media__src', { 'wp-media__src--holder': src === placeholder })}
+                src={src}
+                alt={alt_text}
+            />
+        );
     }
 
     useEffect(() => getMedia(mediaId));
@@ -39,9 +52,7 @@ const Media = (props) => {
     return (
         <div className="wp-media">
             <div className="wp-media__ratio ratio ratio-16x9">
-                <Suspense fallback={<Loader type="spinningBubbles" />}>
-                    <Image image={mediaObj} />
-                </Suspense>
+                <Image image={mediaObj} />
             </div>
         </div>
     );

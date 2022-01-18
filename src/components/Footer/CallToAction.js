@@ -50,7 +50,7 @@ const CallToAction = () => {
     return (
         <div className="footer__calltoaction calltoaction">
             <div className="container">
-                <div className="row align-items-center">
+                <div className="row align-items-center py-4">
                     <div className="col-12 col-lg text-center text-lg-start calltoaction__text">
                         <h3 className="fw-light">Do you have a design and you want to
                             <strong className="font-cursive">bring it to life</strong>?

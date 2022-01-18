@@ -35,7 +35,7 @@ const PortfolioStats = ({ pending, isLoading, stats, categories }) => {
                             <span className="text-primary fw-extra-bold">/</span>
                             CASE
                         </h1>
-                        <p className="mt-3 mb-2 offset-lg-3">
+                        <p className="mt-3 mb-2 offset-lg-3 text-dark text-opacity-75">
                             These projects are just a fraction of my work.
                             Feel free to browse them and take a closer look.
                         </p>

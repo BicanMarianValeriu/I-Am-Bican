@@ -13,11 +13,11 @@ const Item = (props) => {
 			<Link to={`/portfolio/${slug}/`}>
 				<Media mediaId={featured_media} />
 			</Link>
-			<div className="portfolio__description p-3 p-lg-2 p-xl-3 text-center">
-				<Title className="h6 fw-bold" {...props} />
+			<div className="portfolio__description p-3 p-lg-2 p-xl-3 text-center text-dark text-opacity-75">
+				<Title className="h5 fw-bold" {...props} />
 				<Content {...props} />
 				<Link to={`/portfolio/${slug}/`} className="portfolio__more btn btn-link fw-bold text-uppercase">
-					<span class="me-2">View More</span>
+					<span className="me-2">View More</span>
 					<i className="fas fa-arrow-right"></i>
 				</Link>
 			</div>
