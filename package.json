@@ -2,7 +2,7 @@
 	"name": "iambican-v3",
 	"version": "3.0.0",
 	"private": true,
-	"homepage": "https://www.iambican.com/",
+	"homepage": "https://www.iambican.com/build/",
 	"dependencies": {
 		"@babel/core": "^7.16.7",
 		"@babel/plugin-proposal-class-properties": "^7.16.7",
