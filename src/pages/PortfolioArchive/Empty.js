@@ -7,7 +7,7 @@ const Empty = () => {
 		<div className="col-12 col-md-6 col-lg-4 entry entry--empty">
 			<Loader />
 			<ContentLoader height={100} width="100%" speed={3}>
-				<rect x="25%" y="5" rx="3" ry="3" width="50%" height="12" />
+				<rect x="25%" y="0" rx="3" ry="3" width="50%" height="12" />
 				<rect x="5%" y="30" rx="3" ry="3" width="30%" height="10" />
 				<rect x="40%" y="30" rx="3" ry="3" width="20%" height="10" />
 				<rect x="65%" y="30" rx="3" ry="3" width="30%" height="10" />

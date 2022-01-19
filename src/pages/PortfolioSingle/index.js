@@ -21,8 +21,9 @@ const Portfolio = (props) => {
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
-		return getProjects(slug);
-	}, [pathname, getProjects, slug]);
+		if (selectedProject) return;
+		return getProjects({ slug });
+	}, [pathname, selectedProject, getProjects, slug]);
 
 	const entry = selectedProject || {};
 	const tags = getMetaTags(selectedProject, pathname);
@@ -56,7 +57,7 @@ const frontload = async ({ match: { params: { slug } }, updateProjects }) => {
 };
 
 // Connect to Frontload SSR
-const PortfolioConnect = frontloadConnect(frontload, { onMount: true, onUpdate: false })(Portfolio);
+const PortfolioConnect = frontloadConnect(frontload)(Portfolio);
 
 // Export container while connected to store and SSR
 export default connect(mapStateToProps, mapDispatchToProps)(PortfolioConnect);

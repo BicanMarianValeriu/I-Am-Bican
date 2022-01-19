@@ -9,7 +9,7 @@ const Empy = (props) => (
 			viewBox="0 0 1150 850"
 			{...props}
 		>
-			<rect x="0" y="5" width="100%" height="25%" />
+			<rect x="0" y="0" width="100%" height="25%" />
 			<rect x="104" y="230" rx="3" ry="3" width="578" height="42" />
 			<rect x="123" y="308" rx="3" ry="3" width="906" height="17" />
 			<circle cx="951" cy="386" r="11" />

@@ -136,7 +136,7 @@ const Questions = ({ pending, isLoading, getQA, questions }) => {
 
 // Binds menu items to navigation container
 const mapStateToProps = (store, props) => {
-    const { acf: { meta: { questions: include = [] } = {} } = {} } = props;
+    const { acf: { meta: { questions: include } = {} } = {} } = props;
     const { qa, ui: { pending, pendingQA: isLoading } } = store;
     const questions = _filter(qa, i => _includes(include, i.id));
 
