@@ -1,10 +1,11 @@
 const path = require('path');
-const md5File = require('md5-file');
+// const md5File = require('md5-file');
 
 // CSS styles will be imported on load and that complicates matters... ignore those bad boys!
 const ignoreStyles = require('ignore-styles');
 const register = ignoreStyles.default;
 
+const manifest = require('./../build/asset-manifest.json');
 // We also want to ignore all image requests 
 const extensions = ['.gif', '.jpeg', '.jpg', '.png', '.svg'];
 
@@ -15,9 +16,9 @@ register(ignoreStyles.DEFAULT_EXTENSIONS, (mod, filename) => {
         return ignoreStyles.noOp();
     } else {
         // If we find an image
-        const hash = md5File.sync(filename).slice(0, 8);
-        const bn = path.basename(filename).replace(/(\.\w{3})$/, `.${hash}$1`);
-        
+        // const hash = md5File.sync(filename).slice(0, 20);
+        // const bn = path.basename(filename).replace(/(\.\w{3})$/, `.${hash}$1`);
+
         /**
          * If you are on dev, content is served as root with proxy
          * but when the app is deployed this is served from /build/ directory
@@ -29,7 +30,7 @@ register(ignoreStyles.DEFAULT_EXTENSIONS, (mod, filename) => {
          * - Apache exports: `build/static/media/${bn}`
          * }
          */
-        mod.exports = `/static/media/${bn}`;
+        mod.exports = manifest.files[`static/media/${path.basename(filename)}`];
     }
 });
 
