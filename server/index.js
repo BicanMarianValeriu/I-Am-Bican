@@ -16,18 +16,12 @@ register(ignoreStyles.DEFAULT_EXTENSIONS, (mod, filename) => {
         return ignoreStyles.noOp();
     } else {
         // If we find an image
-        // const hash = md5File.sync(filename).slice(0, 20);
-        // const bn = path.basename(filename).replace(/(\.\w{3})$/, `.${hash}$1`);
-
         /**
          * If you are on dev, content is served as root with proxy
          * but when the app is deployed this is served from /build/ directory
          * @info For Heroku and development, the app is working out of the box.
          * @see add `homepage` to package.json if deploying on Apache {
          * - Apache homepage: `https://www.iambican.com/build/`
-         * }
-         * @see prepend `/build/` to the export bellow if on Apache {
-         * - Apache exports: `build/static/media/${bn}`
          * }
          */
         mod.exports = manifest.files[`static/media/${path.basename(filename)}`];
