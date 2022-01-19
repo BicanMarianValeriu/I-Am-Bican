@@ -146,11 +146,9 @@ const mapStateToProps = (store, props) => {
 // mapDispatchToProps -> getQA
 const mapDispatchToProps = dispatch => bindActionCreators({ getQA, updateQA }, dispatch);
 
-const frontload = async ({ acf: { meta: { questions: include = [] } = {} } = {}, getQA, updateQA }) => {
-    const data = await getQA({ include });
-    return updateQA(data);
-};
+// const frontload = async ({ acf: { meta: { questions: include = [] } = {} } = {}, getQA, updateQA }) => {
+//     const data = await getQA({ include });
+//     return updateQA(data);
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-    frontloadConnect(frontload, { onMount: true, onUpdate: false })(Questions)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(Questions);

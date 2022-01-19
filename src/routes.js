@@ -1,12 +1,17 @@
 import Loadable from 'react-loadable';
 
-import Home from "./pages/Home";
-import DownloadLoader from "./components/General/prealoader";
+import DownloadLoader from './components/General/prealoader';
 
 const FourOFour = Loadable({
 	loader: () => import(/* webpackChunkName: "404" */ "./pages/404"),
 	loading: DownloadLoader,
 	modules: ["404"]
+});
+
+const Home = Loadable({
+	loader: () => import(/* webpackChunkName: "home" */ "./pages/Home"),
+	loading: DownloadLoader,
+	modules: ["home"]
 });
 
 const Page = Loadable({

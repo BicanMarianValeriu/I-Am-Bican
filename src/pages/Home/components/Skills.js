@@ -43,7 +43,7 @@ class AboutSkills extends Component {
                 {
                     title: "GULP/WEBPACK",
                     icon: 'fab fa-gulp fa-fw',
-                    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc.`,
+                    description: `I'm familiar with both code bundlers. Initially I used Gulp but later on I switched to Webpack.`,
                 },
                 {
                     title: "Javascript (ES6+)",
