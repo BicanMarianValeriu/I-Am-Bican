@@ -4,7 +4,7 @@ import { Loader } from './../../components/General';
 
 const Empty = () => {
 	return (
-		<div className="col col-md-6 col-lg-4 entry entry--empty">
+		<div className="col-12 col-md-6 col-lg-4 entry entry--empty">
 			<Loader />
 			<ContentLoader height={100} width="100%" speed={3}>
 				<rect x="25%" y="5" rx="3" ry="3" width="50%" height="12" />
