@@ -136,7 +136,7 @@ const Questions = ({ pending, isLoading, getQA, questions }) => {
 
 // Binds menu items to navigation container
 const mapStateToProps = (store, props) => {
-    const { acf: { meta: { questions: include } } } = props;
+    const { acf: { meta: { questions: include = [] } = {} } = {} } = props;
     const { qa, ui: { pending, pendingQA: isLoading } } = store;
     const questions = _filter(qa, i => _includes(include, i.id));
 
@@ -146,8 +146,7 @@ const mapStateToProps = (store, props) => {
 // mapDispatchToProps -> getQA
 const mapDispatchToProps = dispatch => bindActionCreators({ getQA, updateQA }, dispatch);
 
-const frontload = async props => {
-    const { acf: { meta: { questions: include } }, getQA, updateQA } = props;
+const frontload = async ({ acf: { meta: { questions: include = [] } = {} } = {}, getQA, updateQA }) => {
     const data = await getQA({ include });
     return updateQA(data);
 };
