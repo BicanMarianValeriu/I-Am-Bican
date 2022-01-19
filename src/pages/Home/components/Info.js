@@ -47,7 +47,7 @@ class AboutContent extends React.Component {
                                 </div>
                             </div>
                             <h2 className="about-me__content-title text-uppercase">About Me</h2>
-                            <div className="about-me__content-text">
+                            <div className="about-me__content-text text-dark text-opacity-75">
                                 <p>I'm Bican, a full stack web developer from Targu Jiu, Romania.
                                 I love to share what I know through my work, articles and tutorials. I've been creating on the web for around 2 years
                                 and have become pretty good at it. From a technical standpoint, I spend most of my time working with JavaScript, CSS3,

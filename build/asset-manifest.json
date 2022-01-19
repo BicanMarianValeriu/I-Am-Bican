@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/build/static/css/main.d523c083.css",
-    "main.js": "/build/static/js/main.0b244b01.js",
+    "main.css": "/build/static/css/main.2311807e.css",
+    "main.js": "/build/static/js/main.200966fd.js",
     "404.css": "/build/static/css/404.3b9a2d4b.chunk.css",
     "404.js": "/build/static/js/404.e7d02724.chunk.js",
     "page.js": "/build/static/js/page.73bb776b.chunk.js",
     "portfolio-single.css": "/build/static/css/portfolio-single.cf4fb8c6.chunk.css",
-    "portfolio-single.js": "/build/static/js/portfolio-single.b2d97b78.chunk.js",
+    "portfolio-single.js": "/build/static/js/portfolio-single.1266569e.chunk.js",
     "portfolio-archives.css": "/build/static/css/portfolio-archives.90e22924.chunk.css",
     "portfolio-archives.js": "/build/static/js/portfolio-archives.616b23ae.chunk.js",
     "SwalContact.js": "/build/static/js/SwalContact.6eee0d3b.chunk.js",
@@ -47,13 +47,13 @@
     "static/media/raleway-v14-latin-100.woff2": "/build/static/media/raleway-v14-latin-100.195163b089af6863749d.woff2",
     "static/media/placeholder-bold.png": "/build/static/media/placeholder-bold.20d35e1c5a5a08b79c36.png",
     "index.html": "/build/index.html",
-    "main.d523c083.css.map": "/build/static/css/main.d523c083.css.map",
-    "main.0b244b01.js.map": "/build/static/js/main.0b244b01.js.map",
+    "main.2311807e.css.map": "/build/static/css/main.2311807e.css.map",
+    "main.200966fd.js.map": "/build/static/js/main.200966fd.js.map",
     "404.3b9a2d4b.chunk.css.map": "/build/static/css/404.3b9a2d4b.chunk.css.map",
     "404.e7d02724.chunk.js.map": "/build/static/js/404.e7d02724.chunk.js.map",
     "page.73bb776b.chunk.js.map": "/build/static/js/page.73bb776b.chunk.js.map",
     "portfolio-single.cf4fb8c6.chunk.css.map": "/build/static/css/portfolio-single.cf4fb8c6.chunk.css.map",
-    "portfolio-single.b2d97b78.chunk.js.map": "/build/static/js/portfolio-single.b2d97b78.chunk.js.map",
+    "portfolio-single.1266569e.chunk.js.map": "/build/static/js/portfolio-single.1266569e.chunk.js.map",
     "portfolio-archives.90e22924.chunk.css.map": "/build/static/css/portfolio-archives.90e22924.chunk.css.map",
     "portfolio-archives.616b23ae.chunk.js.map": "/build/static/js/portfolio-archives.616b23ae.chunk.js.map",
     "SwalContact.6eee0d3b.chunk.js.map": "/build/static/js/SwalContact.6eee0d3b.chunk.js.map",
@@ -61,7 +61,7 @@
     "772.682d3b7b.chunk.js.map": "/build/static/js/772.682d3b7b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d523c083.css",
-    "static/js/main.0b244b01.js"
+    "static/css/main.2311807e.css",
+    "static/js/main.200966fd.js"
   ]
 }

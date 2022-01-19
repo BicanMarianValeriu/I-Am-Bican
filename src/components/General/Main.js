@@ -15,7 +15,7 @@ const Main = (props) => {
 
 	const getOptions = () => {
 		const { options = {} } = props;
-		const defaultLoading = { enable: true, classes: [ 'placeholder' ], elements: isSingle() ? 1 : 6 };
+		const defaultLoading = { enable: true, elements: isSingle() ? 1 : 6 };
 		return { loading: { ...defaultLoading, ...options.loading } };
 	}
 
@@ -51,7 +51,7 @@ const Main = (props) => {
 
 			const items = isSingle() ? [...Array(1)] : [...Array(loading.elements)];
 
-			return items.map((val, i) => <Loader key={i} options={{ ...loading }} />);
+			return items.map((val, i) => <Loader key={i} />);
 		}
 	}
 

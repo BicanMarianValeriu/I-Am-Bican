@@ -3,9 +3,11 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { frontloadConnect } from 'react-frontload';
-import _find from 'lodash/find';
 import classNames from 'classnames';
-import { getMenu } from '../../redux/actions/menus';
+import _find from 'lodash/find';
+
+import { getMenu, updateMenus } from './../../redux/actions/menus';
+import { requestApi } from './../../redux/actions/api';
 
 const Navigation = ({ menu: { items = [], ID = false } = {}, className = '', menuClass, wpMenuId }) => {
     const { pathname } = useLocation();
@@ -70,10 +72,12 @@ const mapStateToProps = (store, props) => {
 };
 
 // mapDispatchToProps -> getMenu
-const mapDispatchToProps = dispatch => bindActionCreators({ getMenu }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getMenu, updateMenus }, dispatch);
 
 // Server Side Stuff
-const frontload = async ({ getMenu, wpMenuId }) => await getMenu(wpMenuId);
+const frontload = async ({ wpMenuId, updateMenus }) => {
+    return await requestApi({ url: `wp/v2/menus/${wpMenuId}` }).then(({ data }) => updateMenus(data));
+};
 
 // Connect to Frontload SSR
 const MenuConnect = frontloadConnect(frontload, { onMount: true, onUpdate: false })(Navigation);

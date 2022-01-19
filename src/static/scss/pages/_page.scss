@@ -16,12 +16,14 @@
     &--single {
         .entry {
             &--empty {
+                width: 100%;
                 min-height: 300px;
                 margin-bottom: 0;
 
                 svg {
                     min-height: inherit;
                     height: inherit;
+                    width: inherit;
                 }
             }
         }

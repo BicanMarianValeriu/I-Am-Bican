@@ -1,5 +1,5 @@
-import { apiRequest } from "../actions/api";
-import { GET_MENU, GET_MENU_SUCCESS, GET_MENU_ERROR, updateMenus } from "../actions/menus";
+import { apiRequest } from "./../actions/api";
+import { GET_MENU, GET_MENU_SUCCESS, GET_MENU_ERROR, updateMenus } from "./../actions/menus";
 
 export const menuMiddleware = ({ dispatch }) => next => action => {
     next(action);

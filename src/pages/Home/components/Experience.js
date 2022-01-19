@@ -133,34 +133,38 @@ export default class AboutExperience extends Component {
 					>
 						<div className="timeline-box__animation">
 							<div className="row">
-								<div className="col col-sm-12 col-md-5 col-lg-4 col-xl-3 p-3 p-lg-4 bg-primary">
-									<div className="d-flex justify-content-between">
-										<span className="timeline-box__meta-range__from">
-											<span className="text-uppercase text-white text-opacity-50">From:</span>
-											<span className="timeline-box__meta-range__from-date text-white">
-												{from}
+								<div className="col col-sm-12 col-md-5 col-lg-4 col-xl-3 bg-primary">
+									<div className="p-3 px-lg-4 py-lg-5">
+										<div className="d-flex justify-content-between">
+											<span className="timeline-box__meta-range__from">
+												<span className="text-uppercase text-white text-opacity-50">From:</span>
+												<span className="timeline-box__meta-range__from-date text-white">
+													{from}
+												</span>
 											</span>
-										</span>
-										<span className="timeline-box__meta-range__to">
-											<span className="text-uppercase text-white text-opacity-50">To:</span>
-											<span className="timeline-box__meta-range__to-date text-white">
-												{to === new Date().toDateString() ? "Present" : to}
+											<span className="timeline-box__meta-range__to">
+												<span className="text-uppercase text-white text-opacity-50">To:</span>
+												<span className="timeline-box__meta-range__to-date text-white">
+													{to === new Date().toDateString() ? "Present" : to}
+												</span>
 											</span>
-										</span>
-									</div>
-									<p className="timeline-box__meta-duration text-white text-opacity-50 text-uppercase">({humanDuration({ from, to })})</p>
-									<div className="timeline-box__meta-company d-flex flex-row flex-md-column justify-content-between">
-										<h5 className="timeline-box__meta-company__name text-white">
-											{item.company}
-										</h5>
-										<span className="timeline-box__meta-company__loc text-white text-opacity-50">
-											{item.location}
-										</span>
+										</div>
+										<p className="timeline-box__meta-duration text-white text-opacity-50 text-uppercase">({humanDuration({ from, to })})</p>
+										<div className="timeline-box__meta-company d-flex flex-row flex-md-column justify-content-between">
+											<h5 className="timeline-box__meta-company__name text-white">
+												{item.company}
+											</h5>
+											<span className="timeline-box__meta-company__loc text-white text-opacity-50">
+												{item.location}
+											</span>
+										</div>
 									</div>
 								</div>
-								<div className="col col-sm-12 col-md-7 col-lg-8 col-xl-9 p-3 p-lg-4 bg-white">
-									<h4 className="fw-bold h5">{item.jobTitle}</h4>
-									<p className="text-muted small d-none d-md-block mb-0" dangerouslySetInnerHTML={{ __html: item.description }} />
+								<div className="col col-sm-12 col-md-7 col-lg-8 col-xl-9 bg-white">
+									<div className="p-3 p-lg-5">
+										<h4 className="fw-bold h5">{item.jobTitle}</h4>
+										<p className="text-muted small d-none d-md-block mb-0" dangerouslySetInnerHTML={{ __html: item.description }} />
+									</div>
 								</div>
 							</div>
 						</div>

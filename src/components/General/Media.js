@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useImage } from 'react-image';
 import classNames from 'classnames';

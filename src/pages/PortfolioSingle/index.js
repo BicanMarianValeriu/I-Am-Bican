@@ -1,19 +1,20 @@
-import React, { useEffect } from "react";
-import { Helmet } from "react-helmet";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { frontloadConnect } from "react-frontload";
+import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { frontloadConnect } from 'react-frontload';
 import _find from 'lodash/find';
 
 // Deps
 import Main from './../../components/General/Main';
 import Navigation from './components/Navigation';
-import { requestApi } from "./../../redux/actions/api";
-import { getProjects, updateProjects } from "./../../redux/actions/projects";
-import { getMetaTags } from "./../../utilities/wordpress/wpPost";
+import Empty from './Empty';
+import { requestApi } from './../../redux/actions/api';
+import { getProjects, updateProjects } from './../../redux/actions/projects';
+import { getMetaTags } from './../../utilities/wordpress/wpPost';
 
 // SCSS 
-import "./../../static/scss/pages/_portfolio-single.scss";
+import './../../static/scss/pages/_portfolio-single.scss';
 
 const Portfolio = (props) => {
 	const { getProjects, selectedProject, location: { pathname }, match: { params: { slug } } } = props;
@@ -31,7 +32,7 @@ const Portfolio = (props) => {
 			<Helmet {...tags} />
 			<div id="content" className="content content--portfolio content--single">
 				<Navigation {...entry} />
-				<Main posts={[selectedProject]} isSingle={true} loading={!selectedProject} />
+				<Main posts={[selectedProject]} isSingle={true} loading={!selectedProject} loader={Empty} />
 			</div>
 		</>
 	);

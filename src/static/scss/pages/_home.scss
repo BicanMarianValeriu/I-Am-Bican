@@ -1,7 +1,8 @@
 @import "./../abstracts/bootstrap-required";
 
+/* About Section */
 .about-me {
-	padding-top: 108px;
+	padding-top: 110px;
 
 	&__intro {
 		overflow: hidden;
@@ -158,14 +159,14 @@
 
 	&__content {
 		position: relative;
-		padding: 5rem 0 3rem;
+		padding: 2rem 0 2rem;
 
-		@media (max-width: 991px) {
+		@include media-breakpoint-up( 'sm' ) {
 			padding-top: 3.5rem;
 		}
-
-		@media (max-width: 576px) {
-			padding: 2rem 0 2rem;
+		
+		@include media-breakpoint-up( 'sm' ) {
+			padding: 5rem 0 3rem;
 		}
 
 		&-text { 
@@ -223,6 +224,7 @@
 	}
 }
 
+/* Experience Section */
 .about-experience {
 	position: relative;
 	overflow: hidden;
