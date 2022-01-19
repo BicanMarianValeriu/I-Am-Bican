@@ -83,12 +83,19 @@
     }
 
     &__description {
-        flex: 1 1 auto;
         transition: all .3s ease-in-out;
     }
 
     &__more {
         font-size: .7rem;
+    }
+
+    .entry {
+        &__title {
+            a {
+                color: inherit;
+            }
+        }
     }
 
     .wp-media {
