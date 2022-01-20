@@ -1,6 +1,6 @@
 // Deps
 import { createStore } from 'redux';
-import { createBrowserHistory, createMemoryHistory } from 'history'; 
+import { createBrowserHistory, createMemoryHistory } from 'history';
 
 // Reducers
 import createReducers from './reducers';

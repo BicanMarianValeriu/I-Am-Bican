@@ -61,9 +61,7 @@ const mapStateToProps = ({ projects }) => ({ projects });
 const mapDispatchToProps = dispatch => bindActionCreators({ getProjects, updateProjects }, dispatch);
 
 // Server Side Stuff
-const frontload = async ({ updateProjects }) => {
-	return await requestApi({ url: 'wp/v2/portfolios', params: { per_page: 10 } }).then(({ data }) => updateProjects(data));
-};
+const frontload = async ({ getProjects }) => await getProjects({ per_page: 99 });
 
 // Connect to Frontload SSR
 const PortfolioConnect = frontloadConnect(frontload)(Projects);

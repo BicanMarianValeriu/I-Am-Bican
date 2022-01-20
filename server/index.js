@@ -27,7 +27,8 @@ register(ignoreStyles.DEFAULT_EXTENSIONS, (mod, filename) => {
     }
 });
 
-// Set up babel to do its thing... env for the latest toys, react-app for CRA 
+// Set up babel to do its thing... env for the latest toys, react-app for CRA
+require('@babel/polyfill');
 require('@babel/register')({
     ignore: [/\/(build|node_modules)\//],
     presets: [
@@ -36,15 +37,10 @@ require('@babel/register')({
     ],
     plugins: [
         '@babel/plugin-syntax-dynamic-import',
-        '@babel/plugin-transform-block-scoping',
-        '@babel/plugin-proposal-class-properties',
         'dynamic-import-node',
         'react-loadable/babel'
     ]
 });
-
-// After Babel to avoid Buffer issue
-require('@babel/polyfill'); 
 
 // Now that the nonsense is over... load up the server entry point
 require('./server');

@@ -1,5 +1,5 @@
 import thunk from 'redux-thunk';
-// import promise from 'redux-promise-middleware';
+import promise from 'redux-promise-middleware';
 import { compose, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import { routerMiddleware } from 'connected-react-router';
@@ -16,8 +16,9 @@ import { isServer } from './../../utilities/helpers';
 
 const middlewares = ({ history, enhancers }) => {
     const arr = [
-        api,
+        thunk,
         routerMiddleware(history),
+        api,
         projectsMiddleware,
         qaMiddleware,
         clientsMiddleware,
@@ -25,8 +26,7 @@ const middlewares = ({ history, enhancers }) => {
         pagesMiddleware,
         menuMiddleware,
         userMiddleware,
-        // promise,
-        thunk,
+        promise,
     ];
 
     if (process.env.NODE_ENV === 'development' && !isServer) {

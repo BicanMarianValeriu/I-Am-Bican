@@ -6,16 +6,16 @@ import { frontloadConnect } from 'react-frontload';
 import classNames from 'classnames';
 import _find from 'lodash/find';
 
-import { getMenu, updateMenus } from './../../redux/actions/menus';
-import { requestApi } from './../../redux/actions/api';
+import { getMenu } from './../../redux/actions/menus';
 
-const Navigation = ({ menu: { items = [], ID = false } = {}, className = '', menuClass, wpMenuId }) => {
+const Navigation = ({ className = '', menuClass, wpMenuId, menu }) => {
     const { pathname } = useLocation();
+
+    const { items = [], ID } = menu;
 
     const navClasses = classNames(...[className ? className.split(' ') : 'navigation']);
 
     const renderItems = () => {
-
         if (wpMenuId === ID) {
             return items.map((item, index) => {
                 const { children = [], classes, url = '' } = item;
@@ -63,23 +63,15 @@ const Navigation = ({ menu: { items = [], ID = false } = {}, className = '', men
 }
 
 // Binds menu items to navigation container
-const mapStateToProps = (store, props) => {
-    const { menus } = store;
-    const { wpMenuId } = props;
-    const menu = _find(menus, { ID: wpMenuId });
-
-    return ({ menu });
-};
+const mapStateToProps = ({ menus }, { wpMenuId }) => ({ menu: _find(menus, { ID: wpMenuId }) || {} });
 
 // mapDispatchToProps -> getMenu
-const mapDispatchToProps = dispatch => bindActionCreators({ getMenu, updateMenus }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getMenu }, dispatch);
 
-// Server Side Stuff
-const frontload = async ({ wpMenuId, updateMenus }) => {
-    return await requestApi({ url: `wp/v2/menus/${wpMenuId}` }).then(({ data }) => updateMenus(data));
-};
+// SSR Call
+const frontload = async ({ wpMenuId, getMenu }) => await getMenu(wpMenuId);
 
 // Connect to Frontload SSR
-const MenuConnect = frontloadConnect(frontload)(Navigation);
+const Component = frontloadConnect(frontload)(Navigation);
 
-export default connect(mapStateToProps, mapDispatchToProps)(MenuConnect);
+export default connect(mapStateToProps, mapDispatchToProps)(Component);
