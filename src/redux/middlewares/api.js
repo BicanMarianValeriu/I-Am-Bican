@@ -1,5 +1,5 @@
-import { requestApi, API_REQUEST, API_REJECTED } from "./../actions/api";
-import { serializeData } from "../../utilities/helpers";
+import { requestApi, API_REQUEST, API_REJECTED } from './../actions/api';
+import { serializeData } from './../../utilities/helpers';
 
 // This middleware care only for API calls
 export const api = ({ dispatch }) => next => action => {

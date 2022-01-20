@@ -1,14 +1,14 @@
 // Express requirements 
-import path from "path";
-import morgan from "morgan";
-import express from "express";
-import bodyParser from "body-parser";
-import compression from "compression";
-import Loadable from "react-loadable";
-import cookieParser from "cookie-parser";
+import path from 'path';
+import morgan from 'morgan';
+import express from 'express';
+import compression from 'compression';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import Loadable from 'react-loadable';
 
 // Our loader - this basically acts as the entry point for each page load
-import loader from "./loader";
+import loader from './loader';
 
 // Create our express app using the port optionally specified
 const app = express();
@@ -34,14 +34,14 @@ app.on('error', error => {
 	if (error.syscall !== 'listen') {
 		throw error;
 	}
-	const bind = typeof PORT === "string" ? "Pipe " + PORT : "Port " + PORT;
+	const bind = typeof PORT === 'string' ? 'Pipe ' + PORT : 'Port ' + PORT;
 	switch (error.code) {
-		case "EACCES":
-			console.error(bind + " requires elevated privileges");
+		case 'EACCES':
+			console.error(bind + ' requires elevated privileges');
 			process.exit(1);
 			break;
-		case "EADDRINUSE":
-			console.error(bind + " is already in use");
+		case 'EADDRINUSE':
+			console.error(bind + ' is already in use');
 			process.exit(1);
 			break;
 		default:

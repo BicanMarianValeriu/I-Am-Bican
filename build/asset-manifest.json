@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/build/static/css/main.3efb6ff6.css",
-    "main.js": "/build/static/js/main.fb532fe0.js",
+    "main.js": "/build/static/js/main.87789470.js",
     "404.css": "/build/static/css/404.3b9a2d4b.chunk.css",
-    "404.js": "/build/static/js/404.e7d02724.chunk.js",
+    "404.js": "/build/static/js/404.4cd5edf8.chunk.js",
     "home.css": "/build/static/css/home.caf10936.chunk.css",
-    "home.js": "/build/static/js/home.a4781b8f.chunk.js",
-    "page.js": "/build/static/js/page.73bb776b.chunk.js",
+    "home.js": "/build/static/js/home.f67b71b5.chunk.js",
+    "page.js": "/build/static/js/page.af616fb7.chunk.js",
     "portfolio-single.css": "/build/static/css/portfolio-single.cf4fb8c6.chunk.css",
-    "portfolio-single.js": "/build/static/js/portfolio-single.7c25ef43.chunk.js",
+    "portfolio-single.js": "/build/static/js/portfolio-single.446448c0.chunk.js",
     "portfolio-archives.css": "/build/static/css/portfolio-archives.838c3218.chunk.css",
-    "portfolio-archives.js": "/build/static/js/portfolio-archives.604fd284.chunk.js",
+    "portfolio-archives.js": "/build/static/js/portfolio-archives.f47a17f9.chunk.js",
     "swal-auth.js": "/build/static/js/swal-auth.0e8128bf.chunk.js",
     "SwalContact.js": "/build/static/js/SwalContact.6eee0d3b.chunk.js",
     "static/js/772.682d3b7b.chunk.js": "/build/static/js/772.682d3b7b.chunk.js",
@@ -50,22 +50,22 @@
     "static/media/placeholder-bold.png": "/build/static/media/placeholder-bold.20d35e1c5a5a08b79c36.png",
     "index.html": "/build/index.html",
     "main.3efb6ff6.css.map": "/build/static/css/main.3efb6ff6.css.map",
-    "main.fb532fe0.js.map": "/build/static/js/main.fb532fe0.js.map",
+    "main.87789470.js.map": "/build/static/js/main.87789470.js.map",
     "404.3b9a2d4b.chunk.css.map": "/build/static/css/404.3b9a2d4b.chunk.css.map",
-    "404.e7d02724.chunk.js.map": "/build/static/js/404.e7d02724.chunk.js.map",
+    "404.4cd5edf8.chunk.js.map": "/build/static/js/404.4cd5edf8.chunk.js.map",
     "home.caf10936.chunk.css.map": "/build/static/css/home.caf10936.chunk.css.map",
-    "home.a4781b8f.chunk.js.map": "/build/static/js/home.a4781b8f.chunk.js.map",
-    "page.73bb776b.chunk.js.map": "/build/static/js/page.73bb776b.chunk.js.map",
+    "home.f67b71b5.chunk.js.map": "/build/static/js/home.f67b71b5.chunk.js.map",
+    "page.af616fb7.chunk.js.map": "/build/static/js/page.af616fb7.chunk.js.map",
     "portfolio-single.cf4fb8c6.chunk.css.map": "/build/static/css/portfolio-single.cf4fb8c6.chunk.css.map",
-    "portfolio-single.7c25ef43.chunk.js.map": "/build/static/js/portfolio-single.7c25ef43.chunk.js.map",
+    "portfolio-single.446448c0.chunk.js.map": "/build/static/js/portfolio-single.446448c0.chunk.js.map",
     "portfolio-archives.838c3218.chunk.css.map": "/build/static/css/portfolio-archives.838c3218.chunk.css.map",
-    "portfolio-archives.604fd284.chunk.js.map": "/build/static/js/portfolio-archives.604fd284.chunk.js.map",
+    "portfolio-archives.f47a17f9.chunk.js.map": "/build/static/js/portfolio-archives.f47a17f9.chunk.js.map",
     "swal-auth.0e8128bf.chunk.js.map": "/build/static/js/swal-auth.0e8128bf.chunk.js.map",
     "SwalContact.6eee0d3b.chunk.js.map": "/build/static/js/SwalContact.6eee0d3b.chunk.js.map",
     "772.682d3b7b.chunk.js.map": "/build/static/js/772.682d3b7b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3efb6ff6.css",
-    "static/js/main.fb532fe0.js"
+    "static/js/main.87789470.js"
   ]
 }

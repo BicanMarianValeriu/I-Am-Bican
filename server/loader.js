@@ -1,23 +1,23 @@
 // Express requirements
-import fs from "fs";
-import path from "path";
+import fs from 'fs';
+import path from 'path';
 import LRUCache from 'lru-cache';
 
 // React requirements
-import React from "react";
-import Loadable from "react-loadable";
-import { Helmet } from "react-helmet";
-import { renderToString } from "react-dom/server";
-import { Provider } from "react-redux";
-import { StaticRouter, matchPath } from "react-router";
-import { Frontload, frontloadServerRender } from "react-frontload";
+import React from 'react';
+import Loadable from 'react-loadable';
+import { Helmet } from 'react-helmet';
+import { renderToString } from 'react-dom/server';
+import { Provider } from 'react-redux';
+import { StaticRouter, matchPath } from 'react-router';
+import { Frontload, frontloadServerRender } from 'react-frontload';
 
 // Our store, entrypoint, and manifest
-import App from "./../src/App";
+import App from './../src/App';
 import routes from './../src/routes';
-import configStore from "./../src/redux/store";
-import manifest from "./../build/asset-manifest.json";
-import { injectHTML, formatScripts, getCacheKey } from "./helpers";
+import configStore from './../src/redux/store';
+import manifest from './../build/asset-manifest.json';
+import { injectHTML, formatScripts, getCacheKey } from './helpers';
 import { authToken, userLogout } from './../src/redux/actions/user';
 
 // This is where we cache our rendered HTML pages

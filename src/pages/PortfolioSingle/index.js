@@ -53,7 +53,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({ getProjects, updateP
 
 // Server Side Stuff
 const frontload = async ({ match: { params: { slug } }, updateProjects }) => {
-	return await requestApi({ url: 'wp/v2/portfolios', params: { slug } }).then(r => updateProjects(r.data));
+	return await requestApi({ url: 'wp/v2/portfolios', params: { slug } }).then(({ data }) => updateProjects(data));
 };
 
 // Connect to Frontload SSR

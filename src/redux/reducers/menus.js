@@ -1,4 +1,4 @@
-import { UPDATE_MENUS } from "../actions/menus";
+import { UPDATE_MENUS } from './../actions/menus';
 import _findIndex from 'lodash/findIndex';
 
 export default function pagesReducer(state = [], action) {

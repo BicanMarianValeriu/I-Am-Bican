@@ -17,9 +17,10 @@ const Page = (props) => {
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
+		if(selectedPage) return;
 		return getPage(slug);
-	}, [pathname, getPage, slug]);
-	
+	}, [pathname, selectedPage, getPage, slug]);
+
 	const { title: { rendered: pageTitle } = {} } = selectedPage || {};
 	const tags = getMetaTags(selectedPage, pathname);
 
@@ -48,11 +49,11 @@ const mapDispatchToProps = dispatch => bindActionCreators({ getPage, updatePages
 
 // Server Side Stuff
 const frontload = async ({ match: { params: { slug } }, updatePages }) => {
-	return await requestApi({ url: `wp/v2/pages`, params: { slug } }).then(r => updatePages(r.data));
+	return await requestApi({ url: `wp/v2/pages`, params: { slug } }).then(({ data }) => updatePages(data));
 };
 
 // Connect to Frontload SSR
-const PageConnect = frontloadConnect(frontload, { onMount: true, onUpdate: false })(Page);
+const PageConnect = frontloadConnect(frontload)(Page);
 
 // Export container while connected to store with frontload
 export default connect(mapStateToProps, mapDispatchToProps)(PageConnect);

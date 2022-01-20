@@ -80,9 +80,6 @@ const frontload = async ({ wpMenuId, updateMenus }) => {
 };
 
 // Connect to Frontload SSR
-const MenuConnect = frontloadConnect(frontload, { onMount: true, onUpdate: false })(Navigation);
+const MenuConnect = frontloadConnect(frontload)(Navigation);
 
-// Export container while connected to store and SSR
-const NavigationC = connect(mapStateToProps, mapDispatchToProps)(MenuConnect);
-
-export default NavigationC;
+export default connect(mapStateToProps, mapDispatchToProps)(MenuConnect);

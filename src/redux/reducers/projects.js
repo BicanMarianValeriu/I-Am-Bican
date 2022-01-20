@@ -1,4 +1,4 @@
-import { UPDATE_PROJECTS } from "../actions/projects";
+import { UPDATE_PROJECTS } from './../actions/projects';
 import _filter from 'lodash/filter';
 import _findIndex from 'lodash/findIndex';
 

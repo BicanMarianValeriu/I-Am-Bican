@@ -1,4 +1,4 @@
-import { UPDATE_QA } from "../actions/questions";
+import { UPDATE_QA } from './../actions/questions';
 import _filter from 'lodash/filter';
 import _findIndex from 'lodash/findIndex';
 

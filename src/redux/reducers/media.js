@@ -1,4 +1,4 @@
-import { UPDATE_MEDIA } from "../actions/media";
+import { UPDATE_MEDIA } from './../actions/media';
 import _findIndex from 'lodash/findIndex';
 
 export default function mediaReducer(state = [], action) {

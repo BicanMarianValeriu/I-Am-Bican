@@ -1,4 +1,4 @@
-import { UPDATE_CLIENTS } from "../actions/clients";
+import { UPDATE_CLIENTS } from './../actions/clients';
 
 export default function clientsReducer(state = [], action) {
 	switch (action.type) {

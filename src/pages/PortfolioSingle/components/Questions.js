@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { frontloadConnect } from 'react-frontload';
 import { Accordion } from 'react-bootstrap';
 import { library } from '@fortawesome/fontawesome-svg-core';
 

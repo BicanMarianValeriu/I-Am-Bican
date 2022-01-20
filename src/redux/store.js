@@ -7,7 +7,7 @@ import createReducers from './reducers';
 
 // Middlewares
 import createEnhancers from './middlewares'; 
-import { isServer } from '../utilities/helpers';
+import { isServer } from './../utilities/helpers';
 
 // Default
 const store = (url = '/') => {

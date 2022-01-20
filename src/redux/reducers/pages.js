@@ -1,4 +1,4 @@
-import { UPDATE_PAGES } from "../actions/pages";
+import { UPDATE_PAGES } from './../actions/pages';
 import _filter from 'lodash/filter';
 import _findIndex from 'lodash/findIndex';
 

@@ -3,7 +3,7 @@ import {
 	SHOW_QA_LOADING, HIDE_QA_LOADING,
 	SHOW_ENTRY_LOADING, HIDE_ENTRY_LOADING,
 	SHOW_USER_LOADING, HIDE_USER_LOADING 
-} from "../actions/ui"; 
+} from './../actions/ui'; 
 
 export default function uiReducer(state = { 
 	pending: false, 
