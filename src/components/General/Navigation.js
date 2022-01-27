@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { frontloadConnect } from 'react-frontload';
+import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import _find from 'lodash/find';
-
 import { getMenu } from './../../redux/actions/menus';
 
-const Navigation = ({ className = '', menuClass, wpMenuId, menu }) => {
+const Navigation = ({ className = '', menuClass, wpMenuId }) => {
     const { pathname } = useLocation();
+    const dispatch = useDispatch();
 
-    const { items = [], ID } = menu;
+    useEffect(() => dispatch(getMenu(wpMenuId)), [dispatch, wpMenuId]);
+
+    const { items = [], ID } = useSelector(({ menus }) => _find(menus, { ID: wpMenuId }) || {});
 
     const navClasses = classNames(...[className ? className.split(' ') : 'navigation']);
 
@@ -62,16 +62,4 @@ const Navigation = ({ className = '', menuClass, wpMenuId, menu }) => {
     );
 }
 
-// Binds menu items to navigation container
-const mapStateToProps = ({ menus }, { wpMenuId }) => ({ menu: _find(menus, { ID: wpMenuId }) || {} });
-
-// mapDispatchToProps -> getMenu
-const mapDispatchToProps = dispatch => bindActionCreators({ getMenu }, dispatch);
-
-// SSR Call
-const frontload = async ({ wpMenuId, getMenu }) => await getMenu(wpMenuId);
-
-// Connect to Frontload SSR
-const Component = frontloadConnect(frontload)(Navigation);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Component);
+export default Navigation;

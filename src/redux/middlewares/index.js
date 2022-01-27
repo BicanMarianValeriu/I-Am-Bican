@@ -16,6 +16,7 @@ import { isServer } from './../../utilities/helpers';
 
 const middlewares = ({ history, enhancers }) => {
     const arr = [
+        promise,
         thunk,
         routerMiddleware(history),
         api,
@@ -26,7 +27,6 @@ const middlewares = ({ history, enhancers }) => {
         pagesMiddleware,
         menuMiddleware,
         userMiddleware,
-        promise,
     ];
 
     if (process.env.NODE_ENV === 'development' && !isServer) {

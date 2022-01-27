@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
 import { useImage } from 'react-image';
+import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
-import { bindActionCreators } from 'redux';
 import _find from 'lodash/find';
 
 import { getMedia } from './../../redux/actions/media';
@@ -10,9 +9,12 @@ import { Loader } from '.';
 import placeholder from './../../static/images/placeholder-bold.png';
 
 
-const Media = (props) => {
+const Media = ({ mediaId }) => {
+    const dispatch = useDispatch();
 
-    const { mediaId, getMedia, mediaObj } = props;
+    useEffect(() => dispatch(getMedia(mediaId)), [dispatch, mediaId]);
+
+    const { mediaObj } = useSelector(({ media }) => ({ mediaObj: _find(media, { id: mediaId }) || false }));
 
     const Image = ({ image }) => {
 
@@ -47,8 +49,6 @@ const Media = (props) => {
         );
     }
 
-    useEffect(() => getMedia(mediaId));
-
     return (
         <div className="wp-media">
             <div className="wp-media__ratio ratio ratio-16x9">
@@ -58,16 +58,5 @@ const Media = (props) => {
     );
 }
 
-// Binds Query / Query Result
-const mapStateToProps = (store, { mediaId }) => {
-    const { media } = store;
-    const mediaObj = _find(media, { id: mediaId }) || false;
-
-    return ({ mediaObj });
-};
-
-// Connect fetchDispatch function to props.fetchDispatch
-const mapDispatchToProps = dispatch => bindActionCreators({ getMedia }, dispatch);
-
 // Export container while connected to store and SSR
-export default connect(mapStateToProps, mapDispatchToProps)(Media);
+export default Media;

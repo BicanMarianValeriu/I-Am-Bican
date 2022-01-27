@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Accordion } from 'react-bootstrap';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
@@ -12,7 +11,7 @@ import anime from 'animejs';
 import ContentLoader from 'react-content-loader';
 import VisibilitySensor from 'react-visibility-sensor';
 
-import { getQA, updateQA } from './../../../redux/actions/questions';
+import { getQA } from './../../../redux/actions/questions';
 import { isServer } from './../../../utilities/helpers';
 
 const ContentLoaderRender = () => <ContentLoader {...{
@@ -31,8 +30,10 @@ const ContentLoaderRender = () => <ContentLoader {...{
     <rect x="25" y="105" rx="5" ry="5" width="95%" height="10" />
 </ContentLoader>
 
-const Questions = ({ pending, isLoading, getQA, questions }) => {
+const Questions = (props) => {
+    const { acf: { meta: { questions: include } = {} } = {} } = props;
     const [activeSensor, setActiveSensor] = useState(true);
+    const dispatch = useDispatch();
 
     const addIcons = () => {
         const faChevronDown = {
@@ -63,13 +64,18 @@ const Questions = ({ pending, isLoading, getQA, questions }) => {
 
     const onChange = isVisible => {
         if (!pending && isVisible) {
-            getQA();
             setActiveSensor(false);
-            return;
+            return dispatch(getQA({ include }));
         }
     };
 
     const animeRef = useRef();
+
+    const { questions, pending, isLoading } = useSelector(({ qa, ui: { pending, pendingQA } }) => ({
+        isLoading: pendingQA,
+        questions: _filter(qa, i => _includes(include, i.id)),
+        pending,
+    }));
 
     const renderQuestions = (questions) => {
         if (activeSensor) return <ContentLoaderRender />;
@@ -133,21 +139,4 @@ const Questions = ({ pending, isLoading, getQA, questions }) => {
     );
 };
 
-// Binds menu items to navigation container
-const mapStateToProps = (store, props) => {
-    const { acf: { meta: { questions: include } = {} } = {} } = props;
-    const { qa, ui: { pending, pendingQA: isLoading } } = store;
-    const questions = _filter(qa, i => _includes(include, i.id));
-
-    return ({ questions, pending, isLoading });
-};
-
-// mapDispatchToProps -> getQA
-const mapDispatchToProps = dispatch => bindActionCreators({ getQA, updateQA }, dispatch);
-
-// const frontload = async ({ acf: { meta: { questions: include = [] } = {} } = {}, getQA, updateQA }) => {
-//     const data = await getQA({ include });
-//     return updateQA(data);
-// };
-
-export default connect(mapStateToProps, mapDispatchToProps)(Questions);
+export default Questions;

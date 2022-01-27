@@ -4,10 +4,10 @@
 	"private": true,
 	"homepage": "https://www.iambican.com/",
 	"dependencies": {
-		"@babel/core": "^7.16.7",
+		"@babel/core": "^7.16.12",
 		"@babel/plugin-syntax-dynamic-import": "^7.8.3",
 		"@babel/polyfill": "^7.12.1",
-		"@babel/preset-env": "^7.16.8",
+		"@babel/preset-env": "^7.16.11",
 		"@babel/preset-react": "^7.16.7",
 		"@babel/register": "^7.16.9",
 		"@fortawesome/fontawesome-free": "^5.15.4",
@@ -31,6 +31,7 @@
 		"jwt-decode": "^3.1.2",
 		"lodash": "^4.17.21",
 		"lru-cache": "^6.0.0",
+		"mini-css-extract-plugin": "^2.5.3",
 		"morgan": "^1.10.0",
 		"node-sass": "^7.0.1",
 		"query-string": "^7.1.0",
@@ -41,7 +42,6 @@
 		"react-device-detect": "^2.1.2",
 		"react-dom": "^17.0.2",
 		"react-facebook": "^8.1.4",
-		"react-frontload": "^1.1.0",
 		"react-ga": "^3.3.0",
 		"react-helmet": "^6.1.0",
 		"react-image": "^4.0.3",
@@ -52,6 +52,7 @@
 		"react-router-dom": "^5.3.0",
 		"react-scripts": "^5.0.0",
 		"react-share": "^4.3.0",
+		"react-ssr-prepass": "^1.5.0",
 		"react-use-form-state": "^0.13.2",
 		"react-visibility-sensor": "^5.1.1",
 		"redux": "^4.1.2",
@@ -77,10 +78,6 @@
 		"extends @wordpress/browserslist-config"
 	],
 	"resolutions": {
-		"@babel/core": "^7.5.4",
-		"mini-css-extract-plugin": "2.4.5"
-	},
-	"devDependencies": {
-		"mini-css-extract-plugin": "2.4.5"
+		"@babel/core": "^7.5.4"
 	}
 }

@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { frontloadConnect } from 'react-frontload';
+import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import _find from 'lodash/find';
 
@@ -12,14 +10,16 @@ import { getPage } from './../../redux/actions/pages';
 import { getMetaTags } from './../../utilities/wordpress/wpPost';
 
 const Page = (props) => {
-	const { getPage, selectedPage, location: { pathname }, match: { params: { slug } } } = props;
+	const { match: { params: { slug } }, location: { pathname } } = props;
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
-		if (selectedPage) return;
-		return getPage(slug);
-	}, [pathname, selectedPage, getPage, slug]);
+		return dispatch(getPage(slug));
+	}, [dispatch, slug]);
 
+	const selectedPage = useSelector(({ pages }) => _find(pages, { slug }));
+	
 	const { title: { rendered: pageTitle } = {} } = selectedPage || {};
 	const tags = getMetaTags(selectedPage, pathname);
 
@@ -34,23 +34,5 @@ const Page = (props) => {
 	);
 }
 
-// Binds menu items to navigation container
-const mapStateToProps = (store, props) => {
-	const { pages } = store;
-	const { match: { params: { slug } } } = props;
-	const selectedPage = _find(pages, { slug });
-
-	return ({ selectedPage });
-};
-
-// mapDispatchToProps -> getPage
-const mapDispatchToProps = dispatch => bindActionCreators({ getPage }, dispatch);
-
-// Server Side Stuff
-const frontload = async ({ match: { params: { slug } }, getPage }) => await getPage({ slug });
-
-// Connect to Frontload SSR
-const PageConnect = frontloadConnect(frontload)(Page);
-
-// Export container while connected to store with frontload
-export default connect(mapStateToProps, mapDispatchToProps)(PageConnect);
+// Export container
+export default Page;

@@ -7,7 +7,6 @@ import ReactGA from 'react-ga';
 import { render, hydrate } from 'react-dom';
 import { FacebookProvider } from 'react-facebook';
 import { ConnectedRouter } from 'connected-react-router';
-import { Frontload } from 'react-frontload';
 import { Provider } from 'react-redux';
 
 import App from './App';
@@ -27,11 +26,9 @@ history.listen(location => {
 const Application = (
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
-			<Frontload noServerRender={true}>
-				<FacebookProvider appId="918168974866485">
-					<App />
-				</FacebookProvider>
-			</Frontload>
+			<FacebookProvider appId="918168974866485">
+				<App />
+			</FacebookProvider>
 		</ConnectedRouter>
 	</Provider>
 );

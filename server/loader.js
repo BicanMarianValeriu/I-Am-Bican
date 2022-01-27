@@ -10,7 +10,7 @@ import { Helmet } from 'react-helmet';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { StaticRouter, matchPath } from 'react-router';
-import { Frontload, frontloadServerRender } from 'react-frontload';
+import ssrPrepass from 'react-ssr-prepass';
 
 // Our store, entrypoint, and manifest
 import App from './../src/App';
@@ -36,6 +36,14 @@ const ssrCache = new LRUCache({
  * }
  */
 const server = (req, res, next) => {
+	// If we have a page in the cache, let's serve it
+	const cacheKey = getCacheKey(req);
+	if (ssrCache.has(cacheKey)) {
+		res.setHeader('X-Cache', 'HIT');
+		res.send(ssrCache.get(cacheKey));
+		return;
+	}
+	
 	const match = routes.find(route => matchPath(req.path, {
 		path: route.path,
 		exact: true,
@@ -61,14 +69,6 @@ const server = (req, res, next) => {
 			return res.status(404).end();
 		}
 
-		// If we have a page in the cache, let's serve it
-		const cacheKey = getCacheKey(req);
-		if (ssrCache.has(cacheKey)) {
-			res.setHeader('X-Cache', 'HIT');
-			res.send(ssrCache.get(cacheKey));
-			return;
-		}
-
 		const { store } = configStore(req.url);
 
 		// If the user has a cookie (i.e. they're signed in) - set them as the current user 
@@ -89,9 +89,7 @@ const server = (req, res, next) => {
 				<Loadable.Capture report={m => modules.push(m)}>
 					<Provider store={store}>
 						<StaticRouter location={location} context={context}>
-							<Frontload isServer={true}>
-								<App />
-							</Frontload>
+							<App />
 						</StaticRouter>
 					</Provider>
 				</Loadable.Capture>
@@ -100,7 +98,13 @@ const server = (req, res, next) => {
 			return markupString;
 		};
 
-		await frontloadServerRender(render).then(markupString => {
+		const renderApp = async (render) => {
+			const element = render();
+			await ssrPrepass(element);
+			return element;
+		}
+
+		return renderApp(render).then(markupString => {
 			// Redirect
 			const redirect = context.url || false;
 
