@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
+import { getQuery } from '@redux-requests/core';
 
 import Main from './../../components/General/Main';
 import Intro from './components/Intro';
 import Empty from './Empty';
-import { getProjects } from './../../redux/actions/projects';
+import { getProjects, GET_PROJECTS } from './../../redux/actions/projects';
 
 // SCSS 
 import './../../static/scss/pages/_portfolio-archive.scss';
@@ -19,7 +20,11 @@ const Projects = (props) => {
 		return dispatch(getProjects());
 	}, [dispatch]);
 
-	const { projects } = useSelector(({ projects }) => ({ projects }));
+	const state = useSelector(state => state);
+
+	const { data } = getQuery(state, {
+		type: GET_PROJECTS,
+	});
 
 	const meta = {
 		title: 'View My Portfolio',
@@ -46,7 +51,7 @@ const Projects = (props) => {
 			<div id='content' className='content content--projects content--archive'>
 				<Intro />
 				<div className='container'>
-					<Main posts={projects} className='row my-3 my-md-5 pt-5' isSingle={false} options={{ loading }} loader={Empty} />
+					<Main className='row my-3 my-md-5 pt-5' posts={data || []} options={{ loading }} loader={Empty} />
 				</div>
 			</div>
 		</>

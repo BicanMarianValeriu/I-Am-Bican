@@ -27,7 +27,7 @@ const injectHTML = (data, { html, title, meta, body, scripts, state }) => {
     data = data.replace('</head>', `${meta}</head>`);
     data = data.replace(
         '<div id="wecodeartReact"></div>',
-        `<div id="wecodeartReact">${body}</div><script>window.__PRELOADED_STATE__ = ${state}</script>`
+        `<div id="wecodeartReact">${body}</div><script>window.__INITIAL_STATE__ = ${state}</script>`
     );
     data = data.replace('</body>', scripts.join('') + '</body>');
     return data;

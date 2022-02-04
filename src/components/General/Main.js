@@ -13,10 +13,10 @@ const Main = (props) => {
 		return (isSingle || 1 === posts.length);
 	}
 
-	const getOptions = () => {
-		const { options = {} } = props;
+	const getLoading = () => {
+		const { options: { loading = {} } = {} } = props;
 		const defaultLoading = { enable: true, elements: isSingle() ? 1 : 6 };
-		return { loading: { ...defaultLoading, ...options.loading } };
+		return { ...defaultLoading, ...loading };
 	}
 
 	const getClasses = () => {
@@ -31,28 +31,29 @@ const Main = (props) => {
 	}
 
 	const renderPosts = () => {
-		const { posts = [], loading, loader: Loader = Empty} = props;
+		const { posts = [], loading, loader: Loader = Empty } = props;
 
-		if (loading !== true && posts.length > 0) {
-			return posts.map(post => {
-				let postType;
-				switch (post.type) {
-					case 'portfolio': postType = isSingle() ?
-						<PortfolioSingle key={post.id} {...post} /> : <PortfolioArchive key={post.id} {...post} />;
-						break;
-					default: postType = <Page key={post.id} {...post} isSingle={isSingle()} />;
-				}
-				return postType;
-			});
-		} else {
-			const { loading = {} } = getOptions();
+		if (loading === true || posts === null || posts.length === 0) {
+			const { enable, elements } = getLoading();
 
-			if (loading.enable === false) return;
+			if (enable === false) return;
 
-			const items = isSingle() ? [...Array(1)] : [...Array(loading.elements)];
+			const items = isSingle() ? [...Array(1)] : [...Array(elements)];
 
 			return items.map((val, i) => <Loader key={i} />);
 		}
+
+		return posts.map((post, i) => {
+			let postType;
+			const key = post?.id ? post.id : i;
+			switch (post?.type) {
+				case 'portfolio': postType = isSingle() ?
+					<PortfolioSingle key={post?.id} {...post} /> : <PortfolioArchive key={key} {...post} />;
+					break;
+				default: postType = <Page key={key} {...post} isSingle={isSingle()} />;
+			}
+			return postType;
+		});
 	}
 
 	return (<main id="postsContainer" className={getClasses()}>{renderPosts()}</main>);

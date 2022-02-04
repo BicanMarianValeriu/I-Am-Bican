@@ -8,9 +8,13 @@ import { render, hydrate } from 'react-dom';
 import { FacebookProvider } from 'react-facebook';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
+import { RequestsProvider } from '@redux-requests/react';
+import { createDriver } from '@redux-requests/axios';
 
 import App from './App';
 import createStore from './redux/store';
+import { requestApi } from './redux/actions/api';
+
 import './static/scss/style.scss';
 
 // Create a store and get back itself and its history object
@@ -24,13 +28,15 @@ history.listen(location => {
 });
 
 const Application = (
-	<Provider store={store}>
-		<ConnectedRouter history={history}>
-			<FacebookProvider appId="918168974866485">
-				<App />
-			</FacebookProvider>
-		</ConnectedRouter>
-	</Provider>
+	<RequestsProvider requestsConfig={{ driver: createDriver(requestApi), ssr: 'client' }} initialState={window.__INITIAL_STATE__}>
+		<Provider store={store}>
+			<ConnectedRouter history={history}>
+				<FacebookProvider appId="918168974866485">
+					<App />
+				</FacebookProvider>
+			</ConnectedRouter>
+		</Provider>
+	</RequestsProvider >
 );
 
 const root = document.getElementById('wecodeartReact');

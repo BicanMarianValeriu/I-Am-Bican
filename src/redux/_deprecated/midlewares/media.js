@@ -1,5 +1,5 @@
-import { apiRequest } from './../actions/api';
-import { GET_MEDIA, GET_MEDIA_SUCCESS, GET_MEDIA_ERROR, updateMedia } from './../actions/media';
+import { apiRequest } from '../actions/api';
+import { GET_MEDIA, GET_MEDIA_SUCCESS, GET_MEDIA_ERROR, updateMedia } from '../actions/media';
 
 export const mediaMiddleware = ({ dispatch }) => next => action => {
     next(action);

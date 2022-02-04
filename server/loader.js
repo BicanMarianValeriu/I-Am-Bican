@@ -10,7 +10,6 @@ import { Helmet } from 'react-helmet';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { StaticRouter, matchPath } from 'react-router';
-import ssrPrepass from 'react-ssr-prepass';
 
 // Our store, entrypoint, and manifest
 import App from './../src/App';
@@ -43,7 +42,7 @@ const server = (req, res, next) => {
 		res.send(ssrCache.get(cacheKey));
 		return;
 	}
-	
+
 	const match = routes.find(route => matchPath(req.path, {
 		path: route.path,
 		exact: true,
@@ -69,7 +68,7 @@ const server = (req, res, next) => {
 			return res.status(404).end();
 		}
 
-		const { store } = configStore(req.url);
+		const { store, requestsPromise } = configStore(req.url);
 
 		// If the user has a cookie (i.e. they're signed in) - set them as the current user 
 		if ('authToken' in req.cookies) authToken(req.cookies.authToken);
@@ -100,7 +99,6 @@ const server = (req, res, next) => {
 
 		const renderApp = async (render) => {
 			const element = render();
-			await ssrPrepass(element);
 			return element;
 		}
 

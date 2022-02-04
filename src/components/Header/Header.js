@@ -37,7 +37,7 @@ const Header = () => {
                             <Navigation className="test" wpMenuId={2} />
                         </Col>
                         <Col xs="auto" className="header__login">
-                            <LoginButton />
+                            {/* <LoginButton /> */}
                         </Col>
                     </Row>
                 </Container>

@@ -1,7 +1,6 @@
 // The basics
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router';
 import { dom } from '@fortawesome/fontawesome-svg-core';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -11,14 +10,15 @@ import { browserName, isMobile } from 'react-device-detect';
 import routes from './routes';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import { useSelector } from 'react-redux';
 
-const App = props => {
-	const { ui: { pending } } = props;
+const App = () => {
+	const { pending = false } = useSelector(({ ui = {} }) => ui);
 
 	library.add(icons);
 	library.add(brands);
 	dom.watch();
-
+	
 	useEffect(() => {
 		const documentHTML = document.documentElement;
 		documentHTML.classList.add(browserName);
@@ -61,9 +61,4 @@ const App = props => {
 	);
 }
 
-const mapStateToProps = store => {
-	const { ui } = store;
-	return ({ ui });
-};
-
-export default connect(mapStateToProps)(App);
+export default App;

@@ -9,9 +9,9 @@ const Component = () => (
         <Container>
             <Row className="justify-content-end gx-0">
                 <Col xs={4} lg={3} className="text-center">
-                    <a href="#footer" className="about-me__link text-primary" onClick={() => scrollToElement('#footer')}>
-                        <i className="fal fa-envelope"></i>
-                        <span>Contact Information</span>
+                    <a href="#about-experience" className="about-me__link text-primary" onClick={() => scrollToElement('#about-experience')}>
+                        <i className="fal fa-briefcase"></i>
+                        <span>Experience</span>
                     </a>
                 </Col>
                 <Col xs={4} lg={2} className="text-center">

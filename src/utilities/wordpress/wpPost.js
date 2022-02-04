@@ -10,8 +10,8 @@ const getTitle = (data) => {
 		return;
 	}
 
-	return { 
-		__html: data.title.rendered 
+	return {
+		__html: data.title.rendered
 	};
 };
 
@@ -29,7 +29,7 @@ const getContent = (data) => {
 		return { __html: data.content.rendered };
 	}
 
-	return { 
+	return {
 		__html: '<p>This content is password-protected.</p>'
 	};
 };
@@ -40,32 +40,32 @@ const getContent = (data) => {
  * @returns {string} Rendered post content
  */
 const getExcerpt = (data) => {
-	if (!data){
+	if (!data) {
 		return;
 	}
 
 	if (!data.excerpt) {
 		const content = this.getContent(data).__html.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 250);
-		
-		return { 
-			__html: '<p>' + content + '</p>' 
+
+		return {
+			__html: '<p>' + content + '</p>'
 		};
 	} else {
 		if (!data.excerpt.protected) {
 
 			if ('image' === data.format && !data.excerpt.rendered) {
-				return { 
-					__html: data.content.rendered 
+				return {
+					__html: data.content.rendered
 				};
 			}
 
-			return { 
-				__html: data.excerpt.rendered 
+			return {
+				__html: data.excerpt.rendered
 			};
 		}
 
-		return { 
-			__html: '<p>This content is password-protected.</p>' 
+		return {
+			__html: '<p>This content is password-protected.</p>'
 		};
 	}
 };

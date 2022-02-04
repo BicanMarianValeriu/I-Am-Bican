@@ -2,16 +2,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Accordion } from 'react-bootstrap';
 import { library } from '@fortawesome/fontawesome-svg-core';
-
-import _filter from 'lodash/filter';
-import _includes from 'lodash/includes';
-import _delayCall from 'lodash/delay';
-
-import anime from 'animejs';
+import { getQuery } from '@redux-requests/core';
 import ContentLoader from 'react-content-loader';
 import VisibilitySensor from 'react-visibility-sensor';
+import anime from 'animejs';
+import _delayCall from 'lodash/delay';
 
-import { getQA } from './../../../redux/actions/questions';
+import { getQA, GET_QA } from './../../../redux/actions/questions';
 import { isServer } from './../../../utilities/helpers';
 
 const ContentLoaderRender = () => <ContentLoader {...{
@@ -71,16 +68,18 @@ const Questions = (props) => {
 
     const animeRef = useRef();
 
-    const { questions, pending, isLoading } = useSelector(({ qa, ui: { pending, pendingQA } }) => ({
-        isLoading: pendingQA,
-        questions: _filter(qa, i => _includes(include, i.id)),
-        pending,
-    }));
+    const state = useSelector(state => state);
+
+    const { ui: { pending } } = state;
+
+    const { data: questions, loading: isLoading } = getQuery(state, {
+        type: GET_QA,
+    });
 
     const renderQuestions = (questions) => {
         if (activeSensor) return <ContentLoaderRender />;
 
-        if (questions.length === 0) {
+        if (questions === null || questions.length === 0) {
             return (<div>No Questions asked. Feel free to ask them in the comments bellow.</div>);
         }
 
@@ -102,7 +101,7 @@ const Questions = (props) => {
     useEffect(() => {
         addIcons();
 
-        if (questions.length === 0) return;
+        if (questions === null || questions.length === 0) return;
 
         const animate = _delayCall(() => {
             const cards = document.querySelectorAll('.accordion-item');
@@ -119,10 +118,7 @@ const Questions = (props) => {
             });
         }, 700);
 
-        return () => {
-            clearTimeout(animate);
-            document.querySelector('.portfolio-questions').classList.remove('portfolio-questions--animated');
-        }
+        return () => clearTimeout(animate);
     }, [questions]);
 
     return (

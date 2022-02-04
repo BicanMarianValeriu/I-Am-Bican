@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Dropdown } from "react-bootstrap";
@@ -109,11 +109,11 @@ class Login extends Component {
 			};
 
 			return (
-				<Fragment>
+				<>
 					{loading && <div className="header-login__mask"><div></div></div>}
 					{isAuthentificated() && <img alt="" {...avatarProps} />}
 					<div className="header-login__svg" dangerouslySetInnerHTML={{ __html: layers.html[0] }}></div>
-				</Fragment>
+				</>
 			);
 		}
 
@@ -123,7 +123,7 @@ class Login extends Component {
 		});
 
 		return (
-			<Fragment>{isAuthentificated() ? (
+			<>{isAuthentificated() ? (
 				<Dropdown className={wrapperClasses}>
 					<Dropdown.Toggle onMouseOver={this._onMouseOver} onTouchStart={this._onMouseOver} >
 						<UserLoginSVG />
@@ -152,7 +152,7 @@ class Login extends Component {
 					</button>
 				</div>
 			)}
-			</Fragment>
+			</>
 		);
 	}
 }
